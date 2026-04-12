@@ -30,7 +30,7 @@ def load_data():
 df = load_data()
 
 if "gameDate" in df.columns:
-    df["gameDate"] = pd.to_datetime(df["gameDate"], errors="coerce")
+    df["gameDate"] = pd.to_datetime(df["gameDate"], errors="coerce").dt.normalize()
 
 st.title("Top Shelf Analytics")
 st.subheader("Skater Summary")
@@ -44,18 +44,41 @@ if "gameDate" in filtered_df.columns:
     max_date = filtered_df["gameDate"].max()
 
     if pd.notna(min_date) and pd.notna(max_date):
-        date_range = st.sidebar.date_input(
-            "Game Date Range",
-            value=(min_date.date(), max_date.date())
+        date_mode = st.sidebar.radio(
+            "Game Date Filter Type",
+            ["Single date", "Date range"],
+            index=0
         )
 
-        if len(date_range) == 2:
-            start_date = pd.to_datetime(date_range[0])
-            end_date = pd.to_datetime(date_range[1])
+        if date_mode == "Single date":
+            selected_date = st.sidebar.date_input(
+                "Game Date",
+                value=max_date.date(),
+                min_value=min_date.date(),
+                max_value=max_date.date()
+            )
+
+            selected_date = pd.to_datetime(selected_date).normalize()
 
             filtered_df = filtered_df[
-                filtered_df["gameDate"].between(start_date, end_date)
+                filtered_df["gameDate"] == selected_date
             ]
+
+        else:
+            date_range = st.sidebar.date_input(
+                "Game Date Range",
+                value=(min_date.date(), max_date.date()),
+                min_value=min_date.date(),
+                max_value=max_date.date()
+            )
+
+            if len(date_range) == 2:
+                start_date = pd.to_datetime(date_range[0]).normalize()
+                end_date = pd.to_datetime(date_range[1]).normalize()
+
+                filtered_df = filtered_df[
+                    filtered_df["gameDate"].between(start_date, end_date)
+                ]
 
 # ---- Team Filter ----
 if "teamAbbrev" in filtered_df.columns:
