@@ -5,7 +5,7 @@ st.set_page_config(page_title="Top Shelf Analytics", layout="wide")
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("summary_skater.csv")
+    return pd.read_csv("skater_summary.csv")
 
 df = load_data()
 
