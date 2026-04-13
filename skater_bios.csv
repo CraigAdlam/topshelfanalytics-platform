@@ -1,0 +1,918 @@
+skaterFullName,playerId,height,weight,birthDate,birthCity,birthStateProvinceCode,birthCountryCode,draftYear,draftRound,draftOverall,isInHallOfFameYn,currentTeamAbbrev,currentTeamName,shootsCatches,positionCode,gamesPlayed,goals,assists,points,nationalityCode,lastName,firstSeasonForGameType
+Travis Hamonic,8474612,73,193,1990-08-16,St. Malo,MB,CAN,2008.0,2.0,53.0,N,DET,Detroit Red Wings,R,D,25,0,2,2,CAN,Hamonic,20102011
+Ryan Shea,8478854,73,200,1997-02-11,Milton,MA,USA,2015.0,4.0,121.0,N,PIT,Pittsburgh Penguins,L,D,78,6,26,32,USA,Shea,20232024
+Noel Acciari,8478569,71,204,1991-12-01,Johnston,RI,USA,,,,N,PIT,Pittsburgh Penguins,R,C,65,12,12,24,USA,Acciari,20152016
+Yanni Gourde,8476826,69,173,1991-12-15,Saint-Narcisse,QC,CAN,,,,N,TBL,Tampa Bay Lightning,L,C,79,9,19,28,CAN,Gourde,20152016
+Alexis Lafrenière,8482109,74,191,2001-10-11,St-Eustache,QC,CAN,2020.0,1.0,1.0,N,NYR,New York Rangers,L,L,79,24,31,55,CAN,Lafrenière,20202021
+Urho Vaakanainen,8480001,74,202,1999-01-01,Joensuu,,FIN,2017.0,1.0,18.0,N,NYR,New York Rangers,L,D,33,0,6,6,FIN,Vaakanainen,20182019
+Georgii Merkulov,8483567,71,174,2000-10-10,Ryazan,,RUS,,,,N,BOS,Boston Bruins,L,C,1,0,0,0,RUS,Merkulov,20232024
+Ozzy Wiesblatt,8482103,70,183,2002-03-09,Calgary,AB,CAN,2020.0,1.0,31.0,N,NSH,Nashville Predators,R,C,39,1,4,5,CAN,Wiesblatt,20242025
+Sean Couturier,8476461,76,210,1992-12-07,Phoenix,AZ,USA,2011.0,1.0,8.0,N,PHI,Philadelphia Flyers,L,C,76,10,23,33,CAN,Couturier,20112012
+Scott Morrow,8482666,74,210,2002-11-01,Darien,CT,USA,2021.0,2.0,40.0,N,NYR,New York Rangers,R,D,29,0,6,6,USA,Morrow,20232024
+Dylan Coghlan,8479639,74,205,1998-02-19,Duncan,BC,CAN,,,,N,VGK,Vegas Golden Knights,R,D,3,0,0,0,CAN,Coghlan,20202021
+Jonatan Berggren,8481013,71,195,2000-07-16,Uppsala,,SWE,2018.0,2.0,33.0,N,STL,St. Louis Blues,L,R,49,8,12,20,SWE,Berggren,20222023
+Luke Evangelista,8482146,72,183,2002-02-21,Toronto,ON,CAN,2020.0,2.0,42.0,N,NSH,Nashville Predators,R,R,78,10,41,51,CAN,Evangelista,20222023
+Nick Leddy,8475181,72,205,1991-03-20,Eden Prairie,MN,USA,2009.0,1.0,16.0,N,SJS,San Jose Sharks,L,D,31,1,6,7,USA,Leddy,20102011
+Jiri Kulich,8483468,73,193,2004-04-14,Kadan,,CZE,2022.0,1.0,28.0,N,BUF,Buffalo Sabres,L,C,12,3,2,5,CZE,Kulich,20232024
+Jonathan Toews,8473604,74,201,1988-04-29,Winnipeg,MB,CAN,2006.0,1.0,3.0,N,WPG,Winnipeg Jets,L,C,78,11,17,28,CAN,Toews,20072008
+Luca Pinelli,8484214,69,176,2005-04-05,Stoney Creek,ON,CAN,2023.0,4.0,114.0,N,CBJ,Columbus Blue Jackets,L,C,3,0,0,0,CAN,Pinelli,20252026
+Kevin Rooney,8479291,74,190,1993-05-21,Canton,MA,USA,,,,N,UTA,Utah Mammoth,L,C,1,1,0,1,USA,Rooney,20162017
+Adrian Kempe,8477960,74,205,1996-09-13,Kramfors,,SWE,2014.0,1.0,29.0,N,LAK,Los Angeles Kings,L,R,77,34,37,71,SWE,Kempe,20162017
+Conor Geekie,8483447,76,212,2004-05-05,Strathclair,MB,CAN,2022.0,1.0,11.0,N,TBL,Tampa Bay Lightning,L,C,12,0,2,2,CAN,Geekie,20242025
+Egor Chinakhov,8482475,73,203,2001-02-01,Omsk,,RUS,2020.0,1.0,21.0,N,PIT,Pittsburgh Penguins,L,R,70,21,21,42,RUS,Chinakhov,20212022
+Radko Gudas,8475462,72,208,1990-06-05,Prague,,CZE,2010.0,3.0,66.0,N,ANA,Anaheim Ducks,R,D,55,2,11,13,CZE,Gudas,20122013
+Owen Beck,8483424,72,199,2004-02-03,Port Hope,ON,CAN,2022.0,2.0,33.0,N,MTL,Montréal Canadiens,R,C,15,1,0,1,CAN,Beck,20222023
+Tim Washe,8485512,75,212,2001-08-25,Detroit,MI,USA,,,,N,ANA,Anaheim Ducks,L,C,36,2,3,5,USA,Washe,20242025
+Brendan Brisson,8482153,72,188,2001-10-22,Los Angeles,CA,USA,2020.0,1.0,29.0,N,NYR,New York Rangers,L,C,3,0,1,1,USA,Brisson,20232024
+Conor Timmins,8479982,75,213,1998-09-18,St. Catharines,ON,CAN,2017.0,2.0,32.0,N,BUF,Buffalo Sabres,R,D,37,0,8,8,CAN,Timmins,20192020
+Tomas Hertl,8476881,75,220,1993-11-12,Praha,,CZE,2012.0,1.0,17.0,N,VGK,Vegas Golden Knights,L,C,79,24,32,56,CZE,Hertl,20132014
+Nikita Grebenkin,8483733,74,210,2003-05-02,Serov,,RUS,2022.0,5.0,135.0,N,PHI,Philadelphia Flyers,L,R,55,4,10,14,RUS,Grebenkin,20242025
+Aatu Räty,8482691,74,204,2002-11-14,Oulu,,FIN,2021.0,2.0,52.0,N,VAN,Vancouver Canucks,L,C,62,4,9,13,FIN,Räty,20222023
+Albert Johansson,8481607,72,195,2001-01-04,Karlstad,,SWE,2019.0,2.0,60.0,N,DET,Detroit Red Wings,L,D,79,3,8,11,SWE,Johansson,20242025
+Gabe Perreault,8484210,71,180,2005-05-07,Sherbrooke,QC,CAN,2023.0,1.0,23.0,N,NYR,New York Rangers,L,R,46,10,15,25,CAN,Perreault,20242025
+Nick Lardis,8484185,71,165,2005-07-08,Oakville,ON,CAN,2023.0,3.0,67.0,N,CHI,Chicago Blackhawks,L,L,38,9,5,14,CAN,Lardis,20252026
+Nikita Zadorov,8477507,79,255,1995-04-16,Moscow,,RUS,2013.0,1.0,16.0,N,BOS,Boston Bruins,L,D,78,2,20,22,RUS,Zadorov,20132014
+Joel Armia,8476469,75,215,1993-05-31,Pori,,FIN,2011.0,1.0,16.0,N,LAK,Los Angeles Kings,R,R,63,13,12,25,FIN,Armia,20142015
+Riley Stillman,8479388,74,207,1998-03-09,Peterborough,ON,CAN,2016.0,4.0,114.0,N,EDM,Edmonton Oilers,L,D,4,0,0,0,CAN,Stillman,20182019
+Blake Lizotte,8481481,69,176,1997-12-13,Lindstrom,MN,USA,,,,N,PIT,Pittsburgh Penguins,L,C,55,7,12,19,USA,Lizotte,20182019
+Teuvo Teravainen,8476882,71,191,1994-09-11,Helsinki,,FIN,2012.0,1.0,18.0,N,CHI,Chicago Blackhawks,L,C,72,14,21,35,FIN,Teravainen,20132014
+Matthew Knies,8482720,75,232,2002-10-17,Phoenix,AZ,USA,2021.0,2.0,57.0,N,TOR,Toronto Maple Leafs,L,L,76,23,41,64,USA,Knies,20222023
+Ilya Mikheyev,8481624,74,192,1994-10-10,Omsk,,RUS,,,,N,CHI,Chicago Blackhawks,L,R,74,16,17,33,RUS,Mikheyev,20192020
+Paul Cotter,8481032,74,213,1999-11-16,Canton,MI,USA,2018.0,4.0,115.0,N,NJD,New Jersey Devils,L,L,76,9,6,15,USA,Cotter,20212022
+Josh Mahura,8479372,72,193,1998-05-05,St. Albert,AB,CAN,2016.0,3.0,85.0,N,SEA,Seattle Kraken,L,D,22,1,2,3,CAN,Mahura,20182019
+Will Borgen,8478840,75,199,1996-12-19,Moorhead,MN,USA,2015.0,4.0,92.0,N,NYR,New York Rangers,R,D,72,5,10,15,USA,Borgen,20182019
+Brian Halonen,8483531,72,207,1999-01-11,Delano,MN,USA,,,,N,NJD,New Jersey Devils,R,L,13,1,1,2,USA,Halonen,20232024
+Mason Lohrei,8482511,77,218,2001-01-17,Baton Rouge,LA,USA,2020.0,2.0,58.0,N,BOS,Boston Bruins,L,D,70,7,18,25,USA,Lohrei,20232024
+Kiefer Sherwood,8480748,72,194,1995-03-31,Columbus,OH,USA,,,,N,SJS,San Jose Sharks,R,L,68,23,10,33,USA,Sherwood,20182019
+Alex DeBrincat,8479337,68,180,1997-12-18,Farmington Hills,MI,USA,2016.0,2.0,39.0,N,DET,Detroit Red Wings,R,R,79,40,43,83,USA,DeBrincat,20172018
+Michael Carcone,8479619,69,182,1996-05-19,Ajax,ON,CAN,,,,N,UTA,Utah Mammoth,L,L,75,15,15,30,CAN,Carcone,20212022
+Scott Sabourin,8477149,75,205,1992-07-30,Orleans,ON,CAN,,,,N,TBL,Tampa Bay Lightning,R,R,23,1,3,4,CAN,Sabourin,20192020
+Dylan Cozens,8481528,75,205,2001-02-09,Whitehorse,YT,CAN,2019.0,1.0,7.0,N,OTT,Ottawa Senators,R,C,79,27,30,57,CAN,Cozens,20202021
+Noah Juulsen,8478454,74,201,1997-04-02,Surrey,BC,CAN,2015.0,1.0,26.0,N,PHI,Philadelphia Flyers,R,D,51,1,9,10,CAN,Juulsen,20172018
+Brandon Hagel,8479542,74,186,1998-08-27,Saskatoon,SK,CAN,2016.0,6.0,159.0,N,TBL,Tampa Bay Lightning,L,L,69,35,38,73,CAN,Hagel,20192020
+Zachary L'Heureux,8482742,71,197,2003-05-15,Montréal,QC,CAN,2021.0,1.0,27.0,N,NSH,Nashville Predators,L,L,22,4,1,5,CAN,L'Heureux,20242025
+Alexander Wennberg,8477505,74,190,1994-09-22,Stockholm,,SWE,2013.0,1.0,14.0,N,SJS,San Jose Sharks,L,C,77,18,36,54,SWE,Wennberg,20142015
+Cole Smith,8482062,75,195,1995-10-28,Brainerd,MN,USA,,,,N,VGK,Vegas Golden Knights,L,R,60,8,4,12,USA,Smith,20202021
+Cam York,8481546,72,194,2001-01-05,Anaheim,CA,USA,2019.0,1.0,14.0,N,PHI,Philadelphia Flyers,L,D,72,4,22,26,USA,York,20202021
+Tyler Pitlick,8475752,74,199,1991-11-01,Minneapolis,MN,USA,2010.0,2.0,31.0,N,MIN,Minnesota Wild,R,C,32,2,0,2,USA,Pitlick,20132014
+Haydn Fleury,8477938,76,207,1996-07-08,Carlyle,SK,CAN,2014.0,1.0,7.0,N,WPG,Winnipeg Jets,L,D,35,1,2,3,CAN,Fleury,20172018
+Teddy Blueger,8476927,72,185,1994-08-15,Riga,,LVA,2012.0,2.0,52.0,N,VAN,Vancouver Canucks,L,C,31,8,8,16,LVA,Blueger,20182019
+Isaac Howard,8483455,70,180,2004-03-30,Hudson,WI,USA,2022.0,1.0,31.0,N,EDM,Edmonton Oilers,L,L,28,2,3,5,USA,Howard,20252026
+Logan Mailloux,8482733,75,212,2003-04-15,Belle River,ON,CAN,2021.0,1.0,31.0,N,STL,St. Louis Blues,R,D,63,3,6,9,CAN,Mailloux,20232024
+Dante Fabbro,8479371,72,200,1998-06-20,Coquitlam,BC,CAN,2016.0,1.0,17.0,N,CBJ,Columbus Blue Jackets,R,D,71,5,5,10,CAN,Fabbro,20182019
+Eric Robinson,8480762,74,220,1995-06-14,Bellmawr,NJ,USA,,,,N,CAR,Carolina Hurricanes,L,L,64,12,6,18,USA,Robinson,20172018
+Dylan DeMelo,8476331,73,194,1993-05-01,London,ON,CAN,2011.0,6.0,179.0,N,WPG,Winnipeg Jets,R,D,78,3,16,19,CAN,DeMelo,20152016
+Michael Callahan,8480828,74,195,1999-09-23,Franklin,MA,USA,2018.0,5.0,142.0,N,BOS,Boston Bruins,L,D,5,0,0,0,USA,Callahan,20242025
+Stephen Halliday,8483676,76,214,2002-07-02,Ajax,ON,CAN,2022.0,4.0,104.0,N,OTT,Ottawa Senators,L,C,28,4,7,11,CAN,Halliday,20252026
+Trevor Kuntar,8482479,72,205,2001-06-20,Buffalo,NY,USA,2020.0,3.0,89.0,N,BUF,Buffalo Sabres,L,C,1,0,0,0,USA,Kuntar,20252026
+Cole Sillinger,8482705,72,202,2003-05-16,Columbus,OH,USA,2021.0,1.0,12.0,N,CBJ,Columbus Blue Jackets,L,C,78,8,25,33,USA,Sillinger,20212022
+Adam Sykora,8483669,71,193,2004-09-07,Piestany,,SVK,2022.0,2.0,63.0,N,NYR,New York Rangers,L,L,8,3,1,4,SVK,Sykora,20252026
+Daemon Hunt,8482094,73,193,2002-05-15,Brandon,MB,CAN,2020.0,3.0,65.0,N,MIN,Minnesota Wild,L,D,29,0,5,5,CAN,Hunt,20232024
+Joel Farabee,8480797,72,186,2000-02-25,Syracuse,NY,USA,2018.0,1.0,14.0,N,CGY,Calgary Flames,L,L,78,19,18,37,USA,Farabee,20192020
+Jared Davidson,8483728,71,183,2002-07-07,Edmonton,AB,CAN,2022.0,5.0,130.0,N,MTL,Montréal Canadiens,L,C,10,0,1,1,CAN,Davidson,20252026
+Zach Whitecloud,8480727,74,210,1996-11-28,Brandon,MB,CAN,,,,N,CGY,Calgary Flames,R,D,74,2,12,14,CAN,Whitecloud,20172018
+Ben Kindel,8485414,71,182,2007-04-19,Coquitlam,BC,CAN,2025.0,1.0,11.0,N,PIT,Pittsburgh Penguins,R,C,76,17,17,34,CAN,Kindel,20252026
+Simon Lundmark,8481547,74,190,2000-10-08,Stockholm,,SWE,2019.0,2.0,51.0,N,TBL,Tampa Bay Lightning,R,D,1,0,0,0,SWE,Lundmark,20252026
+Brandon Tanev,8479293,72,189,1991-12-31,Toronto,ON,CAN,,,,N,UTA,Utah Mammoth,L,L,52,0,3,3,CAN,Tanev,20152016
+Sam Carrick,8475842,72,202,1992-02-04,Stouffville,ON,CAN,2010.0,5.0,144.0,N,BUF,Buffalo Sabres,R,C,73,9,7,16,CAN,Carrick,20142015
+Carter Yakemchuk,8484759,75,219,2005-09-29,Fort McMurray,AB,CAN,2024.0,1.0,7.0,N,OTT,Ottawa Senators,R,D,4,1,1,2,CAN,Yakemchuk,20252026
+Tyson Foerster,8482159,74,215,2002-01-18,Alliston,ON,CAN,2020.0,1.0,23.0,N,PHI,Philadelphia Flyers,R,R,26,13,3,16,CAN,Foerster,20222023
+Sandis Vilmanis,8483771,73,192,2004-01-23,Riga,,LVA,2022.0,5.0,157.0,N,FLA,Florida Panthers,L,L,19,3,2,5,LVA,Vilmanis,20252026
+Jack Quinn,8482097,73,185,2001-09-19,Ottawa,ON,CAN,2020.0,1.0,8.0,N,BUF,Buffalo Sabres,R,R,80,20,31,51,CAN,Quinn,20212022
+Timo Meier,8478414,73,220,1996-10-08,Herisau,,CHE,2015.0,1.0,9.0,N,NJD,New Jersey Devils,L,R,74,24,18,42,CHE,Meier,20162017
+Jake Evans,8478133,72,190,1996-06-02,Toronto,ON,CAN,2014.0,7.0,207.0,N,MTL,Montréal Canadiens,R,C,65,11,11,22,CAN,Evans,20192020
+Pavel Zacha,8478401,76,211,1997-04-06,Brno,,CZE,2015.0,1.0,6.0,N,BOS,Boston Bruins,L,C,76,30,34,64,CZE,Zacha,20152016
+Justin Brazeau,8479638,78,232,1998-02-02,New Liskeard,ON,CAN,,,,N,PIT,Pittsburgh Penguins,R,R,61,17,17,34,CAN,Brazeau,20232024
+Yegor Sharangovich,8481068,74,196,1998-06-06,Minsk,,BLR,2018.0,5.0,141.0,N,CGY,Calgary Flames,L,C,74,15,14,29,BLR,Sharangovich,20202021
+Mitch Marner,8478483,72,180,1997-05-05,Markham,ON,CAN,2015.0,1.0,4.0,N,VGK,Vegas Golden Knights,R,R,78,23,55,78,CAN,Marner,20162017
+Berkly Catton,8484800,70,179,2006-01-14,Saskatoon,SK,CAN,2024.0,1.0,8.0,N,SEA,Seattle Kraken,L,C,62,7,10,17,CAN,Catton,20252026
+Filip Forsberg,8476887,73,205,1994-08-13,Ostervala,,SWE,2012.0,1.0,11.0,N,NSH,Nashville Predators,R,L,79,38,35,73,SWE,Forsberg,20122013
+Braden Schneider,8482073,75,206,2001-09-20,Prince Albert,SK,CAN,2020.0,1.0,19.0,N,NYR,New York Rangers,R,D,79,2,16,18,CAN,Schneider,20212022
+Brett Leason,8481517,77,220,1999-04-30,Calgary,AB,CAN,2019.0,2.0,56.0,N,WSH,Washington Capitals,R,R,6,0,0,0,CAN,Leason,20212022
+Connor Murphy,8476473,76,212,1993-03-26,Boston,MA,USA,2011.0,1.0,20.0,N,EDM,Edmonton Oilers,R,D,77,5,11,16,USA,Murphy,20132014
+Justin Faulk,8475753,72,208,1992-03-20,South St. Paul,MN,USA,2010.0,2.0,37.0,N,DET,Detroit Red Wings,R,D,75,14,23,37,USA,Faulk,20112012
+Tyson Jost,8479370,71,187,1998-03-14,St. Albert,AB,CAN,2016.0,1.0,10.0,N,NSH,Nashville Predators,L,C,66,8,8,16,CAN,Jost,20162017
+Kaiden Guhle,8482087,75,202,2002-01-18,Edmonton,AB,CAN,2020.0,1.0,16.0,N,MTL,Montréal Canadiens,L,D,37,2,8,10,CAN,Guhle,20222023
+Pius Suter,8480459,71,172,1996-05-24,Zurich,,CHE,,,,N,STL,St. Louis Blues,L,C,60,13,14,27,CHE,Suter,20202021
+Jeff Skinner,8475784,71,200,1992-05-16,Toronto,ON,CAN,2010.0,1.0,7.0,N,,,L,L,32,6,7,13,CAN,Skinner,20102011
+Connor Zary,8482074,72,178,2001-09-25,Saskatoon,SK,CAN,2020.0,1.0,24.0,N,CGY,Calgary Flames,L,C,71,11,13,24,CAN,Zary,20232024
+Egor Zamula,8481178,75,200,2000-03-30,Chelyabinsk,,RUS,,,,N,CBJ,Columbus Blue Jackets,L,D,32,0,3,3,RUS,Zamula,20202021
+Nate Danielson,8484160,74,195,2004-09-27,Edmonton,AB,CAN,2023.0,1.0,9.0,N,DET,Detroit Red Wings,R,C,28,2,5,7,CAN,Danielson,20252026
+Jonathan Lekkerimäki,8483476,71,172,2004-07-24,Tullinge,,SWE,2022.0,1.0,15.0,N,VAN,Vancouver Canucks,R,R,13,2,1,3,SWE,Lekkerimäki,20242025
+Artyom Levshunov,8484783,74,208,2005-10-28,Zhlobin,,BLR,2024.0,1.0,2.0,N,CHI,Chicago Blackhawks,R,D,68,2,22,24,BLR,Levshunov,20242025
+Luke Kunin,8479316,72,197,1997-12-04,Chesterfield,MO,USA,2016.0,1.0,15.0,N,FLA,Florida Panthers,R,C,59,2,4,6,USA,Kunin,20172018
+Simon Edvinsson,8482762,78,222,2003-02-05,Kungsbacka,,SWE,2021.0,1.0,6.0,N,DET,Detroit Red Wings,L,D,69,9,16,25,SWE,Edvinsson,20222023
+William Eklund,8482667,70,185,2002-10-12,Stockholm,,SWE,2021.0,1.0,7.0,N,SJS,San Jose Sharks,L,L,74,14,35,49,SWE,Eklund,20212022
+Bryan Rust,8475810,71,202,1992-05-11,Pontiac,MI,USA,2010.0,3.0,80.0,N,PIT,Pittsburgh Penguins,R,R,71,29,36,65,USA,Rust,20142015
+Jaccob Slavin,8476958,75,207,1994-05-01,Denver,CO,USA,2012.0,4.0,120.0,N,CAR,Carolina Hurricanes,L,D,38,1,6,7,USA,Slavin,20152016
+Isac Lundeström,8480806,73,192,1999-11-06,Gallivare,,SWE,2018.0,1.0,23.0,N,CBJ,Columbus Blue Jackets,L,C,65,4,8,12,SWE,Lundeström,20182019
+Kris Letang,8471724,72,199,1987-04-24,Montréal,QC,CAN,2005.0,3.0,62.0,N,PIT,Pittsburgh Penguins,R,D,73,3,31,34,CAN,Letang,20062007
+Troy Stecher,8479442,70,184,1994-04-07,Richmond,BC,CAN,,,,N,TOR,Toronto Maple Leafs,R,D,61,3,10,13,CAN,Stecher,20162017
+Cody Glass,8479996,75,201,1999-04-01,Winnipeg,MB,CAN,2017.0,1.0,6.0,N,NJD,New Jersey Devils,R,C,67,18,7,25,CAN,Glass,20192020
+Hunter Haight,8483452,70,173,2004-04-04,Strathroy,ON,CAN,2022.0,2.0,47.0,N,MIN,Minnesota Wild,R,C,7,0,1,1,CAN,Haight,20252026
+Oscar Fisker Molgaard,8484168,72,168,2005-02-18,Hjørring,,DNK,2023.0,2.0,52.0,N,SEA,Seattle Kraken,L,C,11,0,2,2,DNK,Fisker Molgaard,20252026
+Tim Stützle,8482116,72,187,2002-01-15,Viersen,,DEU,2020.0,1.0,3.0,N,OTT,Ottawa Senators,L,C,79,34,48,82,DEU,Stützle,20202021
+Shea Theodore,8477447,74,197,1995-08-03,Aldergrove,BC,CAN,2013.0,1.0,26.0,N,VGK,Vegas Golden Knights,L,D,67,9,29,38,CAN,Theodore,20152016
+Ben Hutton,8477018,75,209,1993-04-20,Brockville,ON,CAN,2012.0,5.0,147.0,N,VGK,Vegas Golden Knights,L,D,55,6,9,15,CAN,Hutton,20152016
+Nathan Légaré,8481594,72,200,2001-01-11,Montréal,QC,CAN,2019.0,3.0,74.0,N,NJD,New Jersey Devils,R,R,1,0,0,0,CAN,Légaré,20242025
+Arttu Hyry,8484938,75,211,2001-04-06,Oulu,,FIN,,,,N,DAL,Dallas Stars,R,R,18,2,2,4,FIN,Hyry,20242025
+Brian Dumoulin,8475208,76,215,1991-09-06,Biddeford,ME,USA,2009.0,2.0,51.0,N,LAK,Los Angeles Kings,L,D,78,2,15,17,USA,Dumoulin,20132014
+Hunter Brzustewicz,8484150,72,190,2004-11-29,Washington,MI,USA,2023.0,3.0,75.0,N,CGY,Calgary Flames,R,D,30,1,5,6,USA,Brzustewicz,20242025
+Mikhail Sergachev,8479410,75,212,1998-06-25,Nizhnekamsk,,RUS,2016.0,1.0,9.0,N,UTA,Utah Mammoth,L,D,74,10,47,57,RUS,Sergachev,20162017
+Brady Skjei,8476869,75,210,1994-03-26,Lakeville,MN,USA,2012.0,1.0,28.0,N,NSH,Nashville Predators,L,D,79,3,23,26,USA,Skjei,20152016
+Brady Tkachuk,8480801,76,226,1999-09-16,Scottsdale,AZ,USA,2018.0,1.0,4.0,N,OTT,Ottawa Senators,L,L,59,22,37,59,USA,Tkachuk,20182019
+Michael Kesselring,8480891,77,215,2000-01-13,Florence,SC,USA,2018.0,6.0,164.0,N,BUF,Buffalo Sabres,R,D,33,0,2,2,USA,Kesselring,20222023
+Dryden Hunt,8478211,72,193,1995-11-24,Cranbrook,BC,CAN,,,,N,CGY,Calgary Flames,L,L,3,0,0,0,CAN,Hunt,20172018
+Tanner Jeannot,8479661,74,221,1997-05-29,Estevan,SK,CAN,,,,N,BOS,Boston Bruins,L,L,75,6,15,21,CAN,Jeannot,20202021
+Jani Nyman,8483497,74,212,2004-07-30,Valkeakoski,,FIN,2022.0,2.0,49.0,N,SEA,Seattle Kraken,L,R,26,4,2,6,FIN,Nyman,20242025
+Kevin Korchinski,8483466,73,185,2004-06-21,Saskatoon,SK,CAN,2022.0,1.0,7.0,N,CHI,Chicago Blackhawks,L,D,10,0,2,2,CAN,Korchinski,20232024
+Jake Bean,8479402,73,191,1998-06-09,Calgary,AB,CAN,2016.0,1.0,13.0,N,CGY,Calgary Flames,L,D,16,1,1,2,CAN,Bean,20182019
+Juraj Slafkovský,8483515,75,225,2004-03-30,Kosice,,SVK,2022.0,1.0,1.0,N,MTL,Montréal Canadiens,L,L,79,30,41,71,SVK,Slafkovský,20222023
+Isaiah George,8483448,73,203,2004-02-15,Oakville,ON,CAN,2022.0,4.0,98.0,N,NYI,New York Islanders,L,D,3,0,1,1,CAN,George,20242025
+MacKenzie Weegar,8477346,72,206,1994-01-07,Ottawa,ON,CAN,2013.0,7.0,206.0,N,UTA,Utah Mammoth,R,D,75,4,21,25,CAN,Weegar,20162017
+Nicholas Robertson,8481582,69,180,2001-09-11,Pasadena,CA,USA,2019.0,2.0,53.0,N,TOR,Toronto Maple Leafs,L,L,75,15,16,31,USA,Robertson,20202021
+Dmitry Orlov,8475200,71,215,1991-07-23,Novokuznetsk,,RUS,2009.0,2.0,55.0,N,SJS,San Jose Sharks,L,D,78,3,32,35,RUS,Orlov,20112012
+Filip Hallander,8480842,73,203,2000-06-29,Sundsvall,,SWE,2018.0,2.0,58.0,N,PIT,Pittsburgh Penguins,L,C,13,1,3,4,SWE,Hallander,20212022
+Jake Middleton,8478136,75,219,1996-01-02,Wainwright,AB,CAN,2014.0,7.0,210.0,N,MIN,Minnesota Wild,L,D,72,2,14,16,CAN,Middleton,20182019
+Dmitri Voronkov,8481716,77,234,2000-09-10,Angarsk,,RUS,2019.0,4.0,114.0,N,CBJ,Columbus Blue Jackets,L,L,63,17,15,32,RUS,Voronkov,20232024
+Alexander Holtz,8482125,72,198,2002-01-23,Stockholm,,SWE,2020.0,1.0,7.0,N,VGK,Vegas Golden Knights,R,R,28,3,6,9,SWE,Holtz,20212022
+Shayne Gostisbehere,8476906,71,183,1993-04-20,Pembroke Pines,FL,USA,2012.0,3.0,78.0,N,CAR,Carolina Hurricanes,L,D,53,13,35,48,USA,Gostisbehere,20142015
+Ivan Barbashev,8477964,72,203,1995-12-14,Moscow,,RUS,2014.0,2.0,33.0,N,VGK,Vegas Golden Knights,L,L,79,22,36,58,RUS,Barbashev,20162017
+Ben Chiarot,8475279,75,222,1991-05-09,Hamilton,ON,CAN,2009.0,4.0,120.0,N,DET,Detroit Red Wings,L,D,79,5,8,13,CAN,Chiarot,20132014
+Alex Barré-Boulet,8479718,70,178,1997-05-21,Montmagny,QC,CAN,,,,N,COL,Colorado Avalanche,L,C,1,0,1,1,CAN,Barré-Boulet,20202021
+Jordan Greenway,8478413,78,231,1997-02-16,Canton,NY,USA,2015.0,2.0,50.0,N,BUF,Buffalo Sabres,L,L,38,1,5,6,USA,Greenway,20172018
+Victor Hedman,8475167,79,244,1990-12-18,Ornskoldsvik,,SWE,2009.0,1.0,2.0,N,TBL,Tampa Bay Lightning,L,D,33,1,16,17,SWE,Hedman,20092010
+Simon Nemec,8483495,73,190,2004-02-15,Liptovský Mikuláš,,SVK,2022.0,1.0,2.0,N,NJD,New Jersey Devils,R,D,65,11,15,26,SVK,Nemec,20232024
+Collin Graf,8484911,73,190,2002-09-21,Lincoln,MA,USA,,,,N,SJS,San Jose Sharks,R,R,77,20,24,44,USA,Graf,20232024
+Morgan Frost,8480028,72,193,1999-05-14,Aurora,ON,CAN,2017.0,1.0,27.0,N,CGY,Calgary Flames,L,C,78,21,20,41,CAN,Frost,20192020
+Ryan Reaves,8471817,74,225,1987-01-20,Winnipeg,MB,CAN,2005.0,5.0,156.0,N,SJS,San Jose Sharks,R,R,50,3,0,3,CAN,Reaves,20102011
+Eeli Tolvanen,8480009,70,182,1999-04-22,Vihti,,FIN,2017.0,1.0,30.0,N,SEA,Seattle Kraken,L,R,74,12,24,36,FIN,Tolvanen,20172018
+Chandler Stephenson,8476905,72,201,1994-04-22,Saskatoon,SK,CAN,2012.0,3.0,77.0,N,SEA,Seattle Kraken,L,C,76,15,32,47,CAN,Stephenson,20152016
+Colin Miller,8476525,73,200,1992-10-29,Sault Ste. Marie,ON,CAN,2012.0,5.0,151.0,N,WPG,Winnipeg Jets,R,D,15,0,1,1,CAN,Miller,20152016
+Otto Stenberg,8484230,71,188,2005-05-29,Stenungsund,,SWE,2023.0,1.0,25.0,N,STL,St. Louis Blues,L,C,30,2,7,9,SWE,Stenberg,20252026
+Drew Helleson,8481563,75,208,2001-03-26,Farmington,MN,USA,2019.0,2.0,47.0,N,ANA,Anaheim Ducks,R,D,59,2,13,15,USA,Helleson,20222023
+Olli Maatta,8476874,74,207,1994-08-22,Jyväskylä,,FIN,2012.0,1.0,22.0,N,CGY,Calgary Flames,L,D,39,2,11,13,FIN,Maatta,20132014
+Elias Pettersson,8483678,74,185,2004-02-16,Vasteras,,SWE,2022.0,3.0,80.0,N,VAN,Vancouver Canucks,L,D,66,2,7,9,SWE,Pettersson,20242025
+Kyle Connor,8478398,73,183,1996-12-09,Shelby Township,MI,USA,2015.0,1.0,17.0,N,WPG,Winnipeg Jets,L,L,78,38,51,89,USA,Connor,20162017
+Anton Lundell,8482113,73,196,2001-10-03,Espoo,,FIN,2020.0,1.0,12.0,N,FLA,Florida Panthers,L,C,64,18,26,44,FIN,Lundell,20212022
+Scott Mayfield,8476429,76,215,1992-10-14,St. Louis,MO,USA,2011.0,2.0,34.0,N,NYI,New York Islanders,R,D,77,2,12,14,USA,Mayfield,20132014
+Brett Pesce,8477488,75,206,1994-11-15,Tarrytown,NY,USA,2013.0,3.0,66.0,N,NJD,New Jersey Devils,R,D,37,1,6,7,USA,Pesce,20152016
+Erik Karlsson,8474578,72,185,1990-05-31,Landsbro,,SWE,2008.0,1.0,15.0,N,PIT,Pittsburgh Penguins,R,D,74,15,51,66,SWE,Karlsson,20092010
+Tanner Laczynski,8479550,73,211,1997-06-01,Minooka,IL,USA,2016.0,6.0,169.0,N,VGK,Vegas Golden Knights,R,C,10,0,5,5,USA,Laczynski,20202021
+Zakhar Bardakov,8482947,74,198,2001-02-24,Berdsk,,RUS,2021.0,7.0,203.0,N,COL,Colorado Avalanche,L,C,57,1,9,10,RUS,Bardakov,20252026
+Brandon Duhaime,8479520,74,210,1997-05-22,Coral Springs,FL,USA,2016.0,4.0,106.0,N,WSH,Washington Capitals,L,L,79,4,5,9,USA,Duhaime,20212022
+Declan Chisholm,8480990,73,205,2000-01-12,Bowmanville,ON,CAN,2018.0,5.0,150.0,N,WSH,Washington Capitals,L,D,26,1,6,7,CAN,Chisholm,20212022
+Konsta Helenius,8484797,71,190,2006-05-11,Ylojarvi,,FIN,2024.0,1.0,14.0,N,BUF,Buffalo Sabres,R,C,9,1,3,4,FIN,Helenius,20252026
+John Hayden,8477401,75,223,1995-02-14,Chicago,IL,USA,2013.0,3.0,74.0,N,SEA,Seattle Kraken,R,C,3,0,0,0,USA,Hayden,20162017
+Taylor Hall,8475791,73,210,1991-11-14,Calgary,AB,CAN,2010.0,1.0,1.0,N,CAR,Carolina Hurricanes,L,L,79,18,30,48,CAN,Hall,20102011
+Zayne Parekh,8484768,72,179,2006-02-15,Markham,ON,CAN,2024.0,1.0,9.0,N,CGY,Calgary Flames,R,D,33,3,4,7,CAN,Parekh,20242025
+Adam Pelech,8476917,75,212,1994-08-16,Toronto,ON,CAN,2012.0,3.0,65.0,N,NYI,New York Islanders,L,D,79,4,12,16,CAN,Pelech,20152016
+Noah Hanifin,8478396,75,206,1997-01-25,Boston,MA,USA,2015.0,1.0,5.0,N,VGK,Vegas Golden Knights,L,D,68,3,23,26,USA,Hanifin,20152016
+Gustav Nyquist,8474679,71,180,1989-09-01,Halmstad,,SWE,2008.0,4.0,121.0,N,WPG,Winnipeg Jets,L,R,51,1,11,12,SWE,Nyquist,20112012
+Jordan Staal,8473533,76,220,1988-09-10,Thunder Bay,ON,CAN,2006.0,1.0,2.0,N,CAR,Carolina Hurricanes,L,C,74,19,15,34,CAN,Staal,20062007
+Max Crozier,8481719,75,204,2000-04-19,Calgary,AB,CAN,2019.0,4.0,120.0,N,TBL,Tampa Bay Lightning,R,D,34,1,9,10,CAN,Crozier,20232024
+Noah Gregor,8479393,72,201,1998-07-28,Beaumont,AB,CAN,2016.0,4.0,111.0,N,FLA,Florida Panthers,L,L,34,4,3,7,CAN,Gregor,20192020
+Alexander Petrovic,8475755,77,215,1992-03-03,Edmonton,AB,CAN,2010.0,2.0,36.0,N,DAL,Dallas Stars,R,D,52,2,7,9,CAN,Petrovic,20122013
+Ivan Provorov,8478500,73,224,1997-01-13,Yaroslavl,,RUS,2015.0,1.0,7.0,N,CBJ,Columbus Blue Jackets,L,D,79,9,21,30,RUS,Provorov,20162017
+Nicolas Roy,8478462,76,200,1997-02-05,Amos,QC,CAN,2015.0,4.0,96.0,N,COL,Colorado Avalanche,R,C,70,8,15,23,CAN,Roy,20172018
+Maksim Tsyplakov,8484958,75,203,1998-09-19,Moscow,,RUS,,,,N,NJD,New Jersey Devils,L,R,48,2,2,4,RUS,Tsyplakov,20242025
+Jason Dickinson,8477450,74,200,1995-07-04,Georgetown,ON,CAN,2013.0,1.0,29.0,N,EDM,Edmonton Oilers,L,C,64,7,10,17,CAN,Dickinson,20152016
+Arthur Kaliyev,8481560,74,212,2001-06-26,Tashkent,,UZB,2019.0,2.0,33.0,N,OTT,Ottawa Senators,L,R,2,0,1,1,USA,Kaliyev,20202021
+David Jiricek,8483460,76,204,2003-11-28,Klatovy,,CZE,2022.0,1.0,6.0,N,PHI,Philadelphia Flyers,R,D,25,0,0,0,CZE,Jiricek,20222023
+JJ Peterka,8482175,72,189,2002-01-14,Munich,,DEU,2020.0,2.0,34.0,N,UTA,Utah Mammoth,L,R,78,24,21,45,DEU,Peterka,20212022
+Matthew Kessel,8482516,75,212,2000-06-23,Bloomfield Hills,MI,USA,2020.0,5.0,150.0,N,STL,St. Louis Blues,R,D,28,2,1,3,USA,Kessel,20222023
+Samuel Helenius,8482726,78,225,2002-11-26,Dallas,TX,USA,2021.0,2.0,59.0,N,LAK,Los Angeles Kings,L,C,49,5,4,9,FIN,Helenius,20242025
+Jonah Gadjovich,8479981,75,211,1998-10-12,Whitby,ON,CAN,2017.0,2.0,55.0,N,FLA,Florida Panthers,L,L,10,0,3,3,CAN,Gadjovich,20202021
+Jaden Schwartz,8475768,70,185,1992-06-25,Wilcox,SK,CAN,2010.0,1.0,14.0,N,SEA,Seattle Kraken,L,L,48,11,13,24,CAN,Schwartz,20112012
+Mason Appleton,8478891,74,196,1996-01-15,Green Bay,WI,USA,2015.0,6.0,168.0,N,DET,Detroit Red Wings,R,C,65,6,8,14,USA,Appleton,20182019
+Jacob Moverare,8479421,75,205,1998-08-31,Ostersund,,SWE,2016.0,4.0,112.0,N,LAK,Los Angeles Kings,L,D,15,0,0,0,SWE,Moverare,20212022
+Ryan Poehling,8480068,74,206,1999-01-03,Lakeville,MN,USA,2017.0,1.0,25.0,N,ANA,Anaheim Ducks,L,C,72,11,23,34,USA,Poehling,20182019
+Jason Robertson,8480027,75,204,1999-07-22,Arcadia,CA,USA,2017.0,2.0,39.0,N,DAL,Dallas Stars,L,L,79,42,50,92,USA,Robertson,20192020
+Cale Fleury,8479985,73,204,1998-11-19,Carlyle,SK,CAN,2017.0,3.0,87.0,N,SEA,Seattle Kraken,R,D,22,1,2,3,CAN,Fleury,20192020
+Artem Zub,8482245,75,201,1995-10-03,Khabarovsk,,RUS,,,,N,OTT,Ottawa Senators,R,D,78,5,24,29,RUS,Zub,20202021
+Jeff Petry,8473507,75,208,1987-12-09,Ann Arbor,MI,USA,2006.0,2.0,45.0,N,MIN,Minnesota Wild,R,D,64,0,9,9,USA,Petry,20102011
+Elias Salomonsson,8483510,72,172,2004-08-31,Skelleftea,,SWE,2022.0,2.0,55.0,N,WPG,Winnipeg Jets,R,D,32,1,4,5,SWE,Salomonsson,20252026
+Max Shabanov,8485702,69,167,2000-10-07,Chelyabinsk,,RUS,,,,N,NYI,New York Islanders,L,R,44,5,13,18,RUS,Shabanov,20252026
+Nick Paul,8477426,76,234,1995-03-20,Mississauga,ON,CAN,2013.0,4.0,101.0,N,TBL,Tampa Bay Lightning,L,L,48,7,8,15,CAN,Paul,20152016
+Philipp Kurashev,8480798,72,190,1999-10-12,Munsingen,,CHE,2018.0,4.0,120.0,N,SJS,San Jose Sharks,L,C,42,7,13,20,CHE,Kurashev,20202021
+Brenden Dillon,8475455,76,225,1990-11-13,New Westminster,BC,CAN,,,,N,NJD,New Jersey Devils,L,D,79,3,12,15,CAN,Dillon,20112012
+Nico Sturm,8481477,75,209,1995-05-03,Augsburg,,DEU,,,,N,MIN,Minnesota Wild,L,C,46,5,6,11,DEU,Sturm,20182019
+Darnell Nurse,8477498,76,215,1995-02-04,Hamilton,ON,CAN,2013.0,1.0,7.0,N,EDM,Edmonton Oilers,L,D,79,7,16,23,CAN,Nurse,20142015
+Hampus Lindholm,8476854,76,217,1994-01-20,Helsingborg,,SWE,2012.0,1.0,6.0,N,BOS,Boston Bruins,L,D,65,5,20,25,SWE,Lindholm,20132014
+Patrick Kane,8474141,70,176,1988-11-19,Buffalo,NY,USA,2007.0,1.0,1.0,N,DET,Detroit Red Wings,L,R,64,16,40,56,USA,Kane,20072008
+Dylan Holloway,8482077,73,207,2001-09-23,Calgary,AB,CAN,2020.0,1.0,14.0,N,STL,St. Louis Blues,L,L,55,20,25,45,CAN,Holloway,20222023
+Bo Groulx,8480870,74,202,2000-02-06,Rouen,,FRA,2018.0,2.0,54.0,N,TOR,Toronto Maple Leafs,L,C,13,3,2,5,CAN,Groulx,20212022
+Sean Walker,8480336,71,191,1994-11-13,Keswick,ON,CAN,,,,N,CAR,Carolina Hurricanes,R,D,79,8,21,29,CAN,Walker,20182019
+Elias Pettersson,8480012,74,176,1998-11-12,Sundsvall,,SWE,2017.0,1.0,5.0,N,VAN,Vancouver Canucks,L,C,70,15,33,48,SWE,Pettersson,20182019
+Victor Mancini,8483768,75,229,2002-05-26,Hancock,MI,USA,2022.0,5.0,159.0,N,VAN,Vancouver Canucks,R,D,23,0,2,2,USA,Mancini,20242025
+Shane Lachance,8482941,76,195,2003-08-30,Andover,MA,USA,2021.0,6.0,186.0,N,NJD,New Jersey Devils,L,L,1,0,0,0,USA,Lachance,20252026
+Travis Sanheim,8477948,76,222,1996-03-29,Elkhorn,MB,CAN,2014.0,1.0,17.0,N,PHI,Philadelphia Flyers,L,D,79,10,26,36,CAN,Sanheim,20172018
+Jett Luchanko,8484779,71,180,2006-08-21,London,ON,CAN,2024.0,1.0,13.0,N,PHI,Philadelphia Flyers,R,C,4,0,0,0,CAN,Luchanko,20242025
+Sam Lafferty,8478043,74,205,1995-03-06,Hollidaysburg,PA,USA,2014.0,4.0,113.0,N,CHI,Chicago Blackhawks,R,C,27,1,1,2,USA,Lafferty,20192020
+Michael Eyssimont,8479591,72,195,1996-09-09,Littleton,CO,USA,2016.0,5.0,142.0,N,BOS,Boston Bruins,L,C,53,8,10,18,USA,Eyssimont,20212022
+Matthew Schaefer,8485366,74,186,2007-09-05,Hamilton,ON,CAN,2025.0,1.0,1.0,N,NYI,New York Islanders,L,D,79,23,36,59,CAN,Schaefer,20252026
+John Beecher,8481556,75,220,2001-04-05,Elmira,NY,USA,2019.0,1.0,30.0,N,CGY,Calgary Flames,L,C,35,3,4,7,USA,Beecher,20232024
+Matthew Benning,8476988,73,220,1994-05-25,Edmonton,AB,CAN,2012.0,6.0,175.0,N,TOR,Toronto Maple Leafs,R,D,1,0,0,0,CAN,Benning,20162017
+Domenick Fensore,8481562,69,175,2001-09-07,Thornwood,NY,USA,2019.0,3.0,90.0,N,CAR,Carolina Hurricanes,L,D,1,0,0,0,USA,Fensore,20242025
+Oskar Bäck,8480840,76,207,2000-03-12,Karlstad,,SWE,2018.0,3.0,75.0,N,DAL,Dallas Stars,L,C,69,5,7,12,SWE,Bäck,20242025
+Roope Hintz,8478449,75,217,1996-11-17,Nokia,,FIN,2015.0,2.0,49.0,N,DAL,Dallas Stars,L,C,53,15,29,44,FIN,Hintz,20182019
+Sam Bennett,8477935,73,193,1996-06-20,Holland Landing,ON,CAN,2014.0,1.0,4.0,N,FLA,Florida Panthers,L,C,76,26,32,58,CAN,Bennett,20142015
+Xavier Bourgault,8482673,71,185,2002-10-22,L'Islet,QC,CAN,2021.0,1.0,22.0,N,OTT,Ottawa Senators,R,R,2,0,0,0,CAN,Bourgault,20252026
+Mackenzie MacEachern,8476907,74,193,1994-03-09,Bloomfield Hills,MI,USA,2012.0,3.0,67.0,N,VAN,Vancouver Canucks,L,L,8,1,3,4,USA,MacEachern,20182019
+Ryan Hartman,8477451,72,197,1994-09-20,Hilton Head Island,SC,USA,2013.0,1.0,30.0,N,MIN,Minnesota Wild,R,R,75,23,20,43,USA,Hartman,20142015
+Nick Blankenburg,8483565,69,177,1998-05-12,Washington,MI,USA,,,,N,COL,Colorado Avalanche,R,D,57,6,16,22,USA,Blankenburg,20212022
+Cutter Gauthier,8483445,74,205,2004-01-19,Skelleftea,,SWE,2022.0,1.0,5.0,N,ANA,Anaheim Ducks,L,L,73,38,27,65,USA,Gauthier,20232024
+Cole Caufield,8481540,68,175,2001-01-02,Mosinee,WI,USA,2019.0,1.0,15.0,N,MTL,Montréal Canadiens,R,R,78,50,37,87,USA,Caufield,20202021
+Ryan Leonard,8484186,73,205,2005-01-21,Northampton,MA,USA,2023.0,1.0,8.0,N,WSH,Washington Capitals,R,R,72,18,24,42,USA,Leonard,20242025
+Victor Soderstrom,8481599,72,189,2001-02-26,Gavle,,SWE,2019.0,1.0,11.0,N,BOS,Boston Bruins,R,D,8,0,1,1,SWE,Soderstrom,20202021
+Jamie Benn,8473994,75,210,1989-07-18,Victoria,BC,CAN,2007.0,5.0,129.0,N,DAL,Dallas Stars,L,L,57,15,20,35,CAN,Benn,20092010
+Carson Lambos,8482781,73,197,2003-01-14,Winnipeg,MB,CAN,2021.0,1.0,26.0,N,MIN,Minnesota Wild,L,D,1,0,0,0,CAN,Lambos,20252026
+Dylan Duke,8482663,70,184,2003-03-04,Strongsville,OH,USA,2021.0,4.0,126.0,N,TBL,Tampa Bay Lightning,L,L,1,0,0,0,USA,Duke,20242025
+Ryan Ufko,8482715,72,174,2003-05-07,Smithtown,NY,USA,2021.0,4.0,115.0,N,NSH,Nashville Predators,R,D,15,2,5,7,USA,Ufko,20242025
+Lucas Raymond,8482078,71,186,2002-03-28,Gothenburg,,SWE,2020.0,1.0,4.0,N,DET,Detroit Red Wings,R,L,77,25,50,75,SWE,Raymond,20212022
+Logan Cooley,8483431,72,191,2004-05-04,Pittsburgh,PA,USA,2022.0,1.0,3.0,N,UTA,Utah Mammoth,L,C,50,23,18,41,USA,Cooley,20232024
+Miles Wood,8477425,74,209,1995-09-13,Buffalo,NY,USA,2013.0,4.0,100.0,N,CBJ,Columbus Blue Jackets,L,L,51,8,6,14,USA,Wood,20152016
+Drake Batherson,8480208,75,209,1998-04-27,Fort Wayne,IN,USA,2017.0,4.0,121.0,N,OTT,Ottawa Senators,R,R,76,32,37,69,CAN,Batherson,20182019
+Barclay Goodrow,8476624,74,210,1993-02-26,Toronto,ON,CAN,,,,N,SJS,San Jose Sharks,L,C,78,5,7,12,CAN,Goodrow,20142015
+Joona Koppanen,8479533,77,216,1998-02-25,Tampere,,FIN,2016.0,5.0,135.0,N,PIT,Pittsburgh Penguins,L,L,10,0,1,1,FIN,Koppanen,20222023
+Ryan Strome,8476458,73,192,1993-07-11,Mississauga,ON,CAN,2011.0,1.0,5.0,N,CGY,Calgary Flames,R,C,49,8,12,20,CAN,Strome,20132014
+Ethen Frank,8483573,71,188,1998-02-05,Aurora,CO,USA,,,,N,WSH,Washington Capitals,R,R,62,12,12,24,USA,Frank,20242025
+Ethan Cardwell,8482206,71,180,2002-08-30,Oshawa,ON,CAN,2021.0,4.0,121.0,N,SJS,San Jose Sharks,R,R,7,1,0,1,CAN,Cardwell,20242025
+William Karlsson,8476448,72,190,1993-01-08,Marsta,,SWE,2011.0,2.0,53.0,N,VGK,Vegas Golden Knights,L,C,14,4,3,7,SWE,Karlsson,20142015
+Damon Severson,8476923,74,204,1994-08-07,Melville,SK,CAN,2012.0,2.0,60.0,N,CBJ,Columbus Blue Jackets,R,D,71,8,24,32,CAN,Severson,20142015
+Joseph LaBate,8476425,77,225,1993-04-16,Burnsville,MN,USA,2011.0,4.0,101.0,N,VAN,Vancouver Canucks,L,C,1,0,0,0,USA,LaBate,20162017
+Alexander Kerfoot,8477021,71,185,1994-08-11,Vancouver,BC,CAN,2012.0,5.0,150.0,N,UTA,Utah Mammoth,L,C,30,6,6,12,CAN,Kerfoot,20172018
+Kevin Hayes,8475763,75,217,1992-05-08,Dorchester,MA,USA,2010.0,1.0,24.0,N,PIT,Pittsburgh Penguins,L,R,25,3,2,5,USA,Hayes,20142015
+Pavel Dorofeyev,8481604,73,194,2000-10-26,Nizhny Tagil,,RUS,2019.0,3.0,79.0,N,VGK,Vegas Golden Knights,L,R,79,35,27,62,RUS,Dorofeyev,20212022
+Josh Morrissey,8477504,72,195,1995-03-28,Calgary,AB,CAN,2013.0,1.0,13.0,N,WPG,Winnipeg Jets,L,D,73,14,41,55,CAN,Morrissey,20152016
+Adam Wilsby,8482482,73,188,2000-08-07,Stockholm,,SWE,2020.0,4.0,101.0,N,NSH,Nashville Predators,L,D,55,1,15,16,SWE,Wilsby,20242025
+Ville Heinola,8481572,72,181,2001-03-02,Honkajoki,,FIN,2019.0,1.0,20.0,N,WPG,Winnipeg Jets,L,D,3,0,0,0,FIN,Heinola,20192020
+Radek Faksa,8476889,75,216,1994-01-09,Vitkov,,CZE,2012.0,1.0,13.0,N,DAL,Dallas Stars,L,C,56,2,15,17,CZE,Faksa,20152016
+Tye Kartye,8481789,71,202,2001-04-30,Kingston,ON,CAN,,,,N,NYR,New York Rangers,L,L,61,6,13,19,CAN,Kartye,20232024
+Vladislav Namestnikov,8476480,72,181,1992-11-22,Zhukovskiy,,RUS,2011.0,1.0,27.0,N,WPG,Winnipeg Jets,L,C,59,8,6,14,RUS,Namestnikov,20132014
+Ryan Donato,8477987,72,190,1996-04-09,Boston,MA,USA,2014.0,2.0,56.0,N,CHI,Chicago Blackhawks,L,C,79,15,14,29,USA,Donato,20172018
+Carter Mazur,8482802,72,200,2002-03-28,Jackson,MI,USA,2021.0,3.0,70.0,N,DET,Detroit Red Wings,R,L,5,0,0,0,USA,Mazur,20242025
+Vince Dunn,8478407,72,200,1996-10-29,Mississauga,ON,CAN,2015.0,2.0,56.0,N,SEA,Seattle Kraken,L,D,77,11,32,43,CAN,Dunn,20172018
+Aleksanteri Kaskimaki,8483463,72,195,2004-02-06,Espoo,,FIN,2022.0,3.0,73.0,N,STL,St. Louis Blues,L,C,5,0,0,0,FIN,Kaskimaki,20252026
+Roby Jarventie,8482162,74,184,2002-08-08,Tampere,,FIN,2020.0,2.0,33.0,N,EDM,Edmonton Oilers,L,L,3,0,0,0,FIN,Jarventie,20232024
+Anthony Cirelli,8478519,73,193,1997-07-15,Etobicoke,ON,CAN,2015.0,3.0,72.0,N,TBL,Tampa Bay Lightning,L,C,69,23,29,52,CAN,Cirelli,20172018
+Jesper Bratt,8479407,70,175,1998-07-30,Stockholm,,SWE,2016.0,6.0,162.0,N,NJD,New Jersey Devils,L,L,79,20,48,68,SWE,Bratt,20172018
+Jordan Harris,8480887,72,189,2000-07-07,Haverhill,MA,USA,2018.0,3.0,71.0,N,BOS,Boston Bruins,L,D,7,1,1,2,USA,Harris,20212022
+Jimmy Snuggerud,8483516,73,193,2004-06-01,Minneapolis,MN,USA,2022.0,1.0,23.0,N,STL,St. Louis Blues,R,R,66,17,26,43,USA,Snuggerud,20242025
+Will Cuylle,8482157,75,212,2002-02-05,Toronto,ON,CAN,2020.0,2.0,60.0,N,NYR,New York Rangers,L,L,79,20,17,37,CAN,Cuylle,20222023
+Sacha Boisvert,8484793,74,176,2006-03-17,Trois-Rivières,QC,CAN,2024.0,1.0,18.0,N,CHI,Chicago Blackhawks,L,C,6,1,0,1,CAN,Boisvert,20252026
+Rasmus Ristolainen,8477499,76,208,1994-10-27,Turku,,FIN,2013.0,1.0,8.0,N,PHI,Philadelphia Flyers,R,D,42,1,11,12,FIN,Ristolainen,20132014
+Anders Lee,8475314,75,234,1990-07-03,Edina,MN,USA,2009.0,6.0,152.0,N,NYI,New York Islanders,L,L,79,19,23,42,USA,Lee,20122013
+Tyson Gross,8486056,75,195,2002-09-23,Calgary,AB,CAN,,,,N,CGY,Calgary Flames,R,C,3,1,0,1,CAN,Gross,20252026
+Danila Yurov,8483525,73,178,2003-12-22,Chelyabinsk,,RUS,2022.0,1.0,24.0,N,MIN,Minnesota Wild,L,R,70,10,15,25,RUS,Yurov,20252026
+Keaton Middleton,8479387,78,240,1998-02-10,Edmonton,AB,CAN,2016.0,4.0,101.0,N,COL,Colorado Avalanche,L,D,3,0,1,1,CAN,Middleton,20202021
+Esa Lindell,8476902,75,217,1994-05-23,Vantaa,,FIN,2012.0,3.0,74.0,N,DAL,Dallas Stars,L,D,79,5,25,30,FIN,Lindell,20152016
+Dalibor Dvorsky,8484164,73,207,2005-06-15,Zvolen,,SVK,2023.0,1.0,10.0,N,STL,St. Louis Blues,L,R,67,11,8,19,SVK,Dvorsky,20242025
+Jacob Quillan,8484901,73,204,2002-02-02,Dartmouth,NS,CAN,,,,N,TOR,Toronto Maple Leafs,L,C,20,0,1,1,CAN,Quillan,20242025
+Matthew Wood,8484241,76,202,2005-02-06,Nanaimo,BC,CAN,2023.0,1.0,15.0,N,NSH,Nashville Predators,R,R,68,16,13,29,CAN,Wood,20242025
+Vladislav Kolyachonok,8481609,74,198,2001-05-26,Minsk,,BLR,2019.0,2.0,52.0,N,DAL,Dallas Stars,L,D,13,1,2,3,BLR,Kolyachonok,20212022
+Ryker Evans,8482858,72,195,2001-12-13,Calgary,AB,CAN,2021.0,2.0,35.0,N,SEA,Seattle Kraken,L,D,63,8,7,15,CAN,Evans,20232024
+Logan O'Connor,8481186,72,175,1996-08-14,Missouri City,TX,USA,,,,N,COL,Colorado Avalanche,R,R,9,0,2,2,USA,O'Connor,20182019
+Cole McWard,8484287,74,196,2001-06-09,Fenton,MO,USA,,,,N,NYI,New York Islanders,R,D,3,0,0,0,USA,McWard,20222023
+Zach Hyman,8475786,73,206,1992-06-09,Toronto,ON,CAN,2010.0,5.0,123.0,N,EDM,Edmonton Oilers,R,L,57,31,20,51,CAN,Hyman,20152016
+Brandon Saad,8476438,73,207,1992-10-27,Pittsburgh,PA,USA,2011.0,2.0,43.0,N,VGK,Vegas Golden Knights,L,L,48,3,6,9,USA,Saad,20112012
+Joseph Veleno,8480813,73,201,2000-01-13,Montréal,QC,CAN,2018.0,1.0,30.0,N,MTL,Montréal Canadiens,L,C,59,2,2,4,CAN,Veleno,20202021
+Marc McLaughlin,8483397,72,202,1999-07-26,North Billerica,MA,USA,,,,N,NJD,New Jersey Devils,R,C,4,0,0,0,USA,McLaughlin,20212022
+Mason Geertsen,8477419,76,231,1995-04-19,Drayton Valley,AB,CAN,2013.0,4.0,93.0,N,BUF,Buffalo Sabres,L,L,5,0,0,0,CAN,Geertsen,20212022
+Pierre-Olivier Joseph,8480058,74,185,1999-07-01,Laval,QC,CAN,2017.0,1.0,23.0,N,VAN,Vancouver Canucks,L,D,31,1,5,6,CAN,Joseph,20202021
+Nathan MacKinnon,8477492,72,200,1995-09-01,Halifax,NS,CAN,2013.0,1.0,1.0,N,COL,Colorado Avalanche,R,C,77,52,74,126,CAN,MacKinnon,20132014
+William Stromgren,8482766,75,175,2003-06-07,Ornskoldsvik,,SWE,2021.0,2.0,45.0,N,CGY,Calgary Flames,L,L,3,0,0,0,SWE,Stromgren,20252026
+Nicolas Hague,8479980,78,245,1998-12-05,Kitchener,ON,CAN,2017.0,2.0,34.0,N,NSH,Nashville Predators,L,D,62,3,12,15,CAN,Hague,20192020
+T.J. Tynan,8476391,68,160,1992-02-25,Orland Park,IL,USA,2011.0,3.0,66.0,N,COL,Colorado Avalanche,R,C,1,0,0,0,USA,Tynan,20162017
+Casey Cizikas,8475231,71,191,1991-02-27,Toronto,ON,CAN,2009.0,4.0,92.0,N,NYI,New York Islanders,L,C,78,9,8,17,CAN,Cizikas,20112012
+Ryan Pulock,8477506,73,219,1994-10-06,Dauphin,MB,CAN,2013.0,1.0,15.0,N,NYI,New York Islanders,R,D,74,3,23,26,CAN,Pulock,20152016
+Ty Murchison,8482804,74,212,2003-02-02,Corona,CA,USA,2021.0,5.0,158.0,N,PHI,Philadelphia Flyers,L,D,3,0,0,0,USA,Murchison,20252026
+Owen Power,8482671,78,226,2002-11-22,Mississauga,ON,CAN,2021.0,1.0,1.0,N,BUF,Buffalo Sabres,L,D,79,8,18,26,CAN,Power,20212022
+Devon Toews,8478038,73,191,1994-02-21,Abbotsford,BC,CAN,2014.0,4.0,108.0,N,COL,Colorado Avalanche,L,D,65,2,21,23,CAN,Toews,20182019
+Beck Malenstyn,8479359,75,209,1998-02-04,Delta,BC,CAN,2016.0,5.0,145.0,N,BUF,Buffalo Sabres,L,L,79,7,7,14,CAN,Malenstyn,20192020
+Jesperi Kotkaniemi,8480829,75,212,2000-07-06,Pori,,FIN,2018.0,1.0,3.0,N,CAR,Carolina Hurricanes,L,C,39,2,7,9,FIN,Kotkaniemi,20182019
+Philip Tomasino,8481577,72,187,2001-07-28,Mississauga,ON,CAN,2019.0,1.0,24.0,N,PHI,Philadelphia Flyers,R,R,9,0,1,1,CAN,Tomasino,20212022
+Josh Manson,8476312,75,218,1991-10-07,Hinsdale,IL,USA,2011.0,6.0,160.0,N,COL,Colorado Avalanche,R,D,78,5,26,31,CAN,Manson,20142015
+Shane Wright,8483524,72,192,2004-01-05,Burlington,ON,CAN,2022.0,1.0,4.0,N,SEA,Seattle Kraken,R,C,72,11,15,26,CAN,Wright,20222023
+Spencer Stastney,8481056,72,184,2000-01-04,Woodridge,IL,USA,2018.0,5.0,131.0,N,EDM,Edmonton Oilers,L,D,66,2,8,10,USA,Stastney,20222023
+Jayden Struble,8481593,72,207,2001-09-08,Cumberland,RI,USA,2019.0,2.0,46.0,N,MTL,Montréal Canadiens,L,D,56,2,10,12,USA,Struble,20232024
+Evander Kane,8475169,74,218,1991-08-02,Vancouver,BC,CAN,2009.0,1.0,4.0,N,VAN,Vancouver Canucks,L,L,71,13,18,31,CAN,Kane,20092010
+Zach Aston-Reese,8479944,73,203,1994-08-10,Staten Island,NY,USA,,,,N,CBJ,Columbus Blue Jackets,L,L,27,1,4,5,USA,Aston-Reese,20172018
+Sam Steel,8479351,72,185,1998-02-03,Ardrossan,AB,CAN,2016.0,1.0,30.0,N,DAL,Dallas Stars,L,C,72,12,21,33,CAN,Steel,20182019
+Brendan Gallagher,8475848,69,185,1992-05-06,Edmonton,AB,CAN,2010.0,5.0,147.0,N,MTL,Montréal Canadiens,R,R,76,6,16,22,CAN,Gallagher,20122013
+Curtis Douglas,8480876,81,242,2000-03-06,Oakville,ON,CAN,2018.0,4.0,106.0,N,VAN,Vancouver Canucks,L,C,40,0,2,2,CAN,Douglas,20252026
+Michael Misa,8485402,73,185,2007-02-16,Oakville,ON,CAN,2025.0,1.0,2.0,N,SJS,San Jose Sharks,L,C,41,7,10,17,CAN,Misa,20252026
+Nic Dowd,8475343,74,195,1990-05-27,Huntsville,AL,USA,2009.0,7.0,198.0,N,VGK,Vegas Golden Knights,R,C,72,5,15,20,USA,Dowd,20152016
+Samuel Honzek,8484180,76,186,2004-11-12,Trencin,,SVK,2023.0,1.0,16.0,N,CGY,Calgary Flames,L,L,18,2,2,4,SVK,Honzek,20242025
+Danil Zhilkin,8483526,73,192,2003-12-19,Moscow,,RUS,2022.0,3.0,77.0,N,WPG,Winnipeg Jets,L,C,6,0,1,1,CAN,Zhilkin,20252026
+Theo Lindstein,8484188,72,197,2005-01-05,Gavle,,SWE,2023.0,1.0,29.0,N,STL,St. Louis Blues,L,D,15,1,2,3,SWE,Lindstein,20252026
+Boone Jenner,8476432,74,204,1993-06-15,Dorchester,ON,CAN,2011.0,2.0,37.0,N,CBJ,Columbus Blue Jackets,L,C,64,11,24,35,CAN,Jenner,20132014
+Raphael Lavoie,8481534,76,217,2000-09-25,Chambly,QC,CAN,2019.0,2.0,38.0,N,VGK,Vegas Golden Knights,R,C,1,0,0,0,CAN,Lavoie,20232024
+Justin Holl,8475718,76,194,1992-01-30,Tonka Bay,MN,USA,2010.0,2.0,54.0,N,STL,St. Louis Blues,R,D,8,1,1,2,USA,Holl,20172018
+Josh Dunne,8482623,76,208,1998-12-08,O'Fallon,MO,USA,,,,N,BUF,Buffalo Sabres,L,C,33,1,3,4,USA,Dunne,20202021
+Tom Wilson,8476880,76,225,1994-03-29,Toronto,ON,CAN,2012.0,1.0,16.0,N,WSH,Washington Capitals,R,R,69,29,30,59,CAN,Wilson,20132014
+Fabian Zetterlund,8480188,71,208,1999-08-25,Karlstad,,SWE,2017.0,3.0,63.0,N,OTT,Ottawa Senators,R,L,79,16,15,31,SWE,Zetterlund,20212022
+Michael Rasmussen,8479992,78,222,1999-04-17,Surrey,BC,CAN,2017.0,1.0,9.0,N,DET,Detroit Red Wings,L,C,64,6,8,14,CAN,Rasmussen,20182019
+Erik Gustafsson,8476979,72,190,1992-03-14,Nynashamn,,SWE,2012.0,4.0,93.0,N,DET,Detroit Red Wings,L,D,2,0,0,0,SWE,Gustafsson,20152016
+Juuso Parssinen,8481704,75,207,2001-02-01,Hameenlinna,,FIN,2019.0,7.0,210.0,N,NYR,New York Rangers,L,C,20,2,1,3,FIN,Parssinen,20222023
+Emil Andrae,8482126,69,189,2002-02-23,Vastervik,,SWE,2020.0,2.0,54.0,N,PHI,Philadelphia Flyers,L,D,58,2,11,13,SWE,Andrae,20232024
+Noah Ostlund,8483500,71,180,2004-03-11,Stockholm,,SWE,2022.0,1.0,16.0,N,BUF,Buffalo Sabres,L,C,60,11,16,27,SWE,Ostlund,20242025
+Trevor van Riemsdyk,8477845,75,210,1991-07-24,Middletown,NJ,USA,,,,N,WSH,Washington Capitals,R,D,65,2,10,12,USA,van Riemsdyk,20142015
+Tomas Nosek,8477931,75,199,1992-09-01,Pardubice,,CZE,,,,N,FLA,Florida Panthers,L,L,19,0,2,2,CZE,Nosek,20152016
+Alex Ovechkin,8471214,75,238,1985-09-17,Moscow,,RUS,2004.0,1.0,1.0,N,WSH,Washington Capitals,R,L,79,31,30,61,RUS,Ovechkin,20052006
+Frank Nazar,8483493,70,190,2004-01-14,Detroit,MI,USA,2022.0,1.0,13.0,N,CHI,Chicago Blackhawks,R,C,63,15,26,41,USA,Nazar,20232024
+Nikita Chibrikov,8482787,70,170,2003-02-16,Moscow,,RUS,2021.0,2.0,50.0,N,WPG,Winnipeg Jets,L,R,8,0,0,0,RUS,Chibrikov,20232024
+Kent Johnson,8482660,72,170,2002-10-18,Port Moody,BC,CAN,2021.0,1.0,5.0,N,CBJ,Columbus Blue Jackets,L,C,73,7,14,21,CAN,Johnson,20212022
+David Tomasek,8485493,74,210,1996-02-10,Praha,,CZE,,,,N,,,R,R,22,3,2,5,CZE,Tomasek,20252026
+Ridly Greig,8482092,72,184,2002-08-08,Lethbridge,AB,CAN,2020.0,1.0,28.0,N,OTT,Ottawa Senators,L,C,74,12,21,33,CAN,Greig,20222023
+Tyler Tucker,8481006,73,204,2000-03-01,Thunder Bay,ON,CAN,2018.0,7.0,200.0,N,STL,St. Louis Blues,L,D,65,3,11,14,CAN,Tucker,20222023
+Igor Chernyshov,8484994,74,195,2005-11-30,Penza,,RUS,2024.0,2.0,33.0,N,SJS,San Jose Sharks,R,L,24,5,9,14,RUS,Chernyshov,20252026
+Ryan Winterton,8482751,74,175,2003-09-04,Markham,ON,CAN,2021.0,3.0,67.0,N,SEA,Seattle Kraken,R,C,64,4,14,18,CAN,Winterton,20232024
+Kirby Dach,8481523,76,221,2001-01-21,Fort Saskatchewan,AB,CAN,2019.0,1.0,3.0,N,MTL,Montréal Canadiens,R,C,34,8,6,14,CAN,Dach,20192020
+Donovan Sebrango,8482131,74,223,2002-01-12,Ottawa,ON,CAN,2020.0,3.0,63.0,N,FLA,Florida Panthers,L,D,39,0,5,5,CAN,Sebrango,20242025
+Eetu Luostarinen,8480185,75,191,1998-09-02,Siilinjarvi,,FIN,2017.0,2.0,42.0,N,FLA,Florida Panthers,L,C,70,10,19,29,FIN,Luostarinen,20192020
+J.T. Compher,8477456,72,191,1995-04-08,Northbrook,IL,USA,2013.0,2.0,35.0,N,DET,Detroit Red Wings,R,L,79,11,15,26,USA,Compher,20162017
+John Tavares,8475166,73,217,1990-09-20,Mississauga,ON,CAN,2009.0,1.0,1.0,N,TOR,Toronto Maple Leafs,L,C,79,30,39,69,CAN,Tavares,20092010
+Steven Lorentz,8478904,76,219,1996-04-13,Kitchener,ON,CAN,2015.0,7.0,186.0,N,TOR,Toronto Maple Leafs,L,C,68,7,10,17,CAN,Lorentz,20202021
+Yakov Trenin,8478508,74,201,1997-01-13,Chelyabinsk,,RUS,2015.0,2.0,55.0,N,MIN,Minnesota Wild,L,C,79,6,16,22,RUS,Trenin,20192020
+Evan Bouchard,8480803,75,192,1999-10-20,Oakville,ON,CAN,2018.0,1.0,10.0,N,EDM,Edmonton Oilers,R,D,79,21,70,91,CAN,Bouchard,20182019
+Sam Malinski,8484258,71,190,1998-07-27,Lakeville,MN,USA,,,,N,COL,Colorado Avalanche,R,D,78,7,31,38,USA,Malinski,20232024
+Victor Olofsson,8478109,71,180,1995-07-18,Ornskoldsvik,,SWE,2014.0,7.0,181.0,N,CGY,Calgary Flames,L,L,75,13,18,31,SWE,Olofsson,20182019
+Mikael Granlund,8475798,70,193,1992-02-26,Oulu,,FIN,2010.0,1.0,9.0,N,ANA,Anaheim Ducks,L,C,55,19,18,37,FIN,Granlund,20122013
+Dylan McIlrath,8475795,77,240,1992-04-20,Winnipeg,MB,CAN,2010.0,1.0,10.0,N,WSH,Washington Capitals,R,D,12,0,0,0,CAN,McIlrath,20132014
+Josh Norris,8480064,74,196,1999-05-05,Oxford,MI,USA,2017.0,1.0,19.0,N,BUF,Buffalo Sabres,L,C,42,11,21,32,USA,Norris,20192020
+Matt Rempe,8482460,81,261,2002-06-29,Calgary,AB,CAN,2020.0,6.0,165.0,N,NYR,New York Rangers,R,C,26,1,0,1,CAN,Rempe,20232024
+Alexey Toropchenko,8480281,78,225,1999-06-25,Moscow,,RUS,2017.0,4.0,113.0,N,STL,St. Louis Blues,L,R,61,3,5,8,RUS,Toropchenko,20212022
+Marco Rossi,8482079,69,182,2001-09-23,Feldkirch,,AUT,2020.0,1.0,9.0,N,VAN,Vancouver Canucks,L,C,46,10,21,31,AUT,Rossi,20212022
+Brandt Clarke,8482730,74,200,2003-02-09,Nepean,ON,CAN,2021.0,1.0,8.0,N,LAK,Los Angeles Kings,R,D,78,8,32,40,CAN,Clarke,20222023
+Noah Philp,8481491,75,198,1998-08-31,Canmore,AB,CAN,,,,N,CAR,Carolina Hurricanes,R,C,17,2,1,3,CAN,Philp,20242025
+Denver Barkey,8484142,70,171,2005-04-27,Newmarket,ON,CAN,2023.0,3.0,95.0,N,PHI,Philadelphia Flyers,L,C,40,5,10,15,CAN,Barkey,20252026
+Matthew Tkachuk,8479314,74,202,1997-12-11,Scottsdale,AZ,USA,2016.0,1.0,6.0,N,FLA,Florida Panthers,L,L,30,13,19,32,USA,Tkachuk,20162017
+Henry Thrun,8481567,74,211,2001-03-12,Southborough,MA,USA,2019.0,4.0,101.0,N,TOR,Toronto Maple Leafs,L,D,4,0,0,0,USA,Thrun,20222023
+Connor McDavid,8478402,73,194,1997-01-13,Richmond Hill,ON,CAN,2015.0,1.0,1.0,N,EDM,Edmonton Oilers,L,C,79,47,86,133,CAN,McDavid,20152016
+David Perron,8474102,72,202,1988-05-28,Sherbrooke,QC,CAN,2007.0,1.0,26.0,N,DET,Detroit Red Wings,R,L,62,11,15,26,CAN,Perron,20072008
+Dominic Toninato,8476952,74,201,1994-03-09,Duluth,MN,USA,2012.0,5.0,126.0,N,CHI,Chicago Blackhawks,L,C,7,0,1,1,USA,Toninato,20172018
+Joel Edmundson,8476441,77,220,1993-06-28,Brandon,MB,CAN,2011.0,2.0,46.0,N,LAK,Los Angeles Kings,L,D,78,2,20,22,CAN,Edmundson,20152016
+Artemi Panarin,8478550,72,176,1991-10-30,Korkino,,RUS,,,,N,LAK,Los Angeles Kings,R,L,74,27,55,82,RUS,Panarin,20152016
+Mika Zibanejad,8476459,74,208,1993-04-18,Stockholm,,SWE,2011.0,1.0,6.0,N,NYR,New York Rangers,R,C,78,33,43,76,SWE,Zibanejad,20112012
+Hugh McGing,8481070,68,174,1998-07-11,Chicago,IL,USA,2018.0,5.0,138.0,N,STL,St. Louis Blues,L,L,3,1,1,2,USA,McGing,20222023
+Tyson Kozak,8482896,71,185,2002-12-29,Souris,MB,CAN,2021.0,7.0,193.0,N,BUF,Buffalo Sabres,L,C,44,2,3,5,CAN,Kozak,20242025
+Chris Tanev,8475690,75,200,1989-12-20,Toronto,ON,CAN,,,,N,TOR,Toronto Maple Leafs,R,D,11,0,2,2,CAN,Tanev,20102011
+Ilya Lyubushkin,8480950,74,206,1994-04-06,Moscow,,RUS,,,,N,DAL,Dallas Stars,R,D,50,1,7,8,RUS,Lyubushkin,20182019
+Joel Kiviranta,8481641,71,185,1996-03-23,Vantaa,,FIN,,,,N,COL,Colorado Avalanche,L,L,47,3,6,9,FIN,Kiviranta,20192020
+Marshall Warren,8481569,71,195,2001-04-20,Laurel Hollow,NY,USA,2019.0,6.0,166.0,N,NYI,New York Islanders,L,D,8,0,3,3,USA,Warren,20252026
+Pavol Regenda,8483630,75,215,1999-12-07,Michalovce,,SVK,,,,N,SJS,San Jose Sharks,L,L,23,9,1,10,SVK,Regenda,20222023
+Lian Bichsel,8483425,79,237,2004-05-18,Olten,,CHE,2022.0,1.0,18.0,N,DAL,Dallas Stars,L,D,48,4,4,8,CHE,Bichsel,20242025
+Max Jones,8479368,75,216,1998-02-17,Rochester,MI,USA,2016.0,1.0,24.0,N,EDM,Edmonton Oilers,L,L,20,3,2,5,USA,Jones,20182019
+Vincent Desharnais,8479576,79,225,1996-05-29,Laval,QC,CAN,2016.0,7.0,183.0,N,SJS,San Jose Sharks,R,D,50,1,6,7,CAN,Desharnais,20222023
+Bo Horvat,8477500,73,225,1995-04-05,London,ON,CAN,2013.0,1.0,9.0,N,NYI,New York Islanders,L,C,65,30,26,56,CAN,Horvat,20142015
+Ondrej Palat,8476292,72,194,1991-03-28,Frydek-Mistek,,CZE,2011.0,7.0,208.0,N,NYI,New York Islanders,L,L,78,5,10,15,CZE,Palat,20122013
+Connor Clattenburg,8484529,74,215,2005-05-02,Ottawa,ON,CAN,2024.0,5.0,160.0,N,EDM,Edmonton Oilers,L,C,5,1,0,1,CAN,Clattenburg,20252026
+Sam Morton,8484821,72,185,1999-07-28,Lafayette,CO,USA,,,,N,CGY,Calgary Flames,L,C,3,0,0,0,USA,Morton,20242025
+Alex Bump,8483731,72,195,2003-11-20,Burnsville,MN,USA,2022.0,5.0,133.0,N,PHI,Philadelphia Flyers,L,L,16,4,4,8,USA,Bump,20252026
+Daniil Miromanov,8482624,76,207,1997-07-11,Moscow,,RUS,,,,N,CGY,Calgary Flames,R,D,1,0,0,0,RUS,Miromanov,20212022
+Chris Kreider,8475184,75,232,1991-04-30,Boxford,MA,USA,2009.0,1.0,19.0,N,ANA,Anaheim Ducks,L,L,73,22,26,48,USA,Kreider,20122013
+Robert Thomas,8480023,72,207,1999-07-02,Aurora,ON,CAN,2017.0,1.0,20.0,N,STL,St. Louis Blues,R,C,60,22,36,58,CAN,Thomas,20182019
+Bobby McMann,8482259,74,217,1996-06-15,Wainwright,AB,CAN,,,,N,SEA,Seattle Kraken,L,C,74,28,17,45,CAN,McMann,20222023
+Jack St. Ivany,8481030,76,197,1999-07-22,Manhattan Beach,CA,USA,2018.0,4.0,112.0,N,PIT,Pittsburgh Penguins,R,D,17,0,7,7,USA,St. Ivany,20232024
+Noah Dobson,8480865,76,200,2000-01-07,Summerside,PE,CAN,2018.0,1.0,12.0,N,MTL,Montréal Canadiens,R,D,79,12,35,47,CAN,Dobson,20192020
+Lane Hutson,8483457,69,162,2004-02-14,Holland,MI,USA,2022.0,2.0,62.0,N,MTL,Montréal Canadiens,L,D,79,12,63,75,USA,Hutson,20232024
+Morgan Rielly,8476853,73,219,1994-03-09,Vancouver,BC,CAN,2012.0,1.0,5.0,N,TOR,Toronto Maple Leafs,L,D,75,11,25,36,CAN,Rielly,20132014
+Philip Broberg,8481598,76,210,2001-06-25,Orebro,,SWE,2019.0,1.0,8.0,N,STL,St. Louis Blues,L,D,77,6,26,32,SWE,Broberg,20212022
+Matvei Michkov,8484387,70,172,2004-12-09,Perm,,RUS,2023.0,1.0,7.0,N,PHI,Philadelphia Flyers,L,R,78,17,28,45,RUS,Michkov,20242025
+Jacob Trouba,8476885,75,212,1994-02-26,Rochester,MI,USA,2012.0,1.0,9.0,N,ANA,Anaheim Ducks,R,D,78,10,24,34,USA,Trouba,20132014
+Jackson Blake,8482809,71,185,2003-08-03,Fargo,ND,USA,2021.0,4.0,109.0,N,CAR,Carolina Hurricanes,R,R,79,22,30,52,USA,Blake,20232024
+Pontus Holmberg,8480995,72,201,1999-03-09,Vasteras,,SWE,2018.0,6.0,156.0,N,TBL,Tampa Bay Lightning,L,R,70,11,11,22,SWE,Holmberg,20222023
+Bowen Byram,8481524,73,205,2001-06-13,Cranbrook,BC,CAN,2019.0,1.0,4.0,N,BUF,Buffalo Sabres,L,D,80,11,31,42,CAN,Byram,20202021
+Elmer Soderblom,8481725,80,252,2001-07-05,Gothenburg,,SWE,2019.0,6.0,159.0,N,PIT,Pittsburgh Penguins,L,L,56,6,5,11,SWE,Soderblom,20222023
+Jordan Martinook,8476921,73,208,1992-07-25,Brandon,MB,CAN,2012.0,2.0,58.0,N,CAR,Carolina Hurricanes,L,L,74,12,15,27,CAN,Martinook,20142015
+Seth Jarvis,8482093,70,180,2002-02-01,Winnipeg,MB,CAN,2020.0,1.0,13.0,N,CAR,Carolina Hurricanes,R,C,70,32,34,66,CAN,Jarvis,20212022
+Jansen Harkins,8478424,73,197,1997-05-23,Cleveland,OH,USA,2015.0,2.0,47.0,N,ANA,Anaheim Ducks,L,C,44,3,5,8,USA,Harkins,20192020
+Casey Mittelstadt,8479999,73,205,1998-11-22,Eden Prairie,MN,USA,2017.0,1.0,8.0,N,BOS,Boston Bruins,L,C,69,15,27,42,USA,Mittelstadt,20172018
+Marcus Johansson,8475149,73,203,1990-10-06,Landskrona,,SWE,2009.0,1.0,24.0,N,MIN,Minnesota Wild,L,L,72,15,32,47,SWE,Johansson,20102011
+Rasmus Sandin,8480873,71,189,2000-03-07,Uppsala,,SWE,2018.0,1.0,29.0,N,WSH,Washington Capitals,L,D,72,5,24,29,SWE,Sandin,20192020
+Evan Rodrigues,8478542,71,182,1993-07-28,Toronto,ON,CAN,,,,N,FLA,Florida Panthers,R,C,69,11,20,31,CAN,Rodrigues,20152016
+Brent Burns,8470613,77,228,1985-03-09,Barrie,ON,CAN,2003.0,1.0,20.0,N,COL,Colorado Avalanche,R,D,78,12,22,34,CAN,Burns,20032004
+Marcus Foligno,8475220,75,226,1991-08-10,Buffalo,NY,USA,2009.0,4.0,104.0,N,MIN,Minnesota Wild,L,L,55,8,5,13,CAN,Foligno,20112012
+Valeri Nichushkin,8477501,76,210,1995-03-04,Chelyabinsk,,RUS,2013.0,1.0,10.0,N,COL,Colorado Avalanche,L,R,68,17,30,47,RUS,Nichushkin,20132014
+Mathieu Joseph,8478472,73,189,1997-02-09,Laval,QC,CAN,2015.0,4.0,120.0,N,LAK,Los Angeles Kings,L,R,47,2,9,11,CAN,Joseph,20182019
+Parker Kelly,8480448,73,185,1999-05-14,Camrose,AB,CAN,,,,N,COL,Colorado Avalanche,L,C,78,20,14,34,CAN,Kelly,20202021
+Cameron Crotty,8480075,75,213,1999-05-05,Ottawa,ON,CAN,2017.0,3.0,82.0,N,OTT,Ottawa Senators,R,D,4,0,1,1,CAN,Crotty,20232024
+Andreas Englund,8477971,76,200,1996-01-21,Stockholm,,SWE,2014.0,2.0,40.0,N,NSH,Nashville Predators,L,D,3,0,0,0,SWE,Englund,20162017
+Cody Ceci,8476879,75,210,1993-12-21,Ottawa,ON,CAN,2012.0,1.0,15.0,N,LAK,Los Angeles Kings,R,D,78,1,8,9,CAN,Ceci,20132014
+Mikael Backlund,8474150,72,206,1989-03-17,Vasteras,,SWE,2007.0,1.0,24.0,N,CGY,Calgary Flames,L,C,78,16,25,41,SWE,Backlund,20082009
+Ryan O'Reilly,8475158,73,207,1991-02-07,Clinton,ON,CAN,2009.0,2.0,33.0,N,NSH,Nashville Predators,L,C,78,25,47,72,CAN,O'Reilly,20092010
+Tristen Nielsen,8483039,70,192,2000-02-23,Fort St. John,BC,CAN,,,,N,COL,Colorado Avalanche,L,C,4,0,1,1,CAN,Nielsen,20252026
+Mikulas Hovorka,8484933,78,229,2001-07-01,Praha,,CZE,,,,N,FLA,Florida Panthers,R,D,3,0,0,0,CZE,Hovorka,20252026
+Brett Berard,8482132,69,175,2002-09-09,Providence,RI,USA,2020.0,5.0,134.0,N,NYR,New York Rangers,L,L,13,0,0,0,USA,Berard,20242025
+Sam Reinhart,8477933,73,196,1995-11-06,West Vancouver,BC,CAN,2014.0,1.0,2.0,N,FLA,Florida Panthers,R,C,64,29,32,61,CAN,Reinhart,20142015
+Uvis Balinskis,8484304,72,196,1996-08-01,Ventspils,,LVA,,,,N,FLA,Florida Panthers,L,D,54,5,10,15,LVA,Balinskis,20232024
+Porter Martone,8485406,75,214,2006-10-26,Peterborough,ON,CAN,2025.0,1.0,6.0,N,PHI,Philadelphia Flyers,R,R,6,2,4,6,CAN,Martone,20252026
+Cole Perfetti,8482149,71,185,2002-01-01,Whitby,ON,CAN,2020.0,1.0,10.0,N,WPG,Winnipeg Jets,L,C,64,12,20,32,CAN,Perfetti,20212022
+Taylor Ward,8483406,74,215,1998-03-31,Kelowna,BC,CAN,,,,N,LAK,Los Angeles Kings,R,R,32,3,4,7,CAN,Ward,20242025
+Jack Finley,8482090,78,227,2002-09-02,St. Louis,MO,USA,2020.0,2.0,57.0,N,STL,St. Louis Blues,R,C,42,2,3,5,USA,Finley,20242025
+Erik Cernak,8478416,76,230,1997-05-28,Kosice,,SVK,2015.0,2.0,43.0,N,TBL,Tampa Bay Lightning,R,D,58,2,8,10,SVK,Cernak,20182019
+Nick Seeler,8476372,75,197,1993-06-03,Eden Prairie,MN,USA,2011.0,5.0,131.0,N,PHI,Philadelphia Flyers,L,D,77,3,6,9,USA,Seeler,20172018
+Walker Duehr,8482652,74,210,1997-11-23,Sioux Falls,SD,USA,,,,N,WPG,Winnipeg Jets,R,R,3,0,0,0,USA,Duehr,20212022
+Josh Doan,8482659,74,198,2002-02-01,Scottsdale,AZ,USA,2021.0,2.0,37.0,N,BUF,Buffalo Sabres,R,R,80,25,26,51,USA,Doan,20232024
+Quinton Byfield,8482124,77,230,2002-08-19,Newmarket,ON,CAN,2020.0,1.0,2.0,N,LAK,Los Angeles Kings,L,R,75,20,24,44,CAN,Byfield,20202021
+Cole Schwindt,8481655,75,210,2001-04-25,Kitchener,ON,CAN,2019.0,3.0,81.0,N,FLA,Florida Panthers,R,R,26,4,2,6,CAN,Schwindt,20212022
+Alexander Nikishin,8482100,75,218,2001-10-02,Orel,,RUS,2020.0,3.0,69.0,N,CAR,Carolina Hurricanes,L,D,78,11,21,32,RUS,Nikishin,20252026
+Angus Crookshank,8481065,70,183,1999-10-02,North Vancouver,BC,CAN,2018.0,5.0,126.0,N,NJD,New Jersey Devils,L,C,8,1,0,1,CAN,Crookshank,20232024
+Adam Ginning,8480874,75,196,2000-01-13,Linkoping,,SWE,2018.0,2.0,50.0,N,PHI,Philadelphia Flyers,L,D,5,0,0,0,SWE,Ginning,20222023
+Martin Necas,8480039,75,195,1999-01-15,Nove Mesto na Morave,,CZE,2017.0,1.0,12.0,N,COL,Colorado Avalanche,R,C,75,38,60,98,CZE,Necas,20172018
+Justin Danforth,8479941,68,193,1993-03-15,Oshawa,ON,CAN,,,,N,BUF,Buffalo Sabres,R,R,4,0,0,0,CAN,Danforth,20212022
+Jake Walman,8478013,73,218,1996-02-20,Toronto,ON,CAN,2014.0,3.0,82.0,N,EDM,Edmonton Oilers,L,D,50,8,12,20,CAN,Walman,20192020
+Nate Schmidt,8477220,72,197,1991-07-16,St. Cloud,MN,USA,,,,N,UTA,Utah Mammoth,L,D,78,5,16,21,USA,Schmidt,20132014
+Johnathan Kovacevic,8480192,77,223,1997-07-12,Hamilton,ON,CAN,2017.0,3.0,74.0,N,NJD,New Jersey Devils,R,D,31,0,7,7,CAN,Kovacevic,20212022
+Brad Lambert,8483471,73,173,2003-12-19,Lahti,,FIN,2022.0,1.0,30.0,N,WPG,Winnipeg Jets,R,C,21,3,3,6,FIN,Lambert,20232024
+Beckett Sennecke,8484762,75,206,2006-01-28,Toronto,ON,CAN,2024.0,1.0,3.0,N,ANA,Anaheim Ducks,R,R,79,23,37,60,CAN,Sennecke,20252026
+Anton Blidh,8477320,73,191,1995-03-14,Molnlycke,,SWE,2013.0,6.0,180.0,N,NYR,New York Rangers,L,L,4,0,1,1,SWE,Blidh,20162017
+Drew Fortescue,8484169,74,195,2005-04-28,New York,NY,USA,2023.0,3.0,90.0,N,NYR,New York Rangers,L,D,7,0,2,2,USA,Fortescue,20252026
+Dmitry Kulikov,8475179,73,212,1990-10-29,Lipetsk,,RUS,2009.0,1.0,14.0,N,FLA,Florida Panthers,L,D,19,0,0,0,RUS,Kulikov,20092010
+Adam Engstrom,8483686,74,193,2003-11-17,Jarna,,SWE,2022.0,3.0,92.0,N,MTL,Montréal Canadiens,L,D,13,0,1,1,SWE,Engstrom,20252026
+Dougie Hamilton,8476462,78,230,1993-06-17,Toronto,ON,CAN,2011.0,1.0,9.0,N,NJD,New Jersey Devils,R,D,74,12,24,36,CAN,Hamilton,20122013
+Kasperi Kapanen,8477953,73,194,1996-07-23,Kuopio,,FIN,2014.0,1.0,22.0,N,EDM,Edmonton Oilers,R,R,38,8,9,17,FIN,Kapanen,20152016
+Matthew Poitras,8483505,72,189,2004-03-10,Whitby,ON,CAN,2022.0,2.0,54.0,N,BOS,Boston Bruins,R,C,3,1,0,1,CAN,Poitras,20232024
+Lane Pederson,8478967,73,196,1997-08-04,Saskatoon,SK,CAN,,,,N,PHI,Philadelphia Flyers,R,C,5,0,0,0,CAN,Pederson,20202021
+Jamie Drysdale,8482142,71,185,2002-04-08,Toronto,ON,CAN,2020.0,1.0,6.0,N,PHI,Philadelphia Flyers,R,D,76,8,24,32,CAN,Drysdale,20202021
+Yan Kuznetsov,8482165,76,209,2002-03-09,Murmansk,,RUS,2020.0,2.0,50.0,N,CGY,Calgary Flames,L,D,56,4,8,12,RUS,Kuznetsov,20232024
+Peyton Krebs,8481522,72,188,2001-01-26,Calgary,AB,CAN,2019.0,1.0,17.0,N,BUF,Buffalo Sabres,L,C,80,12,27,39,CAN,Krebs,20202021
+Filip Chytil,8480078,74,210,1999-09-05,Kromeriz,,CZE,2017.0,1.0,21.0,N,VAN,Vancouver Canucks,L,C,12,3,0,3,CZE,Chytil,20172018
+Brayden Point,8478010,71,177,1996-03-13,Calgary,AB,CAN,2014.0,3.0,79.0,N,TBL,Tampa Bay Lightning,R,C,61,18,30,48,CAN,Point,20162017
+K'Andre Miller,8480817,77,210,2000-01-21,St. Paul,MN,USA,2018.0,1.0,22.0,N,CAR,Carolina Hurricanes,L,D,71,8,29,37,USA,Miller,20202021
+Jared Wright,8483756,73,178,2002-11-22,Burnsville,MN,USA,2022.0,6.0,169.0,N,LAK,Los Angeles Kings,R,R,19,0,4,4,USA,Wright,20252026
+Jared McCann,8477955,73,191,1996-05-31,Stratford,ON,CAN,2014.0,1.0,24.0,N,SEA,Seattle Kraken,L,L,51,20,19,39,CAN,McCann,20152016
+Jakob Chychrun,8479345,74,215,1998-03-31,Boca Raton,FL,USA,2016.0,1.0,16.0,N,WSH,Washington Capitals,L,D,77,25,34,59,CAN,Chychrun,20162017
+Anthony Beauvillier,8478463,71,181,1997-06-08,Sorel-Tracy,QC,CAN,2015.0,1.0,28.0,N,WSH,Washington Capitals,L,R,79,14,13,27,CAN,Beauvillier,20162017
+Lukas Reichel,8482117,72,170,2002-05-17,Nürnberg,,DEU,2020.0,1.0,17.0,N,BOS,Boston Bruins,L,L,28,3,5,8,DEU,Reichel,20212022
+Phillip Danault,8476479,73,200,1993-02-24,Victoriaville,QC,CAN,2011.0,1.0,26.0,N,MTL,Montréal Canadiens,L,C,73,6,11,17,CAN,Danault,20142015
+Nils Aman,8482496,74,179,2000-02-07,Avesta,,SWE,2020.0,6.0,167.0,N,VAN,Vancouver Canucks,L,C,2,0,0,0,SWE,Aman,20222023
+Jake Guentzel,8477404,71,176,1994-10-06,Omaha,NE,USA,2013.0,3.0,77.0,N,TBL,Tampa Bay Lightning,L,C,79,37,49,86,USA,Guentzel,20162017
+Carson Soucy,8477369,76,211,1994-07-27,Viking,AB,CAN,2013.0,5.0,137.0,N,NYI,New York Islanders,L,D,73,5,7,12,CAN,Soucy,20172018
+Nick Foligno,8473422,72,210,1987-10-31,Buffalo,NY,USA,2006.0,1.0,28.0,N,MIN,Minnesota Wild,L,L,51,3,9,12,USA,Foligno,20072008
+Ivan Ivan,8483930,72,190,2002-08-20,Ostrava,,CZE,,,,N,COL,Colorado Avalanche,L,C,9,0,1,1,CZE,Ivan,20242025
+Calle Jarnkrok,8475714,72,193,1991-09-25,Gavle,,SWE,2010.0,2.0,51.0,N,TOR,Toronto Maple Leafs,R,C,54,6,2,8,SWE,Jarnkrok,20132014
+Brayden McNabb,8475188,76,215,1991-01-21,Davidson,SK,CAN,2009.0,3.0,66.0,N,VGK,Vegas Golden Knights,L,D,60,5,6,11,CAN,McNabb,20112012
+Dysin Mayo,8478062,72,190,1996-08-17,Victoria,BC,CAN,2014.0,5.0,133.0,N,CBJ,Columbus Blue Jackets,R,D,3,0,1,1,CAN,Mayo,20212022
+Nino Niederreiter,8475799,74,218,1992-09-08,Chur,,CHE,2010.0,1.0,5.0,N,WPG,Winnipeg Jets,L,R,57,8,11,19,CHE,Niederreiter,20102011
+Ilya Solovyov,8482470,75,208,2000-07-20,Mogilev,,BLR,2020.0,7.0,205.0,N,PIT,Pittsburgh Penguins,L,D,27,1,7,8,BLR,Solovyov,20232024
+Nick Perbix,8480246,76,206,1998-06-15,Elk River,MN,USA,2017.0,6.0,169.0,N,NSH,Nashville Predators,R,D,76,3,8,11,USA,Perbix,20222023
+Skyler Brind'Amour,8480291,74,195,1999-07-27,Raleigh,NC,USA,2017.0,6.0,177.0,N,CAR,Carolina Hurricanes,L,C,1,0,0,0,USA,Brind'Amour,20242025
+Ryan McLeod,8480802,75,204,1999-09-21,Mississauga,ON,CAN,2018.0,2.0,40.0,N,BUF,Buffalo Sabres,L,C,80,13,40,53,CAN,McLeod,20202021
+Hendrix Lapierre,8482148,72,195,2002-02-09,Gatineau,QC,CAN,2020.0,1.0,22.0,N,WSH,Washington Capitals,L,C,73,4,12,16,CAN,Lapierre,20212022
+Luke Hughes,8482684,74,198,2003-09-09,Manchester,NH,USA,2021.0,1.0,4.0,N,NJD,New Jersey Devils,L,D,68,6,29,35,USA,Hughes,20222023
+Ryan McDonagh,8474151,73,216,1989-06-13,St. Paul,MN,USA,2007.0,1.0,12.0,N,TBL,Tampa Bay Lightning,L,D,46,6,13,19,USA,McDonagh,20102011
+Liam Ohgren,8483499,72,187,2004-01-28,Stockholm,,SWE,2022.0,1.0,19.0,N,VAN,Vancouver Canucks,L,L,65,8,10,18,SWE,Ohgren,20232024
+Calum Ritchie,8484221,74,200,2005-01-21,Oakville,ON,CAN,2023.0,1.0,27.0,N,NYI,New York Islanders,R,C,62,13,17,30,CAN,Ritchie,20242025
+Nikolaj Ehlers,8477940,72,168,1996-02-14,Aalborg,,DNK,2014.0,1.0,9.0,N,CAR,Carolina Hurricanes,L,L,79,24,42,66,DNK,Ehlers,20152016
+Jordan Spence,8481606,71,188,2001-02-24,Manly,,AUS,2019.0,4.0,95.0,N,OTT,Ottawa Senators,R,D,70,7,23,30,CAN,Spence,20212022
+Nathan Gaucher,8483444,75,226,2003-11-06,Chambly,QC,CAN,2022.0,1.0,22.0,N,ANA,Anaheim Ducks,R,C,3,0,0,0,CAN,Gaucher,20252026
+Jonas Rondbjerg,8480007,74,206,1999-03-31,Horsholm,,DNK,2017.0,3.0,65.0,N,VGK,Vegas Golden Knights,L,R,4,0,1,1,DNK,Rondbjerg,20212022
+Reid Schaefer,8483513,77,226,2003-09-21,Edmonton,AB,CAN,2022.0,1.0,32.0,N,NSH,Nashville Predators,L,L,44,6,2,8,CAN,Schaefer,20252026
+Declan Carlile,8483398,75,190,2000-05-18,Hartland,MI,USA,,,,N,TBL,Tampa Bay Lightning,L,D,39,1,2,3,USA,Carlile,20232024
+Auston Matthews,8479318,75,215,1997-09-17,San Ramon,CA,USA,2016.0,1.0,1.0,N,TOR,Toronto Maple Leafs,L,C,60,27,26,53,USA,Matthews,20162017
+Matt Boldy,8481557,74,201,2001-04-05,Milford,MA,USA,2019.0,1.0,12.0,N,MIN,Minnesota Wild,L,L,75,42,43,85,USA,Boldy,20212022
+Jakob Pelletier,8481592,70,172,2001-03-07,Quebec City,QC,CAN,2019.0,1.0,26.0,N,TBL,Tampa Bay Lightning,L,L,4,0,0,0,CAN,Pelletier,20222023
+Ludvig Jansson,8483712,72,176,2003-12-27,Stockholm,,SWE,2022.0,4.0,125.0,N,FLA,Florida Panthers,R,D,1,0,0,0,SWE,Jansson,20252026
+Fedor Svechkov,8482768,72,187,2003-04-05,Togliatti,,RUS,2021.0,1.0,19.0,N,NSH,Nashville Predators,L,C,67,4,13,17,RUS,Svechkov,20242025
+Quinn Hughes,8480800,70,180,1999-10-14,Orlando,FL,USA,2018.0,1.0,7.0,N,MIN,Minnesota Wild,L,D,73,7,69,76,USA,Hughes,20182019
+Kevin Fiala,8477942,72,205,1996-07-22,St. Gallen,,CHE,2014.0,1.0,11.0,N,LAK,Los Angeles Kings,L,L,56,18,22,40,CHE,Fiala,20142015
+Keegan Kolesar,8478434,74,216,1997-04-08,Brandon,MB,CAN,2015.0,3.0,69.0,N,VGK,Vegas Golden Knights,R,R,79,6,11,17,CAN,Kolesar,20192020
+Juho Lammikko,8477996,74,191,1996-01-29,Noormarkku,,FIN,2014.0,3.0,65.0,N,,,L,C,24,0,2,2,FIN,Lammikko,20182019
+Louis Crevier,8481806,80,228,2001-05-04,Quebec City,QC,CAN,2020.0,7.0,188.0,N,CHI,Chicago Blackhawks,R,D,75,5,18,23,CAN,Crevier,20232024
+Ben Meyers,8483570,71,194,1998-11-15,Delano,MN,USA,,,,N,SEA,Seattle Kraken,L,C,50,7,8,15,USA,Meyers,20212022
+Carl Grundstrom,8479336,72,200,1997-12-01,Umea,,SWE,2016.0,2.0,57.0,N,PHI,Philadelphia Flyers,L,R,46,9,4,13,SWE,Grundstrom,20182019
+Lassi Thomson,8481575,72,195,2000-09-24,Tampere,,FIN,2019.0,1.0,19.0,N,OTT,Ottawa Senators,R,D,8,0,2,2,FIN,Thomson,20212022
+Ryan Lomberg,8479066,69,184,1994-12-09,Richmond Hill,ON,CAN,,,,N,CGY,Calgary Flames,L,L,57,4,5,9,CAN,Lomberg,20172018
+Tyler Seguin,8475794,74,205,1992-01-31,Brampton,ON,CAN,2010.0,1.0,2.0,N,DAL,Dallas Stars,R,C,27,7,10,17,CAN,Seguin,20102011
+Matvei Gridin,8484860,73,182,2006-03-01,Kurgan,,RUS,2024.0,1.0,28.0,N,CGY,Calgary Flames,L,R,34,6,13,19,RUS,Gridin,20252026
+Hayden Hodgson,8478173,74,226,1996-03-02,Windsor,ON,CAN,,,,N,OTT,Ottawa Senators,R,R,9,0,0,0,CAN,Hodgson,20212022
+Christian Dvorak,8477989,73,190,1996-02-02,Palos,IL,USA,2014.0,2.0,58.0,N,PHI,Philadelphia Flyers,L,C,78,18,32,50,USA,Dvorak,20162017
+Michael Pezzetta,8479543,73,222,1998-03-13,Toronto,ON,CAN,2016.0,6.0,160.0,N,TOR,Toronto Maple Leafs,L,L,7,0,0,0,CAN,Pezzetta,20212022
+Thomas Harley,8481581,75,214,2001-08-19,Syracuse,NY,USA,2019.0,1.0,18.0,N,DAL,Dallas Stars,L,D,67,6,29,35,CAN,Harley,20212022
+Taylor Raddysh,8479390,74,201,1998-02-18,Caledon,ON,CAN,2016.0,2.0,58.0,N,NYR,New York Rangers,R,R,67,9,10,19,CAN,Raddysh,20212022
+Mavrik Bourque,8482145,71,187,2002-01-08,Plessisville,QC,CAN,2020.0,1.0,30.0,N,DAL,Dallas Stars,R,C,79,16,19,35,CAN,Bourque,20232024
+Alex Tuch,8477949,76,219,1996-05-10,Syracuse,NY,USA,2014.0,1.0,18.0,N,BUF,Buffalo Sabres,R,R,77,31,32,63,USA,Tuch,20162017
+Jorian Donovan,8483435,73,200,2004-04-05,Calgary,AB,CAN,2022.0,5.0,136.0,N,OTT,Ottawa Senators,L,D,2,0,0,0,CAN,Donovan,20252026
+Jonny Brodzinski,8477380,72,206,1993-06-19,Ham Lake,MN,USA,2013.0,5.0,148.0,N,NYR,New York Rangers,R,C,53,6,10,16,USA,Brodzinski,20162017
+Tyler Kleven,8482095,77,225,2002-01-10,Fargo,ND,USA,2020.0,2.0,44.0,N,OTT,Ottawa Senators,L,D,70,3,15,18,USA,Kleven,20222023
+Andrew Copp,8477429,73,200,1994-07-08,Ann Arbor,MI,USA,2013.0,4.0,104.0,N,DET,Detroit Red Wings,L,C,76,9,34,43,USA,Copp,20142015
+Lars Eller,8474189,74,207,1989-05-08,Rodovre,,DNK,2007.0,1.0,13.0,N,OTT,Ottawa Senators,L,C,65,5,10,15,DNK,Eller,20092010
+David Pastrnak,8477956,72,199,1996-05-25,Havirov,,CZE,2014.0,1.0,25.0,N,BOS,Boston Bruins,R,R,74,29,70,99,CZE,Pastrnak,20142015
+Cole Koepke,8481043,73,207,1998-05-17,Two Harbors,MN,USA,2018.0,6.0,183.0,N,WPG,Winnipeg Jets,L,L,62,7,8,15,USA,Koepke,20222023
+Travis Mitchell,8484262,76,203,1999-11-25,South Lyon,MI,USA,,,,N,NYI,New York Islanders,L,D,9,1,0,1,USA,Mitchell,20252026
+Moritz Seider,8481542,74,210,2001-04-06,Zell,,DEU,2019.0,1.0,6.0,N,DET,Detroit Red Wings,R,D,79,10,50,60,DEU,Seider,20212022
+Daniil But,8484388,77,203,2005-02-15,Yaroslavl,,RUS,2023.0,1.0,12.0,N,UTA,Utah Mammoth,R,L,29,3,4,7,RUS,But,20252026
+Colin Blackwell,8476278,68,181,1993-03-28,North Andover,MA,USA,2011.0,7.0,194.0,N,DAL,Dallas Stars,R,C,68,4,11,15,USA,Blackwell,20182019
+Dominik Shine,8479942,71,177,1993-04-18,Pinckney,MI,USA,,,,N,DET,Detroit Red Wings,R,R,17,3,0,3,USA,Shine,20242025
+Sean Kuraly,8476374,74,208,1993-01-20,Niagara Falls,NY,USA,2011.0,5.0,133.0,N,BOS,Boston Bruins,L,C,79,5,12,17,USA,Kuraly,20162017
+Jamie Oleksiak,8476467,79,252,1992-12-21,Toronto,ON,CAN,2011.0,1.0,14.0,N,SEA,Seattle Kraken,L,D,75,5,8,13,CAN,Oleksiak,20122013
+Elias Lindholm,8477496,73,200,1994-12-02,Boden,,SWE,2013.0,1.0,5.0,N,BOS,Boston Bruins,R,C,66,17,31,48,SWE,Lindholm,20132014
+Patrick Giles,8480825,77,218,2000-01-03,Chevy Chase,MD,USA,,,,N,SJS,San Jose Sharks,R,R,3,0,1,1,USA,Giles,20242025
+Jake McCabe,8476931,73,210,1993-10-12,Eau Claire,WI,USA,2012.0,2.0,44.0,N,TOR,Toronto Maple Leafs,L,D,77,5,19,24,USA,McCabe,20132014
+Scott Laughton,8476872,73,190,1994-05-30,Oakville,ON,CAN,2012.0,1.0,20.0,N,LAK,Los Angeles Kings,L,C,60,13,7,20,CAN,Laughton,20122013
+Cole Hutson,8484873,71,175,2006-06-28,St. Louis,MO,USA,2024.0,2.0,43.0,N,WSH,Washington Capitals,L,D,11,3,5,8,USA,Hutson,20252026
+Bogdan Trineyev,8482167,75,198,2002-03-04,Voronezh,,RUS,2020.0,4.0,117.0,N,WSH,Washington Capitals,R,R,2,0,0,0,RUS,Trineyev,20252026
+Jordan Eberle,8474586,71,180,1990-05-15,Regina,SK,CAN,2008.0,1.0,22.0,N,SEA,Seattle Kraken,R,R,76,25,29,54,CAN,Eberle,20102011
+Jake Sanderson,8482105,74,202,2002-07-08,Whitefish,MT,USA,2020.0,1.0,5.0,N,OTT,Ottawa Senators,L,D,66,13,40,53,USA,Sanderson,20222023
+Jonathan Drouin,8477494,71,189,1995-03-28,Ste-Agathe,QC,CAN,2013.0,1.0,3.0,N,STL,St. Louis Blues,L,L,62,4,18,22,CAN,Drouin,20142015
+Pierre-Luc Dubois,8479400,76,220,1998-06-24,Ste-Agathe-des-Monts,QC,CAN,2016.0,1.0,3.0,N,WSH,Washington Capitals,L,C,27,5,12,17,CAN,Dubois,20172018
+Ryan Johnson,8481564,73,195,2001-07-24,Newport Beach,CA,USA,2019.0,1.0,31.0,N,BUF,Buffalo Sabres,L,D,3,0,0,0,USA,Johnson,20232024
+Drew Doughty,8474563,73,210,1989-12-08,London,ON,CAN,2008.0,1.0,2.0,N,LAK,Los Angeles Kings,R,D,68,5,17,22,CAN,Doughty,20082009
+Alex Newhook,8481618,71,200,2001-01-28,St. John's,NL,CAN,2019.0,1.0,16.0,N,MTL,Montréal Canadiens,L,C,39,12,11,23,CAN,Newhook,20202021
+Dylan Guenther,8482699,73,191,2003-04-10,Edmonton,AB,CAN,2021.0,1.0,9.0,N,UTA,Utah Mammoth,R,R,76,39,32,71,CAN,Guenther,20222023
+Jean-Gabriel Pageau,8476419,71,180,1992-11-11,Ottawa,ON,CAN,2011.0,4.0,96.0,N,NYI,New York Islanders,R,C,71,17,18,35,CAN,Pageau,20122013
+Philippe Myers,8479026,77,221,1997-01-25,Moncton,NB,CAN,,,,N,TOR,Toronto Maple Leafs,R,D,39,0,2,2,CAN,Myers,20182019
+James van Riemsdyk,8474037,75,210,1989-05-04,Middletown,NJ,USA,2007.0,1.0,2.0,N,DET,Detroit Red Wings,L,L,69,15,15,30,USA,van Riemsdyk,20092010
+Nikolas Matinpalo,8484321,75,213,1998-10-05,Espoo,,FIN,,,,N,OTT,Ottawa Senators,R,D,47,0,5,5,FIN,Matinpalo,20232024
+Andrei Svechnikov,8480830,75,200,2000-03-26,Barnaul,,RUS,2018.0,1.0,2.0,N,CAR,Carolina Hurricanes,L,R,78,30,39,69,RUS,Svechnikov,20182019
+Kevin Stenlund,8478831,75,213,1996-09-20,Stockholm,,SWE,2015.0,2.0,58.0,N,UTA,Utah Mammoth,R,C,76,4,14,18,SWE,Stenlund,20182019
+Nico Hischier,8480002,73,200,1999-01-04,Naters,,CHE,2017.0,1.0,1.0,N,NJD,New Jersey Devils,L,C,79,26,36,62,CHE,Hischier,20172018
+Matt Duchene,8475168,71,211,1991-01-16,Haliburton,ON,CAN,2009.0,1.0,3.0,N,DAL,Dallas Stars,L,C,54,16,24,40,CAN,Duchene,20092010
+Brennan Othmann,8482747,72,192,2003-01-05,Pickering,ON,CAN,2021.0,1.0,16.0,N,CGY,Calgary Flames,L,L,19,2,1,3,CAN,Othmann,20232024
+Sheldon Dries,8480326,70,182,1994-04-23,Macomb,MI,USA,,,,N,DET,Detroit Red Wings,L,C,5,0,0,0,USA,Dries,20182019
+Matt Savoie,8483512,70,179,2004-01-01,St. Albert,AB,CAN,2022.0,1.0,9.0,N,EDM,Edmonton Oilers,R,C,79,15,18,33,CAN,Savoie,20232024
+Mark Jankowski,8476873,76,200,1994-09-13,Hamilton,ON,CAN,2012.0,1.0,21.0,N,CAR,Carolina Hurricanes,L,L,66,10,10,20,CAN,Jankowski,20162017
+Andrew Mangiapane,8478233,70,183,1996-04-04,Toronto,ON,CAN,2015.0,6.0,166.0,N,CHI,Chicago Blackhawks,L,L,61,8,8,16,CAN,Mangiapane,20172018
+Morgan Geekie,8479987,75,212,1998-07-20,Strathclair,MB,CAN,2017.0,3.0,67.0,N,BOS,Boston Bruins,R,C,78,37,29,66,CAN,Geekie,20192020
+Vinnie Hinostroza,8476994,70,183,1994-04-03,Chicago,IL,USA,2012.0,6.0,169.0,N,FLA,Florida Panthers,R,C,62,5,10,15,USA,Hinostroza,20152016
+Matt Luff,8479644,75,219,1997-05-05,Oakville,ON,CAN,,,,N,NYI,New York Islanders,R,R,5,1,0,1,CAN,Luff,20182019
+Kirill Kaprizov,8478864,70,202,1997-04-26,Novokuznetsk,,RUS,2015.0,5.0,135.0,N,MIN,Minnesota Wild,L,L,77,45,44,89,RUS,Kaprizov,20202021
+Luke Haymes,8485467,73,192,2003-07-28,Ottawa,ON,CAN,,,,N,TOR,Toronto Maple Leafs,L,C,1,0,1,1,CAN,Haymes,20252026
+John Leonard,8481077,71,192,1998-08-07,Westwood,NJ,USA,2018.0,6.0,182.0,N,DET,Detroit Red Wings,L,L,11,2,2,4,USA,Leonard,20202021
+Jordan Oesterle,8477851,72,181,1992-06-25,Dearborn Heights,MI,USA,,,,N,NSH,Nashville Predators,L,D,1,0,0,0,USA,Oesterle,20142015
+Jonas Brodin,8476463,74,196,1993-07-12,Karlstad,,SWE,2011.0,1.0,10.0,N,MIN,Minnesota Wild,L,D,60,4,13,17,SWE,Brodin,20122013
+Artturi Lehkonen,8477476,71,179,1995-07-04,Piikkio,,FIN,2013.0,2.0,55.0,N,COL,Colorado Avalanche,L,L,67,20,27,47,FIN,Lehkonen,20162017
+Marc Gatcomb,8483553,74,200,1999-07-22,Woburn,MA,USA,,,,N,NYI,New York Islanders,R,C,47,3,4,7,USA,Gatcomb,20242025
+Aaron Ekblad,8477932,76,220,1996-02-07,Windsor,ON,CAN,2014.0,1.0,1.0,N,FLA,Florida Panthers,R,D,72,4,22,26,CAN,Ekblad,20142015
+Mike Benning,8482107,69,185,2002-01-05,Edmonton,AB,CAN,2020.0,4.0,95.0,N,FLA,Florida Panthers,R,D,15,0,4,4,CAN,Benning,20252026
+Troy Terry,8478873,72,193,1997-09-10,Denver,CO,USA,2015.0,5.0,148.0,N,ANA,Anaheim Ducks,R,R,58,18,38,56,USA,Terry,20172018
+Andre Lee,8481732,76,210,2000-07-26,Karlstad,,SWE,2019.0,7.0,188.0,N,LAK,Los Angeles Kings,L,L,7,1,1,2,SWE,Lee,20242025
+Avery Hayes,8482993,70,180,2002-10-10,Westland,MI,USA,,,,N,PIT,Pittsburgh Penguins,R,R,14,3,0,3,USA,Hayes,20252026
+Warren Foegele,8477998,74,205,1996-04-01,Markham,ON,CAN,2014.0,3.0,67.0,N,OTT,Ottawa Senators,L,L,65,12,4,16,CAN,Foegele,20172018
+Andre Burakovsky,8477444,75,203,1995-02-09,Klagenfurt,,AUT,2013.0,1.0,23.0,N,CHI,Chicago Blackhawks,L,L,72,11,21,32,SWE,Burakovsky,20142015
+Parker Wotherspoon,8478450,73,190,1997-08-24,Surrey,BC,CAN,2015.0,4.0,112.0,N,PIT,Pittsburgh Penguins,L,D,79,3,27,30,CAN,Wotherspoon,20222023
+Arseny Gritsyuk,8481721,72,195,2001-03-15,Krasnoyarsk,,RUS,2019.0,5.0,129.0,N,NJD,New Jersey Devils,L,R,66,13,18,31,RUS,Gritsyuk,20252026
+Zeev Buium,8484798,72,183,2005-12-07,San Diego,CA,USA,2024.0,1.0,12.0,N,VAN,Vancouver Canucks,L,D,72,5,19,24,USA,Buium,20252026
+Oliver Moore,8484197,71,188,2005-01-22,Mounds View,MN,USA,2023.0,1.0,19.0,N,CHI,Chicago Blackhawks,L,C,51,5,14,19,USA,Moore,20242025
+Travis Konecny,8478439,70,192,1997-03-11,London,ON,CAN,2015.0,1.0,24.0,N,PHI,Philadelphia Flyers,R,R,75,27,40,67,CAN,Konecny,20162017
+Nazem Kadri,8475172,72,185,1990-10-06,London,ON,CAN,2009.0,1.0,7.0,N,COL,Colorado Avalanche,L,C,77,16,34,50,CAN,Kadri,20092010
+Liam O'Brien,8477070,73,215,1994-07-29,Halifax,NS,CAN,,,,N,UTA,Utah Mammoth,L,C,34,3,1,4,CAN,O'Brien,20142015
+Evgenii Dadonov,8474149,71,188,1989-03-12,Chelyabinsk,,RUS,2007.0,3.0,71.0,N,NJD,New Jersey Devils,L,L,23,1,0,1,RUS,Dadonov,20092010
+Darren Raddysh,8478178,73,202,1996-02-28,Toronto,ON,CAN,,,,N,TBL,Tampa Bay Lightning,R,D,72,22,48,70,CAN,Raddysh,20212022
+Jesper Boqvist,8480003,73,191,1998-10-30,Falun,,SWE,2017.0,2.0,36.0,N,FLA,Florida Panthers,L,C,70,4,9,13,SWE,Boqvist,20192020
+Arber Xhekaj,8482964,76,240,2001-01-30,Hamilton,ON,CAN,,,,N,MTL,Montréal Canadiens,L,D,62,1,2,3,CAN,Xhekaj,20222023
+Mats Zuccarello,8475692,68,181,1987-09-01,Oslo,,NOR,,,,N,MIN,Minnesota Wild,L,R,59,15,39,54,NOR,Zuccarello,20102011
+Easton Cowan,8484158,72,190,2005-05-20,Mount Brydges,ON,CAN,2023.0,1.0,28.0,N,TOR,Toronto Maple Leafs,L,R,63,11,16,27,CAN,Cowan,20252026
+Dennis Gilbert,8478502,74,216,1996-10-30,Buffalo,NY,USA,2015.0,3.0,91.0,N,OTT,Ottawa Senators,L,D,6,0,1,1,USA,Gilbert,20182019
+Brock Boeser,8478444,73,208,1997-02-25,Burnsville,MN,USA,2015.0,1.0,23.0,N,VAN,Vancouver Canucks,R,R,71,21,24,45,USA,Boeser,20162017
+Garnet Hathaway,8477903,74,212,1991-11-23,Naples,FL,USA,,,,N,PHI,Philadelphia Flyers,R,R,63,1,2,3,USA,Hathaway,20152016
+Derek Forbort,8475762,76,216,1992-03-04,Duluth,MN,USA,2010.0,1.0,15.0,N,VAN,Vancouver Canucks,L,D,2,0,0,0,USA,Forbort,20152016
+Braeden Cootes,8485385,71,183,2007-02-09,Sherwood Park,AB,CAN,2025.0,1.0,15.0,N,VAN,Vancouver Canucks,R,C,3,0,0,0,CAN,Cootes,20252026
+Jeremy Lauzon,8478468,75,225,1997-04-28,Val-d'Or,QC,CAN,2015.0,2.0,52.0,N,VGK,Vegas Golden Knights,L,D,65,1,12,13,CAN,Lauzon,20182019
+Zack Ostapchuk,8482859,76,212,2003-05-29,St. Albert,AB,CAN,2021.0,2.0,39.0,N,SJS,San Jose Sharks,L,C,55,4,3,7,CAN,Ostapchuk,20232024
+Emil Lilleberg,8482929,75,215,2001-02-02,Sarpsborg,,NOR,2021.0,4.0,107.0,N,TBL,Tampa Bay Lightning,L,D,47,3,7,10,NOR,Lilleberg,20232024
+Justin Barron,8482111,74,198,2001-11-15,Halifax,NS,CAN,2020.0,1.0,25.0,N,NSH,Nashville Predators,R,D,49,0,9,9,CAN,Barron,20212022
+Nick Suzuki,8480018,71,207,1999-08-10,London,ON,CAN,2017.0,1.0,13.0,N,MTL,Montréal Canadiens,R,C,79,28,70,98,CAN,Suzuki,20192020
+Cam Fowler,8475764,74,213,1991-12-05,Windsor,ON,CAN,2010.0,1.0,12.0,N,STL,St. Louis Blues,L,D,78,3,24,27,USA,Fowler,20102011
+John Carlson,8474590,75,220,1990-01-10,Natick,MA,USA,2008.0,1.0,27.0,N,ANA,Anaheim Ducks,R,D,68,14,44,58,USA,Carlson,20092010
+Ty Mueller,8484406,71,185,2003-02-26,Edmonton,AB,CAN,2023.0,4.0,105.0,N,VAN,Vancouver Canucks,L,C,2,0,0,0,CAN,Mueller,20242025
+Patrik Laine,8479339,76,208,1998-04-19,Tampere,,FIN,2016.0,1.0,2.0,N,MTL,Montréal Canadiens,R,L,5,0,1,1,FIN,Laine,20162017
+Rutger McGroarty,8483487,73,212,2004-03-30,Lincoln,NE,USA,2022.0,1.0,14.0,N,PIT,Pittsburgh Penguins,L,R,21,2,3,5,USA,McGroarty,20242025
+Lawson Crouse,8478474,76,214,1997-06-23,Mt. Brydges,ON,CAN,2015.0,1.0,11.0,N,UTA,Utah Mammoth,L,L,77,22,20,42,CAN,Crouse,20162017
+Zach Benson,8484145,70,177,2005-05-12,Chilliwack,BC,CAN,2023.0,1.0,13.0,N,BUF,Buffalo Sabres,L,L,63,12,28,40,CAN,Benson,20232024
+Andrew Peeke,8479369,75,214,1998-03-17,Parkland,FL,USA,2016.0,2.0,34.0,N,BOS,Boston Bruins,R,D,74,5,9,14,USA,Peeke,20192020
+Mikey Anderson,8479998,72,195,1999-05-25,Roseville,MN,USA,2017.0,4.0,103.0,N,LAK,Los Angeles Kings,L,D,76,4,16,20,USA,Anderson,20192020
+Justin Kirkland,8477993,75,183,1996-08-02,Winnipeg,MB,CAN,2014.0,3.0,62.0,N,CGY,Calgary Flames,L,C,20,1,1,2,CAN,Kirkland,20222023
+Jared Spurgeon,8474716,69,166,1989-11-29,Edmonton,AB,CAN,2008.0,6.0,156.0,N,MIN,Minnesota Wild,R,D,78,6,16,22,CAN,Spurgeon,20102011
+Brock Nelson,8475754,76,205,1991-10-15,Warroad,MN,USA,2010.0,1.0,30.0,N,COL,Colorado Avalanche,L,C,78,33,31,64,USA,Nelson,20132014
+Jaycob Megna,8477034,78,214,1992-12-10,Plantation,FL,USA,2012.0,7.0,210.0,N,VGK,Vegas Golden Knights,L,D,4,0,0,0,USA,Megna,20162017
+Rodrigo Abols,8479022,76,206,1996-01-05,Riga,,LVA,2016.0,7.0,184.0,N,PHI,Philadelphia Flyers,L,C,42,3,7,10,LVA,Abols,20242025
+Kyle Palmieri,8475151,72,192,1991-02-01,Smithtown,NY,USA,2009.0,1.0,26.0,N,NYI,New York Islanders,R,C,25,6,12,18,USA,Palmieri,20102011
+Tyler Bertuzzi,8477479,74,200,1995-02-24,Sudbury,ON,CAN,2013.0,2.0,58.0,N,CHI,Chicago Blackhawks,L,L,76,32,24,56,CAN,Bertuzzi,20162017
+Josh Samanski,8484509,74,195,2002-03-22,Erding,,DEU,,,,N,EDM,Edmonton Oilers,L,C,21,1,2,3,DEU,Samanski,20252026
+Anthony Mantha,8477511,77,240,1994-09-16,Longueuil,QC,CAN,2013.0,1.0,20.0,N,PIT,Pittsburgh Penguins,L,R,79,31,30,61,CAN,Mantha,20152016
+Mikael Pyyhtia,8482451,72,178,2001-12-17,Turku,,FIN,2020.0,4.0,114.0,N,CBJ,Columbus Blue Jackets,L,L,5,1,0,1,FIN,Pyyhtia,20222023
+Mario Ferraro,8479983,71,200,1998-09-17,Toronto,ON,CAN,2017.0,2.0,49.0,N,SJS,San Jose Sharks,L,D,78,6,15,21,CAN,Ferraro,20192020
+Carter Verhaeghe,8477409,74,183,1995-08-14,Toronto,ON,CAN,2013.0,3.0,82.0,N,FLA,Florida Panthers,L,C,77,25,30,55,CAN,Verhaeghe,20192020
+Marcus Pettersson,8477969,77,174,1996-05-08,Skelleftea,,SWE,2014.0,2.0,38.0,N,VAN,Vancouver Canucks,L,D,78,3,15,18,SWE,Pettersson,20172018
+Adam Fox,8479323,71,185,1998-02-17,Jericho,NY,USA,2016.0,3.0,66.0,N,NYR,New York Rangers,R,D,52,9,43,52,USA,Fox,20192020
+Colton Dach,8482703,76,218,2003-01-04,St. Albert,AB,CAN,2021.0,2.0,62.0,N,EDM,Edmonton Oilers,L,C,58,4,7,11,CAN,Dach,20242025
+Joel Nystrom,8482911,71,178,2002-05-14,Karlstad,,SWE,2021.0,7.0,219.0,N,CAR,Carolina Hurricanes,R,D,37,1,8,9,SWE,Nystrom,20252026
+Sean Monahan,8477497,74,206,1994-10-12,Brampton,ON,CAN,2013.0,1.0,6.0,N,CBJ,Columbus Blue Jackets,L,C,75,12,23,35,CAN,Monahan,20132014
+Marshall Rifai,8483546,74,211,1998-03-16,Beaconsfield,QC,CAN,,,,N,TOR,Toronto Maple Leafs,L,D,1,0,0,0,CAN,Rifai,20232024
+Samuel Blais,8478104,74,206,1996-06-17,Montmagny,QC,CAN,2014.0,6.0,176.0,N,MTL,Montréal Canadiens,L,L,21,3,5,8,CAN,Blais,20172018
+Shane Pinto,8481596,75,206,2000-11-12,Franklin Square,NY,USA,2019.0,2.0,32.0,N,OTT,Ottawa Senators,R,C,69,22,21,43,USA,Pinto,20202021
+Oskar Sundqvist,8476897,75,210,1994-03-23,Boden,,SWE,2012.0,3.0,81.0,N,STL,St. Louis Blues,R,C,50,4,11,15,SWE,Sundqvist,20152016
+Caleb Jones,8478452,73,184,1997-06-06,Arlington,TX,USA,2015.0,4.0,117.0,N,PIT,Pittsburgh Penguins,L,D,7,0,1,1,USA,Jones,20182019
+Jack McBain,8480855,76,219,2000-01-06,Toronto,ON,CAN,2018.0,3.0,63.0,N,UTA,Utah Mammoth,L,C,75,9,16,25,CAN,McBain,20212022
+Jack Hughes,8481559,71,175,2001-05-14,Orlando,FL,USA,2019.0,1.0,1.0,N,NJD,New Jersey Devils,L,C,58,26,47,73,USA,Hughes,20192020
+Michael Amadio,8478020,73,206,1996-05-13,Sault Ste. Marie,ON,CAN,2014.0,3.0,90.0,N,OTT,Ottawa Senators,R,R,79,13,19,32,CAN,Amadio,20172018
+Jake DeBrusk,8478498,73,198,1996-10-17,Edmonton,AB,CAN,2015.0,1.0,14.0,N,VAN,Vancouver Canucks,L,L,77,19,19,38,CAN,DeBrusk,20172018
+Tobias Bjornfot,8481600,72,200,2001-04-06,Upplands Vasby,,SWE,2019.0,1.0,22.0,N,FLA,Florida Panthers,L,D,16,2,1,3,SWE,Bjornfot,20192020
+Tanner Pearson,8476871,73,207,1992-08-10,Kitchener,ON,CAN,2012.0,1.0,30.0,N,BUF,Buffalo Sabres,L,L,55,7,7,14,CAN,Pearson,20132014
+Charles Alexis Legault,8484428,76,220,2003-09-05,Montréal,QC,CAN,2023.0,5.0,139.0,N,CAR,Carolina Hurricanes,R,D,9,1,1,2,CAN,Legault,20252026
+Xavier Parent,8483841,68,170,2001-03-23,Laval,QC,CAN,,,,N,NJD,New Jersey Devils,L,C,5,0,0,0,CAN,Parent,20252026
+Adam Henrique,8474641,72,195,1990-02-06,Brantford,ON,CAN,2008.0,3.0,82.0,N,EDM,Edmonton Oilers,L,C,62,3,12,15,CAN,Henrique,20102011
+Adam Lowry,8476392,77,210,1993-03-29,St. Louis,MO,USA,2011.0,3.0,67.0,N,WPG,Winnipeg Jets,L,C,66,5,16,21,USA,Lowry,20142015
+Adam Gaudette,8478874,73,190,1996-10-03,Braintree,MA,USA,2015.0,5.0,149.0,N,SJS,San Jose Sharks,R,R,63,17,8,25,USA,Gaudette,20172018
+Robby Fabbri,8477952,71,185,1996-01-22,Mississauga,ON,CAN,2014.0,1.0,21.0,N,MIN,Minnesota Wild,L,C,19,1,3,4,CAN,Fabbri,20152016
+Vladimir Tarasenko,8475765,73,219,1991-12-13,Yaroslavl,,RUS,2010.0,1.0,16.0,N,MIN,Minnesota Wild,L,R,72,23,22,45,RUS,Tarasenko,20122013
+Clayton Keller,8479343,70,175,1998-07-29,Chesterfield,MO,USA,2016.0,1.0,7.0,N,UTA,Utah Mammoth,L,R,78,26,57,83,USA,Keller,20162017
+Michael McCarron,8477446,78,232,1995-03-07,Grosse Pointe,MI,USA,2013.0,1.0,25.0,N,MIN,Minnesota Wild,R,C,76,6,9,15,USA,McCarron,20152016
+Frank Vatrano,8478366,71,203,1994-03-14,East Longmeadow,MA,USA,,,,N,ANA,Anaheim Ducks,L,R,49,5,4,9,USA,Vatrano,20152016
+Justin Robidas,8482785,68,176,2003-03-13,Plano,TX,USA,2021.0,5.0,147.0,N,CAR,Carolina Hurricanes,R,C,2,0,1,1,USA,Robidas,20242025
+Mackie Samoskevich,8482713,71,180,2002-11-15,Newtown,CT,USA,2021.0,1.0,24.0,N,FLA,Florida Panthers,R,R,74,10,17,27,USA,Samoskevich,20232024
+Simon Holmstrom,8481601,73,208,2001-05-24,Tranas,,SWE,2019.0,1.0,23.0,N,NYI,New York Islanders,L,R,76,19,22,41,SWE,Holmstrom,20222023
+Aydar Suniev,8484234,74,198,2004-11-16,Kazan,,RUS,2023.0,3.0,80.0,N,CGY,Calgary Flames,L,L,2,0,0,0,RUS,Suniev,20242025
+Samuel Poulin,8481591,74,217,2001-02-25,Blainville,QC,CAN,2019.0,1.0,21.0,N,EDM,Edmonton Oilers,L,R,2,0,0,0,CAN,Poulin,20222023
+Anton Frondell,8485391,73,198,2007-05-07,Trangsund,,SWE,2025.0,1.0,3.0,N,CHI,Chicago Blackhawks,L,C,9,3,5,8,SWE,Frondell,20252026
+Aliaksei Protas,8481656,78,250,2001-01-06,Vitebsk,,BLR,2019.0,3.0,91.0,N,WSH,Washington Capitals,L,L,73,24,26,50,BLR,Protas,20212022
+Shakir Mukhamadullin,8482166,76,200,2002-01-10,Ufa,,RUS,2020.0,1.0,20.0,N,SJS,San Jose Sharks,L,D,46,5,7,12,RUS,Mukhamadullin,20232024
+John Klingberg,8475906,74,185,1992-08-14,Gothenburg,,SWE,2010.0,5.0,131.0,N,SJS,San Jose Sharks,R,D,55,10,14,24,SWE,Klingberg,20142015
+Zemgus Girgensons,8476878,75,197,1994-01-05,Riga,,LVA,2012.0,1.0,14.0,N,TBL,Tampa Bay Lightning,L,C,72,9,9,18,LVA,Girgensons,20132014
+Connor McMichael,8481580,72,180,2001-01-15,Ajax,ON,CAN,2019.0,1.0,25.0,N,WSH,Washington Capitals,L,L,75,12,30,42,CAN,McMichael,20202021
+Marek Alscher,8483687,75,206,2004-04-07,Slany,,CZE,2022.0,3.0,93.0,N,FLA,Florida Panthers,L,D,1,0,0,0,CZE,Alscher,20252026
+Jackson LaCombe,8481605,74,208,2001-01-09,Eden Prairie,MN,USA,2019.0,2.0,39.0,N,ANA,Anaheim Ducks,L,D,79,9,46,55,USA,LaCombe,20222023
+Jack Studnicka,8480021,73,187,1999-02-18,Windsor,ON,CAN,2017.0,2.0,53.0,N,FLA,Florida Panthers,R,C,19,0,0,0,CAN,Studnicka,20192020
+Logan Stanley,8479378,79,231,1998-05-26,Waterloo,ON,CAN,2016.0,1.0,18.0,N,BUF,Buffalo Sabres,L,D,74,9,16,25,CAN,Stanley,20202021
+Will Smith,8484227,72,180,2005-03-17,Boston,MA,USA,2023.0,1.0,4.0,N,SJS,San Jose Sharks,R,C,65,23,33,56,USA,Smith,20242025
+Viktor Arvidsson,8478042,70,181,1993-04-08,Skelleftea,,SWE,2014.0,4.0,112.0,N,BOS,Boston Bruins,R,L,67,24,29,53,SWE,Arvidsson,20142015
+Trevor Moore,8479675,71,195,1995-03-31,Thousand Oaks,CA,USA,,,,N,LAK,Los Angeles Kings,L,L,65,12,16,28,USA,Moore,20182019
+Ryan Greene,8483450,73,195,2003-10-21,St. John's,NL,CAN,2022.0,2.0,57.0,N,CHI,Chicago Blackhawks,R,C,78,9,17,26,CAN,Greene,20242025
+Kyle Capobianco,8478476,75,194,1997-08-13,Mississauga,ON,CAN,2015.0,3.0,63.0,N,DAL,Dallas Stars,L,D,32,2,3,5,CAN,Capobianco,20172018
+Matias Maccelli,8481711,71,187,2000-10-14,Turku,,FIN,2019.0,4.0,98.0,N,TOR,Toronto Maple Leafs,L,L,68,14,25,39,FIN,Maccelli,20212022
+Zachary Bolduc,8482737,72,187,2003-02-24,Trois-Rivières,QC,CAN,2021.0,1.0,17.0,N,MTL,Montréal Canadiens,L,R,76,11,17,28,CAN,Bolduc,20232024
+Zach Metsa,8484305,69,198,1998-10-19,Delafield,WI,USA,,,,N,BUF,Buffalo Sabres,R,D,42,2,4,6,USA,Metsa,20252026
+Mathew Dumba,8476856,72,191,1994-07-25,Regina,SK,CAN,2012.0,1.0,7.0,N,PIT,Pittsburgh Penguins,R,D,11,1,2,3,CAN,Dumba,20132014
+Olen Zellweger,8482803,70,193,2003-09-10,Calgary,AB,CAN,2021.0,2.0,34.0,N,ANA,Anaheim Ducks,L,D,76,7,15,22,CAN,Zellweger,20232024
+Kurtis MacDermid,8477073,77,233,1994-03-25,Quebec City,QC,CAN,,,,N,OTT,Ottawa Senators,L,L,17,0,1,1,CAN,MacDermid,20172018
+A.J. Greer,8478421,75,209,1996-12-14,Joliette,QC,CAN,2015.0,2.0,39.0,N,FLA,Florida Panthers,L,L,75,15,14,29,CAN,Greer,20162017
+Matt Grzelcyk,8476891,70,180,1994-01-05,Charlestown,MA,USA,2012.0,3.0,85.0,N,CHI,Chicago Blackhawks,L,D,69,0,12,12,USA,Grzelcyk,20162017
+Mikko Rantanen,8478420,76,228,1996-10-29,Nousiainen,,FIN,2015.0,1.0,10.0,N,DAL,Dallas Stars,L,R,61,22,54,76,FIN,Rantanen,20152016
+Rasmus Andersson,8478397,73,202,1996-10-27,Malmo,,SWE,2015.0,2.0,53.0,N,VGK,Vegas Golden Knights,R,D,78,16,28,44,SWE,Andersson,20162017
+Cole Reinhardt,8481133,73,207,2000-02-01,Calgary,AB,CAN,2020.0,6.0,181.0,N,FLA,Florida Panthers,L,L,56,5,5,10,CAN,Reinhardt,20212022
+Wyatt Kaiser,8482176,72,190,2002-07-31,Andover,MN,USA,2020.0,3.0,81.0,N,CHI,Chicago Blackhawks,L,D,74,6,10,16,USA,Kaiser,20222023
+Joel Eriksson Ek,8478493,75,207,1997-01-29,Karlstad,,SWE,2015.0,1.0,20.0,N,MIN,Minnesota Wild,L,C,70,19,32,51,SWE,Eriksson Ek,20162017
+Kai Uchacz,8485251,74,206,2003-06-24,Calgary,AB,CAN,,,,N,VGK,Vegas Golden Knights,R,C,3,0,0,0,CAN,Uchacz,20252026
+Alex Vlasic,8481568,78,217,2001-06-05,Wilmette,IL,USA,2019.0,2.0,43.0,N,CHI,Chicago Blackhawks,L,D,78,2,19,21,USA,Vlasic,20212022
+Owen Pickering,8483503,77,206,2004-01-27,St. Adolphe,MB,CAN,2022.0,1.0,21.0,N,PIT,Pittsburgh Penguins,L,D,4,0,0,0,CAN,Pickering,20242025
+Henri Jokiharju,8480035,72,205,1999-06-17,Oulu,,FIN,2017.0,1.0,29.0,N,BOS,Boston Bruins,R,D,40,1,12,13,FIN,Jokiharju,20182019
+Emmitt Finnie,8484471,73,195,2005-06-27,Lethbridge,AB,CAN,2023.0,7.0,201.0,N,DET,Detroit Red Wings,L,C,79,12,16,28,CAN,Finnie,20252026
+Michael Bunting,8478047,72,186,1995-09-17,Scarborough,ON,CAN,2014.0,4.0,117.0,N,DAL,Dallas Stars,L,L,72,14,19,33,CAN,Bunting,20182019
+Emil Heineman,8482476,74,204,2001-11-16,Leksand,,SWE,2020.0,2.0,43.0,N,NYI,New York Islanders,L,L,79,22,9,31,SWE,Heineman,20232024
+Mathieu Olivier,8479671,73,232,1997-02-11,Biloxi,MS,USA,,,,N,CBJ,Columbus Blue Jackets,R,R,61,15,11,26,USA,Olivier,20192020
+Barrett Hayton,8480849,73,200,2000-06-09,Peterborough,ON,CAN,2018.0,1.0,5.0,N,UTA,Utah Mammoth,L,C,67,10,15,25,CAN,Hayton,20192020
+Pavel Buchnevich,8477402,73,196,1995-04-17,Cherepovets,,RUS,2013.0,3.0,75.0,N,STL,St. Louis Blues,L,L,77,17,27,44,RUS,Buchnevich,20162017
+Brett Howden,8479353,74,201,1998-03-29,Oakbank,MB,CAN,2016.0,1.0,27.0,N,VGK,Vegas Golden Knights,L,C,55,12,10,22,CAN,Howden,20182019
+Oliver Ekman-Larsson,8475171,74,190,1991-07-17,Karlskrona,,SWE,2009.0,1.0,6.0,N,TOR,Toronto Maple Leafs,L,D,75,8,31,39,SWE,Ekman-Larsson,20102011
+Isak Rosen,8482765,72,185,2003-03-15,Solna,,SWE,2021.0,1.0,14.0,N,WPG,Winnipeg Jets,L,R,33,5,4,9,SWE,Rosen,20232024
+Brandon Montour,8477986,72,199,1994-04-11,Brantford,ON,CAN,2014.0,2.0,55.0,N,SEA,Seattle Kraken,R,D,60,11,21,32,CAN,Montour,20162017
+Tyler Myers,8474574,80,229,1990-02-01,Houston,TX,USA,2008.0,1.0,12.0,N,DAL,Dallas Stars,R,D,70,1,10,11,CAN,Myers,20092010
+Stefan Noesen,8476474,73,205,1993-02-12,Plano,TX,USA,2011.0,1.0,21.0,N,NJD,New Jersey Devils,R,R,38,3,4,7,USA,Noesen,20142015
+Jake Neighbours,8482089,72,201,2002-03-29,Calgary,AB,CAN,2020.0,1.0,26.0,N,STL,St. Louis Blues,L,L,65,14,18,32,CAN,Neighbours,20212022
+John Marino,8478507,73,200,1997-05-21,North Easton,MA,USA,2015.0,6.0,154.0,N,UTA,Utah Mammoth,R,D,78,4,31,35,USA,Marino,20192020
+Tony DeAngelo,8477950,72,190,1995-10-24,Sewell,NJ,USA,2014.0,1.0,19.0,N,NYI,New York Islanders,R,D,73,5,30,35,USA,DeAngelo,20162017
+Gabriel Landeskog,8476455,73,215,1992-11-23,Stockholm,,SWE,2011.0,1.0,2.0,N,COL,Colorado Avalanche,L,L,57,13,21,34,SWE,Landeskog,20112012
+Tom Willander,8484240,73,180,2005-02-09,Stockholm,,SWE,2023.0,1.0,11.0,N,VAN,Vancouver Canucks,R,D,66,5,15,20,SWE,Willander,20252026
+Matt Roy,8478911,74,220,1995-03-01,Detroit,MI,USA,2015.0,7.0,194.0,N,WSH,Washington Capitals,R,D,76,2,17,19,USA,Roy,20182019
+Matt Coronato,8482679,70,183,2002-11-14,Greenlawn,NY,USA,2021.0,1.0,13.0,N,CGY,Calgary Flames,R,R,77,17,25,42,USA,Coronato,20222023
+Drew O'Connor,8482055,76,209,1998-06-09,Chatham,NJ,USA,,,,N,VAN,Vancouver Canucks,L,L,78,17,12,29,USA,O'Connor,20202021
+Neal Pionk,8480145,72,190,1995-07-29,Omaha,NE,USA,,,,N,WPG,Winnipeg Jets,R,D,50,3,9,12,USA,Pionk,20172018
+Sebastian Aho,8478427,72,189,1997-07-26,Rauma,,FIN,2015.0,2.0,35.0,N,CAR,Carolina Hurricanes,L,C,78,26,53,79,FIN,Aho,20162017
+Joshua Roy,8482749,72,192,2003-08-06,Saint-Georges-De-Beauce,QC,CAN,2021.0,5.0,150.0,N,MTL,Montréal Canadiens,L,R,3,0,0,0,CAN,Roy,20232024
+Jason Zucker,8475722,71,198,1992-01-16,Newport Beach,CA,USA,2010.0,2.0,59.0,N,BUF,Buffalo Sabres,L,L,61,24,20,44,USA,Zucker,20112012
+Ilya Protas,8484999,78,225,2006-07-18,Vitebsk,,BLR,2024.0,3.0,75.0,N,WSH,Washington Capitals,L,L,1,0,1,1,BLR,Protas,20252026
+Kaapo Kakko,8481554,73,215,2001-02-13,Turku,,FIN,2019.0,1.0,2.0,N,SEA,Seattle Kraken,L,R,61,13,25,38,FIN,Kakko,20192020
+Thomas Chabot,8478469,73,200,1997-01-30,Sainte-Marie,QC,CAN,2015.0,1.0,18.0,N,OTT,Ottawa Senators,L,D,56,7,24,31,CAN,Chabot,20162017
+Alexandre Texier,8480074,73,196,1999-09-13,Saint-Martin-d'Hères,,FRA,2017.0,2.0,45.0,N,MTL,Montréal Canadiens,L,L,48,8,12,20,FRA,Texier,20182019
+Dominic James,8483752,72,190,2002-07-03,Plymouth,MI,USA,2022.0,6.0,173.0,N,TBL,Tampa Bay Lightning,L,C,43,7,8,15,USA,James,20252026
+Gustav Forsling,8478055,73,199,1996-06-12,Linkoping,,SWE,2014.0,5.0,126.0,N,FLA,Florida Panthers,L,D,78,2,26,28,SWE,Forsling,20162017
+Josh Anderson,8476981,75,226,1994-05-07,Burlington,ON,CAN,2012.0,4.0,95.0,N,MTL,Montréal Canadiens,R,R,70,13,9,22,CAN,Anderson,20142015
+Nathan Walker,8477573,69,191,1994-02-07,Cardiff,,GBR,2014.0,3.0,89.0,N,STL,St. Louis Blues,L,L,44,4,7,11,AUS,Walker,20172018
+Marco Kasper,8483464,73,202,2004-04-08,Innsbruck,,AUT,2022.0,1.0,8.0,N,DET,Detroit Red Wings,L,C,78,8,10,18,AUT,Kasper,20222023
+Evgeni Malkin,8471215,77,213,1986-07-31,Magnitogorsk,,RUS,2004.0,1.0,2.0,N,PIT,Pittsburgh Penguins,L,C,55,19,42,61,RUS,Malkin,20062007
+Mark Scheifele,8476460,75,207,1993-03-15,Kitchener,ON,CAN,2011.0,1.0,7.0,N,WPG,Winnipeg Jets,R,C,78,34,65,99,CAN,Scheifele,20112012
+Alexander Romanov,8481014,73,220,2000-01-06,Moscow,,RUS,2018.0,2.0,38.0,N,NYI,New York Islanders,L,D,15,0,1,1,RUS,Romanov,20202021
+Alec Regula,8480831,76,211,2000-08-06,West Bloomfield,MI,USA,2018.0,3.0,67.0,N,EDM,Edmonton Oilers,R,D,29,0,3,3,USA,Regula,20202021
+Mitchell Chaffee,8482070,73,197,1998-01-26,Grand Rapids,MI,USA,,,,N,TBL,Tampa Bay Lightning,R,R,10,0,0,0,USA,Chaffee,20212022
+Danton Heinen,8478046,74,187,1995-07-05,Langley,BC,CAN,2014.0,4.0,116.0,N,CBJ,Columbus Blue Jackets,L,L,43,6,3,9,CAN,Heinen,20162017
+Nils Lundkvist,8480878,73,194,2000-07-27,Pitea,,SWE,2018.0,1.0,28.0,N,DAL,Dallas Stars,R,D,51,3,8,11,SWE,Lundkvist,20212022
+Maxim Groshev,8482168,74,196,2001-12-14,Agryz,,RUS,2020.0,3.0,85.0,N,TBL,Tampa Bay Lightning,L,D,2,0,1,1,RUS,Groshev,20252026
+Maveric Lamoureux,8483472,78,196,2004-01-13,Laval,QC,CAN,2022.0,1.0,29.0,N,UTA,Utah Mammoth,R,D,5,0,1,1,CAN,Lamoureux,20242025
+Mattias Samuelsson,8480807,76,229,2000-03-14,Philadelphia,PA,USA,2018.0,2.0,32.0,N,BUF,Buffalo Sabres,L,D,77,13,28,41,USA,Samuelsson,20202021
+Colton White,8478841,73,187,1997-05-03,London,ON,CAN,2015.0,4.0,97.0,N,NJD,New Jersey Devils,L,D,23,0,4,4,CAN,White,20182019
+Timothy Liljegren,8480043,73,200,1999-04-30,Kristianstad,,SWE,2017.0,1.0,17.0,N,WSH,Washington Capitals,R,D,46,1,10,11,SWE,Liljegren,20192020
+David Spacek,8483766,72,174,2003-02-18,Columbus,OH,USA,2022.0,5.0,153.0,N,MIN,Minnesota Wild,R,D,2,0,0,0,CZE,Spacek,20252026
+Colton Parayko,8476892,78,228,1993-05-12,St. Albert,AB,CAN,2012.0,3.0,86.0,N,STL,St. Louis Blues,R,D,73,3,14,17,CAN,Parayko,20152016
+Connor Brown,8477015,72,184,1994-01-14,Toronto,ON,CAN,2012.0,6.0,156.0,N,NJD,New Jersey Devils,R,R,72,17,24,41,CAN,Brown,20152016
+Connor Dewar,8480980,70,187,1999-06-26,The Pas,MB,CAN,2018.0,3.0,92.0,N,PIT,Pittsburgh Penguins,L,C,78,14,16,30,CAN,Dewar,20212022
+Ryan Graves,8477435,77,225,1995-05-21,Yarmouth,NS,CAN,2013.0,4.0,110.0,N,PIT,Pittsburgh Penguins,L,D,20,1,0,1,CAN,Graves,20182019
+Jeffrey Viel,8479705,73,214,1997-01-28,Rimouski,QC,CAN,,,,N,ANA,Anaheim Ducks,L,L,42,3,6,9,CAN,Viel,20202021
+Nicolas Aube-Kubel,8477979,72,213,1996-05-10,Slave Lake,AB,CAN,2014.0,2.0,48.0,N,MIN,Minnesota Wild,R,R,4,0,1,1,CAN,Aube-Kubel,20182019
+Rasmus Dahlin,8480839,75,204,2000-04-13,Lidkoping,,SWE,2018.0,1.0,1.0,N,BUF,Buffalo Sabres,L,D,76,19,53,72,SWE,Dahlin,20182019
+Freddy Gaudreau,8477919,72,184,1993-05-01,Bromont,QC,CAN,,,,N,SEA,Seattle Kraken,R,C,64,5,17,22,CAN,Gaudreau,20162017
+Conor Garland,8478856,70,165,1996-03-11,Scituate,MA,USA,2015.0,5.0,123.0,N,CBJ,Columbus Blue Jackets,R,R,68,12,21,33,USA,Garland,20182019
+Michael Brandsegg-Nygård,8484794,73,204,2005-10-05,Oslo,,NOR,2024.0,1.0,15.0,N,DET,Detroit Red Wings,R,R,12,0,1,1,NOR,Brandsegg-Nygård,20252026
+Vincent Trocheck,8476389,71,187,1993-07-11,Pittsburgh,PA,USA,2011.0,3.0,64.0,N,NYR,New York Rangers,R,C,64,16,37,53,USA,Trocheck,20132014
+Jacob Bryson,8480196,69,177,1997-11-18,London,ON,CAN,2017.0,4.0,99.0,N,WPG,Winnipeg Jets,L,D,47,2,6,8,CAN,Bryson,20202021
+Mattias Ekholm,8475218,77,225,1990-05-24,Borlange,,SWE,2009.0,4.0,102.0,N,EDM,Edmonton Oilers,L,D,79,6,35,41,SWE,Ekholm,20112012
+Alex Turcotte,8481532,71,195,2001-02-26,Elk Grove,IL,USA,2019.0,1.0,5.0,N,LAK,Los Angeles Kings,L,C,62,3,11,14,USA,Turcotte,20212022
+Blake Coleman,8476399,71,199,1991-11-28,Plano,TX,USA,2011.0,3.0,75.0,N,CGY,Calgary Flames,L,L,65,19,14,33,USA,Coleman,20162017
+Erik Gudbranson,8475790,77,222,1992-01-07,Ottawa,ON,CAN,2010.0,1.0,3.0,N,CBJ,Columbus Blue Jackets,R,D,34,1,2,3,CAN,Gudbranson,20112012
+Sam Colangelo,8482118,74,213,2001-12-26,Stoneham,MA,USA,2020.0,2.0,36.0,N,ANA,Anaheim Ducks,R,R,9,1,0,1,USA,Colangelo,20232024
+Vasily Podkolzin,8481617,73,190,2001-06-24,Moscow,,RUS,2019.0,1.0,10.0,N,EDM,Edmonton Oilers,L,R,79,19,18,37,RUS,Podkolzin,20212022
+Connor Bedard,8484144,70,190,2005-07-17,North Vancouver,BC,CAN,2023.0,1.0,1.0,N,CHI,Chicago Blackhawks,R,C,66,30,42,72,CAN,Bedard,20232024
+Ty Emberson,8480834,72,193,2000-05-23,Eau Claire,WI,USA,2018.0,3.0,73.0,N,EDM,Edmonton Oilers,R,D,69,2,10,12,USA,Emberson,20232024
+Dylan Samberg,8480049,76,216,1999-01-24,Saginaw,MN,USA,2017.0,2.0,43.0,N,WPG,Winnipeg Jets,L,D,62,1,13,14,USA,Samberg,20212022
+Parker Ford,8484135,69,181,2000-07-20,Wakefield,RI,USA,,,,N,WPG,Winnipeg Jets,R,C,15,0,1,1,USA,Ford,20242025
+Justin Dowling,8475413,71,178,1990-10-01,Calgary,AB,CAN,,,,N,NYR,New York Rangers,L,C,2,0,0,0,CAN,Dowling,20162017
+Kaedan Korczak,8481527,75,206,2001-01-29,Yorkton,SK,CAN,2019.0,2.0,41.0,N,VGK,Vegas Golden Knights,R,D,75,3,11,14,CAN,Korczak,20212022
+Denton Mateychuk,8483485,71,188,2004-07-12,Winnipeg,MB,CAN,2022.0,1.0,12.0,N,CBJ,Columbus Blue Jackets,L,D,72,13,18,31,CAN,Mateychuk,20242025
+Connor Clifton,8477365,72,196,1995-04-28,Matawan,NJ,USA,2013.0,5.0,133.0,N,PIT,Pittsburgh Penguins,R,D,48,2,4,6,USA,Clifton,20182019
+Nick Cousins,8476393,71,191,1993-07-20,Belleville,ON,CAN,2011.0,3.0,68.0,N,OTT,Ottawa Senators,L,C,78,9,13,22,CAN,Cousins,20142015
+Jaroslav Chmelar,8482877,76,226,2003-07-20,Nove Mesto nad Metuji,,CZE,2021.0,5.0,144.0,N,NYR,New York Rangers,R,R,25,4,2,6,CZE,Chmelar,20252026
+Mark Kastelic,8480355,76,234,1999-03-11,Phoenix,AZ,USA,2019.0,5.0,125.0,N,BOS,Boston Bruins,R,C,79,9,9,18,USA,Kastelic,20212022
+Jalen Chatfield,8478970,73,209,1996-05-15,Ypsilanti,MI,USA,,,,N,CAR,Carolina Hurricanes,R,D,71,2,15,17,USA,Chatfield,20202021
+Justin Hryckowian,8484829,71,198,2001-02-23,L'Ile-Bizard,QC,CAN,,,,N,DAL,Dallas Stars,L,C,78,13,15,28,CAN,Hryckowian,20242025
+Zach Bogosian,8474567,75,231,1990-07-15,Massena,NY,USA,2008.0,1.0,3.0,N,MIN,Minnesota Wild,R,D,41,2,4,6,USA,Bogosian,20082009
+Wyatt Johnston,8482740,73,187,2003-05-14,Toronto,ON,CAN,2021.0,1.0,23.0,N,DAL,Dallas Stars,R,C,79,44,40,84,CAN,Johnston,20222023
+Bradly Nadeau,8484203,71,180,2005-05-05,St-Francois de Madaw,NB,CAN,2023.0,1.0,30.0,N,CAR,Carolina Hurricanes,R,L,9,2,0,2,CAN,Nadeau,20232024
+Gavin Brindley,8484149,68,173,2004-10-05,Fort Myers,FL,USA,2023.0,2.0,34.0,N,COL,Colorado Avalanche,R,C,56,6,7,13,USA,Brindley,20232024
+Thomas Novak,8478438,73,190,1997-04-28,St. Paul,MN,USA,2015.0,3.0,85.0,N,PIT,Pittsburgh Penguins,L,C,79,16,25,41,USA,Novak,20212022
+Mike Reilly,8476422,74,191,1993-07-13,Glenview,IL,USA,2011.0,4.0,98.0,N,CAR,Carolina Hurricanes,L,D,39,1,8,9,USA,Reilly,20152016
+Alex Laferriere,8482155,73,205,2001-10-28,Chatham,NJ,USA,2020.0,3.0,83.0,N,LAK,Los Angeles Kings,R,R,78,19,20,39,USA,Laferriere,20232024
+Martin Pospisil,8481028,74,173,1999-11-19,Zvolen,,SVK,2018.0,4.0,105.0,N,CGY,Calgary Flames,L,C,21,1,2,3,SVK,Pospisil,20232024
+Luke Schenn,8474568,74,225,1989-11-02,Saskatoon,SK,CAN,2008.0,1.0,5.0,N,BUF,Buffalo Sabres,R,D,49,1,6,7,CAN,Schenn,20082009
+Owen Tippett,8480015,73,210,1999-02-16,Peterborough,ON,CAN,2017.0,1.0,10.0,N,PHI,Philadelphia Flyers,R,R,79,28,23,51,CAN,Tippett,20172018
+Mathew Barzal,8478445,73,186,1997-05-26,Coquitlam,BC,CAN,2015.0,1.0,16.0,N,NYI,New York Islanders,R,C,78,19,52,71,CAN,Barzal,20162017
+Dmitri Simashev,8484386,76,198,2005-02-04,Kostroma,,RUS,2023.0,1.0,6.0,N,UTA,Utah Mammoth,L,D,25,0,1,1,RUS,Simashev,20252026
+Jack Drury,8480835,71,186,2000-02-03,New York,NY,USA,2018.0,2.0,42.0,N,COL,Colorado Avalanche,L,C,78,10,17,27,USA,Drury,20212022
+Max Sasson,8484136,73,181,2000-09-05,Birmingham,MI,USA,,,,N,VAN,Vancouver Canucks,L,C,65,13,6,19,USA,Sasson,20242025
+Nicolas Deslauriers,8475235,73,218,1991-02-22,LaSalle,QC,CAN,2009.0,3.0,84.0,N,CAR,Carolina Hurricanes,L,L,28,0,2,2,CAN,Deslauriers,20132014
+Fraser Minten,8483489,74,204,2004-07-05,Vancouver,BC,CAN,2022.0,2.0,38.0,N,BOS,Boston Bruins,L,C,79,17,17,34,CAN,Minten,20232024
+Jonathan Huberdeau,8476456,73,200,1993-06-04,Saint-Jerome,QC,CAN,2011.0,1.0,3.0,N,CGY,Calgary Flames,L,L,50,10,15,25,CAN,Huberdeau,20122013
+Boris Katchouk,8479383,74,212,1998-06-18,Vancouver,BC,CAN,2016.0,2.0,44.0,N,PHI,Philadelphia Flyers,L,L,3,0,0,0,CAN,Katchouk,20212022
+Mason McTavish,8482745,73,219,2003-01-30,Zurich,,CHE,2021.0,1.0,3.0,N,ANA,Anaheim Ducks,L,C,72,15,22,37,CAN,McTavish,20212022
+Matej Blümel,8481712,72,202,2000-05-31,Tabor,,CZE,2019.0,4.0,100.0,N,BOS,Boston Bruins,L,R,4,0,0,0,CZE,Blümel,20222023
+Jonathan Marchessault,8476539,69,185,1990-12-27,Cap-Rouge,QC,CAN,,,,N,NSH,Nashville Predators,R,R,60,12,19,31,CAN,Marchessault,20122013
+Filip Hronek,8479425,72,190,1997-11-02,Hradec Kralove,,CZE,2016.0,2.0,53.0,N,VAN,Vancouver Canucks,R,D,78,8,38,46,CZE,Hronek,20182019
+Jack Roslovic,8478458,73,198,1997-01-29,Columbus,OH,USA,2015.0,1.0,25.0,N,EDM,Edmonton Oilers,R,C,66,21,15,36,USA,Roslovic,20162017
+Connor Mackey,8482067,75,205,1996-09-12,Tower Lakes,IL,USA,,,,N,NYR,New York Rangers,L,D,3,0,0,0,USA,Mackey,20202021
+Brady Martin,8485405,72,185,2007-03-16,Kitchener,ON,CAN,2025.0,1.0,5.0,N,NSH,Nashville Predators,R,C,3,0,1,1,CAN,Martin,20252026
+Corey Perry,8470621,75,210,1985-05-16,Peterborough,ON,CAN,2003.0,1.0,28.0,N,TBL,Tampa Bay Lightning,R,R,69,16,20,36,CAN,Perry,20052006
+Dennis Cholowski,8479395,74,210,1998-02-15,Langley,BC,CAN,2016.0,1.0,20.0,N,NJD,New Jersey Devils,L,D,16,0,1,1,CAN,Cholowski,20182019
+Ben Jones,8480259,72,187,1999-02-26,Waterloo,ON,CAN,2017.0,7.0,189.0,N,MIN,Minnesota Wild,L,C,26,1,1,2,CAN,Jones,20212022
+Brock Faber,8482122,73,200,2002-08-22,Maple Grove,MN,USA,2020.0,2.0,45.0,N,MIN,Minnesota Wild,R,D,79,15,36,51,USA,Faber,20222023
+Andrei Kuzmenko,8483808,71,200,1996-02-04,Yakutsk,,RUS,,,,N,LAK,Los Angeles Kings,R,L,52,13,12,25,RUS,Kuzmenko,20222023
+Nick DeSimone,8480084,74,194,1994-11-21,East Amherst,NY,USA,,,,N,UTA,Utah Mammoth,R,D,39,2,6,8,USA,DeSimone,20222023
+Macklin Celebrini,8484801,72,190,2006-06-13,North Vancouver,BC,CAN,2024.0,1.0,1.0,N,SJS,San Jose Sharks,L,C,78,42,66,108,CAN,Celebrini,20242025
+Joakim Kemell,8483465,71,182,2004-04-27,Jyvaskyla,,FIN,2022.0,1.0,17.0,N,NSH,Nashville Predators,R,R,13,1,2,3,FIN,Kemell,20242025
+Noah Cates,8480220,74,194,1999-02-05,Stillwater,MN,USA,2017.0,5.0,137.0,N,PHI,Philadelphia Flyers,L,L,79,17,26,43,USA,Cates,20212022
+Alex Killorn,8473986,73,205,1989-09-14,Halifax,NS,CAN,2007.0,3.0,77.0,N,ANA,Anaheim Ducks,L,L,79,14,17,31,CAN,Killorn,20122013
+Tyler Toffoli,8475726,72,205,1992-04-24,Scarborough,ON,CAN,2010.0,2.0,47.0,N,SJS,San Jose Sharks,R,C,76,18,30,48,CAN,Toffoli,20122013
+Dylan Larkin,8477946,73,204,1996-07-30,Waterford,MI,USA,2014.0,1.0,15.0,N,DET,Detroit Red Wings,L,C,72,34,31,65,USA,Larkin,20152016
+Vladislav Gavrikov,8478882,75,210,1995-11-21,Yaroslavl,,RUS,2015.0,6.0,159.0,N,NYR,New York Rangers,L,D,79,14,20,34,RUS,Gavrikov,20192020
+Adam Boqvist,8480871,72,195,2000-08-15,Falun,,SWE,2018.0,1.0,8.0,N,NYI,New York Islanders,R,D,28,0,4,4,SWE,Boqvist,20192020
+Colton Sissons,8476925,73,200,1993-11-05,North Vancouver,BC,CAN,2012.0,2.0,50.0,N,VGK,Vegas Golden Knights,R,C,63,6,5,11,CAN,Sissons,20132014
+Nolan Foote,8481518,75,196,2000-11-29,Denver,CO,USA,2019.0,1.0,27.0,N,FLA,Florida Panthers,L,L,9,1,0,1,USA,Foote,20202021
+Sonny Milano,8477947,72,205,1996-05-12,Massapequa,NY,USA,2014.0,1.0,16.0,N,WSH,Washington Capitals,L,L,31,4,4,8,USA,Milano,20152016
+Lenni Hameenaho,8484177,73,195,2004-11-07,Kajaani,,FIN,2023.0,2.0,58.0,N,NJD,New Jersey Devils,R,R,31,2,6,8,FIN,Hameenaho,20252026
+Kevin Bahl,8480860,78,230,2000-06-27,New Westminster,BC,CAN,2018.0,2.0,55.0,N,CGY,Calgary Flames,L,D,76,4,14,18,CAN,Bahl,20202021
+Miro Heiskanen,8480036,74,197,1999-07-18,Espoo,,FIN,2017.0,1.0,3.0,N,DAL,Dallas Stars,L,D,77,9,54,63,FIN,Heiskanen,20182019
+Brendan Gaunce,8476867,74,222,1994-03-25,Sudbury,ON,CAN,2012.0,1.0,26.0,N,CBJ,Columbus Blue Jackets,L,C,25,2,4,6,CAN,Gaunce,20152016
+Dylan Strome,8478440,76,200,1997-03-07,Mississauga,ON,CAN,2015.0,1.0,3.0,N,WSH,Washington Capitals,L,C,77,19,38,57,CAN,Strome,20162017
+Jake Christiansen,8481161,72,199,1999-09-12,West Vancouver,BC,CAN,,,,N,CBJ,Columbus Blue Jackets,L,D,38,0,2,2,CAN,Christiansen,20212022
+Sam Dickinson,8484806,75,200,2006-06-07,Toronto,ON,CAN,2024.0,1.0,11.0,N,SJS,San Jose Sharks,L,D,68,1,12,13,CAN,Dickinson,20252026
+Brayden Schenn,8475170,73,200,1991-08-22,Saskatoon,SK,CAN,2009.0,1.0,5.0,N,NYI,New York Islanders,L,C,77,18,21,39,CAN,Schenn,20092010
+Mike Matheson,8476875,74,196,1994-02-27,Pointe-Claire,QC,CAN,2012.0,1.0,23.0,N,MTL,Montréal Canadiens,L,D,76,7,30,37,CAN,Matheson,20152016
+Hunter Skinner,8481715,75,195,2001-04-29,Wyandotte,MI,USA,2019.0,4.0,112.0,N,STL,St. Louis Blues,R,D,1,0,0,0,USA,Skinner,20252026
+Jack Devine,8483433,71,173,2003-10-01,Glencoe,IL,USA,2022.0,7.0,221.0,N,FLA,Florida Panthers,R,R,6,0,0,0,USA,Devine,20252026
+Axel Sandin-Pellikka,8484223,72,186,2005-03-11,Gallivare,,SWE,2023.0,1.0,17.0,N,DET,Detroit Red Wings,R,D,66,7,14,21,SWE,Sandin-Pellikka,20252026
+Jeff Malott,8482408,77,215,1996-08-07,Burlington,ON,CAN,,,,N,LAK,Los Angeles Kings,L,L,58,3,6,9,CAN,Malott,20212022
+Sean Durzi,8480434,73,196,1998-10-21,Mississauga,ON,CAN,2018.0,2.0,52.0,N,UTA,Utah Mammoth,R,D,57,5,22,27,CAN,Durzi,20212022
+Linus Karlsson,8481024,73,178,1999-11-16,Landsbro,,SWE,2018.0,3.0,87.0,N,VAN,Vancouver Canucks,R,C,75,15,19,34,SWE,Karlsson,20232024
+Kirill Marchenko,8480893,75,201,2000-07-21,Barnaul,,RUS,2018.0,2.0,49.0,N,CBJ,Columbus Blue Jackets,R,R,73,26,39,65,RUS,Marchenko,20222023
+Nick Jensen,8475324,72,202,1990-09-21,Rogers,MN,USA,2009.0,5.0,150.0,N,OTT,Ottawa Senators,R,D,61,4,13,17,USA,Jensen,20162017
+Anthony Duclair,8477407,72,198,1995-08-26,Pointe-Claire,QC,CAN,2013.0,3.0,80.0,N,NYI,New York Islanders,L,L,61,12,15,27,CAN,Duclair,20142015
+William Carrier,8477478,74,214,1994-12-20,LaSalle,QC,CAN,2013.0,2.0,57.0,N,CAR,Carolina Hurricanes,L,L,68,7,11,18,CAN,Carrier,20162017
+Nils Hoglander,8481535,69,185,2000-12-20,Bockträsk,,SWE,2019.0,2.0,40.0,N,VAN,Vancouver Canucks,L,L,34,2,2,4,SWE,Hoglander,20202021
+Braeden Bowman,8483890,73,205,2003-06-26,Kitchener,ON,CAN,,,,N,VGK,Vegas Golden Knights,R,R,54,8,18,26,CAN,Bowman,20252026
+Sam Rinzel,8483506,76,194,2004-06-25,Chanhassen,MN,USA,2022.0,1.0,25.0,N,CHI,Chicago Blackhawks,R,D,51,3,10,13,USA,Rinzel,20242025
+Kailer Yamamoto,8479977,69,178,1998-09-29,Spokane,WA,USA,2017.0,1.0,22.0,N,UTA,Utah Mammoth,R,R,55,12,10,22,USA,Yamamoto,20172018
+Riley Tufte,8479362,78,233,1998-04-10,Coon Rapids,MN,USA,2016.0,1.0,25.0,N,BOS,Boston Bruins,L,L,4,1,0,1,USA,Tufte,20212022
+Pavel Mintyukov,8483490,73,207,2003-11-25,Moscow,,RUS,2022.0,1.0,10.0,N,ANA,Anaheim Ducks,L,D,70,8,14,22,RUS,Mintyukov,20232024
+Adam Erne,8477454,73,209,1995-04-20,New Haven,CT,USA,2013.0,2.0,33.0,N,DAL,Dallas Stars,L,L,43,6,2,8,USA,Erne,20162017
+Jacob Bernard-Docker,8480879,73,196,2000-06-30,Canmore,AB,CAN,2018.0,1.0,26.0,N,DET,Detroit Red Wings,R,D,62,1,4,5,CAN,Bernard-Docker,20202021
+Matthew Robertson,8481525,76,210,2001-03-09,Edmonton,AB,CAN,2019.0,2.0,49.0,N,NYR,New York Rangers,L,D,69,5,12,17,CAN,Robertson,20242025
+Brad Marchand,8473419,69,180,1988-05-11,Halifax,NS,CAN,2006.0,3.0,71.0,N,FLA,Florida Panthers,L,L,52,27,27,54,CAN,Marchand,20092010
+Ross Johnston,8477527,77,232,1994-02-18,Charlottetown,PE,CAN,,,,N,ANA,Anaheim Ducks,L,L,62,3,11,14,CAN,Johnston,20152016
+J.T. Miller,8476468,72,211,1993-03-14,East Palestine,OH,USA,2011.0,1.0,15.0,N,NYR,New York Rangers,L,C,65,17,34,51,USA,Miller,20122013
+Nathan Bastian,8479414,76,217,1997-12-06,Kitchener,ON,CAN,2016.0,2.0,41.0,N,DAL,Dallas Stars,R,R,36,6,1,7,CAN,Bastian,20182019
+Nick Schmaltz,8477951,72,184,1996-02-23,Madison,WI,USA,2014.0,1.0,20.0,N,UTA,Utah Mammoth,R,C,78,31,41,72,USA,Schmaltz,20162017
+Cale Makar,8480069,72,187,1998-10-30,Calgary,AB,CAN,2017.0,1.0,4.0,N,COL,Colorado Avalanche,R,D,73,20,55,75,CAN,Makar,20192020
+Jacob Gaucher,8481848,75,185,2001-03-09,Longueuil,QC,CAN,,,,N,PHI,Philadelphia Flyers,R,C,3,0,0,0,CAN,Gaucher,20242025
+Tristan Broz,8482698,72,204,2002-10-10,River Falls,WI,USA,2021.0,2.0,58.0,N,PIT,Pittsburgh Penguins,L,C,1,0,0,0,USA,Broz,20252026
+Gage Goncalves,8482201,73,189,2001-01-16,Mission,BC,CAN,2020.0,2.0,62.0,N,TBL,Tampa Bay Lightning,L,C,71,11,21,32,CAN,Goncalves,20232024
+Charle-Edouard D'Astous,8480426,74,211,1998-04-21,Rimouski,QC,CAN,,,,N,TBL,Tampa Bay Lightning,L,D,67,6,23,29,CAN,D'Astous,20252026
+Dakota Joshua,8478057,75,218,1996-05-15,Dearborn,MI,USA,2014.0,5.0,128.0,N,TOR,Toronto Maple Leafs,L,C,55,10,8,18,USA,Joshua,20202021
+Charlie McAvoy,8479325,73,211,1997-12-21,Long Beach,NY,USA,2016.0,1.0,14.0,N,BOS,Boston Bruins,R,D,67,11,49,60,USA,McAvoy,20172018
+Erik Haula,8475287,71,191,1991-03-23,Pori,,FIN,2009.0,7.0,182.0,N,NSH,Nashville Predators,L,L,79,14,24,38,FIN,Haula,20132014
+Alex Iafallo,8480113,72,201,1993-12-21,Eden,NY,USA,,,,N,WPG,Winnipeg Jets,L,L,78,13,16,29,USA,Iafallo,20172018
+Bokondji Imama,8478147,73,223,1996-08-03,Montréal,QC,CAN,2015.0,6.0,180.0,N,PIT,Pittsburgh Penguins,L,L,2,0,0,0,CAN,Imama,20212022
+Isaak Phillips,8482192,75,205,2001-09-28,Barrie,ON,CAN,2020.0,5.0,141.0,N,WPG,Winnipeg Jets,L,D,3,0,0,0,CAN,Phillips,20212022
+Morgan Barron,8480289,76,220,1998-12-02,Halifax,NS,CAN,2017.0,6.0,174.0,N,WPG,Winnipeg Jets,L,C,65,11,12,23,CAN,Barron,20202021
+Zack MacEwen,8479772,76,226,1996-07-08,Charlottetown,PE,CAN,,,,N,NJD,New Jersey Devils,R,R,3,0,0,0,CAN,MacEwen,20182019
+Cameron Hughes,8478888,72,190,1996-10-09,Edmonton,AB,CAN,2015.0,6.0,165.0,N,DAL,Dallas Stars,L,C,2,1,0,1,CAN,Hughes,20192020
+Bobby Brink,8481553,68,169,2001-07-08,Minnetonka,MN,USA,2019.0,2.0,34.0,N,MIN,Minnesota Wild,R,R,65,15,15,30,USA,Brink,20212022
+Niko Mikkola,8478859,78,204,1996-04-27,Kiiminki,,FIN,2015.0,5.0,127.0,N,FLA,Florida Panthers,L,D,68,3,8,11,FIN,Mikkola,20192020
+Nikita Nesterenko,8481754,74,203,2001-09-10,Brooklyn,NY,USA,2019.0,6.0,172.0,N,ANA,Anaheim Ducks,L,C,29,1,8,9,USA,Nesterenko,20222023
+Conor Sheary,8477839,68,180,1992-06-08,Winchester,MA,USA,,,,N,NYR,New York Rangers,L,L,59,7,10,17,USA,Sheary,20152016
+Leon Draisaitl,8477934,74,209,1995-10-27,Cologne,,DEU,2014.0,1.0,3.0,N,EDM,Edmonton Oilers,L,C,65,35,62,97,DEU,Draisaitl,20142015
+Adam Edstrom,8481726,79,232,2000-10-12,Karlstad,,SWE,2019.0,6.0,161.0,N,NYR,New York Rangers,L,C,35,3,2,5,SWE,Edstrom,20232024
+David Kampf,8480144,74,198,1995-01-12,Chomutov,,CZE,,,,N,WSH,Washington Capitals,L,C,40,2,4,6,CZE,Kampf,20172018
+Jacob Melanson,8482874,72,207,2003-04-22,Halifax,NS,CAN,2021.0,5.0,131.0,N,SEA,Seattle Kraken,R,R,35,2,3,5,CAN,Melanson,20242025
+Steven Stamkos,8474564,73,193,1990-02-07,Markham,ON,CAN,2008.0,1.0,1.0,N,NSH,Nashville Predators,R,C,79,39,22,61,CAN,Stamkos,20082009
+Noah Laba,8483690,75,214,2003-08-04,Northville,MI,USA,2022.0,4.0,111.0,N,NYR,New York Rangers,R,C,71,9,14,23,USA,Laba,20252026
+Martin Fehervary,8480796,74,215,1999-10-06,Bratislava,,SVK,2018.0,2.0,46.0,N,WSH,Washington Capitals,L,D,78,5,20,25,SVK,Fehervary,20192020
+Logan Stankoven,8482702,68,165,2003-02-26,Kamloops,BC,CAN,2021.0,2.0,47.0,N,CAR,Carolina Hurricanes,R,C,79,21,21,42,CAN,Stankoven,20232024
+Angus Booth,8483699,72,177,2004-04-27,Montréal,QC,CAN,2022.0,4.0,116.0,N,LAK,Los Angeles Kings,L,D,1,1,0,1,CAN,Booth,20252026
+Brendan Smith,8474090,74,200,1989-02-08,Mimico,ON,CAN,2007.0,1.0,27.0,N,CBJ,Columbus Blue Jackets,L,D,15,0,2,2,CAN,Smith,20112012
+Steven Santini,8477463,75,217,1995-03-07,Bronxville,NY,USA,2013.0,2.0,42.0,N,TBL,Tampa Bay Lightning,R,D,11,0,1,1,USA,Santini,20152016
+J.J. Moser,8482655,74,183,2000-06-06,Biel,,CHE,2021.0,2.0,60.0,N,TBL,Tampa Bay Lightning,L,D,77,7,21,28,CHE,Moser,20212022
+Alex Steeves,8482634,72,199,1999-12-10,Saint Paul,MN,USA,,,,N,BOS,Boston Bruins,L,C,42,9,7,16,USA,Steeves,20212022
+Ryan Lindgren,8479324,72,194,1998-02-11,Burnsville,MN,USA,2016.0,2.0,49.0,N,SEA,Seattle Kraken,L,D,73,2,7,9,USA,Lindgren,20182019
+Ryan Nugent-Hopkins,8476454,73,192,1993-04-12,Burnaby,BC,CAN,2011.0,1.0,1.0,N,EDM,Edmonton Oilers,L,C,69,19,36,55,CAN,Nugent-Hopkins,20112012
+Trevor Zegras,8481533,72,185,2001-03-20,Bedford,NY,USA,2019.0,1.0,9.0,N,PHI,Philadelphia Flyers,L,C,79,25,41,66,USA,Zegras,20202021
+Matt Kiersted,8482641,72,182,1998-04-14,Elk River,MN,USA,,,,N,MIN,Minnesota Wild,L,D,4,0,1,1,USA,Kiersted,20202021
+Oliver Bjorkstrand,8477416,72,175,1995-04-10,Herning,,DNK,2013.0,3.0,89.0,N,TBL,Tampa Bay Lightning,R,R,77,11,19,30,DNK,Bjorkstrand,20152016
+Anze Kopitar,8471685,75,225,1987-08-24,Jesenice,,SVN,2005.0,1.0,11.0,N,LAK,Los Angeles Kings,L,C,63,12,24,36,SVN,Kopitar,20062007
+Seamus Casey,8483429,70,181,2004-01-08,Miami,FL,USA,2022.0,2.0,46.0,N,NJD,New Jersey Devils,R,D,2,0,0,0,USA,Casey,20242025
+Oliver Kapanen,8482775,74,194,2003-07-29,Timra,,SWE,2021.0,2.0,64.0,N,MTL,Montréal Canadiens,R,C,79,22,15,37,FIN,Kapanen,20242025
+Reilly Smith,8475191,73,185,1991-04-01,Mimico,ON,CAN,2009.0,3.0,69.0,N,VGK,Vegas Golden Knights,L,R,67,13,9,22,CAN,Smith,20112012
+Gabriel Vilardi,8480014,75,216,1999-08-16,Kingston,ON,CAN,2017.0,1.0,11.0,N,WPG,Winnipeg Jets,R,C,78,29,35,64,CAN,Vilardi,20192020
+Nick Bjugstad,8475760,78,210,1992-07-17,Minneapolis,MN,USA,2010.0,1.0,19.0,N,NJD,New Jersey Devils,R,C,58,6,3,9,USA,Bjugstad,20122013
+Roman Josi,8474600,73,201,1990-06-01,Bern,,CHE,2008.0,2.0,38.0,N,NSH,Nashville Predators,L,D,66,13,41,54,CHE,Josi,20112012
+Olle Lycksell,8480245,71,197,1999-08-24,Oskarshamn,,SWE,2017.0,6.0,168.0,N,OTT,Ottawa Senators,L,R,7,1,1,2,SWE,Lycksell,20222023
+Florian Xhekaj,8484403,75,195,2004-06-27,Hamilton,ON,CAN,2023.0,4.0,101.0,N,MTL,Montréal Canadiens,L,L,5,0,1,1,CAN,Xhekaj,20252026
+Luke Glendening,8476822,71,190,1989-04-28,Grand Rapids,MI,USA,,,,N,PHI,Philadelphia Flyers,R,C,67,2,7,9,USA,Glendening,20132014
+Luca Del Bel Belluz,8483432,73,185,2003-11-10,Woodbridge,ON,CAN,2022.0,2.0,44.0,N,CBJ,Columbus Blue Jackets,L,C,14,0,1,1,CAN,Del Bel Belluz,20232024
+Tage Thompson,8479420,78,220,1997-10-30,Phoenix,AZ,USA,2016.0,1.0,26.0,N,BUF,Buffalo Sabres,R,C,80,38,41,79,USA,Thompson,20172018
+Ty Dellandrea,8480848,74,185,2000-07-21,Port Perry,ON,CAN,2018.0,1.0,13.0,N,SJS,San Jose Sharks,R,C,45,2,9,11,CAN,Dellandrea,20202021
+Mattias Janmark,8477406,74,205,1992-12-08,Danderyd,,SWE,2013.0,3.0,79.0,N,EDM,Edmonton Oilers,L,C,43,1,7,8,SWE,Janmark,20152016
+Dakota Mermis,8477541,72,197,1994-01-05,Alton,IL,USA,,,,N,TOR,Toronto Maple Leafs,L,D,11,1,0,1,USA,Mermis,20172018
+Taylor Makar,8482953,75,190,2001-03-13,Calgary,AB,CAN,2021.0,7.0,220.0,N,COL,Colorado Avalanche,L,L,12,0,0,0,CAN,Makar,20252026
+Adam Fantilli,8484166,74,205,2004-10-12,Nobleton,ON,CAN,2023.0,1.0,3.0,N,CBJ,Columbus Blue Jackets,L,C,79,23,33,56,CAN,Fantilli,20232024
+Simon Benoit,8481122,76,210,1998-09-19,Laval,QC,CAN,,,,N,TOR,Toronto Maple Leafs,L,D,70,0,5,5,CAN,Benoit,20202021
+Ian Moore,8482178,75,205,2002-01-04,Salt Lake City,UT,USA,2020.0,3.0,67.0,N,ANA,Anaheim Ducks,R,D,64,4,8,12,USA,Moore,20242025
+Kenny Connors,8483675,73,199,2003-03-10,Glen Mills,PA,USA,2022.0,4.0,103.0,N,LAK,Los Angeles Kings,L,C,2,0,0,0,USA,Connors,20252026
+Arshdeep Bains,8483395,72,184,2001-01-09,Surrey,BC,CAN,,,,N,VAN,Vancouver Canucks,L,L,28,1,4,5,CAN,Bains,20232024
+Dawson Mercer,8482110,72,180,2001-10-27,Carbonear,NL,CAN,2020.0,1.0,18.0,N,NJD,New Jersey Devils,R,C,79,18,21,39,CAN,Mercer,20212022
+Matty Beniers,8482665,74,181,2002-11-05,Hingham,MA,USA,2021.0,1.0,2.0,N,SEA,Seattle Kraken,L,C,78,19,28,47,USA,Beniers,20212022
+Jonathan Aspirot,8481219,72,212,1999-05-16,Mascouche,QC,CAN,,,,N,BOS,Boston Bruins,L,D,58,3,10,13,CAN,Aspirot,20252026
+Samuel Girard,8479398,70,170,1998-05-12,Roberval,QC,CAN,2016.0,2.0,47.0,N,PIT,Pittsburgh Penguins,L,D,58,3,15,18,CAN,Girard,20172018
+Justin Sourdif,8482088,72,195,2002-03-24,Richmond,BC,CAN,2020.0,3.0,87.0,N,WSH,Washington Capitals,R,C,75,15,19,34,CAN,Sourdif,20232024
+Brandon Carlo,8478443,77,227,1996-11-26,Colorado Springs,CO,USA,2015.0,2.0,37.0,N,TOR,Toronto Maple Leafs,R,D,55,0,7,7,USA,Carlo,20162017
+Quinn Hutson,8485511,71,176,2002-01-01,North Barrington,IL,USA,,,,N,EDM,Edmonton Oilers,R,R,4,1,0,1,USA,Hutson,20242025
+Jack Eichel,8478403,74,208,1996-10-28,North Chelmsford,MA,USA,2015.0,1.0,2.0,N,VGK,Vegas Golden Knights,R,C,71,25,58,83,USA,Eichel,20152016
+Jordan Kyrou,8479385,73,189,1998-05-05,Toronto,ON,CAN,2016.0,2.0,35.0,N,STL,St. Louis Blues,R,R,68,17,25,42,CAN,Kyrou,20182019
+Andrew Agozzino,8475461,70,187,1991-01-03,Kleinburg,ON,CAN,,,,N,UTA,Utah Mammoth,L,L,2,0,0,0,CAN,Agozzino,20142015
+Max Domi,8477503,70,208,1995-03-02,Winnipeg,MB,CAN,2013.0,1.0,12.0,N,TOR,Toronto Maple Leafs,L,C,77,11,24,35,CAN,Domi,20152016
+Mason Marchment,8478975,77,212,1995-06-18,Uxbridge,ON,CAN,,,,N,CBJ,Columbus Blue Jackets,L,L,65,18,24,42,CAN,Marchment,20192020
+Ross Colton,8479525,72,194,1996-09-11,Robbinsville,NJ,USA,2016.0,4.0,118.0,N,COL,Colorado Avalanche,L,C,69,9,15,24,USA,Colton,20202021
+Adam Klapka,8483609,80,235,2000-09-14,Praha,,CZE,,,,N,CGY,Calgary Flames,R,R,76,6,12,18,CZE,Klapka,20232024
+Adam Larsson,8476457,75,207,1992-11-12,Skelleftea,,SWE,2011.0,1.0,4.0,N,SEA,Seattle Kraken,R,D,78,6,18,24,SWE,Larsson,20112012
+Jason Polin,8484255,72,198,1999-06-17,Holt,MI,USA,,,,N,COL,Colorado Avalanche,R,R,3,0,0,0,USA,Polin,20232024
+Mark Stone,8475913,75,210,1992-05-13,Winnipeg,MB,CAN,2010.0,6.0,178.0,N,VGK,Vegas Golden Knights,R,R,57,26,43,69,CAN,Stone,20122013
+Curtis Lazar,8477508,72,203,1995-02-02,Salmon Arm,BC,CAN,2013.0,1.0,17.0,N,EDM,Edmonton Oilers,R,C,42,4,2,6,CAN,Lazar,20142015
+Seth Jones,8477495,76,213,1994-10-03,Arlington,TX,USA,2013.0,1.0,4.0,N,FLA,Florida Panthers,R,D,52,7,25,32,USA,Jones,20132014
+Ian Cole,8474013,73,237,1989-02-21,Ann Arbor,MI,USA,2007.0,1.0,18.0,N,UTA,Utah Mammoth,L,D,78,3,20,23,USA,Cole,20102011
+Alexandre Carrier,8478851,71,174,1996-10-08,Quebec City,QC,CAN,2015.0,4.0,115.0,N,MTL,Montréal Canadiens,R,D,73,7,15,22,CAN,Carrier,20162017
+Josiah Slavin,8481004,75,205,1998-12-31,Erie,CO,USA,2018.0,7.0,193.0,N,CAR,Carolina Hurricanes,L,L,1,0,0,0,USA,Slavin,20212022
+Jonas Siegenthaler,8478399,74,218,1997-05-06,Zurich,,CHE,2015.0,2.0,57.0,N,NJD,New Jersey Devils,L,D,79,0,15,15,CHE,Siegenthaler,20182019
+Jack Ahcan,8482072,68,180,1997-05-18,Savage,MN,USA,,,,N,COL,Colorado Avalanche,L,D,9,0,2,2,USA,Ahcan,20202021
+Kyle MacLean,8481237,73,190,1999-04-29,Verona,NJ,USA,,,,N,NYI,New York Islanders,L,C,57,2,5,7,USA,MacLean,20232024
+Trent Frederic,8479365,75,221,1998-02-11,St. Louis,MO,USA,2016.0,1.0,29.0,N,EDM,Edmonton Oilers,L,C,71,4,3,7,USA,Frederic,20182019
+Vincent Iorio,8482861,76,220,2002-11-14,Coquitlam,BC,CAN,2021.0,2.0,55.0,N,NYR,New York Rangers,R,D,27,0,3,3,CAN,Iorio,20222023
+Harrison Brunicke,8484839,75,201,2006-05-08,Johannesburg,,ZAF,2024.0,2.0,44.0,N,PIT,Pittsburgh Penguins,R,D,9,1,0,1,CAN,Brunicke,20252026
+Ivan Miroshnichenko,8483491,73,185,2004-02-04,Ussuriysk,,RUS,2022.0,1.0,20.0,N,WSH,Washington Capitals,R,L,10,2,1,3,RUS,Miroshnichenko,20232024
+Brett Kulak,8476967,73,192,1994-01-06,Edmonton,AB,CAN,2012.0,4.0,105.0,N,COL,Colorado Avalanche,L,D,79,1,10,11,CAN,Kulak,20142015
+Charlie Coyle,8475745,75,221,1992-03-02,East Weymouth,MA,USA,2010.0,1.0,28.0,N,CBJ,Columbus Blue Jackets,R,C,79,18,38,56,USA,Coyle,20122013
+Brayden Pachal,8481167,74,202,1999-08-23,Estevan,SK,CAN,,,,N,CGY,Calgary Flames,R,D,36,0,4,4,CAN,Pachal,20212022
+Ethan Del Mastro,8482807,76,210,2003-01-15,Burlington,ON,CAN,2021.0,4.0,105.0,N,CHI,Chicago Blackhawks,L,D,17,0,0,0,CAN,Del Mastro,20232024
+Landon Slaggert,8482172,72,180,2002-06-25,South Bend,IN,USA,2020.0,3.0,79.0,N,CHI,Chicago Blackhawks,L,L,51,3,4,7,USA,Slaggert,20232024
+Joel Hanley,8477810,71,186,1991-06-08,Keswick,ON,CAN,,,,N,CGY,Calgary Flames,L,D,68,0,7,7,CAN,Hanley,20152016
+Marat Khusnutdinov,8482177,71,184,2002-07-17,Moscow,,RUS,2020.0,2.0,37.0,N,BOS,Boston Bruins,L,C,74,15,18,33,RUS,Khusnutdinov,20232024
+Sidney Crosby,8471675,71,200,1987-08-07,Cole Harbour,NS,CAN,2005.0,1.0,1.0,N,PIT,Pittsburgh Penguins,L,C,67,29,45,74,CAN,Crosby,20052006
+Nikita Kucherov,8476453,72,173,1993-06-17,Maykop,,RUS,2011.0,2.0,58.0,N,TBL,Tampa Bay Lightning,L,R,73,43,85,128,RUS,Kucherov,20132014
+Ville Koivunen,8482758,72,184,2003-06-13,Oulu,,FIN,2021.0,2.0,51.0,N,PIT,Pittsburgh Penguins,L,R,36,2,5,7,FIN,Koivunen,20242025
+Tyson Hinds,8482731,75,201,2003-03-12,Gatineau,QC,CAN,2021.0,3.0,76.0,N,ANA,Anaheim Ducks,L,D,3,0,0,0,CAN,Hinds,20252026
+Leo Carlsson,8484153,75,208,2004-12-26,Karlstad,,SWE,2023.0,1.0,2.0,N,ANA,Anaheim Ducks,L,C,67,28,37,65,SWE,Carlsson,20232024
+Rickard Rakell,8476483,73,194,1993-05-05,Sundbyberg,,SWE,2011.0,1.0,30.0,N,PIT,Pittsburgh Penguins,R,R,58,24,24,48,SWE,Rakell,20122013
+William Nylander,8477939,72,200,1996-05-01,Calgary,AB,CAN,2014.0,1.0,8.0,N,TOR,Toronto Maple Leafs,R,R,62,26,47,73,SWE,Nylander,20152016
+Ivan Demidov,8484984,73,192,2005-12-10,Sergiyev Posad,,RUS,2024.0,1.0,5.0,N,MTL,Montréal Canadiens,L,R,79,18,43,61,RUS,Demidov,20242025
+Rory Kerins,8482209,70,175,2002-04-12,Caledon,ON,CAN,2020.0,6.0,174.0,N,CGY,Calgary Flames,L,C,2,0,0,0,CAN,Kerins,20242025
+Zach Werenski,8478460,74,214,1997-07-19,Grosse Pointe,MI,USA,2015.0,1.0,8.0,N,CBJ,Columbus Blue Jackets,L,D,72,22,58,80,USA,Werenski,20162017
+Garrett Wilson,8475253,75,218,1991-03-16,Barrie,ON,CAN,2009.0,4.0,107.0,N,PHI,Philadelphia Flyers,L,L,2,0,0,0,CAN,Wilson,20132014
+Claude Giroux,8473512,71,186,1988-01-12,Hearst,ON,CAN,2006.0,1.0,22.0,N,OTT,Ottawa Senators,R,R,79,14,32,46,CAN,Giroux,20072008
