@@ -181,11 +181,23 @@ with col3:
         st.session_state.page_num += 1
         st.rerun()
 
+# --- Option 1: Fixed height ---
+# st.dataframe(
+#     page_df,
+#     width="stretch",
+#     hide_index=True,
+#     height=600
+# )
+
+# --- Option 2: Dynamic height ---
+rows_on_page = len(page_df)
+table_height = min(1000, max(220, rows_on_page * 35 + 40))
+
 st.dataframe(
     page_df,
     width="stretch",
     hide_index=True,
-    height=600
+    height=table_height
 )
 ### --- WITH PAGINATION ---------------------------------------------------------------------------------------------------
 
