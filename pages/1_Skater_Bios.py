@@ -28,12 +28,12 @@ def load_data(csv_path):
 df = load_data(CSV_PATH)
 
 desired_order = [
-    "skaterFullName", "playerId", "height", "weight", "birthDate",
-    "birthCity", "birthStateProvinceCode", "birthCountryCode",
-    "draftYear", "draftRound", "draftOverall", "isInHallOfFameYn",
-    "currentTeamAbbrev", "currentTeamName", "shootsCatches",
-    "positionCode", "gamesPlayed", "goals", "assists", "points",
-    "nationalityCode", "lastName", "firstSeasonForGameType"
+    "skaterFullName", "playerId", "currentTeamAbbrev", "currentTeamName",
+    "shootsCatches", "positionCode", "birthDate", "birthCity",
+    "birthStateProvinceCode", "birthCountryCode", "nationalityCode",
+    "height", "weight", "draftYear", "draftRound", "draftOverall",
+    "firstSeasonForGameType", "isInHallOfFameYn", "gamesPlayed",
+    "goals", "assists", "points", "lastName"
 ]
 
 df = df[[col for col in desired_order if col in df.columns]]
