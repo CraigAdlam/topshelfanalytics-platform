@@ -31,12 +31,12 @@ desired_order = [
     "gameDate", "gameId", "skaterFullName", "playerId", "homeRoad",
     "teamAbbrev", "opponentTeamAbbrev", "positionCode", "gamesPlayed",
     "goals", "assists", "points", "penaltyMinutes",
-    "penaltyMinutesPerTimeOnIce", "penaltiesDrawn",
-    "penaltiesDrawnPer60", "penalties", "penaltiesTakenPer60",
-    "netPenalties", "netPenaltiesPer60", "minorPenalties",
-    "majorPenalties", "matchPenalties", "misconductPenalties",
-    "gameMisconductPenalties", "penaltySecondsPerGame",
-    "timeOnIcePerGame", "lastName"
+    "penaltySecondsPerGame", "timeOnIcePerGame",
+    "penaltyMinutesPerTimeOnIce", "penaltiesDrawn", "penalties",
+    "netPenalties", "penaltiesDrawnPer60", "penaltiesTakenPer60", 
+    "netPenaltiesPer60", "minorPenalties", "majorPenalties",
+    "matchPenalties", "misconductPenalties", 
+    "gameMisconductPenalties", "lastName"
 ]
 
 df = df[[col for col in desired_order if col in df.columns]]
