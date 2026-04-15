@@ -32,7 +32,7 @@ desired_order = [
     "teamAbbrev", "opponentTeamAbbrev", "positionCode",
     "gamesPlayed", "ppGoals", "ppAssists", "ppPrimaryAssists",
     "ppSecondaryAssists", "ppPoints", "ppIndividualSatFor",
-    "ppShots", "ppShootingPct", "ppGoalsForPer60",
+    "ppShots", "ppShootingPct", "ppGoalsPer60",
     "ppPrimaryAssistsPer60", "ppSecondaryAssistsPer60", "ppPointsPer60",
     "ppIndividualSatForPer60", "ppShotsPer60", "ppGoalsForPer60",
     "ppTimeOnIce", "ppTimeOnIcePerGame", "ppTimeOnIcePctPerGame",
