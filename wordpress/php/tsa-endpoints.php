@@ -271,3 +271,74 @@ function tsa_download_skater_summary_csv($request) {
     fclose($out);
     exit;
 }
+
+add_action('rest_api_init', function () {
+    register_rest_route('tsa/v1', '/skater-bios', [
+        'methods' => 'GET',
+        'callback' => 'tsa_get_skater_bios',
+        'permission_callback' => '__return_true',
+    ]);
+});
+
+function tsa_get_skater_bios($request) {
+    global $wpdb;
+
+    $table = $wpdb->prefix . 'tsa_skater_bios';
+
+    $page = max(1, intval($request->get_param('page') ?: 1));
+    $size_param = $request->get_param('size') ?: $request->get_param('per_page') ?: 25;
+    $per_page = min(100, max(10, intval($size_param)));
+    $offset = ($page - 1) * $per_page;
+
+    $search = sanitize_text_field($request->get_param('search'));
+    $teams_raw = sanitize_text_field($request->get_param('teams'));
+    $positionCode = sanitize_text_field($request->get_param('positionCode'));
+
+    $where = [];
+    $params = [];
+
+    if (!empty($teams_raw)) {
+        $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
+        if ($teams) {
+            $placeholders = implode(',', array_fill(0, count($teams), '%s'));
+            $where[] = "currentTeamAbbrev IN ($placeholders)";
+            foreach ($teams as $t) $params[] = $t;
+        }
+    }
+
+    if (!empty($positionCode)) {
+        $where[] = "positionCode = %s";
+        $params[] = $positionCode;
+    }
+
+    if (!empty($search)) {
+        $like = '%' . $wpdb->esc_like($search) . '%';
+        $where[] = "skaterFullName LIKE %s";
+        $params[] = $like;
+    }
+
+    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
+
+    $total = $params
+        ? intval($wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table $where_sql", ...$params)))
+        : intval($wpdb->get_var("SELECT COUNT(*) FROM $table"));
+
+    $last_page = max(1, ceil($total / $per_page));
+
+    $sql = "SELECT *
+            FROM $table
+            $where_sql
+            ORDER BY skaterFullName ASC
+            LIMIT %d OFFSET %d";
+
+    $rows = $wpdb->get_results(
+        $wpdb->prepare($sql, ...array_merge($params, [$per_page, $offset])),
+        ARRAY_A
+    );
+
+    return [
+        'data' => $rows,
+        'last_page' => $last_page,
+        'total' => $total,
+    ];
+}
