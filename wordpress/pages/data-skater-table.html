@@ -1,0 +1,466 @@
+<link href="https://unpkg.com/tabulator-tables@6.3.0/dist/css/tabulator.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+
+<div id="tsa-table-wrap">
+  <div class="tsa-controls-grid">
+
+    <div class="tsa-field tsa-date-mode-field">
+      <label>Game Date Filter Type</label>
+      <div class="tsa-radio-row">
+        <label><input type="radio" name="tsa-date-mode" value="single" checked=""> Single date</label>
+        <label><input type="radio" name="tsa-date-mode" value="range"> Date range</label>
+      </div>
+    </div>
+
+    <div class="tsa-field" id="tsa-single-wrap" style="display:none;">
+      <label>Game Date</label>
+      <input id="tsa-date-single" type="date">
+    </div>
+
+    <div class="tsa-field" id="tsa-range-start-wrap">
+      <label>Start Date</label>
+      <input id="tsa-date-start" type="date">
+    </div>
+
+    <div class="tsa-field" id="tsa-range-end-wrap">
+      <label>End Date</label>
+      <input id="tsa-date-end" type="date">
+    </div>
+
+    <div class="tsa-field">
+      <label>Team</label>
+      <select id="tsa-team-filter" multiple="" placeholder="Choose teams...">
+        <option value="ANA">ANA</option><option value="BOS">BOS</option><option value="BUF">BUF</option>
+        <option value="CAR">CAR</option><option value="CBJ">CBJ</option><option value="CGY">CGY</option>
+        <option value="CHI">CHI</option><option value="COL">COL</option><option value="DAL">DAL</option>
+        <option value="DET">DET</option><option value="EDM">EDM</option><option value="FLA">FLA</option>
+        <option value="LAK">LAK</option><option value="MIN">MIN</option><option value="MTL">MTL</option>
+        <option value="NJD">NJD</option><option value="NSH">NSH</option><option value="NYI">NYI</option>
+        <option value="NYR">NYR</option><option value="OTT">OTT</option><option value="PHI">PHI</option>
+        <option value="PIT">PIT</option><option value="SEA">SEA</option><option value="SJS">SJS</option>
+        <option value="STL">STL</option><option value="TBL">TBL</option><option value="TOR">TOR</option>
+        <option value="UTA">UTA</option><option value="VAN">VAN</option><option value="VGK">VGK</option>
+        <option value="WPG">WPG</option><option value="WSH">WSH</option>
+      </select>
+    </div>
+	
+	<div class="tsa-field">
+	  <label>Opponent Team</label>
+	  <select id="tsa-opponent-filter" multiple="" placeholder="Choose opponents...">
+		<option value="ANA">ANA</option><option value="BOS">BOS</option><option value="BUF">BUF</option>
+		<option value="CAR">CAR</option><option value="CBJ">CBJ</option><option value="CGY">CGY</option>
+		<option value="CHI">CHI</option><option value="COL">COL</option><option value="DAL">DAL</option>
+		<option value="DET">DET</option><option value="EDM">EDM</option><option value="FLA">FLA</option>
+		<option value="LAK">LAK</option><option value="MIN">MIN</option><option value="MTL">MTL</option>
+		<option value="NJD">NJD</option><option value="NSH">NSH</option><option value="NYI">NYI</option>
+		<option value="NYR">NYR</option><option value="OTT">OTT</option><option value="PHI">PHI</option>
+		<option value="PIT">PIT</option><option value="SEA">SEA</option><option value="SJS">SJS</option>
+		<option value="STL">STL</option><option value="TBL">TBL</option><option value="TOR">TOR</option>
+		<option value="UTA">UTA</option><option value="VAN">VAN</option><option value="VGK">VGK</option>
+		<option value="WPG">WPG</option><option value="WSH">WSH</option>
+	  </select>
+	</div>
+	
+	<div class="tsa-field">
+	  <label>Home / Road</label>
+	  <select id="tsa-homeroad-filter">
+		<option value="">All</option>
+		<option value="H">Home</option>
+		<option value="R">Road</option>
+	  </select>
+	</div>
+	
+	<div class="tsa-field">
+	  <label>Position</label>
+	  <select id="tsa-position-filter">
+		<option value="">All</option>
+		<option value="C">C</option>
+		<option value="L">L</option>
+		<option value="R">R</option>
+		<option value="D">D</option>
+	  </select>
+	</div>
+
+    <div class="tsa-field">
+      <label>Search Player</label>
+      <input id="tsa-search" type="text" placeholder="Search player...">
+    </div>
+
+    <div class="tsa-field">
+      <label>&nbsp;</label>
+      <button id="tsa-reset" type="button">Reset</button>
+    </div>
+
+  </div>
+
+  <div class="tsa-download-row">
+    <button id="tsa-download-filtered" type="button">⬇ Download Filtered CSV</button>
+    <button id="tsa-download-full" type="button">⬇ Download Full CSV</button>
+  </div>
+
+  <div id="tsa-debug">Starting...</div>
+  <div id="tsa-table"></div>
+</div>
+
+<script src="https://unpkg.com/tabulator-tables@6.3.0/dist/js/tabulator.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const debug = document.getElementById("tsa-debug");
+
+  let defaultStartDate = "";
+  let defaultEndDate = "";
+  let metaLoaded = false;
+  let tsaFilterTimer;
+
+  const teamSelect = new TomSelect("#tsa-team-filter", {
+    plugins: ["remove_button"],
+    create: false,
+    maxItems: null,
+    placeholder: "All Teams",
+    closeAfterSelect: false
+  });
+  
+  const opponentSelect = new TomSelect("#tsa-opponent-filter", {
+    plugins: ["remove_button"],
+    create: false,
+    maxItems: null,
+    placeholder: "All Opponents",
+    closeAfterSelect: false
+  });
+
+  const table = new Tabulator("#tsa-table", {
+    ajaxURL: "/wp-json/tsa/v1/skater-summary",
+    ajaxConfig: "GET",
+    ajaxParams: function () {
+      if (!metaLoaded) {
+        return {};
+      }
+
+      const mode = document.querySelector('input[name="tsa-date-mode"]:checked').value;
+
+      return {
+        search: document.getElementById("tsa-search").value,
+        teams: teamSelect.getValue().join(","),
+		opponents: opponentSelect.getValue().join(","),
+		homeRoad: document.getElementById("tsa-homeroad-filter").value,
+		positionCode: document.getElementById("tsa-position-filter").value,
+        date_single: mode === "single" ? document.getElementById("tsa-date-single").value : "",
+        date_start: mode === "range" ? document.getElementById("tsa-date-start").value : "",
+        date_end: mode === "range" ? document.getElementById("tsa-date-end").value : ""
+      };
+    },
+	sortMode: "remote",
+    pagination: true,
+    paginationMode: "remote",
+    paginationSize: 10,
+    paginationSizeSelector: [10, 25, 50, 100],
+    layout: "fitDataStretch",
+
+    autoColumns: true,
+
+    ajaxResponse: function(url, params, response) {
+      debug.innerHTML = "Rows found: " + response.total;
+      return response;
+    }
+  });
+
+  function refreshTable() {
+    if (!metaLoaded) return;
+
+    clearTimeout(tsaFilterTimer);
+    tsaFilterTimer = setTimeout(function () {
+      table.setPage(1);
+      table.setData();
+    }, 300);
+  }
+
+  function updateDateMode() {
+    const mode = document.querySelector('input[name="tsa-date-mode"]:checked').value;
+
+    document.getElementById("tsa-single-wrap").style.display = mode === "single" ? "block" : "none";
+    document.getElementById("tsa-range-start-wrap").style.display = mode === "range" ? "block" : "none";
+    document.getElementById("tsa-range-end-wrap").style.display = mode === "range" ? "block" : "none";
+
+    refreshTable();
+  }
+
+  document.querySelectorAll('input[name="tsa-date-mode"]').forEach(function (el) {
+    el.addEventListener("change", updateDateMode);
+  });
+
+  document.getElementById("tsa-search").addEventListener("input", refreshTable);
+  document.getElementById("tsa-date-single").addEventListener("change", refreshTable);
+  document.getElementById("tsa-date-start").addEventListener("change", refreshTable);
+  document.getElementById("tsa-date-end").addEventListener("change", refreshTable);
+  teamSelect.on("change", refreshTable);
+  opponentSelect.on("change", refreshTable);
+  document.getElementById("tsa-homeroad-filter").addEventListener("change", refreshTable);
+  document.getElementById("tsa-position-filter").addEventListener("change", refreshTable);
+
+  document.getElementById("tsa-reset").addEventListener("click", function () {
+    document.getElementById("tsa-search").value = "";
+    document.getElementById("tsa-date-start").value = defaultStartDate;
+    document.getElementById("tsa-date-end").value = defaultEndDate;
+    document.getElementById("tsa-date-single").value = defaultEndDate;
+    document.querySelector('input[name="tsa-date-mode"][value="single"]').checked = true;
+    teamSelect.clear();
+	opponentSelect.clear();
+	document.getElementById("tsa-homeroad-filter").value = "";
+	document.getElementById("tsa-position-filter").value = "";
+    updateDateMode();
+  });
+
+  fetch("/wp-json/tsa/v1/skater-summary-meta")
+    .then(response => response.json())
+    .then(meta => {
+      defaultStartDate = meta.min_date;
+      defaultEndDate = meta.max_date;
+
+      document.getElementById("tsa-date-start").value = defaultStartDate;
+      document.getElementById("tsa-date-end").value = defaultEndDate;
+      document.getElementById("tsa-date-single").value = defaultEndDate;
+
+      metaLoaded = true;
+      updateDateMode();
+      table.setData();
+    })
+    .catch(error => {
+      debug.innerHTML = "Could not load date metadata.";
+      console.error(error);
+    });
+
+  function getCurrentParams() {
+    const mode = document.querySelector('input[name="tsa-date-mode"]:checked').value;
+
+    return {
+      search: document.getElementById("tsa-search").value,
+      teams: teamSelect.getValue().join(","),
+	  opponents: opponentSelect.getValue().join(","),
+	  homeRoad: document.getElementById("tsa-homeroad-filter").value,
+	  positionCode: document.getElementById("tsa-position-filter").value,
+      date_single: mode === "single"
+        ? document.getElementById("tsa-date-single").value
+        : "",
+      date_start: mode === "range"
+        ? document.getElementById("tsa-date-start").value
+        : "",
+      date_end: mode === "range"
+        ? document.getElementById("tsa-date-end").value
+        : ""
+    };
+  }
+
+  document.getElementById("tsa-download-filtered").addEventListener("click", function () {
+    const params = new URLSearchParams(getCurrentParams());
+    window.open("/wp-json/tsa/v1/skater-summary-csv?" + params.toString(), "_blank");
+  });
+
+  document.getElementById("tsa-download-full").addEventListener("click", function () {
+    window.open("/wp-json/tsa/v1/skater-summary-csv?full=1", "_blank");
+  });
+
+});
+</script>
+
+<style>
+#tsa-table-wrap {
+  max-width: 100%;
+}
+
+.tsa-controls-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr 1.2fr 1.4fr 0.9fr;
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.tsa-field {
+  min-width: 0;
+}
+
+.tsa-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.tsa-field input,
+.tsa-field select,
+.tsa-field button {
+  width: 100%;
+  height: 42px;
+  min-height: 42px;
+  max-height: 42px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cfd6df;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.tsa-radio-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 42px;
+}
+
+.tsa-radio-row label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 400;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.tsa-radio-row input {
+  width: auto;
+  height: auto;
+  min-height: auto;
+  max-height: none;
+  margin: 0;
+}
+
+/* Tom Select team filter - Streamlit-style multi-select */
+.ts-wrapper {
+  width: 100%;
+  min-height: 42px !important;
+  height: auto !important;
+  box-sizing: border-box;
+}
+
+.ts-wrapper.multi .ts-control,
+.ts-control {
+  width: 100%;
+  min-height: 42px !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  box-sizing: border-box;
+  padding: 6px 36px 6px 8px !important;
+  border-radius: 8px !important;
+  border-color: #cfd6df !important;
+  box-shadow: none !important;
+  background: #fff !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.ts-wrapper.multi .ts-control > div {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 2px 4px 2px 0 !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  background: #eef2f7 !important;
+  color: #1f2937 !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+}
+
+.ts-wrapper.plugin-remove_button .item .remove {
+  margin-left: 6px !important;
+  border-left: 1px solid rgba(0,0,0,0.12) !important;
+  padding-left: 6px !important;
+  color: #555 !important;
+}
+
+.ts-control > input {
+  min-width: 90px !important;
+  font-size: 14px !important;
+  height: 24px !important;
+}
+
+.ts-dropdown {
+  z-index: 99999;
+}
+
+/* Date input mobile sizing fix */
+input[type="date"] {
+  appearance: auto;
+  -webkit-appearance: none;
+  width: 100%;
+  max-width: 100%;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  box-sizing: border-box;
+  line-height: 20px;
+}
+
+#tsa-reset {
+  cursor: pointer;
+}
+
+#tsa-debug {
+  margin: 0 0 12px 0;
+  padding: 10px 12px;
+  border: 1px solid #d9e1ea;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f8fafc;
+}
+
+#tsa-table {
+  border: 1px solid #d9e1ea;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.tabulator {
+  font-size: 13px;
+}
+
+.tsa-download-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.tsa-download-row button {
+  padding: 10px 14px;
+  border: 1px solid #cfd6df;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tsa-download-row button:hover {
+  background: #f4f7fa;
+}
+
+@media (max-width: 800px) {
+  .tsa-controls-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tsa-field input,
+  .tsa-field select,
+  .tsa-field button,
+  input[type="date"] {
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+  }
+
+  .ts-wrapper,
+  .ts-control {
+    height: auto !important;
+    min-height: 42px !important;
+    max-height: none !important;
+  }
+}
+</style>
