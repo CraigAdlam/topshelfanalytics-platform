@@ -56,6 +56,10 @@
         <button class="tsa-dataset-btn" data-dataset="realtime" data-endpoint="/wp-json/tsa/v1/skater-realtime">
           Realtime
         </button>
+		
+        <button class="tsa-dataset-btn" data-dataset="scoringpergame" data-endpoint="/wp-json/tsa/v1/skater-scoringpergame">
+          Scoring Per Game
+        </button>
       </div>
     </aside>
 
@@ -177,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const datedDatasets = [
     "summary", "faceoffpercentages", "faceoffwins", "goalsforagainst", "penalties",
 	"penaltykill", "penaltyshots", "percentages", "powerplay", "puckpossessions",
-	"realtime"
+	"realtime", "scoringpergame"
   ];
 
   let defaultStartDate = "";
