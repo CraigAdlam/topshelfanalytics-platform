@@ -1,0 +1,48 @@
+DROP TABLE IF EXISTS wp_tsa_skater_powerplay;
+
+CREATE TABLE wp_tsa_skater_powerplay (
+    gameDate DATE,
+    gameId BIGINT,
+    skaterFullName VARCHAR(150),
+    playerId BIGINT,
+    homeRoad VARCHAR(10),
+    teamAbbrev VARCHAR(10),
+    opponentTeamAbbrev VARCHAR(10),
+    positionCode VARCHAR(10),
+    gamesPlayed INT,
+
+    ppGoals INT,
+    ppAssists INT,
+    ppPrimaryAssists INT,
+    ppSecondaryAssists INT,
+    ppPoints INT,
+    ppIndividualSatFor INT,
+    ppShots INT,
+    ppShootingPct DECIMAL(10,4),
+
+    ppGoalsPer60 DECIMAL(10,4),
+    ppPrimaryAssistsPer60 DECIMAL(10,4),
+    ppSecondaryAssistsPer60 DECIMAL(10,4),
+    ppPointsPer60 DECIMAL(10,4),
+    ppIndividualSatForPer60 DECIMAL(10,4),
+    ppShotsPer60 DECIMAL(10,4),
+    ppGoalsForPer60 DECIMAL(10,4),
+
+    ppTimeOnIce INT,
+    ppTimeOnIcePerGame DECIMAL(10,4),
+    ppTimeOnIcePctPerGame DECIMAL(10,4),
+
+    lastName VARCHAR(100),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_playerId (playerId),
+    INDEX idx_teamAbbrev (teamAbbrev),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_positionCode (positionCode),
+    INDEX idx_homeRoad (homeRoad),
+    INDEX idx_skaterFullName (skaterFullName)
+);
+
+DELETE FROM wp_tsa_skater_powerplay
+WHERE skaterFullName = 'skaterFullName';
