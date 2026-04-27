@@ -68,6 +68,10 @@
         <button class="tsa-dataset-btn" data-dataset="shootout" data-endpoint="/wp-json/tsa/v1/skater-shootout">
           Shootout
         </button>
+		
+        <button class="tsa-dataset-btn" data-dataset="shottype" data-endpoint="/wp-json/tsa/v1/skater-shottype">
+          Shot Type
+        </button>
       </div>
     </aside>
 
@@ -189,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const datedDatasets = [
     "summary", "faceoffpercentages", "faceoffwins", "goalsforagainst", "penalties",
 	"penaltykill", "penaltyshots", "percentages", "powerplay", "puckpossessions",
-	"realtime", "scoringpergame", "scoringrates", "shootout"
+	"realtime", "scoringpergame", "scoringrates", "shootout", "shottype"
   ];
 
   let defaultStartDate = "";
