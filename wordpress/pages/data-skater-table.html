@@ -28,6 +28,10 @@
         <button class="tsa-dataset-btn" data-dataset="goalsforagainst" data-endpoint="/wp-json/tsa/v1/skater-goalsforagainst">
           Goals For / Against
         </button>
+		
+        <button class="tsa-dataset-btn" data-dataset="penalties" data-endpoint="/wp-json/tsa/v1/skater-penalties">
+          Penalties
+        </button>
       </div>
     </aside>
 
@@ -146,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentEndpoint = "/wp-json/tsa/v1/skater-bios";
   let currentDataset = "bios";
 
-  const datedDatasets = ["summary", "faceoffpercentages", "faceoffwins", "goalsforagainst"];
+  const datedDatasets = ["summary", "faceoffpercentages", "faceoffwins", "goalsforagainst", "penalties"];
 
   let defaultStartDate = "";
   let defaultEndDate = "";

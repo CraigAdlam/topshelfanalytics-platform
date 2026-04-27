@@ -1,0 +1,44 @@
+DROP TABLE IF EXISTS wp_tsa_skater_penalties;
+
+CREATE TABLE wp_tsa_skater_penalties (
+    gameDate DATE,
+    gameId BIGINT,
+    skaterFullName VARCHAR(150),
+    playerId BIGINT,
+    homeRoad VARCHAR(10),
+    teamAbbrev VARCHAR(10),
+    opponentTeamAbbrev VARCHAR(10),
+    positionCode VARCHAR(10),
+    gamesPlayed INT,
+    goals INT,
+    assists INT,
+    points INT,
+    penaltyMinutes INT,
+    penaltySecondsPerGame DECIMAL(10,4),
+    timeOnIcePerGame DECIMAL(10,4),
+    penaltyMinutesPerTimeOnIce DECIMAL(10,4),
+    penaltiesDrawn INT,
+    penalties INT,
+    netPenalties INT,
+    penaltiesDrawnPer60 DECIMAL(10,4),
+    penaltiesTakenPer60 DECIMAL(10,4),
+    netPenaltiesPer60 DECIMAL(10,4),
+    minorPenalties INT,
+    majorPenalties INT,
+    matchPenalties INT,
+    misconductPenalties INT,
+    gameMisconductPenalties INT,
+    lastName VARCHAR(100),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_playerId (playerId),
+    INDEX idx_teamAbbrev (teamAbbrev),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_positionCode (positionCode),
+    INDEX idx_homeRoad (homeRoad),
+    INDEX idx_skaterFullName (skaterFullName)
+);
+
+DELETE FROM wp_tsa_skater_penalties
+WHERE skaterFullName = 'skaterFullName';
