@@ -300,6 +300,34 @@ input[type="date"] {
   white-space: pre-line;
 }
 
+.tsa-dataset-notes {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #4b5563;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #d9e1ea;
+  border-radius: 8px;
+}
+
+.tsa-dataset-notes summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #374151;
+}
+
+.tsa-dataset-notes p {
+  margin: 8px 0 0 0;
+}
+
+.tsa-dataset-notes code {
+  font-size: 12px;
+  background: #eef2f7;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
 @media (max-width: 1000px) {
   #tsa-table-wrap {
     overflow-x: hidden;

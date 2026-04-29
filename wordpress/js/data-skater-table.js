@@ -21,8 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
 	lastUpdatedBox.textContent =
-	  "Skater data updated: " + formatted +
-	  "\nData is provided for research and informational purposes only.";
+	  "Skater data updated: " + formatted;
 
   })
   .catch(() => {
