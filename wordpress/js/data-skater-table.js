@@ -288,6 +288,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   document.getElementById("tsa-download-filtered").addEventListener("click", function () {
+    if (table.getDataCount("active") === 0) {
+      alert("No rows to download for the current filters.");
+      return;
+    }
+
     const params = new URLSearchParams(getCurrentParams());
     window.open(getCsvEndpoint(false) + "?" + params.toString(), "_blank");
   });

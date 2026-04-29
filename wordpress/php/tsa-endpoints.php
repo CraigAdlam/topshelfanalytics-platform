@@ -3690,6 +3690,10 @@ function tsa_stream_skater_csv_for_table($request, $table_name, $filename_base, 
     $rows = $params
         ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
         : $wpdb->get_results($sql, ARRAY_A);
+		
+	if (empty($rows)) {
+		wp_die('No rows found for selected filters.');
+	}
 
     header('Content-Type: text/csv; charset=utf-8');
 
