@@ -238,6 +238,7 @@ input[type="date"] {
   overflow-x: auto;
   overflow-y: hidden;
   background: #fff;
+  width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
@@ -245,6 +246,16 @@ input[type="date"] {
 
 .tabulator {
   font-size: 13px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.tabulator .tabulator-tableholder {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabulator .tabulator-table {
   min-width: 900px;
 }
 
@@ -286,6 +297,7 @@ input[type="date"] {
   color: #6b7280;
   margin-bottom: 14px;
   padding-left: 2px;
+  white-space: pre-line;
 }
 
 @media (max-width: 1000px) {
@@ -383,5 +395,19 @@ input[type="date"] {
     border-radius:8px;
     font-weight:500;
     text-align:left;
+  }
+}
+
+#tsa-mobile-scroll-tip {
+  display: none;
+  font-size: 12px;
+  color: #777;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+  #tsa-mobile-scroll-tip {
+    display: block;
   }
 }

@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
         timeZoneName: "short"
       });
 
-    lastUpdatedBox.textContent =
-      "Skater data updated: " + formatted;
+	lastUpdatedBox.textContent =
+	  "Skater data updated: " + formatted +
+	  "\nData is provided for research and informational purposes only.";
 
   })
   .catch(() => {
@@ -32,6 +33,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function setStatus(message, type = "info") {
     statusBox.textContent = message;
     statusBox.className = "tsa-status " + type;
+  }
+  
+  function setDownloadButtonsDisabled(disabled) {
+    document.getElementById("tsa-download-filtered").disabled = disabled;
+    document.getElementById("tsa-download-full").disabled = disabled;
   }
 
   let currentEndpoint = "/wp-json/tsa/v1/skater-bios";
@@ -139,25 +145,29 @@ document.addEventListener("DOMContentLoaded", function () {
     autoColumns: true,
 
 	ajaxResponse: function(url, params, response) {
+	  setDownloadButtonsDisabled(false);
+
 	  const total = Number(response.total || 0);
 
 	  if (total === 0) {
-		setStatus("No rows match your current filters.", "empty");
+	    setStatus("No rows match your current filters.", "empty");
 	  } else {
-		setStatus("Rows found: " + total.toLocaleString(), "success");
+	    setStatus("Matching rows: " + total.toLocaleString(), "success");
 	  }
 
 	  return response;
 	},
 	ajaxError: function() {
+	  setDownloadButtonsDisabled(false);
 	  setStatus("Dataset failed to load. Please refresh the page or try another dataset.", "error");
 	}
   });
 
-  function refreshTable() {
-    clearTimeout(tsaFilterTimer);
+	function refreshTable() {
+	  clearTimeout(tsaFilterTimer);
 
-    setStatus("Loading dataset...", "loading");
+	  setStatus("Loading dataset...", "loading");
+	  setDownloadButtonsDisabled(true);
 
     tsaFilterTimer = setTimeout(function () {
       table.setPage(1);

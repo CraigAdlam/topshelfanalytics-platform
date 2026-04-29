@@ -156,20 +156,34 @@
 
         <div class="tsa-field">
           <label>&nbsp;</label>
-          <button id="tsa-reset" type="button">Reset</button>
+          <button id="tsa-reset" type="button">Clear Filters</button>
         </div>
 
       </div>
 
       <div class="tsa-download-row">
-        <button id="tsa-download-filtered" type="button">⬇ Download Filtered CSV</button>
-        <button id="tsa-download-full" type="button">⬇ Download Full CSV</button>
+		<button
+		  id="tsa-download-filtered"
+		  title="Download the currently filtered rows as CSV"
+		  aria-label="Download filtered CSV"
+		>
+		  ⬇ Download Filtered CSV
+		</button>
+
+		<button
+		  id="tsa-download-full"
+		  title="Download the full selected dataset as CSV"
+		  aria-label="Download full CSV"
+		>
+		  ⬇ Download Full CSV
+		</button>
       </div>
 
 	  <div id="tsa-status" class="tsa-status loading">
 	    Loading dataset...
 	  </div>
-      <div id="tsa-table"></div>
+	  <div id="tsa-mobile-scroll-tip">Tip: Scroll horizontally to view all columns.</div>
+	  <div id="tsa-table"></div>
 
     </main>
   </div>
