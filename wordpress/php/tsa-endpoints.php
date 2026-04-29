@@ -172,100 +172,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_summary_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_summary';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_summary.csv'
-		: 'filtered_skater_summary.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_summary',
+        'skater_summary'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -409,74 +320,12 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_bios_csv($request) {
-    global $wpdb;
-
-    $wpdb->query("SET NAMES utf8mb4");
-    $wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_bios';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-        $positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "currentTeamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-
-        if (!empty($positionCode)) {
-            $where[] = "positionCode = %s";
-            $params[] = $positionCode;
-        }
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "skaterFullName LIKE %s";
-            $params[] = $like;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY skaterFullName ASC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv; charset=utf-8');
-    header('Content-Encoding: UTF-8');
-
-    $filename = $full
-        ? 'full_skater_bios.csv'
-        : 'filtered_skater_bios.csv';
-
-    header("Content-Disposition: attachment; filename={$filename}");
-
-    echo "\xEF\xBB\xBF";
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_bios',
+        'skater_bios',
+        true
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -672,100 +521,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_faceoffpercentages_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_faceoffpercentages';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_faceoffpercentages.csv'
-		: 'filtered_skater_faceoffpercentages.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_faceoffpercentages',
+        'skater_faceoffpercentages'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -967,100 +727,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_faceoffwins_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_faceoffwins';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_faceoffwins.csv'
-		: 'filtered_skater_faceoffwins.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_faceoffwins',
+        'skater_faceoffwins'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -1254,100 +925,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_goalsforagainst_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_goalsforagainst';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_goalsforagainst.csv'
-		: 'filtered_skater_goalsforagainst.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_goalsforagainst',
+        'skater_goalsforagainst'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -1545,100 +1127,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_penalties_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_penalties';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_penalties.csv'
-		: 'filtered_skater_penalties.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_penalties',
+        'skater_penalties'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -1836,100 +1329,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_penaltykill_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_penaltykill';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_penaltykill.csv'
-		: 'filtered_skater_penaltykill.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_penaltykill',
+        'skater_penaltykill'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -2113,100 +1517,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_penaltyshots_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_penaltyshots';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_penaltyshots.csv'
-		: 'filtered_skater_penaltyshots.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_penaltyshots',
+        'skater_penaltyshots'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -2404,100 +1719,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_percentages_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_percentages';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_percentages.csv'
-		: 'filtered_skater_percentages.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_percentages',
+        'skater_percentages'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -2695,100 +1921,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_powerplay_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_powerplay';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_powerplay.csv'
-		: 'filtered_skater_powerplay.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_powerplay',
+        'skater_powerplay'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -2982,100 +2119,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_puckpossessions_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_puckpossessions';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_puckpossessions.csv'
-		: 'filtered_skater_puckpossessions.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_puckpossessions',
+        'skater_puckpossessions'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -3279,100 +2327,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_realtime_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_realtime';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_realtime.csv'
-		: 'filtered_skater_realtime.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_realtime',
+        'skater_realtime'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -3573,100 +2532,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_scoringpergame_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_scoringpergame';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_scoringpergame.csv'
-		: 'filtered_skater_scoringpergame.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_scoringpergame',
+        'skater_scoringpergame'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -3863,100 +2733,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_scoringrates_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_scoringrates';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_scoringrates.csv'
-		: 'filtered_skater_scoringrates.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_scoringrates',
+        'skater_scoringrates'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -4146,100 +2927,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_shootout_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_shootout';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_shootout.csv'
-		: 'filtered_skater_shootout.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_shootout',
+        'skater_shootout'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -4453,100 +3145,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_shottype_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_shottype';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_shottype.csv'
-		: 'filtered_skater_shottype.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_shottype',
+        'skater_shottype'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -4743,100 +3346,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_summaryshooting_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_summaryshooting';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_summaryshooting.csv'
-		: 'filtered_skater_summaryshooting.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_summaryshooting',
+        'skater_summaryshooting'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -5030,100 +3544,11 @@ add_action('rest_api_init', function () {
 });
 
 function tsa_download_skater_timeonice_csv($request) {
-    global $wpdb;
-	
-	$wpdb->query("SET NAMES utf8mb4");
-	$wpdb->query("SET CHARACTER SET utf8mb4");
-
-    $table = $wpdb->prefix . 'tsa_skater_timeonice';
-
-    $full = $request->get_param('full');
-
-    $where = [];
-    $params = [];
-
-    if (!$full) {
-
-        $teams_raw = sanitize_text_field($request->get_param('teams'));
-		$opponents_raw = sanitize_text_field($request->get_param('opponents'));
-		$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-		$positionCode = sanitize_text_field($request->get_param('positionCode'));
-        $search = sanitize_text_field($request->get_param('search'));
-        $date_single = sanitize_text_field($request->get_param('date_single'));
-        $date_start = sanitize_text_field($request->get_param('date_start'));
-        $date_end = sanitize_text_field($request->get_param('date_end'));
-
-        if (!empty($teams_raw)) {
-            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
-            if ($teams) {
-                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
-                $where[] = "teamAbbrev IN ($placeholders)";
-                foreach ($teams as $t) $params[] = $t;
-            }
-        }
-		
-		if (!empty($opponents_raw)) {
-			$opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
-			if ($opponents) {
-				$placeholders = implode(',', array_fill(0, count($opponents), '%s'));
-				$where[] = "opponentTeamAbbrev IN ($placeholders)";
-				foreach ($opponents as $o) $params[] = $o;
-			}
-		}
-		
-		if (!empty($homeRoad)) {
-			$where[] = "homeRoad = %s";
-			$params[] = $homeRoad;
-		}
-		
-		if (!empty($positionCode)) {
-			$where[] = "positionCode = %s";
-			$params[] = $positionCode;
-		}
-
-        if (!empty($search)) {
-            $like = '%' . $wpdb->esc_like($search) . '%';
-            $where[] = "(skaterFullName LIKE %s)";
-            $params[] = $like;
-        }
-
-        if (!empty($date_single)) {
-            $where[] = "gameDate = %s";
-            $params[] = $date_single;
-        } elseif (!empty($date_start) && !empty($date_end)) {
-            $where[] = "gameDate BETWEEN %s AND %s";
-            $params[] = $date_start;
-            $params[] = $date_end;
-        }
-    }
-
-    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
-
-    $sql = "SELECT * FROM $table $where_sql ORDER BY gameDate DESC";
-
-    $rows = $params
-        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
-        : $wpdb->get_results($sql, ARRAY_A);
-
-    header('Content-Type: text/csv');
-
-	$filename = $full
-		? 'full_skater_timeonice.csv'
-		: 'filtered_skater_timeonice.csv';
-
-	header("Content-Disposition: attachment; filename={$filename}");
-
-    $out = fopen('php://output', 'w');
-
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
-
-    fclose($out);
-    exit;
+    return tsa_stream_skater_csv_for_table(
+        $request,
+        'tsa_skater_timeonice',
+        'skater_timeonice'
+    );
 }
 
 add_action('rest_api_init', function () {
@@ -5185,4 +3610,109 @@ function tsa_get_skater_date_meta_for_table($table_name) {
         'min_date' => $wpdb->get_var("SELECT MIN(gameDate) FROM $table"),
         'max_date' => $wpdb->get_var("SELECT MAX(gameDate) FROM $table"),
     ];
+}
+
+function tsa_stream_skater_csv_for_table($request, $table_name, $filename_base, $is_bios = false) {
+    global $wpdb;
+
+    tsa_set_utf8mb4();
+
+    $table = $wpdb->prefix . $table_name;
+    $full = intval($request->get_param('full')) === 1;
+
+    $where = [];
+    $params = [];
+
+    if (!$full) {
+        $teams_raw = sanitize_text_field($request->get_param('teams'));
+        $opponents_raw = sanitize_text_field($request->get_param('opponents'));
+        $homeRoad = sanitize_text_field($request->get_param('homeRoad'));
+        $positionCode = sanitize_text_field($request->get_param('positionCode'));
+        $search = sanitize_text_field($request->get_param('search'));
+        $date_single = sanitize_text_field($request->get_param('date_single'));
+        $date_start = sanitize_text_field($request->get_param('date_start'));
+        $date_end = sanitize_text_field($request->get_param('date_end'));
+
+        if (!empty($teams_raw)) {
+            $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
+            if ($teams) {
+                $placeholders = implode(',', array_fill(0, count($teams), '%s'));
+                $team_col = $is_bios ? 'currentTeamAbbrev' : 'teamAbbrev';
+                $where[] = "$team_col IN ($placeholders)";
+                foreach ($teams as $team) {
+                    $params[] = $team;
+                }
+            }
+        }
+
+        if (!$is_bios && !empty($opponents_raw)) {
+            $opponents = array_filter(array_map('trim', explode(',', $opponents_raw)));
+            if ($opponents) {
+                $placeholders = implode(',', array_fill(0, count($opponents), '%s'));
+                $where[] = "opponentTeamAbbrev IN ($placeholders)";
+                foreach ($opponents as $opponent) {
+                    $params[] = $opponent;
+                }
+            }
+        }
+
+        if (!$is_bios && !empty($homeRoad)) {
+            $where[] = "homeRoad = %s";
+            $params[] = $homeRoad;
+        }
+
+        if (!empty($positionCode)) {
+            $where[] = "positionCode = %s";
+            $params[] = $positionCode;
+        }
+
+        if (!empty($search)) {
+            $like = '%' . $wpdb->esc_like($search) . '%';
+            $where[] = "(skaterFullName LIKE %s)";
+            $params[] = $like;
+        }
+
+        if (!$is_bios) {
+            if (!empty($date_single)) {
+                $where[] = "gameDate = %s";
+                $params[] = $date_single;
+            } elseif (!empty($date_start) && !empty($date_end)) {
+                $where[] = "gameDate BETWEEN %s AND %s";
+                $params[] = $date_start;
+                $params[] = $date_end;
+            }
+        }
+    }
+
+    $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
+    $order_sql = $is_bios ? "ORDER BY skaterFullName ASC" : "ORDER BY gameDate DESC";
+
+    $sql = "SELECT * FROM $table $where_sql $order_sql";
+
+    $rows = $params
+        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
+        : $wpdb->get_results($sql, ARRAY_A);
+
+    header('Content-Type: text/csv; charset=utf-8');
+
+    $filename = $full
+        ? "full_{$filename_base}.csv"
+        : "filtered_{$filename_base}.csv";
+
+    header("Content-Disposition: attachment; filename={$filename}");
+	
+	echo "\xEF\xBB\xBF";
+
+    $out = fopen('php://output', 'w');
+
+    if (!empty($rows)) {
+        fputcsv($out, array_keys($rows[0]));
+
+        foreach ($rows as $row) {
+            fputcsv($out, $row);
+        }
+    }
+
+    fclose($out);
+    exit;
 }
