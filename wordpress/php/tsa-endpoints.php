@@ -3687,16 +3687,16 @@ function tsa_stream_skater_csv_for_table($request, $table_name, $filename_base, 
 	
 	echo "\xEF\xBB\xBF";
 
-    $out = fopen('php://output', 'w');
+	$out = fopen('php://output', 'w');
 
-    if (!empty($rows)) {
-        fputcsv($out, array_keys($rows[0]));
+	if (!empty($rows)) {
+		fputcsv($out, array_keys($rows[0]), ',', '"', '\\');
 
-        foreach ($rows as $row) {
-            fputcsv($out, $row);
-        }
-    }
+		foreach ($rows as $row) {
+			fputcsv($out, $row, ',', '"', '\\');
+		}
+	}
 
-    fclose($out);
-    exit;
+	fclose($out);
+	exit;
 }
