@@ -120,36 +120,12 @@
 
         <div class="tsa-field">
           <label>Team</label>
-          <select id="tsa-team-filter" multiple placeholder="Choose teams...">
-            <option value="ANA">ANA</option><option value="BOS">BOS</option><option value="BUF">BUF</option>
-            <option value="CAR">CAR</option><option value="CBJ">CBJ</option><option value="CGY">CGY</option>
-            <option value="CHI">CHI</option><option value="COL">COL</option><option value="DAL">DAL</option>
-            <option value="DET">DET</option><option value="EDM">EDM</option><option value="FLA">FLA</option>
-            <option value="LAK">LAK</option><option value="MIN">MIN</option><option value="MTL">MTL</option>
-            <option value="NJD">NJD</option><option value="NSH">NSH</option><option value="NYI">NYI</option>
-            <option value="NYR">NYR</option><option value="OTT">OTT</option><option value="PHI">PHI</option>
-            <option value="PIT">PIT</option><option value="SEA">SEA</option><option value="SJS">SJS</option>
-            <option value="STL">STL</option><option value="TBL">TBL</option><option value="TOR">TOR</option>
-            <option value="UTA">UTA</option><option value="VAN">VAN</option><option value="VGK">VGK</option>
-            <option value="WPG">WPG</option><option value="WSH">WSH</option>
-          </select>
+          <select id="tsa-team-filter" multiple placeholder="Choose teams..."></select>
         </div>
 
         <div class="tsa-field" id="tsa-opponent-field">
           <label>Opponent Team</label>
-          <select id="tsa-opponent-filter" multiple placeholder="Choose opponents...">
-            <option value="ANA">ANA</option><option value="BOS">BOS</option><option value="BUF">BUF</option>
-            <option value="CAR">CAR</option><option value="CBJ">CBJ</option><option value="CGY">CGY</option>
-            <option value="CHI">CHI</option><option value="COL">COL</option><option value="DAL">DAL</option>
-            <option value="DET">DET</option><option value="EDM">EDM</option><option value="FLA">FLA</option>
-            <option value="LAK">LAK</option><option value="MIN">MIN</option><option value="MTL">MTL</option>
-            <option value="NJD">NJD</option><option value="NSH">NSH</option><option value="NYI">NYI</option>
-            <option value="NYR">NYR</option><option value="OTT">OTT</option><option value="PHI">PHI</option>
-            <option value="PIT">PIT</option><option value="SEA">SEA</option><option value="SJS">SJS</option>
-            <option value="STL">STL</option><option value="TBL">TBL</option><option value="TOR">TOR</option>
-            <option value="UTA">UTA</option><option value="VAN">VAN</option><option value="VGK">VGK</option>
-            <option value="WPG">WPG</option><option value="WSH">WSH</option>
-          </select>
+          <select id="tsa-opponent-filter" multiple placeholder="Choose opponents..."></select>
         </div>
 
         <div class="tsa-field" id="tsa-homeroad-field">
@@ -267,6 +243,30 @@ document.addEventListener("DOMContentLoaded", function () {
     placeholder: "All Opponents",
     closeAfterSelect: false
   });
+  
+  function populateTomSelect(selectInstance, values) {
+    selectInstance.clear();
+    selectInstance.clearOptions();
+
+    values.forEach(value => {
+      selectInstance.addOption({
+        value: value,
+        text: value
+      });
+    });
+
+    selectInstance.refreshOptions(false);
+  }
+  
+  fetch("/wp-json/tsa/v1/skater-team-options")
+    .then(response => response.json())
+    .then(data => {
+      populateTomSelect(teamSelect, data.teams || []);
+      populateTomSelect(opponentSelect, data.opponents || []);
+    })
+    .catch(() => {
+      console.warn("Unable to load dynamic team lists.");
+    });
 
   function datasetHasDates() {
     return datedDatasets.includes(currentDataset);

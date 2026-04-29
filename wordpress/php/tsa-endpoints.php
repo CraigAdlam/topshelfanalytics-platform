@@ -5346,3 +5346,44 @@ function tsa_download_skater_timeonice_csv($request) {
     fclose($out);
     exit;
 }
+
+add_action('rest_api_init', function () {
+    register_rest_route('tsa/v1', '/skater-team-options', [
+        'methods' => 'GET',
+        'callback' => 'tsa_get_skater_team_options',
+        'permission_callback' => '__return_true',
+    ]);
+});
+
+function tsa_get_skater_team_options($request) {
+    global $wpdb;
+
+    $bios_table = $wpdb->prefix . 'tsa_skater_bios';
+    $summary_table = $wpdb->prefix . 'tsa_skater_summary';
+
+    $teams = $wpdb->get_col("
+        SELECT team FROM (
+            SELECT DISTINCT currentTeamAbbrev AS team
+            FROM $bios_table
+            WHERE currentTeamAbbrev <> ''
+
+            UNION
+
+            SELECT DISTINCT teamAbbrev AS team
+            FROM $summary_table
+            WHERE teamAbbrev <> ''
+
+            UNION
+
+            SELECT DISTINCT opponentTeamAbbrev AS team
+            FROM $summary_table
+            WHERE opponentTeamAbbrev <> ''
+        ) AS x
+        ORDER BY team
+    ");
+
+    return [
+        'teams' => $teams,
+        'opponents' => $teams
+    ];
+}
