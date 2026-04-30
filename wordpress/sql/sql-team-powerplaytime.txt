@@ -1,0 +1,38 @@
+DROP TABLE IF EXISTS wp_tsa_team_powerplaytime;
+
+CREATE TABLE wp_tsa_team_powerplaytime (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    pointPct DECIMAL(10,4),
+    timeOnIcePp DECIMAL(10,4),
+    ppOpportunities INT,
+    powerPlayGoalsFor INT,
+    overallPowerPlayPct DECIMAL(10,4),
+    timeOnIce5v4 DECIMAL(10,4),
+    opportunities5v4 INT,
+    goals5v4 INT,
+    powerPlayPct5v4 DECIMAL(10,4),
+    timeOnIce5v3 DECIMAL(10,4),
+    opportunities5v3 INT,
+    goals5v3 INT,
+    powerPlayPct5v3 DECIMAL(10,4),
+    timeOnIce4v3 DECIMAL(10,4),
+    opportunities4v3 INT,
+    goals4v3 INT,
+    powerPlayPct4v3 DECIMAL(10,4),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_powerplaytime
+WHERE teamFullName = 'teamFullName';

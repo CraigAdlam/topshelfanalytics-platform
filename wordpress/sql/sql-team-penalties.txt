@@ -1,0 +1,39 @@
+DROP TABLE IF EXISTS wp_tsa_team_penalties;
+
+CREATE TABLE wp_tsa_team_penalties (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    wins INT,
+    losses INT,
+    otLosses INT,
+    points INT,
+    penaltyMinutes INT,
+    penaltySecondsPerGame DECIMAL(10,4),
+    totalPenaltiesDrawn INT,
+    penalties INT,
+    netPenalties INT,
+    penaltiesDrawnPer60 DECIMAL(10,4),
+    penaltiesTakenPer60 DECIMAL(10,4),
+    netPenaltiesPer60 DECIMAL(10,4),
+    benchMinorPenalties INT,
+    minors INT,
+    majors INT,
+    matchPenalties INT,
+    misconducts INT,
+    gameMisconducts INT,
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_penalties
+WHERE teamFullName = 'teamFullName';

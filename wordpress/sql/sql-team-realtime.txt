@@ -1,0 +1,36 @@
+DROP TABLE IF EXISTS wp_tsa_team_realtime;
+
+CREATE TABLE wp_tsa_team_realtime (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    timeOnIcePerGame5v5 DECIMAL(10,4),
+    satPct DECIMAL(10,4),
+    hits INT,
+    hitsPer60 DECIMAL(10,4),
+    blockedShots INT,
+    blockedShotsPer60 DECIMAL(10,4),
+    giveaways INT,
+    giveawaysPer60 DECIMAL(10,4),
+    takeaways INT,
+    takeawaysPer60 DECIMAL(10,4),
+    emptyNetGoals INT,
+    shots INT,
+    missedShots INT,
+    shotAttemptsBlocked INT,
+    totalShotAttempts INT,
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_realtime
+WHERE teamFullName = 'teamFullName';

@@ -1,0 +1,39 @@
+DROP TABLE IF EXISTS wp_tsa_team_goalsbyperiod;
+
+CREATE TABLE wp_tsa_team_goalsbyperiod (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    wins INT,
+    losses INT,
+    otLosses INT,
+    points INT,
+    pointPct DECIMAL(10,4),
+    evGoalsFor INT,
+    ppGoalsFor INT,
+    shGoalsFor INT,
+    goalsFor INT,
+    period1GoalsFor INT,
+    period2GoalsFor INT,
+    period3GoalsFor INT,
+    periodOtGoalsFor INT,
+    goalsAgainst INT,
+    period1GoalsAgainst INT,
+    period2GoalsAgainst INT,
+    period3GoalsAgainst INT,
+    periodOtGoalsAgainst INT,
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_goalsbyperiod
+WHERE teamFullName = 'teamFullName';

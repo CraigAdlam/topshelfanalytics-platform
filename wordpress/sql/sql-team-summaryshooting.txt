@@ -1,0 +1,36 @@
+DROP TABLE IF EXISTS wp_tsa_team_summaryshooting;
+
+CREATE TABLE wp_tsa_team_summaryshooting (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    shots5v5 INT,
+    satFor INT,
+    satAgainst INT,
+    satTotal INT,
+    satTied INT,
+    satAhead INT,
+    satBehind INT,
+    satClose INT,
+    usatFor INT,
+    usatAgainst INT,
+    usatTotal INT,
+    usatTied INT,
+    usatAhead INT,
+    usatBehind INT,
+    usatClose INT,
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_summaryshooting
+WHERE teamFullName = 'teamFullName';

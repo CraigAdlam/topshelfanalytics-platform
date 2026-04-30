@@ -1,0 +1,35 @@
+DROP TABLE IF EXISTS wp_tsa_team_faceoffpercentages;
+
+CREATE TABLE wp_tsa_team_faceoffpercentages (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    totalFaceoffs INT,
+    evFaceoffs INT,
+    ppFaceoffs INT,
+    shFaceoffs INT,
+    offensiveZoneFaceoffs INT,
+    neutralZoneFaceoffs INT,
+    defensiveZoneFaceoffs INT,
+    faceoffWinPct DECIMAL(10,4),
+    evFaceoffPct DECIMAL(10,4),
+    ppFaceoffPct DECIMAL(10,4),
+    shFaceoffPct DECIMAL(10,4),
+    offensiveZoneFaceoffPct DECIMAL(10,4),
+    neutralZoneFaceoffPct DECIMAL(10,4),
+    defensiveZoneFaceoffPct DECIMAL(10,4),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_faceoffpercentages
+WHERE teamFullName = 'teamFullName';

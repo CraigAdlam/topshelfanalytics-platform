@@ -1,0 +1,45 @@
+DROP TABLE IF EXISTS wp_tsa_team_shottype;
+
+CREATE TABLE wp_tsa_team_shottype (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    goalsFor INT,
+    goalsWrist INT,
+    goalsSnap INT,
+    goalsSlap INT,
+    goalsBackhand INT,
+    goalsTipIn INT,
+    goalsDeflected INT,
+    goalsWrapAround INT,
+    shotsOnNet INT,
+    shotsOnNetWrist INT,
+    shotsOnNetSnap INT,
+    shotsOnNetSlap INT,
+    shotsOnNetBackhand INT,
+    shotsOnNetTipIn INT,
+    shotsOnNetDeflected INT,
+    shotsOnNetWrapAround INT,
+    shootingPct DECIMAL(10,4),
+    shootingPctWrist DECIMAL(10,4),
+    shootingPctSnap DECIMAL(10,4),
+    shootingPctSlap DECIMAL(10,4),
+    shootingPctBackhand DECIMAL(10,4),
+    shootingPctTipIn DECIMAL(10,4),
+    shootingPctDeflected DECIMAL(10,4),
+    shootingPctWrapAround DECIMAL(10,4),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_shottype
+WHERE teamFullName = 'teamFullName';

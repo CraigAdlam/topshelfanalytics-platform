@@ -1,0 +1,38 @@
+DROP TABLE IF EXISTS wp_tsa_team_daysbetweengames;
+
+CREATE TABLE wp_tsa_team_daysbetweengames (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    daysRest INT,
+    gamesPlayed INT,
+    wins INT,
+    losses INT,
+    otLosses INT,
+    points INT,
+    pointPct DECIMAL(10,4),
+    goalsForPerGame DECIMAL(10,4),
+    goalsAgainstPerGame DECIMAL(10,4),
+    netGoalsPerGame DECIMAL(10,4),
+    shotsForPerGame DECIMAL(10,4),
+    shotsAgainstPerGame DECIMAL(10,4),
+    shotDifferentialPerGame DECIMAL(10,4),
+    ppOpportunitiesPerGame DECIMAL(10,4),
+    timesShorthandedPerGame DECIMAL(10,4),
+    powerPlayPct DECIMAL(10,4),
+    penaltyKillPct DECIMAL(10,4),
+    faceoffWinPct DECIMAL(10,4),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_daysbetweengames
+WHERE teamFullName = 'teamFullName';

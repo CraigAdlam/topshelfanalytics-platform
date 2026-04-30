@@ -1,0 +1,42 @@
+DROP TABLE IF EXISTS wp_tsa_team_goalsforbystrength;
+
+CREATE TABLE wp_tsa_team_goalsforbystrength (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    wins INT,
+    losses INT,
+    ties INT,
+    otLosses INT,
+    points INT,
+    pointPct DECIMAL(10,4),
+    goalsFor INT,
+    goalsAgainst INT,
+    goalsFor5On5 INT,
+    goalsFor4On4 INT,
+    goalsFor3On3 INT,
+    goalsFor5On4 INT,
+    goalsFor5On3 INT,
+    goalsFor4On3 INT,
+    goalsFor3On4 INT,
+    goalsFor3On5 INT,
+    goalsFor4On5 INT,
+    goalsForPenaltyShots INT,
+    goalsForEmptyNet INT,
+    goalsForExtraAttacker INT,
+    goalsForPerGame DECIMAL(10,4),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_goalsforbystrength
+WHERE teamFullName = 'teamFullName';

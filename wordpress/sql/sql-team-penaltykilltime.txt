@@ -1,0 +1,38 @@
+DROP TABLE IF EXISTS wp_tsa_team_penaltykilltime;
+
+CREATE TABLE wp_tsa_team_penaltykilltime (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    pointPct DECIMAL(10,4),
+    timeOnIceShorthanded DECIMAL(10,4),
+    timesShorthanded INT,
+    shorthandedGoalsAgainst INT,
+    overallPenaltyKillPct DECIMAL(10,4),
+    timeOnIce4v5 DECIMAL(10,4),
+    timesShorthanded4v5 INT,
+    goalsAgainst4v5 INT,
+    penaltyKillPct4v5 DECIMAL(10,4),
+    timeOnIce3v5 DECIMAL(10,4),
+    timesShorthanded3v5 INT,
+    goalsAgainst3v5 INT,
+    penaltyKillPct3v5 DECIMAL(10,4),
+    timeOnIce3v4 DECIMAL(10,4),
+    timesShorthanded3v4 INT,
+    goalsAgainst3v4 INT,
+    penaltyKillPct3v4 DECIMAL(10,4),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_penaltykilltime
+WHERE teamFullName = 'teamFullName';

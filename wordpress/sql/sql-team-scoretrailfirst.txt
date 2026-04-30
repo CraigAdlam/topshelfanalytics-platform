@@ -1,0 +1,37 @@
+DROP TABLE IF EXISTS wp_tsa_team_scoretrailfirst;
+
+CREATE TABLE wp_tsa_team_scoretrailfirst (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    wins INT,
+    losses INT,
+    otLosses INT,
+    points INT,
+    scoringFirstGamesPlayed INT,
+    winsScoringFirst INT,
+    lossesScoringFirst INT,
+    tiesScoringFirst INT,
+    otLossesScoringFirst INT,
+    winPctScoringFirst DECIMAL(10,4),
+    trailingFirstGamesPlayed INT,
+    winsTrailingFirst INT,
+    lossesTrailingFirst INT,
+    tiesTrailingFirst INT,
+    otLossesTrailingFirst INT,
+    winPctTrailingFirst DECIMAL(10,4),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_scoretrailfirst
+WHERE teamFullName = 'teamFullName';

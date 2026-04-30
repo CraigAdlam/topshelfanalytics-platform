@@ -1,0 +1,37 @@
+DROP TABLE IF EXISTS wp_tsa_team_goalgames;
+
+CREATE TABLE wp_tsa_team_goalgames (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    wins INT,
+    losses INT,
+    ties INT,
+    otLosses INT,
+    points INT,
+    pointPct DECIMAL(10,4),
+    winPctOneGoalGames DECIMAL(10,4),
+    winPctTwoGoalGames DECIMAL(10,4),
+    winPctThreeGoalGames DECIMAL(10,4),
+    winsOneGoalGames INT,
+    winsTwoGoalGames INT,
+    winsThreeGoalGames INT,
+    lossesOneGoalGames INT,
+    lossesTwoGoalGames INT,
+    lossesThreeGoalGames INT,
+    otLossesOneGoalGames INT,
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_goalgames
+WHERE teamFullName = 'teamFullName';

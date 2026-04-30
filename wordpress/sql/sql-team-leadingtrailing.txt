@@ -1,0 +1,46 @@
+DROP TABLE IF EXISTS wp_tsa_team_leadingtrailing;
+
+CREATE TABLE wp_tsa_team_leadingtrailing (
+    gameDate DATE,
+    gameId BIGINT,
+    homeRoad VARCHAR(10),
+    teamFullName VARCHAR(150),
+    teamId BIGINT,
+    opponentTeamAbbrev VARCHAR(10),
+    gamesPlayed INT,
+    pointPct DECIMAL(10,4),
+    period1GoalsFor INT,
+    period1GoalsAgainst INT,
+    period2GoalsFor INT,
+    period2GoalsAgainst INT,
+    winsLeadPeriod1 INT,
+    lossLeadPeriod1 INT,
+    tiesLeadPeriod1 INT,
+    otLossLeadPeriod1 INT,
+    winPctLeadPeriod1 DECIMAL(10,4),
+    winsLeadPeriod2 INT,
+    lossLeadPeriod2 INT,
+    tiesLeadPeriod2 INT,
+    otLossLeadPeriod2 INT,
+    winPctLeadPeriod2 DECIMAL(10,4),
+    winsTrailPeriod1 INT,
+    lossTrailPeriod1 INT,
+    tiesTrailPeriod1 INT,
+    otLossTrailPeriod1 INT,
+    winPctTrailPeriod1 DECIMAL(10,4),
+    winsTrailPeriod2 INT,
+    lossTrailPeriod2 INT,
+    tiesTrailPeriod2 INT,
+    otLossTrailPeriod2 INT,
+    winPctTrailPeriod2 DECIMAL(10,4),
+
+    INDEX idx_gameDate (gameDate),
+    INDEX idx_gameId (gameId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamFullName (teamFullName),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_homeRoad (homeRoad)
+);
+
+DELETE FROM wp_tsa_team_leadingtrailing
+WHERE teamFullName = 'teamFullName';
