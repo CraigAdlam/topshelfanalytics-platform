@@ -10,15 +10,18 @@
   <summary>About these datasets & columns</summary>
 
   <p>
-    Source data originates from NHL public stats endpoints. Some datasets may include
-    standardized or derived columns added for consistency across tables.
-  </p>
-
-  <p>
-    Example: <code>teamAbbrev</code> is added to Summary Shooting during the publish
-    process by joining on <code>gameId</code> and <code>playerId</code>.
+    All columns reflect raw NHL data, with the exception of
+    <code>teamAbbrev</code>, which is added during the publish process for
+    consistency across datasets. For example, in Summary Shooting,
+    <code>teamAbbrev</code> is derived by joining on <code>gameId</code> and
+    <code>playerId</code> with Skater Summary.
   </p>
   
+  <p>
+    This standardized field ensures consistent team identification across datasets and supports
+    filtering, grouping, and downstream analysis workflows.
+  </p>
+
   <p>
     These datasets can support historical analysis, dashboards, and custom
     predictive modeling workflows.

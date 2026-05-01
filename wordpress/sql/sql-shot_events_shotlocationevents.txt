@@ -1,0 +1,39 @@
+DROP TABLE IF EXISTS wp_tsa_shot_events_shot_location_events;
+
+CREATE TABLE wp_tsa_shot_events_shot_location_events (
+    date DATE,
+    gameId BIGINT,
+    eventId BIGINT,
+    period INT,
+    timeInPeriod VARCHAR(10),
+    eventType VARCHAR(50),
+    teamId BIGINT,
+    teamAbbrev VARCHAR(10),
+    homeAbbrev VARCHAR(10),
+    awayAbbrev VARCHAR(10),
+    homeRoad VARCHAR(10),
+    playerId BIGINT,
+    shooter VARCHAR(150),
+    goalieInNetId BIGINT,
+    x DECIMAL(10,4),
+    y DECIMAL(10,4),
+    zoneCode VARCHAR(10),
+    shotType VARCHAR(50),
+    homeTeamDefendingSide VARCHAR(10),
+    x_std DECIMAL(10,4),
+    y_std DECIMAL(10,4),
+    shot_region VARCHAR(50),
+
+    INDEX idx_date (date),
+    INDEX idx_gameId (gameId),
+    INDEX idx_eventId (eventId),
+    INDEX idx_teamId (teamId),
+    INDEX idx_teamAbbrev (teamAbbrev),
+    INDEX idx_playerId (playerId),
+    INDEX idx_shooter (shooter),
+    INDEX idx_homeRoad (homeRoad),
+    INDEX idx_shot_region (shot_region)
+);
+
+DELETE FROM wp_tsa_shot_events_shot_location_events
+WHERE shooter = 'shooter';
