@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS wp_tsa_shot_events_player_location_priors;
 
 CREATE TABLE wp_tsa_shot_events_player_location_priors (
     playerId BIGINT,
-    shooter TINYINT(1),
+    shooter VARCHAR(150),
     total_shots INT,
     inner_slot_rate DECIMAL(10,6),
     mid_slot_rate DECIMAL(10,6),

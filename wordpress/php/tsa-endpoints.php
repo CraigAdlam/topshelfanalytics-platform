@@ -4236,14 +4236,14 @@ function tsa_apply_shot_events_filters($request, $allowed_columns, &$where, &$pa
             }
         }
 
-        if (ctype_digit($search)) {
-            foreach (['playerId', 'gameId', 'eventId', 'teamId', 'goalieInNetId'] as $col) {
-                if (tsa_shot_events_table_has_column($allowed_columns, $col)) {
-                    $search_parts[] = "$col = %d";
-                    $params[] = intval($search);
-                }
-            }
-        }
+		if (ctype_digit($search)) {
+			foreach (['playerId', 'gameId', 'eventId', 'teamId', 'goalieInNetId'] as $col) {
+				if (tsa_shot_events_table_has_column($allowed_columns, $col)) {
+					$search_parts[] = "CAST($col AS CHAR) LIKE %s";
+					$params[] = $like;
+				}
+			}
+		}
 
         if (!empty($search_parts)) {
             $where[] = '(' . implode(' OR ', $search_parts) . ')';
