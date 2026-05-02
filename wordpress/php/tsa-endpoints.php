@@ -4170,7 +4170,7 @@ function tsa_apply_shot_events_filters($request, $allowed_columns, &$where, &$pa
     $teams_raw = sanitize_text_field($request->get_param('teams'));
     $opponents_raw = sanitize_text_field($request->get_param('opponents'));
     $homeRoad = sanitize_text_field($request->get_param('homeRoad'));
-    $shot_region = sanitize_text_field($request->get_param('shot_region'));
+	$shot_region = sanitize_text_field($request->get_param('shot_region'));
     $shotType = sanitize_text_field($request->get_param('shotType'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
@@ -4213,11 +4213,11 @@ function tsa_apply_shot_events_filters($request, $allowed_columns, &$where, &$pa
         $where[] = "homeRoad = %s";
         $params[] = $homeRoad;
     }
-
-    if (tsa_shot_events_table_has_column($allowed_columns, 'shot_region') && !empty($shot_region)) {
-        $where[] = "shot_region = %s";
-        $params[] = $shot_region;
-    }
+	
+	if (tsa_shot_events_table_has_column($allowed_columns, 'shot_region') && $shot_region !== '') {
+		$where[] = "`shot_region` = %s";
+		$params[] = $shot_region;
+	}
 
     if (tsa_shot_events_table_has_column($allowed_columns, 'shotType') && !empty($shotType)) {
         $where[] = "shotType = %s";
@@ -4414,12 +4414,12 @@ function tsa_get_shot_events_options($request) {
         ORDER BY opponent
     ");
 
-    $shot_regions = $wpdb->get_col("
-        SELECT DISTINCT shot_region
-        FROM `$table`
-        WHERE shot_region <> ''
-        ORDER BY shot_region
-    ");
+	$shot_regions = $wpdb->get_col("
+		SELECT DISTINCT `shot_region`
+		FROM `$table`
+		WHERE `shot_region` <> ''
+		ORDER BY `shot_region`
+	");
 
     $shot_types = $wpdb->get_col("
         SELECT DISTINCT shotType
