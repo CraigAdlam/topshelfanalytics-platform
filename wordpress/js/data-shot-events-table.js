@@ -233,12 +233,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	  teamSelect.clear(true);
 	  opponentSelect.clear(true);
 
+	  document.querySelector('#tsa-search').previousElementSibling.textContent = "Search Player";
 	  document.getElementById("tsa-search").placeholder = "Search player or playerId...";
 
 	  refreshTable();
 	  return;
 	}
 
+	document.querySelector('#tsa-search').previousElementSibling.textContent = "Search Player / Team";
     document.getElementById("tsa-search").placeholder = "Search player, team, playerId...";
 
     loadShotEventOptionsOnce();
