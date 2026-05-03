@@ -1,0 +1,540 @@
+#tsa-table-wrap {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tsa-layout {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.tsa-sidebar {
+  width: 230px;
+  min-width: 230px;
+  border: 1px solid #d9e1ea;
+  border-radius: 10px;
+  background: #fff;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.tsa-sidebar.collapsed {
+  width: 150px;
+  min-width: 150px;
+}
+
+.tsa-sidebar.collapsed #tsa-sidebar-content {
+  display: none;
+}
+
+#tsa-sidebar-toggle {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cfd6df;
+  border-radius: 8px;
+  background: #f8fafc;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tsa-dataset-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid #cfd6df;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tsa-dataset-btn.active {
+  background: #0b1a8f;
+  color: #fff;
+  border-color: #0b1a8f;
+}
+
+.tsa-main {
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.tsa-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(170px, 1fr));
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.tsa-field {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.tsa-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.tsa-field input,
+.tsa-field select,
+.tsa-field button {
+  width: 100%;
+  height: 42px;
+  min-height: 42px;
+  max-height: 42px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cfd6df;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.tsa-radio-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 42px;
+}
+
+.tsa-radio-row label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 400;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.tsa-radio-row input {
+  width: auto;
+  height: auto;
+  min-height: auto;
+  max-height: none;
+  margin: 0;
+}
+
+.ts-wrapper {
+  width: 100%;
+  min-height: 42px !important;
+  height: auto !important;
+  box-sizing: border-box;
+}
+
+.ts-wrapper.multi .ts-control,
+.ts-control {
+  width: 100%;
+  min-height: 42px !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  box-sizing: border-box;
+  padding: 6px 36px 6px 8px !important;
+  border-radius: 8px !important;
+  border-color: #cfd6df !important;
+  box-shadow: none !important;
+  background: #fff !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.ts-wrapper.multi .ts-control > div {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 2px 4px 2px 0 !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  background: #eef2f7 !important;
+  color: #1f2937 !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+}
+
+.ts-wrapper.plugin-remove_button .item .remove {
+  margin-left: 6px !important;
+  border-left: 1px solid rgba(0,0,0,0.12) !important;
+  padding-left: 6px !important;
+  color: #555 !important;
+}
+
+.ts-control > input {
+  min-width: 90px !important;
+  font-size: 14px !important;
+  height: 24px !important;
+}
+
+.ts-dropdown {
+  z-index: 99999;
+}
+
+input[type="date"] {
+  appearance: auto;
+  -webkit-appearance: none;
+  width: 100%;
+  max-width: 100%;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  box-sizing: border-box;
+  line-height: 20px;
+}
+
+#tsa-reset {
+  cursor: pointer;
+}
+
+.tsa-status {
+  margin: 0 0 12px 0;
+  padding: 10px 12px;
+  border: 1px solid #d9e1ea;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f8fafc;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.tsa-status.loading {
+  color: #4b5563;
+}
+
+.tsa-status.success {
+  color: #166534;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.tsa-status.empty {
+  color: #92400e;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.tsa-status.error {
+  color: #991b1b;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+#tsa-table {
+  border: 1px solid #d9e1ea;
+  border-radius: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #fff;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabulator {
+  font-size: 13px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.tabulator .tabulator-tableholder {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabulator .tabulator-table {
+  min-width: 900px;
+}
+
+.tsa-download-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  max-width: 100%;
+}
+
+.tsa-download-row button {
+  padding: 10px 14px;
+  border: 1px solid #cfd6df;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tsa-download-row button:hover {
+  background: #f4f7fa;
+}
+
+.tsa-helper-text{
+  font-size:14px;
+  line-height:1.45;
+  color:#5b6470;
+  margin-bottom:10px;
+  padding:8px 12px;
+  background:#f8fafc;
+  border:1px solid #d9e1ea;
+  border-radius:8px;
+  font-weight:500;
+}
+
+.tsa-last-updated {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 14px;
+  padding-left: 2px;
+  white-space: pre-line;
+}
+
+.tsa-dataset-notes {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #4b5563;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #d9e1ea;
+  border-radius: 8px;
+}
+
+.tsa-dataset-notes summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #374151;
+}
+
+.tsa-dataset-notes p {
+  margin: 8px 0 0 0;
+}
+
+.tsa-dataset-notes code {
+  font-size: 12px;
+  background: #eef2f7;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+@media (max-width: 1000px) {
+  #tsa-table-wrap {
+    overflow-x: auto;
+  }
+
+  .tsa-layout {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .tsa-sidebar,
+  .tsa-sidebar.collapsed {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .tsa-main {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .tsa-controls-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .tsa-field input,
+  .tsa-field select,
+  .tsa-field button,
+  input[type="date"] {
+    width: 100%;
+    max-width: 100%;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+  }
+
+  /* Fix oversized radio buttons on mobile */
+  .tsa-radio-row {
+    height: auto;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .tsa-radio-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .tsa-radio-row input[type="radio"] {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .ts-wrapper,
+  .ts-control {
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 42px !important;
+    max-height: none !important;
+  }
+
+  .tsa-download-row {
+    flex-direction: column;
+  }
+
+  .tsa-download-row button {
+    width: 100%;
+  }
+
+  #tsa-table {
+    overflow-x: auto;
+  }
+  .tsa-helper-text{
+    font-size:14px;
+    line-height:1.45;
+    color:#4b5563;
+    margin-bottom:10px;
+    padding:8px 12px;
+    background:#f8fafc;
+    border:1px solid #d9e1ea;
+    border-radius:8px;
+    font-weight:500;
+    text-align:left;
+  }
+}
+
+#tsa-mobile-scroll-tip {
+  display: none;
+  font-size: 12px;
+  color: #777;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+  #tsa-mobile-scroll-tip {
+    display: block;
+  }
+}
+
+.tsa-data-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1rem 0;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.tsa-data-tabs a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #1f2937;
+  background: #f3f4f6;
+}
+
+.tsa-data-tabs a:hover {
+  background: #e5e7eb;
+}
+
+.tsa-data-tabs a.active {
+  color: #ffffff;
+  background: #111827;
+}
+
+@media (max-width: 600px) {
+  .tsa-data-tabs {
+    gap: 0.4rem;
+  }
+
+  .tsa-data-tabs a {
+    flex: 1 1 100%;
+  }
+}
+
+.tsa-data-hub-wide {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 2rem;
+}
+
+.tsa-data-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.tsa-data-hub-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.25rem;
+  background: #ffffff;
+}
+
+.tsa-data-hub-card h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.tsa-data-hub-card p {
+  line-height: 1.6;
+}
+
+.tsa-data-hub-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: #00113f;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.tsa-data-hub-button.disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1100px) {
+  .tsa-data-hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .tsa-data-hub-grid {
+    grid-template-columns: 1fr;
+  }
+}
