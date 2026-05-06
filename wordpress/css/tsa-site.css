@@ -1,10 +1,15 @@
-#tsa-table-wrap {
+#tsa-table-wrap,
+#tsa-team-trends-wrap {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   max-width: 100%;
   width: 100%;
   overflow-x: auto;
 }
+
+/* =========================
+   Shared TSA table layout
+========================= */
 
 .tsa-layout {
   display: flex;
@@ -66,6 +71,10 @@
   max-width: 100%;
 }
 
+/* =========================
+   Controls / fields
+========================= */
+
 .tsa-controls-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(170px, 1fr));
@@ -104,6 +113,26 @@
   line-height: 20px;
 }
 
+input[type="date"] {
+  appearance: auto;
+  -webkit-appearance: none;
+  width: 100%;
+  max-width: 100%;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  box-sizing: border-box;
+  line-height: 20px;
+}
+
+#tsa-reset {
+  cursor: pointer;
+}
+
+/* =========================
+   Radio controls
+========================= */
+
 .tsa-radio-row {
   display: flex;
   gap: 16px;
@@ -127,6 +156,10 @@
   max-height: none;
   margin: 0;
 }
+
+/* =========================
+   TomSelect
+========================= */
 
 .ts-wrapper {
   width: 100%;
@@ -168,7 +201,7 @@
 
 .ts-wrapper.plugin-remove_button .item .remove {
   margin-left: 6px !important;
-  border-left: 1px solid rgba(0,0,0,0.12) !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.12) !important;
   padding-left: 6px !important;
   color: #555 !important;
 }
@@ -183,21 +216,9 @@
   z-index: 99999;
 }
 
-input[type="date"] {
-  appearance: auto;
-  -webkit-appearance: none;
-  width: 100%;
-  max-width: 100%;
-  height: 42px !important;
-  min-height: 42px !important;
-  max-height: 42px !important;
-  box-sizing: border-box;
-  line-height: 20px;
-}
-
-#tsa-reset {
-  cursor: pointer;
-}
+/* =========================
+   Status / helper text
+========================= */
 
 .tsa-status {
   margin: 0 0 12px 0;
@@ -232,64 +253,16 @@ input[type="date"] {
   border-color: #fecaca;
 }
 
-#tsa-table {
-  border: 1px solid #d9e1ea;
-  border-radius: 10px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  background: #fff;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  -webkit-overflow-scrolling: touch;
-}
-
-.tabulator {
-  font-size: 13px;
-  width: 100%;
-  max-width: 100%;
-}
-
-.tabulator .tabulator-tableholder {
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch;
-}
-
-.tabulator .tabulator-table {
-  min-width: 900px;
-}
-
-.tsa-download-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 14px;
-  max-width: 100%;
-}
-
-.tsa-download-row button {
-  padding: 10px 14px;
-  border: 1px solid #cfd6df;
-  border-radius: 8px;
-  background: #fff;
-  cursor: pointer;
+.tsa-helper-text {
   font-size: 14px;
-}
-
-.tsa-download-row button:hover {
-  background: #f4f7fa;
-}
-
-.tsa-helper-text{
-  font-size:14px;
-  line-height:1.45;
-  color:#5b6470;
-  margin-bottom:10px;
-  padding:8px 12px;
-  background:#f8fafc;
-  border:1px solid #d9e1ea;
-  border-radius:8px;
-  font-weight:500;
+  line-height: 1.45;
+  color: #5b6470;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #d9e1ea;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .tsa-last-updated {
@@ -328,102 +301,35 @@ input[type="date"] {
   border-radius: 4px;
 }
 
-@media (max-width: 1000px) {
-  #tsa-table-wrap {
-    overflow-x: auto;
-  }
+/* =========================
+   Tabulator tables
+========================= */
 
-  .tsa-layout {
-    flex-direction: column;
-    width: 100%;
-  }
+#tsa-table {
+  border: 1px solid #d9e1ea;
+  border-radius: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #fff;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
 
-  .tsa-sidebar,
-  .tsa-sidebar.collapsed {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-  }
+.tabulator {
+  font-size: 13px;
+  width: 100%;
+  max-width: 100%;
+}
 
-  .tsa-main {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-  }
+.tabulator .tabulator-tableholder {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
 
-  .tsa-controls-grid {
-    grid-template-columns: 1fr;
-    width: 100%;
-  }
-
-  .tsa-field input,
-  .tsa-field select,
-  .tsa-field button,
-  input[type="date"] {
-    width: 100%;
-    max-width: 100%;
-    height: 42px !important;
-    min-height: 42px !important;
-    max-height: 42px !important;
-  }
-
-  /* Fix oversized radio buttons on mobile */
-  .tsa-radio-row {
-    height: auto;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .tsa-radio-row label {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-  }
-
-  .tsa-radio-row input[type="radio"] {
-    width: 16px !important;
-    height: 16px !important;
-    min-width: 16px !important;
-    min-height: 16px !important;
-    max-width: 16px !important;
-    max-height: 16px !important;
-    padding: 0 !important;
-    margin: 0;
-  }
-
-  .ts-wrapper,
-  .ts-control {
-    width: 100%;
-    max-width: 100%;
-    height: auto !important;
-    min-height: 42px !important;
-    max-height: none !important;
-  }
-
-  .tsa-download-row {
-    flex-direction: column;
-  }
-
-  .tsa-download-row button {
-    width: 100%;
-  }
-
-  #tsa-table {
-    overflow-x: auto;
-  }
-  .tsa-helper-text{
-    font-size:14px;
-    line-height:1.45;
-    color:#4b5563;
-    margin-bottom:10px;
-    padding:8px 12px;
-    background:#f8fafc;
-    border:1px solid #d9e1ea;
-    border-radius:8px;
-    font-weight:500;
-    text-align:left;
-  }
+.tabulator .tabulator-table {
+  min-width: 900px;
 }
 
 #tsa-mobile-scroll-tip {
@@ -434,11 +340,34 @@ input[type="date"] {
   margin-bottom: 6px;
 }
 
-@media (max-width: 768px) {
-  #tsa-mobile-scroll-tip {
-    display: block;
-  }
+/* =========================
+   Download buttons
+========================= */
+
+.tsa-download-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  max-width: 100%;
 }
+
+.tsa-download-row button {
+  padding: 10px 14px;
+  border: 1px solid #cfd6df;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tsa-download-row button:hover {
+  background: #f4f7fa;
+}
+
+/* =========================
+   Data tabs / page nav
+========================= */
 
 .tsa-data-tabs {
   display: flex;
@@ -472,15 +401,9 @@ input[type="date"] {
   background: #111827;
 }
 
-@media (max-width: 600px) {
-  .tsa-data-tabs {
-    gap: 0.4rem;
-  }
-
-  .tsa-data-tabs a {
-    flex: 1 1 100%;
-  }
-}
+/* =========================
+   Data hub cards
+========================= */
 
 .tsa-data-hub-wide {
   width: 100%;
@@ -527,33 +450,9 @@ input[type="date"] {
   cursor: not-allowed;
 }
 
-@media (max-width: 1100px) {
-  .tsa-data-hub-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 650px) {
-  .tsa-data-hub-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/*
-.cell-green {
-  background: #16a34a !important;
-  color: #ffffff !important;
-  font-weight: 700;
-}
-
-.cell-red {
-  background: #dc2626 !important;
-  color: #ffffff !important;
-  font-weight: 700;
-}
-*/
-
-
+/* =========================
+   Cell highlighting
+========================= */
 
 .cell-red-light {
   background: #fecaca !important;
@@ -581,7 +480,9 @@ input[type="date"] {
   font-weight: 700;
 }
 
-
+/* =========================
+   Matchup analysis page
+========================= */
 
 .tsa-matchup-analysis-page #tsa-table .tabulator {
   max-width: none;
@@ -596,9 +497,234 @@ input[type="date"] {
   min-width: 1200px;
 }
 
-
-
 .tsa-matchup-analysis-page .tabulator-col-title,
 .tsa-matchup-analysis-page .tabulator-cell {
   text-align: center;
+}
+
+/* =========================
+   Team analysis page
+========================= */
+
+.tsa-chart-card {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #d9e1ea;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.tsa-chart-card h2 {
+  margin: 0 0 14px 0;
+  font-size: 22px;
+}
+
+.tsa-chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 420px;
+}
+
+#tsa-team-trends-wrap .tsa-controls-grid {
+  grid-template-columns: repeat(2, minmax(170px, 1fr));
+}
+
+.tsa-team-trends-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(170px, 1fr));
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.tsa-team-trends-controls .tsa-field {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.tsa-team-trends-controls .tsa-field select,
+.tsa-team-trends-controls .ts-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.tsa-inner-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1rem 0;
+}
+
+.tsa-inner-tabs button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #1f2937;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tsa-inner-tabs button:hover {
+  background: #e5e7eb;
+}
+
+.tsa-inner-tabs button.active {
+  color: #ffffff;
+  background: #111827;
+  border-color: #111827;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 1100px) {
+  .tsa-data-hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  #tsa-table-wrap {
+    overflow-x: auto;
+  }
+
+  .tsa-layout {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .tsa-sidebar,
+  .tsa-sidebar.collapsed {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .tsa-main {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .tsa-controls-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .tsa-field input,
+  .tsa-field select,
+  .tsa-field button,
+  input[type="date"] {
+    width: 100%;
+    max-width: 100%;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+  }
+
+  .tsa-radio-row {
+    height: auto;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .tsa-radio-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .tsa-radio-row input[type="radio"] {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .ts-wrapper,
+  .ts-control {
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 42px !important;
+    max-height: none !important;
+  }
+
+  .tsa-download-row {
+    flex-direction: column;
+  }
+
+  .tsa-download-row button {
+    width: 100%;
+  }
+
+  #tsa-table {
+    overflow-x: auto;
+  }
+
+  .tsa-helper-text {
+    font-size: 14px;
+    line-height: 1.45;
+    color: #4b5563;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  #tsa-mobile-scroll-tip {
+    display: block;
+  }
+}
+
+@media (max-width: 650px) {
+  .tsa-data-hub-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #tsa-team-trends-wrap .tsa-controls-grid,
+  .tsa-team-trends-controls {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tsa-team-trends-controls .tsa-field {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .tsa-team-trends-controls .tsa-field select,
+  .tsa-team-trends-controls .ts-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .tsa-chart-wrap {
+    height: 360px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tsa-data-tabs {
+    gap: 0.4rem;
+  }
+
+  .tsa-data-tabs a {
+    flex: 1 1 100%;
+  }
 }
