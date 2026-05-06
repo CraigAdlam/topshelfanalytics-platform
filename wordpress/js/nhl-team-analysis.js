@@ -75,7 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	  placeholder: "Select teams..."
 	});
 
-	trendTeamTomSelect.setValue(teams.slice(0, 5));
+	trendSplitSelect.value = "R";
+	trendMetricSelect.value = "sf_pct_diff";
+
+	trendTeamTomSelect.setValue(["ANA", "COL"]);   /*teams.slice(0, 5));*/
   }
   
   function populateMatchupLensTeams(rows) {
@@ -125,8 +128,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	if (teams.length > 0) {
-	  roadTeamTomSelect.setValue(teams[0]);
-	  homeTeamTomSelect.setValue(teams[1] || teams[0]);
+	  roadTeamTomSelect.setValue("TOR");
+	  homeTeamTomSelect.setValue("ANA");
+
+	  if (matchupLensSelect) {
+		matchupLensSelect.value = "home";
+	  }
 	}
   }
   
