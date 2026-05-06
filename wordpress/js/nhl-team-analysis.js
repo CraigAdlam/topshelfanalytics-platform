@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainTrendChartWrap = document.getElementById("tsa-main-trend-chart-wrap");
   const sparklineSplitSelect = document.getElementById("tsa-sparkline-split");
   const sparklineMetricSelect = document.getElementById("tsa-sparkline-metric");
+  const sparklineWindowSelect = document.getElementById("tsa-sparkline-window");
 
   let trendChart = null;
   let trendRows = [];
@@ -292,10 +293,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderSparklineGrid() {
-    if (!sparklineGrid || !sparklineSplitSelect || !sparklineMetricSelect) return;
+    if (!sparklineGrid || !sparklineSplitSelect || !sparklineMetricSelect || !sparklineWindowSelect) return;
 
     const selectedSplit = sparklineSplitSelect.value;
     const selectedMetric = sparklineMetricSelect.value;
+	const selectedWindow = sparklineWindowSelect.value;
 
     const metricLabel =
       selectedMetric === "sf_pct_diff" ? "SF%" :
@@ -309,9 +311,13 @@ document.addEventListener("DOMContentLoaded", function () {
     sparklineGrid.innerHTML = "";
 
     teams.forEach(team => {
-      const teamRows = trendRows
-        .filter(row => row.teamAbbrev === team && row.homeRoad === selectedSplit)
-        .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
+	  let teamRows = trendRows
+	    .filter(row => row.teamAbbrev === team && row.homeRoad === selectedSplit)
+	    .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
+
+	  if (selectedWindow !== "all") {
+	    teamRows = teamRows.slice(-Number(selectedWindow));
+	  }
 
       if (teamRows.length === 0) return;
 
@@ -357,9 +363,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     setStatus(
-      "Showing league sparklines for " +
-      (selectedSplit === "R" ? "road" : "home") +
-      " " + metricLabel + ".",
+	  "Showing league sparklines for " +
+	  (selectedSplit === "R" ? "road" : "home") +
+	  " " + metricLabel +
+	  (selectedWindow === "all" ? " across all slate dates." : " across the last " + selectedWindow + " slate dates."),
       "success"
     );
   }
@@ -531,5 +538,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (sparklineMetricSelect) {
     sparklineMetricSelect.addEventListener("change", updateTrendChart);
+  }
+
+  if (sparklineWindowSelect) {
+    sparklineWindowSelect.addEventListener("change", updateTrendChart);
   }
 });
