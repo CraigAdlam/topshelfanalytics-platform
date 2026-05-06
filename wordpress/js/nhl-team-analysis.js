@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const trendMetricSelect = document.getElementById("tsa-trend-metric");
   const trendSplitSelect = document.getElementById("tsa-trend-split");
   const trendCanvas = document.getElementById("tsa-team-trend-chart");
+  const mainTrendChartWrap = document.getElementById("tsa-main-trend-chart-wrap");
+  const sparklineSplitSelect = document.getElementById("tsa-sparkline-split");
+  const sparklineMetricSelect = document.getElementById("tsa-sparkline-metric");
 
   let trendChart = null;
   let trendRows = [];
@@ -13,9 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
   
   const modeTeamButton = document.getElementById("tsa-mode-team");
   const modeMatchupButton = document.getElementById("tsa-mode-matchup");
+  const modeSparklinesButton = document.getElementById("tsa-mode-sparklines");
 
   const teamTrendControls = document.getElementById("tsa-team-trend-controls");
   const matchupLensControls = document.getElementById("tsa-matchup-lens-controls");
+  const sparklineControls = document.getElementById("tsa-sparkline-controls");
+  const sparklineGrid = document.getElementById("tsa-sparkline-grid");
 
   const roadTeamSelect = document.getElementById("tsa-road-team");
   const homeTeamSelect = document.getElementById("tsa-home-team");
@@ -285,9 +291,87 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
+  function renderSparklineGrid() {
+    if (!sparklineGrid || !sparklineSplitSelect || !sparklineMetricSelect) return;
+
+    const selectedSplit = sparklineSplitSelect.value;
+    const selectedMetric = sparklineMetricSelect.value;
+
+    const metricLabel =
+      selectedMetric === "sf_pct_diff" ? "SF%" :
+      selectedMetric === "sa_pct_diff" ? "SA%" :
+      "Net";
+
+    const teams = [...new Set(trendRows.map(row => row.teamAbbrev))]
+      .filter(Boolean)
+      .sort();
+
+    sparklineGrid.innerHTML = "";
+
+    teams.forEach(team => {
+      const teamRows = trendRows
+        .filter(row => row.teamAbbrev === team && row.homeRoad === selectedSplit)
+        .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
+
+      if (teamRows.length === 0) return;
+
+      const values = teamRows.map(row => {
+        if (selectedMetric === "net") {
+          return Number(row[selectedMetric]);
+        }
+
+        return percentValue(row[selectedMetric]);
+      }).filter(value => Number.isFinite(value));
+
+      if (values.length === 0) return;
+
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const range = max - min || 1;
+
+      const points = values.map((value, index) => {
+        const x = values.length === 1 ? 50 : (index / (values.length - 1)) * 100;
+        const y = 36 - ((value - min) / range) * 28;
+        return `${x},${y}`;
+      }).join(" ");
+
+      const latestValue = values[values.length - 1];
+
+      const card = document.createElement("div");
+      card.className = "tsa-sparkline-card";
+
+      card.innerHTML = `
+        <div class="tsa-sparkline-header">
+          <strong>${team}</strong>
+          <span>${latestValue.toFixed(1)}${selectedMetric === "net" ? "" : "%"}</span>
+        </div>
+        <svg class="tsa-sparkline" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <polyline points="${points}" fill="none" stroke="currentColor" stroke-width="2" />
+        </svg>
+        <div class="tsa-sparkline-footer">
+          ${selectedSplit === "R" ? "Road" : "Home"} ${metricLabel}
+        </div>
+      `;
+
+      sparklineGrid.appendChild(card);
+    });
+
+    setStatus(
+      "Showing league sparklines for " +
+      (selectedSplit === "R" ? "road" : "home") +
+      " " + metricLabel + ".",
+      "success"
+    );
+  }
+
   function updateTrendChart() {
 	if (chartMode === "matchup") {
 	  updateMatchupLensChart();
+	  return;
+	}
+
+	if (chartMode === "sparklines") {
+	  renderSparklineGrid();
 	  return;
 	}
     if (!trendChart || !trendTeamSelect || !trendMetricSelect || !trendSplitSelect) return;
@@ -352,6 +436,10 @@ document.addEventListener("DOMContentLoaded", function () {
       modeMatchupButton.classList.toggle("active", mode === "matchup");
     }
 
+	if (modeSparklinesButton) {
+	  modeSparklinesButton.classList.toggle("active", mode === "sparklines");
+	}
+
     if (teamTrendControls) {
       teamTrendControls.style.display = mode === "team" ? "" : "none";
     }
@@ -359,6 +447,22 @@ document.addEventListener("DOMContentLoaded", function () {
     if (matchupLensControls) {
       matchupLensControls.style.display = mode === "matchup" ? "" : "none";
     }
+
+	if (sparklineControls) {
+	  sparklineControls.style.display = mode === "sparklines" ? "" : "none";
+	}
+
+	if (sparklineGrid) {
+	  sparklineGrid.style.display = mode === "sparklines" ? "" : "none";
+	}
+
+	if (mainTrendChartWrap) {
+	  mainTrendChartWrap.style.display = mode === "sparklines" ? "none" : "";
+	}
+
+	if (trendChart) {
+	  trendChart.resize();
+	}
 
     updateTrendChart();
   }
@@ -411,7 +515,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  if (modeSparklinesButton) {
+    modeSparklinesButton.addEventListener("click", function () {
+      setChartMode("sparklines");
+    });
+  }
+
   if (matchupLensSelect) {
     matchupLensSelect.addEventListener("change", updateTrendChart);
+  }
+
+  if (sparklineSplitSelect) {
+    sparklineSplitSelect.addEventListener("change", updateTrendChart);
+  }
+
+  if (sparklineMetricSelect) {
+    sparklineMetricSelect.addEventListener("change", updateTrendChart);
   }
 });

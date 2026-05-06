@@ -41,6 +41,7 @@
 	<div class="tsa-inner-tabs" aria-label="Team trends chart modes">
 	  <button id="tsa-mode-team" class="active" type="button">Team Trends</button>
 	  <button id="tsa-mode-matchup" type="button">Matchup Lens</button>
+	  <button id="tsa-mode-sparklines" class="tsa-chart-mode-button">League Sparklines</button>
 	</div>
 
 	<div id="tsa-team-trend-controls" class="tsa-controls-grid tsa-team-trends-controls">
@@ -88,9 +89,38 @@
 	  </div>
 	</div>
 
-    <div class="tsa-chart-wrap">
-      <canvas id="tsa-team-trend-chart"></canvas>
-    </div>
+	<div id="tsa-sparkline-controls" style="display: none;">
+	  <div class="tsa-helper-text">
+		League-wide team shot trend snapshots by split and metric.
+	  </div>
+
+	  <div class="tsa-controls-grid">
+	    <div class="tsa-field">
+		  <label for="tsa-sparkline-split">Split</label>
+		  <select id="tsa-sparkline-split">
+		    <option value="R" selected>Road</option>
+		    <option value="H">Home</option>
+		  </select>
+	    </div>
+
+	    <div class="tsa-field">
+		  <label for="tsa-sparkline-metric">Metric</label>
+		  <select id="tsa-sparkline-metric">
+		    <option value="sf_pct_diff" selected>SF%</option>
+		    <option value="sa_pct_diff">SA%</option>
+		    <option value="net">Net</option>
+		  </select>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="tsa-sparkline-grid" class="tsa-sparkline-grid" style="display: none;">
+	  Sparkline grid will render here.
+	</div>
+
+	<div id="tsa-main-trend-chart-wrap" class="tsa-chart-wrap">
+	  <canvas id="tsa-team-trend-chart"></canvas>
+	</div>
   </section>
 
 </div>

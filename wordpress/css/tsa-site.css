@@ -525,6 +525,11 @@ input[type="date"] {
   height: 420px;
 }
 
+.tsa-chart-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 #tsa-team-trends-wrap .tsa-controls-grid {
   grid-template-columns: repeat(2, minmax(170px, 1fr));
 }
@@ -577,6 +582,44 @@ input[type="date"] {
   color: #ffffff;
   background: #111827;
   border-color: #111827;
+}
+
+/* =========================
+   League sparkline grid
+========================= */
+
+.tsa-sparkline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.tsa-sparkline-card {
+  border: 1px solid #d9e1ea;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 10px;
+}
+
+.tsa-sparkline-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.tsa-sparkline {
+  width: 100%;
+  height: 42px;
+  color: #111827;
+}
+
+.tsa-sparkline-footer {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
 }
 
 /* =========================
@@ -716,6 +759,10 @@ input[type="date"] {
 
   .tsa-chart-wrap {
     height: 360px;
+  }
+
+  .tsa-sparkline-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
