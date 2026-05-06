@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const sparklineSplitSelect = document.getElementById("tsa-sparkline-split");
   const sparklineMetricSelect = document.getElementById("tsa-sparkline-metric");
   const sparklineWindowSelect = document.getElementById("tsa-sparkline-window");
+  const trendWindowSelect = document.getElementById("tsa-trend-window");
+  const matchupWindowSelect = document.getElementById("tsa-matchup-window");
+  
 
   let trendChart = null;
   let trendRows = [];
@@ -252,6 +255,13 @@ document.addEventListener("DOMContentLoaded", function () {
       .filter(Boolean)
       .sort();
 
+	const selectedWindow = matchupWindowSelect ? matchupWindowSelect.value : "all";
+
+	const displayedLabels =
+	  selectedWindow === "all"
+		? labels
+		: labels.slice(-Number(selectedWindow));
+
     function valuesFor(team, split, metric) {
       const valueByDate = trendRows
         .filter(row => row.teamAbbrev === team && row.homeRoad === split)
@@ -260,10 +270,10 @@ document.addEventListener("DOMContentLoaded", function () {
           return acc;
         }, {});
 
-      return labels.map(date => valueByDate[date] ?? null);
+      return displayedLabels.map(date => valueByDate[date] ?? null);
     }
 
-    trendChart.data.labels = labels;
+    trendChart.data.labels = displayedLabels;
     trendChart.data.datasets = [
       {
         label: firstLabel,
@@ -287,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setStatus(
       "Showing " + firstLabel + " vs " + secondLabel +
-      " across " + labels.length + " slate date(s).",
+      " across " + displayedLabels.length + " slate date(s).",
       "success"
     );
   }
@@ -307,6 +317,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const teams = [...new Set(trendRows.map(row => row.teamAbbrev))]
       .filter(Boolean)
       .sort();
+
+	const labels = [...new Set(
+	  trendRows
+		.filter(row => row.homeRoad === selectedSplit)
+		.map(row => normalizeDate(row.predictionDate))
+	)]
+	  .filter(Boolean)
+	  .sort();
+
+	const displayedLabels =
+	  selectedWindow === "all" ? labels : labels.slice(-Number(selectedWindow));
 
     sparklineGrid.innerHTML = "";
 
@@ -362,13 +383,13 @@ document.addEventListener("DOMContentLoaded", function () {
       sparklineGrid.appendChild(card);
     });
 
-    setStatus(
+	setStatus(
 	  "Showing league sparklines for " +
-	  (selectedSplit === "R" ? "road" : "home") +
+	  (selectedSplit === "R" ? "Road" : "Home") +
 	  " " + metricLabel +
-	  (selectedWindow === "all" ? " across all slate dates." : " across the last " + selectedWindow + " slate dates."),
-      "success"
-    );
+	  " across " + displayedLabels.length + " slate date(s).",
+	  "success"
+	);
   }
 
   function updateTrendChart() {
@@ -397,7 +418,14 @@ document.addEventListener("DOMContentLoaded", function () {
       .filter(Boolean)
       .sort();
 
-    trendChart.data.labels = labels;
+	const selectedWindow = trendWindowSelect ? trendWindowSelect.value : "all";
+
+	const displayedLabels =
+	  selectedWindow === "all"
+		? labels
+		: labels.slice(-Number(selectedWindow));
+
+    trendChart.data.labels = displayedLabels;
 
     trendChart.data.datasets = selectedTeams.map(team => {
       const teamRows = rowsForSplit.filter(row => row.teamAbbrev === team);
@@ -409,7 +437,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       return {
         label: team + " " + metricLabel,
-        data: labels.map(date => valueByDate[date] ?? null),
+        data: displayedLabels.map(date => valueByDate[date] ?? null),
         borderWidth: 2,
         tension: 0.25,
         pointRadius: 3,
@@ -426,7 +454,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Showing " + metricLabel + " trends for " +
         selectedTeams.join(", ") + " " +
         (selectedSplit === "R" ? "road" : "home") +
-        " splits across " + labels.length + " slate date(s).",
+        " splits across " + displayedLabels.length + " slate date(s).",
         "success"
       );
     }
@@ -542,5 +570,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (sparklineWindowSelect) {
     sparklineWindowSelect.addEventListener("change", updateTrendChart);
+  }
+
+  if (trendWindowSelect) {
+    trendWindowSelect.addEventListener("change", updateTrendChart);
+  }
+
+  if (matchupWindowSelect) {
+    matchupWindowSelect.addEventListener("change", updateTrendChart);
   }
 });
