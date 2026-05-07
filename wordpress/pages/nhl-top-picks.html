@@ -1,0 +1,114 @@
+<link href="https://unpkg.com/tabulator-tables@6.3.0/dist/css/tabulator.min.css" rel="stylesheet">
+
+<div id="tsa-table-wrap" class="tsa-top-picks-page">
+
+  <nav class="tsa-data-tabs" aria-label="Top Shelf Analytics pages">
+    <a class="active" href="/nhl-top-picks/">Top Picks</a>
+    <a href="/nhl-analysis/">NHL Analysis</a>
+    <a href="/nhl-matchup-analysis/">Matchup Analysis</a>
+    <a href="/nhl-team-analysis/">Team Analysis</a>
+  </nav>
+
+  <div class="tsa-helper-text">
+    NHL player shot prediction picks based on Top Shelf Analytics’ 2+ shots model.
+    This public preview focuses on historical and upcoming 2+ shot predictions,
+    model performance metrics, shot distribution indicators, and final hit/miss results.
+  </div>
+
+  <details class="tsa-dataset-notes">
+    <summary>Table Notes</summary>
+
+    <p>
+      Each row represents one player prediction for 2+ shots on a given prediction date.
+    </p>
+
+    <p>
+      Prediction probability and model performance metrics come from
+      <code>NEXTGAME_master.csv</code>. Actual results are updated using the
+      <code>shots</code> column from <code>skater_summary.csv</code>.
+    </p>
+
+    <p>
+      Distribution metrics include mean, median, mode, skew, and concentration.
+      Concentration measures the share of prior games where a player’s shot total
+      finished within ±1 of their median shot total as of the model cutoff date.
+    </p>
+
+    <p>
+      Pending rows indicate games where the prediction exists, but final shot results
+      have not yet been joined.
+    </p>
+  </details>
+
+  <div id="tsa-status" class="tsa-status loading">
+    Loading top picks...
+  </div>
+
+  <div class="tsa-controls-grid tsa-top-picks-controls">
+    <div class="tsa-field">
+      <label for="tsa-prediction-date">Prediction Date</label>
+      <select id="tsa-prediction-date">
+        <option value="">All Dates</option>
+      </select>
+    </div>
+
+    <div class="tsa-field">
+      <label for="tsa-search">Search Player</label>
+      <input id="tsa-search" type="text" placeholder="e.g. MacKinnon">
+    </div>
+
+    <div class="tsa-field">
+      <label for="tsa-team">Team</label>
+      <select id="tsa-team">
+        <option value="">All Teams</option>
+      </select>
+    </div>
+
+    <div class="tsa-field">
+      <label for="tsa-position">Position</label>
+      <select id="tsa-position">
+        <option value="">All Positions</option>
+      </select>
+    </div>
+
+    <div class="tsa-field">
+      <label for="tsa-result">Result</label>
+      <select id="tsa-result">
+        <option value="">All Results</option>
+        <option value="Hit">Hit</option>
+        <option value="Miss">Miss</option>
+        <option value="Pending">Pending</option>
+      </select>
+    </div>
+
+    <div class="tsa-field">
+      <label for="tsa-min-prob">Min 2+ Probability</label>
+      <input id="tsa-min-prob" type="number" min="0" max="100" step="1" placeholder="e.g. 60">
+    </div>
+
+    <div class="tsa-field">
+      <label for="tsa-min-precision">Min Precision</label>
+      <input id="tsa-min-precision" type="number" min="0" max="100" step="1" placeholder="e.g. 60">
+    </div>
+
+    <div class="tsa-field">
+      <label for="tsa-min-f1">Min F1 Score</label>
+      <input id="tsa-min-f1" type="number" min="0" max="100" step="1" placeholder="e.g. 60">
+    </div>
+
+    <div class="tsa-field">
+      <label for="tsa-min-concentration">Min Concentration</label>
+      <input id="tsa-min-concentration" type="number" min="0" max="100" step="1" placeholder="e.g. 60">
+    </div>
+
+    <div class="tsa-field">
+      <label>&nbsp;</label>
+      <button id="tsa-reset" type="button">Reset Filters</button>
+    </div>
+  </div>
+
+  <div id="tsa-table"></div>
+
+</div>
+
+<script src="https://unpkg.com/tabulator-tables@6.3.0/dist/js/tabulator.min.js"></script>

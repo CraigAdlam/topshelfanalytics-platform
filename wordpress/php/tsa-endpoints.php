@@ -4952,3 +4952,231 @@ function tsa_get_matchup_team_trends(WP_REST_Request $request) {
 
     return rest_ensure_response($rows);
 }
+
+
+
+add_action('rest_api_init', function () {
+    register_rest_route('tsa/v1', '/top-picks-2plus', [
+        'methods' => 'GET',
+        'callback' => 'tsa_get_top_picks_2plus',
+        'permission_callback' => '__return_true',
+    ]);
+
+    register_rest_route('tsa/v1', '/top-picks-2plus-meta', [
+        'methods' => 'GET',
+        'callback' => 'tsa_get_top_picks_2plus_meta',
+        'permission_callback' => '__return_true',
+    ]);
+});
+
+function tsa_get_top_picks_2plus(WP_REST_Request $request) {
+    global $wpdb;
+
+    tsa_set_utf8mb4();
+
+    $table = $wpdb->prefix . 'tsa_top_picks_2plus';
+
+    $page = max(1, intval($request->get_param('page') ?: 1));
+    $size_param = $request->get_param('size') ?: $request->get_param('per_page') ?: 25;
+    $per_page = min(100, max(10, intval($size_param)));
+    $offset = ($page - 1) * $per_page;
+
+    $prediction_date = sanitize_text_field($request->get_param('predictionDate'));
+    $search = sanitize_text_field($request->get_param('search'));
+    $team = sanitize_text_field($request->get_param('teamAbbrev'));
+    $position = sanitize_text_field($request->get_param('positionCode'));
+    $result = sanitize_text_field($request->get_param('resultLabel'));
+
+    $min_prob = $request->get_param('minProb2Plus');
+    $min_precision = $request->get_param('minPrecision2Plus');
+    $min_f1 = $request->get_param('minF1Score2Plus');
+    $min_concentration = $request->get_param('minShotsConcentration');
+
+    $where = [];
+    $params = [];
+
+    if ($prediction_date !== '') {
+        $where[] = 'predictionDate = %s';
+        $params[] = $prediction_date;
+    }
+
+    if ($team !== '') {
+        $where[] = 'teamAbbrev = %s';
+        $params[] = $team;
+    }
+
+    if ($position !== '') {
+        $where[] = 'positionCode = %s';
+        $params[] = $position;
+    }
+
+    if ($result !== '') {
+        $where[] = 'resultLabel = %s';
+        $params[] = $result;
+    }
+
+    if ($search !== '') {
+        $search = trim($search);
+
+        if (ctype_digit($search)) {
+            $where[] = '(playerId = %d OR skaterFullName LIKE %s)';
+            $params[] = intval($search);
+            $params[] = '%' . $wpdb->esc_like($search) . '%';
+        } else {
+            $where[] = 'skaterFullName LIKE %s';
+            $params[] = '%' . $wpdb->esc_like($search) . '%';
+        }
+    }
+
+    if ($min_prob !== '' && is_numeric($min_prob)) {
+        $where[] = 'predProb2Plus >= %f';
+        $params[] = floatval($min_prob);
+    }
+
+    if ($min_precision !== '' && is_numeric($min_precision)) {
+        $where[] = 'precision2Plus >= %f';
+        $params[] = floatval($min_precision);
+    }
+
+    if ($min_f1 !== '' && is_numeric($min_f1)) {
+        $where[] = 'f1Score2Plus >= %f';
+        $params[] = floatval($min_f1);
+    }
+
+    if ($min_concentration !== '' && is_numeric($min_concentration)) {
+        $where[] = 'shotsConcentration >= %f';
+        $params[] = floatval($min_concentration);
+    }
+
+    $where_sql = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+
+    $count_sql = "SELECT COUNT(*) FROM `$table` $where_sql";
+
+    $total = !empty($params)
+        ? intval($wpdb->get_var($wpdb->prepare($count_sql, ...$params)))
+        : intval($wpdb->get_var($count_sql));
+
+    $last_page = max(1, ceil($total / $per_page));
+
+    $allowed_sort_fields = [
+        'predictionDate',
+        'dataCutoffDate',
+        'playerId',
+        'skaterFullName',
+        'teamAbbrev',
+        'opponentTeamAbbrev',
+        'homeRoad',
+        'positionCode',
+        'predProb2Plus',
+        'accuracy2Plus',
+        'precision2Plus',
+        'recall2Plus',
+        'f1Score2Plus',
+        'modelGames2Plus',
+        'actualShots',
+        'hit2Plus',
+        'resultLabel',
+        'shotsMean',
+        'shotsMedian',
+        'shotsMode',
+        'shotsConcentration',
+        'shotsSkew',
+        'gamesInDistribution',
+    ];
+
+    $sort_field = 'predictionDate';
+    $sort_dir = 'DESC';
+
+    $sorters = $request->get_param('sort');
+
+    if (empty($sorters)) {
+        $sorters = $request->get_param('sorters');
+    }
+
+    if (is_string($sorters)) {
+        $decoded = json_decode($sorters, true);
+
+        if (json_last_error() === JSON_ERROR_NONE) {
+            $sorters = $decoded;
+        }
+    }
+
+    if (!empty($sorters) && is_array($sorters)) {
+        $first_sorter = $sorters[0] ?? null;
+
+        if (is_array($first_sorter)) {
+            if (!empty($first_sorter['field']) && in_array($first_sorter['field'], $allowed_sort_fields, true)) {
+                $sort_field = $first_sorter['field'];
+            }
+
+            if (!empty($first_sorter['dir']) && strtolower($first_sorter['dir']) === 'asc') {
+                $sort_dir = 'ASC';
+            }
+        }
+    }
+
+    $secondary_sort = $sort_field === 'predictionDate'
+        ? ', predProb2Plus DESC, precision2Plus DESC'
+        : '';
+
+    $order_sql = "ORDER BY `$sort_field` $sort_dir $secondary_sort";
+
+    $data_sql = "
+        SELECT *
+        FROM `$table`
+        $where_sql
+        $order_sql
+        LIMIT %d OFFSET %d
+    ";
+
+    $data_params = array_merge($params, [$per_page, $offset]);
+
+    $rows = $wpdb->get_results(
+        $wpdb->prepare($data_sql, ...$data_params),
+        ARRAY_A
+    );
+
+    return [
+        'data' => $rows,
+        'last_page' => $last_page,
+        'total' => $total,
+    ];
+}
+
+function tsa_get_top_picks_2plus_meta() {
+    global $wpdb;
+
+    tsa_set_utf8mb4();
+
+    $table = $wpdb->prefix . 'tsa_top_picks_2plus';
+
+    $prediction_dates = $wpdb->get_col("
+        SELECT DISTINCT predictionDate
+        FROM `$table`
+        WHERE predictionDate IS NOT NULL
+        ORDER BY predictionDate DESC
+    ");
+
+    $teams = $wpdb->get_col("
+        SELECT DISTINCT teamAbbrev
+        FROM `$table`
+        WHERE teamAbbrev IS NOT NULL AND teamAbbrev <> ''
+        ORDER BY teamAbbrev
+    ");
+
+    $positions = $wpdb->get_col("
+        SELECT DISTINCT positionCode
+        FROM `$table`
+        WHERE positionCode IS NOT NULL AND positionCode <> ''
+        ORDER BY positionCode
+    ");
+
+    return [
+        'predictionDates' => $prediction_dates,
+        'teams' => $teams,
+        'positions' => $positions,
+        'minPredictionDate' => $wpdb->get_var("SELECT MIN(predictionDate) FROM `$table`"),
+        'maxPredictionDate' => $wpdb->get_var("SELECT MAX(predictionDate) FROM `$table`"),
+        'rows' => intval($wpdb->get_var("SELECT COUNT(*) FROM `$table`")),
+    ];
+}

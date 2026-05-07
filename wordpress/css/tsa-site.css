@@ -775,3 +775,50 @@ input[type="date"] {
     flex: 1 1 100%;
   }
 }
+
+/* =========================
+   Top picks page
+========================= */
+
+.tsa-top-picks-page #tsa-table .tabulator {
+  max-width: none;
+}
+
+.tsa-top-picks-page #tsa-table .tabulator-tableholder {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tsa-top-picks-page #tsa-table .tabulator-table {
+  min-width: 1550px;
+}
+
+.tsa-top-picks-page .tabulator-col-title,
+.tsa-top-picks-page .tabulator-cell {
+  text-align: center;
+}
+
+.tsa-top-picks-page .tabulator-cell[tabulator-field="skaterFullName"],
+.tsa-top-picks-page .tabulator-col[tabulator-field="skaterFullName"] .tabulator-col-title {
+  text-align: left;
+}
+
+.tsa-top-picks-page .tabulator-row:hover {
+  background: #f8fafc !important;
+}
+
+.tsa-top-picks-page .tabulator-header {
+  font-weight: 700;
+}
+
+.tsa-top-picks-page .tabulator-cell {
+  font-size: 13px;
+}
+
+.tsa-top-picks-page .tabulator-col {
+  background: #f3f4f6;
+}
+
+.tsa-top-picks-page .tabulator-row {
+  min-height: 36px;
+}
