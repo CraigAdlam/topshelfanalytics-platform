@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data: valuesFor(firstTeam, firstSplit, firstMetric),
         borderWidth: 2,
         tension: 0.25,
-        pointRadius: 3,
+        pointRadius: 0,
         pointHoverRadius: 5
       },
       {
@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data: valuesFor(secondTeam, secondSplit, secondMetric),
         borderWidth: 2,
         tension: 0.25,
-        pointRadius: 3,
+        pointRadius: 0,
         pointHoverRadius: 5
       }
     ];
@@ -364,6 +364,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const latestValue = values[values.length - 1];
 
+	  const firstValue = values[0];
+	  const delta = latestValue - firstValue;
+
+	  const isPositiveMetric = selectedMetric !== "sa_pct_diff";
+
+	  const threshold =
+	    selectedMetric === "net"
+		  ? 1.5
+		  : 5.0;
+
+	  let sparklineColor = "#111827";
+
+	  if (Math.abs(delta) >= threshold) {
+	    const improved = isPositiveMetric ? delta > 0 : delta < 0;
+
+	    sparklineColor = improved ? "#16a34a" : "#dc2626";
+	  }
+
       const card = document.createElement("div");
       card.className = "tsa-sparkline-card";
 
@@ -373,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <span>${latestValue.toFixed(1)}${selectedMetric === "net" ? "" : "%"}</span>
         </div>
         <svg class="tsa-sparkline" viewBox="0 0 100 40" preserveAspectRatio="none">
-          <polyline points="${points}" fill="none" stroke="currentColor" stroke-width="2" />
+          <polyline points="${points}" fill="none" stroke="${sparklineColor}" stroke-width="2" />
         </svg>
         <div class="tsa-sparkline-footer">
           ${selectedSplit === "R" ? "Road" : "Home"} ${metricLabel}
@@ -440,7 +458,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data: displayedLabels.map(date => valueByDate[date] ?? null),
         borderWidth: 2,
         tension: 0.25,
-        pointRadius: 3,
+        pointRadius: 0,
         pointHoverRadius: 5
       };
     });
