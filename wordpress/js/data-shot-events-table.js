@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const statusBox = document.getElementById("tsa-status");
   const lastUpdatedBox = document.getElementById("tsa-last-updated");
 
-  fetch("/wp-content/uploads/tsa-data/shot_events/wordpress_shot_events_refresh_meta.json")
+  fetch("/wp-content/uploads/tsa-data/shot_events/wp_shot_events_refresh_meta.json")
     .then(response => response.json())
     .then(meta => {
       const raw = meta.finished_at.replace(" ", "T");

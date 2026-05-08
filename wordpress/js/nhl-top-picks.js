@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const statusBox = document.getElementById("tsa-status");
+  const lastUpdatedBox = document.getElementById("tsa-last-updated");
 
   const predictionDateSelect = document.getElementById("tsa-prediction-date");
   const searchInput = document.getElementById("tsa-search");
@@ -83,6 +84,29 @@ document.addEventListener("DOMContentLoaded", function () {
       select.appendChild(option);
     });
   }
+
+  fetch("/wp-content/uploads/tsa-data/top_picks/wp_top_picks_refresh_meta.json")
+    .then(res => res.json())
+    .then(meta => {
+      const raw = meta.finished_at.replace(" ", "T");
+      const date = new Date(raw);
+
+      const formatted = date.toLocaleString("en-CA", {
+        timeZone: "America/Vancouver",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+        timeZoneName: "short"
+      });
+
+      lastUpdatedBox.textContent = "Top picks updated: " + formatted;
+    })
+    .catch(() => {
+      lastUpdatedBox.textContent = "Top picks updated: Unavailable";
+    });
 
   fetch("/wp-json/tsa/v1/top-picks-2plus-meta")
     .then(res => res.json())

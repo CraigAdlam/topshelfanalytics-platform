@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   let matchupMetaByDate = {};
 
-  fetch("/wp-content/uploads/tsa-data/reports/wordpress_matchup_refresh_meta.json")
+  fetch("/wp-content/uploads/tsa-data/reports/wp_matchup_refresh_meta.json")
     .then(res => res.json())
     .then(meta => {
       const raw = meta.finished_at.replace(" ", "T");

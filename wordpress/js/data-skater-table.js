@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const statusBox = document.getElementById("tsa-status");
   const lastUpdatedBox = document.getElementById("tsa-last-updated");
   
-  fetch("/wp-content/uploads/tsa-data/skaters/wordpress_skater_refresh_meta.json")
+  fetch("/wp-content/uploads/tsa-data/skaters/wp_skater_refresh_meta.json")
     .then(response => response.json())
     .then(meta => {
 
