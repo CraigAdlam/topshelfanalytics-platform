@@ -125,7 +125,8 @@ input[type="date"] {
   line-height: 20px;
 }
 
-#tsa-reset {
+#tsa-reset,
+#tsa-chart-reset {
   cursor: pointer;
 }
 

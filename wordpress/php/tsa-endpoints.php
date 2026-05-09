@@ -4993,10 +4993,12 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
     $position = sanitize_text_field($request->get_param('positionCode'));
     $result = sanitize_text_field($request->get_param('resultLabel'));
 
-    $min_prob = $request->get_param('minProb2Plus');
-    $min_precision = $request->get_param('minPrecision2Plus');
-    $min_f1 = $request->get_param('minF1Score2Plus');
-    $min_concentration = $request->get_param('minShotsConcentration');
+	$min_prob = $request->get_param('minProb2Plus');
+	$min_accuracy = $request->get_param('minAccuracy2Plus');
+	$min_precision = $request->get_param('minPrecision2Plus');
+	$min_recall = $request->get_param('minRecall2Plus');
+	$min_f1 = $request->get_param('minF1Score2Plus');
+	$min_concentration = $request->get_param('minShotsConcentration');
 
     $where = [];
     $params = [];
@@ -5034,20 +5036,30 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
         }
     }
 
-    if ($min_prob !== '' && is_numeric($min_prob)) {
-        $where[] = 'predProb2Plus >= %f';
-        $params[] = floatval($min_prob);
-    }
+	if ($min_prob !== '' && is_numeric($min_prob)) {
+		$where[] = 'predProb2Plus >= %f';
+		$params[] = floatval($min_prob);
+	}
 
-    if ($min_precision !== '' && is_numeric($min_precision)) {
-        $where[] = 'precision2Plus >= %f';
-        $params[] = floatval($min_precision);
-    }
+	if ($min_accuracy !== '' && is_numeric($min_accuracy)) {
+		$where[] = 'accuracy2Plus >= %f';
+		$params[] = floatval($min_accuracy);
+	}
 
-    if ($min_f1 !== '' && is_numeric($min_f1)) {
-        $where[] = 'f1Score2Plus >= %f';
-        $params[] = floatval($min_f1);
-    }
+	if ($min_precision !== '' && is_numeric($min_precision)) {
+		$where[] = 'precision2Plus >= %f';
+		$params[] = floatval($min_precision);
+	}
+
+	if ($min_recall !== '' && is_numeric($min_recall)) {
+		$where[] = 'recall2Plus >= %f';
+		$params[] = floatval($min_recall);
+	}
+
+	if ($min_f1 !== '' && is_numeric($min_f1)) {
+		$where[] = 'f1Score2Plus >= %f';
+		$params[] = floatval($min_f1);
+	}
 
     if ($min_concentration !== '' && is_numeric($min_concentration)) {
         $where[] = 'shotsConcentration >= %f';
@@ -5239,6 +5251,7 @@ function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
 
     $table = $wpdb->prefix . 'tsa_top_picks_2plus';
 
+	$min_prob = $request->get_param('minProb2Plus');
     $min_accuracy = $request->get_param('minAccuracy2Plus');
     $min_precision = $request->get_param('minPrecision2Plus');
     $min_recall = $request->get_param('minRecall2Plus');
@@ -5249,6 +5262,11 @@ function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
     ];
 
     $params = [];
+
+	if ($min_prob !== '' && is_numeric($min_prob)) {
+		$where[] = 'predProb2Plus >= %f';
+		$params[] = floatval($min_prob);
+	}
 
     if ($min_accuracy !== '' && is_numeric($min_accuracy)) {
         $where[] = 'accuracy2Plus >= %f';

@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const playerPoolBox = document.getElementById("tsa-player-pool");
 
   const performanceCanvas = document.getElementById("tsa-top-picks-performance-chart");
+  const chartMinProbInput = document.getElementById("tsa-chart-min-prob");
   const chartMinAccuracyInput = document.getElementById("tsa-chart-min-accuracy");
   const chartMinPrecisionInput = document.getElementById("tsa-chart-min-precision");
   const chartMinRecallInput = document.getElementById("tsa-chart-min-recall");
   const chartMinF1Input = document.getElementById("tsa-chart-min-f1");
+  const chartResetButton = document.getElementById("tsa-chart-reset");
 
   let performanceChart = null;
 
@@ -101,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!performanceChart || !chartMinF1Input) return;
 
 	const params = new URLSearchParams({
+	  minProb2Plus: getPercentParam(chartMinProbInput),
 	  minAccuracy2Plus: getPercentParam(chartMinAccuracyInput),
 	  minPrecision2Plus: getPercentParam(chartMinPrecisionInput),
 	  minRecall2Plus: getPercentParam(chartMinRecallInput),
@@ -146,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   [
+	chartMinProbInput,
     chartMinAccuracyInput,
     chartMinPrecisionInput,
     chartMinRecallInput,
@@ -155,6 +159,18 @@ document.addEventListener("DOMContentLoaded", function () {
       el.addEventListener("change", loadPerformanceChart);
     }
   });
+
+  if (chartResetButton) {
+    chartResetButton.addEventListener("click", function () {
+      chartMinProbInput.value = "";
+      chartMinAccuracyInput.value = "";
+      chartMinPrecisionInput.value = "";
+      chartMinRecallInput.value = "";
+      chartMinF1Input.value = "";
+
+      loadPerformanceChart();
+    });
+  }
 
   loadLastUpdated();
   buildPerformanceChart();

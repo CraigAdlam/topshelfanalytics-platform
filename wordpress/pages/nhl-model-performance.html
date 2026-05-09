@@ -1,4 +1,5 @@
 <div id="tsa-table-wrap" class="tsa-top-picks-page tsa-top-picks-performance-page">
+<link href="/wp-content/uploads/tsa-assets/css/tsa-site.css" rel="stylesheet">
 
   <nav class="tsa-data-tabs" aria-label="Top Shelf Analytics top picks pages">
     <a class="active" href="/nhl-model-performance/">Model Performance</a>
@@ -71,6 +72,11 @@
 	<div class="tsa-controls-grid">
 
 	  <div class="tsa-field">
+	    <label for="tsa-chart-min-prob">Min 2+ Probability</label>
+	    <input id="tsa-chart-min-prob" type="number" min="0" max="100" step="1" placeholder="e.g. 70">
+	  </div>
+
+	  <div class="tsa-field">
 		<label for="tsa-chart-min-accuracy">Min Accuracy</label>
 		<input id="tsa-chart-min-accuracy" type="number" min="0" max="100" step="1">
 	  </div>
@@ -88,6 +94,11 @@
 	  <div class="tsa-field">
 		<label for="tsa-chart-min-f1">Min F1 Score</label>
 		<input id="tsa-chart-min-f1" type="number" min="0" max="100" step="1" value="75">
+	  </div>
+
+	  <div class="tsa-field">
+	    <label>&nbsp;</label>
+	    <button id="tsa-chart-reset" type="button">Reset Filters</button>
 	  </div>
 
 	</div>

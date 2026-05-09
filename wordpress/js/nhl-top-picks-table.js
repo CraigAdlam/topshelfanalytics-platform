@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const resultSelect = document.getElementById("tsa-result");
 
   const minProbInput = document.getElementById("tsa-min-prob");
+  const minAccuracyInput = document.getElementById("tsa-min-accuracy");
   const minPrecisionInput = document.getElementById("tsa-min-precision");
+  const minRecallInput = document.getElementById("tsa-min-recall");
   const minF1Input = document.getElementById("tsa-min-f1");
   const minConcentrationInput = document.getElementById("tsa-min-concentration");
 
@@ -60,7 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
       positionCode: positionSelect.value,
       resultLabel: resultSelect.value,
       minProb2Plus: getPercentParam(minProbInput),
+	  minAccuracy2Plus: getPercentParam(minAccuracyInput),
       minPrecision2Plus: getPercentParam(minPrecisionInput),
+	  minRecall2Plus: getPercentParam(minRecallInput),
       minF1Score2Plus: getPercentParam(minF1Input),
       minShotsConcentration: getPercentParam(minConcentrationInput),
     };
@@ -318,7 +322,9 @@ document.addEventListener("DOMContentLoaded", function () {
     positionSelect,
     resultSelect,
     minProbInput,
+	minAccuracyInput,
     minPrecisionInput,
+	minRecallInput,
     minF1Input,
     minConcentrationInput,
   ].forEach(el => {
@@ -340,7 +346,9 @@ document.addEventListener("DOMContentLoaded", function () {
     positionSelect.value = "";
     resultSelect.value = "";
     minProbInput.value = "";
+	minAccuracyInput.value = "";
     minPrecisionInput.value = "";
+	minRecallInput.value = "";
     minF1Input.value = "";
     minConcentrationInput.value = "";
 
