@@ -10,6 +10,35 @@
     This page summarizes completed picks and tracks correct-pick percentage over time.
   </div>
 
+  <details class="tsa-dataset-notes" open>
+    <summary>How to read model performance</summary>
+
+    <p>
+      For shot prop-style predictions, overall accuracy can be misleading. A model can look accurate
+      by correctly identifying many players who finish below the betting threshold, but those are not
+      the picks users are usually trying to act on.
+    </p>
+
+    <p>
+      This page focuses on <strong>2+ shots predictions</strong>, where the goal is to identify players
+      with a stronger chance of reaching the threshold. Because fewer players reach 2+ shots than fall
+      below it, accuracy alone may overstate how useful the model is for finding actionable picks.
+    </p>
+
+    <p>
+      <strong>Precision</strong> measures how often selected picks hit. <strong>Recall</strong> measures
+      how many of the available hits the model is able to capture. <strong>F1 Score</strong> balances
+      both, which makes it useful when trying to keep pick quality high without shrinking the player pool
+      too aggressively.
+    </p>
+
+	<p>
+	  The default minimum F1 Score is set to <strong>75</strong>. This threshold helps balance
+	  pick quality and player coverage, keeping the model focused on stronger predictions while
+	  still providing a meaningful pool of players across each slate.
+	</p>
+  </details>
+
   <div id="tsa-last-updated" class="tsa-last-updated">
     Top picks updated: Loading...
   </div>
@@ -22,6 +51,14 @@
         Based on completed picks using the selected model-quality threshold.
       </div>
     </div>
+
+    <div class="tsa-kpi-card">
+      <div class="tsa-kpi-label">Player Pool</div>
+      <div id="tsa-player-pool" class="tsa-kpi-value">--</div>
+      <div class="tsa-kpi-caption">
+        Completed picks matching the selected model-quality filters.
+      </div>
+    </div>
   </div>
 
   <section class="tsa-chart-card">
@@ -31,12 +68,29 @@
       Correct pick percentage across completed 2+ shots predictions using the current model-quality threshold.
     </div>
 
-    <div class="tsa-controls-grid">
-      <div class="tsa-field">
-        <label for="tsa-chart-min-f1">Chart Min F1 Score</label>
-        <input id="tsa-chart-min-f1" type="number" min="0" max="100" step="1" value="75">
-      </div>
-    </div>
+	<div class="tsa-controls-grid">
+
+	  <div class="tsa-field">
+		<label for="tsa-chart-min-accuracy">Min Accuracy</label>
+		<input id="tsa-chart-min-accuracy" type="number" min="0" max="100" step="1">
+	  </div>
+
+	  <div class="tsa-field">
+		<label for="tsa-chart-min-precision">Min Precision</label>
+		<input id="tsa-chart-min-precision" type="number" min="0" max="100" step="1">
+	  </div>
+
+	  <div class="tsa-field">
+		<label for="tsa-chart-min-recall">Min Recall</label>
+		<input id="tsa-chart-min-recall" type="number" min="0" max="100" step="1">
+	  </div>
+
+	  <div class="tsa-field">
+		<label for="tsa-chart-min-f1">Min F1 Score</label>
+		<input id="tsa-chart-min-f1" type="number" min="0" max="100" step="1" value="75">
+	  </div>
+
+	</div>
 
     <div class="tsa-chart-wrap">
       <canvas id="tsa-top-picks-performance-chart"></canvas>

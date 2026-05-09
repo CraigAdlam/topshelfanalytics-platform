@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const statusBox = document.getElementById("tsa-status");
   const lastUpdatedBox = document.getElementById("tsa-last-updated");
   const correctPicksBox = document.getElementById("tsa-correct-picks");
+  const playerPoolBox = document.getElementById("tsa-player-pool");
 
   const predictionDateSelect = document.getElementById("tsa-prediction-date");
   const searchInput = document.getElementById("tsa-search");
@@ -172,9 +173,23 @@ document.addEventListener("DOMContentLoaded", function () {
 	  {
 	    title: "Player",
 	    field: "skaterFullName",
-	    width: 220,
+	    width: 130,
+		minWidth: 130,
 	    frozen: true,
+      },
+      {
+        title: "Result",
+        field: "resultLabel",
+		width: 75,
+		minWidth: 75,
+        formatter: resultFormatter,
+        hozAlign: "center",
 	  },
+      {
+        title: "Actual Shots",
+        field: "actualShots",
+        hozAlign: "center",
+      },
       {
         title: "Team",
         field: "teamAbbrev",
@@ -195,35 +210,9 @@ document.addEventListener("DOMContentLoaded", function () {
         field: "positionCode",
         width: 70,
       },
-	  {
-	    title: "2+ Prob",
-	    field: "predProb2Plus",
-	    width: 110,
-	    formatter: cell => formatPercent(cell.getValue(), 1),
-	    hozAlign: "center",
-	  },
       {
-        title: "Accuracy",
-        field: "accuracy2Plus",
-        formatter: cell => formatPercent(cell.getValue(), 1),
-        hozAlign: "center",
-      },
-      {
-        title: "Precision",
-        field: "precision2Plus",
-        formatter: cell => formatPercent(cell.getValue(), 1),
-        hozAlign: "center",
-      },
-      {
-        title: "Recall",
-        field: "recall2Plus",
-        formatter: cell => formatPercent(cell.getValue(), 1),
-        hozAlign: "center",
-      },
-      {
-        title: "F1",
-        field: "f1Score2Plus",
-        formatter: cell => formatPercent(cell.getValue(), 1),
+        title: "Games",
+        field: "gamesInDistribution",
         hozAlign: "center",
       },
       {
@@ -256,26 +245,45 @@ document.addEventListener("DOMContentLoaded", function () {
         formatter: cell => formatNumber(cell.getValue(), 2),
         hozAlign: "center",
       },
+	  {
+	    title: "2+ Prob",
+	    field: "predProb2Plus",
+	    width: 110,
+	    formatter: cell => formatPercent(cell.getValue(), 1),
+	    hozAlign: "center",
+	  },
       {
-        title: "Games",
-        field: "gamesInDistribution",
+        title: "Accuracy",
+        field: "accuracy2Plus",
+        formatter: cell => formatPercent(cell.getValue(), 1),
         hozAlign: "center",
       },
       {
-        title: "Actual Shots",
-        field: "actualShots",
+        title: "Precision",
+        field: "precision2Plus",
+        formatter: cell => formatPercent(cell.getValue(), 1),
         hozAlign: "center",
       },
       {
-        title: "Result",
-        field: "resultLabel",
-        formatter: resultFormatter,
+        title: "Recall",
+        field: "recall2Plus",
+        formatter: cell => formatPercent(cell.getValue(), 1),
+        hozAlign: "center",
+      },
+      {
+        title: "F1",
+        field: "f1Score2Plus",
+        formatter: cell => formatPercent(cell.getValue(), 1),
         hozAlign: "center",
       },
     ],
 
 	ajaxResponse: function (url, params, response) {
 	  const total = response.total || 0;
+
+	  if (playerPoolBox) {
+	    playerPoolBox.textContent = total.toLocaleString();
+	  }
 
 	  if (total === 0) {
 		setStatus("No top picks match the selected filters.", "empty");

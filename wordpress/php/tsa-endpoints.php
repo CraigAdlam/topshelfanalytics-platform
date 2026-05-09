@@ -5239,6 +5239,9 @@ function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
 
     $table = $wpdb->prefix . 'tsa_top_picks_2plus';
 
+    $min_accuracy = $request->get_param('minAccuracy2Plus');
+    $min_precision = $request->get_param('minPrecision2Plus');
+    $min_recall = $request->get_param('minRecall2Plus');
     $min_f1 = $request->get_param('minF1Score2Plus');
 
     $where = [
@@ -5246,6 +5249,21 @@ function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
     ];
 
     $params = [];
+
+    if ($min_accuracy !== '' && is_numeric($min_accuracy)) {
+        $where[] = 'accuracy2Plus >= %f';
+        $params[] = floatval($min_accuracy);
+    }
+
+    if ($min_precision !== '' && is_numeric($min_precision)) {
+        $where[] = 'precision2Plus >= %f';
+        $params[] = floatval($min_precision);
+    }
+
+    if ($min_recall !== '' && is_numeric($min_recall)) {
+        $where[] = 'recall2Plus >= %f';
+        $params[] = floatval($min_recall);
+    }
 
     if ($min_f1 !== '' && is_numeric($min_f1)) {
         $where[] = 'f1Score2Plus >= %f';

@@ -3,7 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const lastUpdatedBox = document.getElementById("tsa-last-updated");
   const correctPicksBox = document.getElementById("tsa-correct-picks");
+  const playerPoolBox = document.getElementById("tsa-player-pool");
+
   const performanceCanvas = document.getElementById("tsa-top-picks-performance-chart");
+  const chartMinAccuracyInput = document.getElementById("tsa-chart-min-accuracy");
+  const chartMinPrecisionInput = document.getElementById("tsa-chart-min-precision");
+  const chartMinRecallInput = document.getElementById("tsa-chart-min-recall");
   const chartMinF1Input = document.getElementById("tsa-chart-min-f1");
 
   let performanceChart = null;
@@ -95,13 +100,26 @@ document.addEventListener("DOMContentLoaded", function () {
   function loadPerformanceChart() {
     if (!performanceChart || !chartMinF1Input) return;
 
-    const minF1 = Number(chartMinF1Input.value || 75) / 100;
+	const params = new URLSearchParams({
+	  minAccuracy2Plus: getPercentParam(chartMinAccuracyInput),
+	  minPrecision2Plus: getPercentParam(chartMinPrecisionInput),
+	  minRecall2Plus: getPercentParam(chartMinRecallInput),
+	  minF1Score2Plus: getPercentParam(chartMinF1Input)
+	});
 
-    fetch("/wp-json/tsa/v1/top-picks-2plus-performance?minF1Score2Plus=" + minF1)
+	fetch("/wp-json/tsa/v1/top-picks-2plus-performance?" + params.toString())
       .then(res => res.json())
       .then(rows => {
         const labels = rows.map(row => String(row.predictionDate).slice(0, 10));
         const values = rows.map(row => Number(row.correct_pick_pct));
+		
+		const totalPool = rows.reduce((sum, row) => {
+		  return sum + Number(row.completed_picks || 0);
+		}, 0);
+
+		if (playerPoolBox) {
+		  playerPoolBox.textContent = totalPool.toLocaleString();
+		}
 
         performanceChart.data.labels = labels;
         performanceChart.data.datasets[0].data = values;
@@ -119,9 +137,24 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  if (chartMinF1Input) {
-    chartMinF1Input.addEventListener("change", loadPerformanceChart);
+  function getPercentParam(input) {
+    const value = Number(input.value);
+
+    return Number.isFinite(value) && input.value !== ""
+      ? value / 100
+      : "";
   }
+
+  [
+    chartMinAccuracyInput,
+    chartMinPrecisionInput,
+    chartMinRecallInput,
+    chartMinF1Input
+  ].forEach(el => {
+    if (el) {
+      el.addEventListener("change", loadPerformanceChart);
+    }
+  });
 
   loadLastUpdated();
   buildPerformanceChart();
