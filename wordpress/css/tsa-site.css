@@ -822,3 +822,46 @@ input[type="date"] {
 .tsa-top-picks-page .tabulator-row {
   min-height: 36px;
 }
+
+/* =========================
+   Top picks KPI cards
+========================= */
+
+.tsa-top-picks-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 0 16px 0;
+}
+
+.tsa-kpi-card {
+  min-width: 220px;
+  padding: 16px 18px;
+  border: 1px solid #d9e1ea;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.tsa-kpi-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.tsa-kpi-value {
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.tsa-kpi-caption {
+  font-size: 12px;
+  line-height: 1.35;
+  color: #6b7280;
+}

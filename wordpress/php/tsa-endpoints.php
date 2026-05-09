@@ -4967,6 +4967,12 @@ add_action('rest_api_init', function () {
         'callback' => 'tsa_get_top_picks_2plus_meta',
         'permission_callback' => '__return_true',
     ]);
+
+	register_rest_route('tsa/v1', '/top-picks-2plus-performance', [
+		'methods' => 'GET',
+		'callback' => 'tsa_get_top_picks_2plus_performance',
+		'permission_callback' => '__return_true',
+	]);
 });
 
 function tsa_get_top_picks_2plus(WP_REST_Request $request) {
@@ -5058,6 +5064,48 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
 
     $last_page = max(1, ceil($total / $per_page));
 
+	$correct_sql = "
+		SELECT
+			COUNT(*) AS completed_picks,
+			SUM(CASE WHEN correctPick = 1 THEN 1 ELSE 0 END) AS correct_picks
+		FROM `$table`
+		$where_sql
+		AND correctPick IS NOT NULL
+	";
+
+	if (empty($where_sql)) {
+		$correct_sql = "
+			SELECT
+				COUNT(*) AS completed_picks,
+				SUM(CASE WHEN correctPick = 1 THEN 1 ELSE 0 END) AS correct_picks
+			FROM `$table`
+			WHERE correctPick IS NOT NULL
+		";
+	} else {
+		$correct_sql = str_replace(
+			$where_sql,
+			$where_sql . " AND correctPick IS NOT NULL",
+			"
+			SELECT
+				COUNT(*) AS completed_picks,
+				SUM(CASE WHEN correctPick = 1 THEN 1 ELSE 0 END) AS correct_picks
+			FROM `$table`
+			$where_sql
+			"
+		);
+	}
+
+	$correct_row = !empty($params)
+		? $wpdb->get_row($wpdb->prepare($correct_sql, ...$params), ARRAY_A)
+		: $wpdb->get_row($correct_sql, ARRAY_A);
+
+	$completed_picks = intval($correct_row['completed_picks'] ?? 0);
+	$correct_picks = intval($correct_row['correct_picks'] ?? 0);
+
+	$correct_pick_pct = $completed_picks > 0
+		? round(($correct_picks / $completed_picks) * 100, 1)
+		: null;
+
     $allowed_sort_fields = [
         'predictionDate',
         'dataCutoffDate',
@@ -5136,11 +5184,14 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
         ARRAY_A
     );
 
-    return [
-        'data' => $rows,
-        'last_page' => $last_page,
-        'total' => $total,
-    ];
+	return [
+		'data' => $rows,
+		'last_page' => $last_page,
+		'total' => $total,
+		'completed_picks' => $completed_picks,
+		'correct_picks' => $correct_picks,
+		'correct_pick_pct' => $correct_pick_pct,
+	];
 }
 
 function tsa_get_top_picks_2plus_meta() {
@@ -5179,4 +5230,48 @@ function tsa_get_top_picks_2plus_meta() {
         'maxPredictionDate' => $wpdb->get_var("SELECT MAX(predictionDate) FROM `$table`"),
         'rows' => intval($wpdb->get_var("SELECT COUNT(*) FROM `$table`")),
     ];
+}
+
+function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
+    global $wpdb;
+
+    tsa_set_utf8mb4();
+
+    $table = $wpdb->prefix . 'tsa_top_picks_2plus';
+
+    $min_f1 = $request->get_param('minF1Score2Plus');
+
+    $where = [
+        'correctPick IS NOT NULL'
+    ];
+
+    $params = [];
+
+    if ($min_f1 !== '' && is_numeric($min_f1)) {
+        $where[] = 'f1Score2Plus >= %f';
+        $params[] = floatval($min_f1);
+    }
+
+    $where_sql = 'WHERE ' . implode(' AND ', $where);
+
+    $sql = "
+        SELECT
+            predictionDate,
+            COUNT(*) AS completed_picks,
+            SUM(CASE WHEN correctPick = 1 THEN 1 ELSE 0 END) AS correct_picks,
+            ROUND(
+                SUM(CASE WHEN correctPick = 1 THEN 1 ELSE 0 END) / COUNT(*) * 100,
+                1
+            ) AS correct_pick_pct
+        FROM `$table`
+        $where_sql
+        GROUP BY predictionDate
+        ORDER BY predictionDate ASC
+    ";
+
+    $rows = !empty($params)
+        ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
+        : $wpdb->get_results($sql, ARRAY_A);
+
+    return rest_ensure_response($rows);
 }

@@ -2,11 +2,9 @@
 
 <div id="tsa-table-wrap" class="tsa-top-picks-page">
 
-  <nav class="tsa-data-tabs" aria-label="Top Shelf Analytics pages">
-    <a class="active" href="/nhl-top-picks/">Top Picks</a>
-    <a href="/nhl-analysis/">NHL Analysis</a>
-    <a href="/nhl-matchup-analysis/">Matchup Analysis</a>
-    <a href="/nhl-team-analysis/">Team Analysis</a>
+  <nav class="tsa-data-tabs" aria-label="Top Shelf Analytics top picks pages">
+    <a href="/nhl-model-performance/">Model Performance</a>
+    <a class="active" href="/nhl-top-picks/">Top Picks Table</a>
   </nav>
 
   <div class="tsa-helper-text">
@@ -48,6 +46,16 @@
     Loading top picks...
   </div>
 
+  <div class="tsa-top-picks-summary">
+    <div class="tsa-kpi-card">
+      <div class="tsa-kpi-label">Correct Picks</div>
+      <div id="tsa-correct-picks" class="tsa-kpi-value">--</div>
+      <div class="tsa-kpi-caption">
+        Based on completed picks matching the current filters.
+      </div>
+    </div>
+  </div>
+
   <div class="tsa-controls-grid tsa-top-picks-controls">
     <div class="tsa-field">
       <label for="tsa-prediction-date">Prediction Date</label>
@@ -87,22 +95,30 @@
 
     <div class="tsa-field">
       <label for="tsa-min-prob">Min 2+ Probability</label>
-      <input id="tsa-min-prob" type="number" min="0" max="100" step="1" placeholder="e.g. 60">
+      <input id="tsa-min-prob" type="number" min="0" max="100" step="1" placeholder="e.g. 70">
     </div>
 
     <div class="tsa-field">
       <label for="tsa-min-precision">Min Precision</label>
-      <input id="tsa-min-precision" type="number" min="0" max="100" step="1" placeholder="e.g. 60">
+      <input id="tsa-min-precision" type="number" min="0" max="100" step="1" placeholder="e.g. 80">
     </div>
 
-    <div class="tsa-field">
-      <label for="tsa-min-f1">Min F1 Score</label>
-      <input id="tsa-min-f1" type="number" min="0" max="100" step="1" placeholder="e.g. 60">
-    </div>
+	<div class="tsa-field">
+	  <label for="tsa-min-f1">Min F1 Score</label>
+	  <input
+		id="tsa-min-f1"
+		type="number"
+		min="0"
+		max="100"
+		step="1"
+		value="75"
+		placeholder="e.g. 75"
+	  >
+	</div>
 
     <div class="tsa-field">
       <label for="tsa-min-concentration">Min Concentration</label>
-      <input id="tsa-min-concentration" type="number" min="0" max="100" step="1" placeholder="e.g. 60">
+      <input id="tsa-min-concentration" type="number" min="0" max="100" step="1" placeholder="e.g. 40">
     </div>
 
     <div class="tsa-field">

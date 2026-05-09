@@ -17,11 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const resetButton = document.getElementById("tsa-reset");
 
-  const performanceCanvas = document.getElementById("tsa-top-picks-performance-chart");
-  const chartMinF1Input = document.getElementById("tsa-chart-min-f1");
-
-  let performanceChart = null;
-
   function setStatus(message, type = "loading") {
     statusBox.textContent = message;
     statusBox.className = "tsa-status " + type;
@@ -90,76 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
       option.textContent = value;
       select.appendChild(option);
     });
-  }
-
-  function buildPerformanceChart() {
-    if (!performanceCanvas || !window.Chart) return;
-
-    performanceChart = new Chart(performanceCanvas, {
-      type: "line",
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: "Correct Picks %",
-            data: [],
-            borderWidth: 2,
-            tension: 0.25,
-            pointRadius: 0,
-            pointHoverRadius: 5
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            min: 0,
-            max: 100,
-            ticks: {
-              callback: value => value + "%"
-            },
-            title: {
-              display: true,
-              text: "Correct Picks"
-            }
-          },
-          x: {
-            title: {
-              display: true,
-              text: "Prediction Date"
-            }
-          }
-        },
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: context => {
-                return "Correct Picks: " + context.parsed.y.toFixed(1) + "%";
-              }
-            }
-          }
-        }
-      }
-    });
-  }
-
-  function loadPerformanceChart() {
-    if (!performanceChart) return;
-
-    const minF1 = Number(chartMinF1Input.value || 75) / 100;
-
-    fetch("/wp-json/tsa/v1/top-picks-2plus-performance?minF1Score2Plus=" + minF1)
-      .then(res => res.json())
-      .then(rows => {
-        const labels = rows.map(row => String(row.predictionDate).slice(0, 10));
-        const values = rows.map(row => Number(row.correct_pick_pct));
-
-        performanceChart.data.labels = labels;
-        performanceChart.data.datasets[0].data = values;
-        performanceChart.update();
-      });
   }
 
   fetch("/wp-content/uploads/tsa-data/top_picks/wp_top_picks_refresh_meta.json")
@@ -358,17 +283,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		setStatus("Matching picks: " + total.toLocaleString(), "success");
 	  }
 
-	  if (
-		response.correct_pick_pct === null ||
-		response.correct_pick_pct === undefined
-	  ) {
-		if (correctPicksBox) {
+	  if (correctPicksBox) {
+		if (
+		  response.correct_pick_pct === null ||
+		  response.correct_pick_pct === undefined ||
+		  !Number.isFinite(Number(response.correct_pick_pct))
+		) {
+		  correctPicksBox.textContent = "--";
+		} else {
 		  correctPicksBox.textContent =
 			Number(response.correct_pick_pct).toFixed(0) + "%";
 		}
-	  } else {
-		correctPicksBox.textContent =
-		  Number(response.correct_pick_pct).toFixed(0) + "%";
 	  }
 
 	  return response;
@@ -419,12 +344,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     reloadTable();
   });
-
-  if (chartMinF1Input) {
-    chartMinF1Input.addEventListener("change", loadPerformanceChart);
-  }
-
-  buildPerformanceChart();
-  loadPerformanceChart();
 
 });
