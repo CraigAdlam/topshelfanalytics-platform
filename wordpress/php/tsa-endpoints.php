@@ -26,6 +26,7 @@ function tsa_get_skater_summary($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -76,6 +77,11 @@ function tsa_get_skater_summary($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -201,6 +207,7 @@ function tsa_get_skater_bios($request) {
     $search = sanitize_text_field($request->get_param('search'));
     $teams_raw = sanitize_text_field($request->get_param('teams'));
     $positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -224,6 +231,11 @@ function tsa_get_skater_bios($request) {
         $where[] = "skaterFullName LIKE %s";
         $params[] = $like;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -354,6 +366,7 @@ function tsa_get_skater_faceoffpercentages($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -404,6 +417,11 @@ function tsa_get_skater_faceoffpercentages($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -553,6 +571,7 @@ function tsa_get_skater_faceoffwins($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -603,6 +622,11 @@ function tsa_get_skater_faceoffwins($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -758,6 +782,7 @@ function tsa_get_skater_goalsforagainst($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -808,6 +833,11 @@ function tsa_get_skater_goalsforagainst($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -955,6 +985,7 @@ function tsa_get_skater_penalties($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1005,6 +1036,11 @@ function tsa_get_skater_penalties($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -1156,6 +1192,7 @@ function tsa_get_skater_penaltykill($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1206,6 +1243,11 @@ function tsa_get_skater_penaltykill($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -1357,6 +1399,7 @@ function tsa_get_skater_penaltyshots($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1407,6 +1450,11 @@ function tsa_get_skater_penaltyshots($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -1544,6 +1592,7 @@ function tsa_get_skater_percentages($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1594,6 +1643,11 @@ function tsa_get_skater_percentages($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -1745,6 +1799,7 @@ function tsa_get_skater_powerplay($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1795,6 +1850,11 @@ function tsa_get_skater_powerplay($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -1946,6 +2006,7 @@ function tsa_get_skater_puckpossessions($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1996,6 +2057,11 @@ function tsa_get_skater_puckpossessions($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -2143,6 +2209,7 @@ function tsa_get_skater_realtime($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -2193,6 +2260,11 @@ function tsa_get_skater_realtime($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -2350,6 +2422,7 @@ function tsa_get_skater_scoringpergame($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -2400,6 +2473,11 @@ function tsa_get_skater_scoringpergame($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -2554,6 +2632,7 @@ function tsa_get_skater_scoringrates($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -2604,6 +2683,11 @@ function tsa_get_skater_scoringrates($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -2754,6 +2838,7 @@ function tsa_get_skater_shootout($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -2804,6 +2889,11 @@ function tsa_get_skater_shootout($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -3162,6 +3252,7 @@ function tsa_get_skater_summaryshooting($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -3212,6 +3303,11 @@ function tsa_get_skater_summaryshooting($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -3362,6 +3458,7 @@ function tsa_get_skater_timeonice($request) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -3412,6 +3509,11 @@ function tsa_get_skater_timeonice($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 

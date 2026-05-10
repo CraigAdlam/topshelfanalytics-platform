@@ -125,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const hasDates = datasetHasDates();
 
       return {
+		season: document.getElementById("tsa-season-filter").value,
         search: document.getElementById("tsa-search").value,
         teams: teamSelect.getValue().join(","),
         opponents: hasDates ? opponentSelect.getValue().join(",") : "",
@@ -252,6 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
     el.addEventListener("change", updateDateMode);
   });
 
+  document.getElementById("tsa-season-filter").addEventListener("change", refreshTable);
   document.getElementById("tsa-search").addEventListener("input", refreshTable);
   document.getElementById("tsa-date-single").addEventListener("change", refreshTable);
   document.getElementById("tsa-date-start").addEventListener("change", refreshTable);
@@ -262,6 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
   opponentSelect.on("change", refreshTable);
 
   document.getElementById("tsa-reset").addEventListener("click", function () {
+	document.getElementById("tsa-season-filter").value = "";
     document.getElementById("tsa-search").value = "";
     document.getElementById("tsa-homeroad-filter").value = "";
     document.getElementById("tsa-position-filter").value = "";
@@ -285,6 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const hasDates = datasetHasDates();
 
     return {
+	  season: document.getElementById("tsa-season-filter").value,
       search: document.getElementById("tsa-search").value,
       teams: teamSelect.getValue().join(","),
       opponents: hasDates ? opponentSelect.getValue().join(",") : "",
