@@ -1,36 +1,63 @@
 DROP TABLE IF EXISTS wp_tsa_team_goalgames;
 
 CREATE TABLE wp_tsa_team_goalgames (
+    season VARCHAR(7),
+    seasonId INT,
+    gameTypeId INT,
+
     gameDate DATE,
     gameId BIGINT,
+
     homeRoad VARCHAR(10),
+
     teamFullName VARCHAR(150),
+    teamAbbrev VARCHAR(10),
     teamId BIGINT,
+
     opponentTeamAbbrev VARCHAR(10),
+
     gamesPlayed INT,
+
     wins INT,
     losses INT,
     ties INT,
     otLosses INT,
+
     points INT,
     pointPct DECIMAL(10,4),
+
     winPctOneGoalGames DECIMAL(10,4),
     winPctTwoGoalGames DECIMAL(10,4),
     winPctThreeGoalGames DECIMAL(10,4),
+
     winsOneGoalGames INT,
     winsTwoGoalGames INT,
     winsThreeGoalGames INT,
+
     lossesOneGoalGames INT,
     lossesTwoGoalGames INT,
     lossesThreeGoalGames INT,
+
     otLossesOneGoalGames INT,
+
+    INDEX idx_season (season),
+    INDEX idx_seasonId (seasonId),
+    INDEX idx_gameTypeId (gameTypeId),
 
     INDEX idx_gameDate (gameDate),
     INDEX idx_gameId (gameId),
+
     INDEX idx_teamId (teamId),
     INDEX idx_teamFullName (teamFullName),
+    INDEX idx_teamAbbrev (teamAbbrev),
+
     INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
-    INDEX idx_homeRoad (homeRoad)
+    INDEX idx_homeRoad (homeRoad),
+
+    INDEX idx_season_gameTypeId (season, gameTypeId),
+    INDEX idx_season_gameDate (season, gameDate),
+    INDEX idx_season_teamId (season, teamId),
+    INDEX idx_season_teamAbbrev (season, teamAbbrev)
 );
 
 DELETE FROM wp_tsa_team_goalgames

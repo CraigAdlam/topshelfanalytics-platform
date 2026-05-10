@@ -1,38 +1,59 @@
 DROP TABLE IF EXISTS wp_tsa_skater_faceoffwins;
 
 CREATE TABLE wp_tsa_skater_faceoffwins (
+    season VARCHAR(7),
+    seasonId INT,
+    gameTypeId INT,
+
     gameDate DATE,
     gameId BIGINT,
+
     skaterFullName VARCHAR(150),
     playerId BIGINT,
+
     homeRoad VARCHAR(10),
     teamAbbrev VARCHAR(10),
     opponentTeamAbbrev VARCHAR(10),
+
     positionCode VARCHAR(10),
+
     gamesPlayed INT,
+
     totalFaceoffs INT,
     totalFaceoffWins INT,
     totalFaceoffLosses INT,
+
     faceoffWinPct DECIMAL(10,4),
+
     evFaceoffs INT,
     evFaceoffsWon INT,
     evFaceoffsLost INT,
+
     ppFaceoffs INT,
     ppFaceoffsWon INT,
     ppFaceoffsLost INT,
+
     shFaceoffs INT,
     shFaceoffsWon INT,
     shFaceoffsLost INT,
+
     offensiveZoneFaceoffs INT,
     offensiveZoneFaceoffWins INT,
     offensiveZoneFaceoffLosses INT,
+
     neutralZoneFaceoffs INT,
     neutralZoneFaceoffWins INT,
     neutralZoneFaceoffLosses INT,
+
     defensiveZoneFaceoffs INT,
     defensiveZoneFaceoffWins INT,
     defensiveZoneFaceoffLosses INT,
+
     lastName VARCHAR(100),
+
+    INDEX idx_season (season),
+    INDEX idx_seasonId (seasonId),
+    INDEX idx_gameTypeId (gameTypeId),
 
     INDEX idx_gameDate (gameDate),
     INDEX idx_gameId (gameId),
@@ -41,7 +62,12 @@ CREATE TABLE wp_tsa_skater_faceoffwins (
     INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
     INDEX idx_positionCode (positionCode),
     INDEX idx_homeRoad (homeRoad),
-    INDEX idx_skaterFullName (skaterFullName)
+    INDEX idx_skaterFullName (skaterFullName),
+
+    INDEX idx_season_gameTypeId (season, gameTypeId),
+    INDEX idx_season_gameDate (season, gameDate),
+    INDEX idx_season_teamAbbrev (season, teamAbbrev),
+    INDEX idx_season_playerId (season, playerId)
 );
 
 DELETE FROM wp_tsa_skater_faceoffwins

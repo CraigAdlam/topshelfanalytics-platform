@@ -1,19 +1,33 @@
 DROP TABLE IF EXISTS wp_tsa_shot_events_player_location_priors;
 
 CREATE TABLE wp_tsa_shot_events_player_location_priors (
+    season VARCHAR(7),
+    seasonId INT,
+    gameTypeId INT,
+
     playerId BIGINT,
     shooter VARCHAR(150),
+
     total_shots INT,
+
     inner_slot_rate DECIMAL(10,6),
     mid_slot_rate DECIMAL(10,6),
     circles_rate DECIMAL(10,6),
     perimeter_rate DECIMAL(10,6),
+
     avg_x_std DECIMAL(10,6),
     avg_y_std DECIMAL(10,6),
 
+    INDEX idx_season (season),
+    INDEX idx_seasonId (seasonId),
+    INDEX idx_gameTypeId (gameTypeId),
+
     INDEX idx_playerId (playerId),
     INDEX idx_shooter (shooter),
-    INDEX idx_total_shots (total_shots)
+    INDEX idx_total_shots (total_shots),
+
+    INDEX idx_season_gameTypeId (season, gameTypeId),
+    INDEX idx_season_playerId (season, playerId)
 );
 
 DELETE FROM wp_tsa_shot_events_player_location_priors

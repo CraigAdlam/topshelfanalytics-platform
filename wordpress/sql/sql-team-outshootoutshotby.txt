@@ -1,40 +1,67 @@
 DROP TABLE IF EXISTS wp_tsa_team_outshootoutshotby;
 
 CREATE TABLE wp_tsa_team_outshootoutshotby (
+    season VARCHAR(7),
+    seasonId INT,
+    gameTypeId INT,
+
     gameDate DATE,
     gameId BIGINT,
+
     homeRoad VARCHAR(10),
+
     teamFullName VARCHAR(150),
+    teamAbbrev VARCHAR(10),
     teamId BIGINT,
+
     opponentTeamAbbrev VARCHAR(10),
+
     gamesPlayed INT,
+
     wins INT,
     losses INT,
     otLosses INT,
+
     points INT,
     pointPct DECIMAL(10,4),
+
     shotsForPerGame DECIMAL(10,4),
     shotsAgainstPerGame DECIMAL(10,4),
     netShotsPerGame DECIMAL(10,4),
+
     winsOutshootOpponent INT,
     lossesOutshootOpponent INT,
     tiesOutshootOpponent INT,
     otLossesOutshootOpponent INT,
+
     winsOutshotByOpponent INT,
     lossesOutshotByOpponent INT,
     tiesOutshotByOpponent INT,
     otLossesOutshotByOpponent INT,
+
     winsEvenShots INT,
     lossesEvenShots INT,
     tiesEvenShots INT,
     otLossesEvenShots INT,
 
+    INDEX idx_season (season),
+    INDEX idx_seasonId (seasonId),
+    INDEX idx_gameTypeId (gameTypeId),
+
     INDEX idx_gameDate (gameDate),
     INDEX idx_gameId (gameId),
+
     INDEX idx_teamId (teamId),
     INDEX idx_teamFullName (teamFullName),
+    INDEX idx_teamAbbrev (teamAbbrev),
+
     INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
-    INDEX idx_homeRoad (homeRoad)
+    INDEX idx_homeRoad (homeRoad),
+
+    INDEX idx_season_gameTypeId (season, gameTypeId),
+    INDEX idx_season_gameDate (season, gameDate),
+    INDEX idx_season_teamId (season, teamId),
+    INDEX idx_season_teamAbbrev (season, teamAbbrev)
 );
 
 DELETE FROM wp_tsa_team_outshootoutshotby

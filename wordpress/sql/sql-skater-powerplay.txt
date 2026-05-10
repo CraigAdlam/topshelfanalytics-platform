@@ -1,14 +1,22 @@
 DROP TABLE IF EXISTS wp_tsa_skater_powerplay;
 
 CREATE TABLE wp_tsa_skater_powerplay (
+    season VARCHAR(7),
+    seasonId INT,
+    gameTypeId INT,
+
     gameDate DATE,
     gameId BIGINT,
+
     skaterFullName VARCHAR(150),
     playerId BIGINT,
+
     homeRoad VARCHAR(10),
     teamAbbrev VARCHAR(10),
     opponentTeamAbbrev VARCHAR(10),
+
     positionCode VARCHAR(10),
+
     gamesPlayed INT,
 
     ppGoals INT,
@@ -34,6 +42,10 @@ CREATE TABLE wp_tsa_skater_powerplay (
 
     lastName VARCHAR(100),
 
+    INDEX idx_season (season),
+    INDEX idx_seasonId (seasonId),
+    INDEX idx_gameTypeId (gameTypeId),
+
     INDEX idx_gameDate (gameDate),
     INDEX idx_gameId (gameId),
     INDEX idx_playerId (playerId),
@@ -41,7 +53,12 @@ CREATE TABLE wp_tsa_skater_powerplay (
     INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
     INDEX idx_positionCode (positionCode),
     INDEX idx_homeRoad (homeRoad),
-    INDEX idx_skaterFullName (skaterFullName)
+    INDEX idx_skaterFullName (skaterFullName),
+
+    INDEX idx_season_gameTypeId (season, gameTypeId),
+    INDEX idx_season_gameDate (season, gameDate),
+    INDEX idx_season_teamAbbrev (season, teamAbbrev),
+    INDEX idx_season_playerId (season, playerId)
 );
 
 DELETE FROM wp_tsa_skater_powerplay

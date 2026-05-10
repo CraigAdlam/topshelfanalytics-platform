@@ -1,19 +1,31 @@
 DROP TABLE IF EXISTS wp_tsa_goalie_startedvsrelieved;
 
 CREATE TABLE wp_tsa_goalie_startedvsrelieved (
+    season VARCHAR(7),
+    seasonId INT,
+    gameTypeId INT,
+
     gameDate DATE,
     gameId BIGINT,
+
     goalieFullName VARCHAR(150),
     playerId BIGINT,
+
     homeRoad VARCHAR(10),
+
     teamAbbrev VARCHAR(10),
     opponentTeamAbbrev VARCHAR(10),
+
     shootsCatches VARCHAR(10),
+
     gamesPlayed INT,
+
     wins INT,
     losses INT,
     otLosses INT,
+
     savePct DECIMAL(10,4),
+
     gamesStarted INT,
     gamesStartedWins INT,
     gamesStartedLosses INT,
@@ -22,6 +34,7 @@ CREATE TABLE wp_tsa_goalie_startedvsrelieved (
     gamesStartedSaves INT,
     gamesStartedGoalsAgainst INT,
     gamesStartedSavePct DECIMAL(10,4),
+
     gamesRelieved INT,
     gamesRelievedWins INT,
     gamesRelievedLosses INT,
@@ -30,15 +43,28 @@ CREATE TABLE wp_tsa_goalie_startedvsrelieved (
     gamesRelievedSaves INT,
     gamesRelievedGoalsAgainst INT,
     gamesRelievedSavePct DECIMAL(10,4),
+
     lastName VARCHAR(100),
+
+    INDEX idx_season (season),
+    INDEX idx_seasonId (seasonId),
+    INDEX idx_gameTypeId (gameTypeId),
 
     INDEX idx_gameDate (gameDate),
     INDEX idx_gameId (gameId),
+
     INDEX idx_playerId (playerId),
+
     INDEX idx_teamAbbrev (teamAbbrev),
     INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+
     INDEX idx_homeRoad (homeRoad),
-    INDEX idx_goalieFullName (goalieFullName)
+    INDEX idx_goalieFullName (goalieFullName),
+
+    INDEX idx_season_gameTypeId (season, gameTypeId),
+    INDEX idx_season_gameDate (season, gameDate),
+    INDEX idx_season_teamAbbrev (season, teamAbbrev),
+    INDEX idx_season_playerId (season, playerId)
 );
 
 DELETE FROM wp_tsa_goalie_startedvsrelieved

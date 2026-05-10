@@ -1,40 +1,39 @@
-DROP TABLE IF EXISTS wp_tsa_goalie_bios;
+DROP TABLE IF EXISTS wp_tsa_skater_bios;
 
-CREATE TABLE wp_tsa_goalie_bios (
+CREATE TABLE wp_tsa_skater_bios (
     season VARCHAR(7),
     seasonId INT,
     gameTypeId INT,
 
-    goalieFullName VARCHAR(150),
+    skaterFullName VARCHAR(150),
     playerId BIGINT,
 
     currentTeamAbbrev VARCHAR(10),
+    currentTeamName VARCHAR(100),
 
     shootsCatches VARCHAR(10),
+    positionCode VARCHAR(10),
 
     birthDate DATE,
     birthCity VARCHAR(100),
-    birthStateProvinceCode VARCHAR(10),
+    birthStateProvinceCode VARCHAR(20),
     birthCountryCode VARCHAR(10),
     nationalityCode VARCHAR(10),
 
-    height INT,
+    height VARCHAR(20),
     weight INT,
 
     draftYear INT,
     draftRound INT,
     draftOverall INT,
 
-    firstSeasonForGameType INT,
-
+    firstSeasonForGameType VARCHAR(10),
     isInHallOfFameYn VARCHAR(5),
 
     gamesPlayed INT,
-    wins INT,
-    losses INT,
-    ties INT,
-    otLosses INT,
-    shutouts INT,
+    goals INT,
+    assists INT,
+    points INT,
 
     lastName VARCHAR(100),
 
@@ -43,16 +42,15 @@ CREATE TABLE wp_tsa_goalie_bios (
     INDEX idx_gameTypeId (gameTypeId),
 
     INDEX idx_playerId (playerId),
-    INDEX idx_goalieFullName (goalieFullName),
+    INDEX idx_skaterFullName (skaterFullName),
     INDEX idx_currentTeamAbbrev (currentTeamAbbrev),
-    INDEX idx_shootsCatches (shootsCatches),
-    INDEX idx_birthCountryCode (birthCountryCode),
-    INDEX idx_nationalityCode (nationalityCode),
+    INDEX idx_positionCode (positionCode),
+    INDEX idx_lastName (lastName),
 
     INDEX idx_season_gameTypeId (season, gameTypeId),
     INDEX idx_season_playerId (season, playerId),
     INDEX idx_season_teamAbbrev (season, currentTeamAbbrev)
 );
 
-DELETE FROM wp_tsa_goalie_bios
-WHERE goalieFullName = 'goalieFullName';
+DELETE FROM wp_tsa_skater_bios
+WHERE skaterFullName = 'skaterFullName';

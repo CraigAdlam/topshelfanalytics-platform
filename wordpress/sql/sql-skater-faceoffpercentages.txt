@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS wp_tsa_skater_puckpossessions;
+DROP TABLE IF EXISTS wp_tsa_skater_faceoffpercentages;
 
-CREATE TABLE wp_tsa_skater_puckpossessions (
+CREATE TABLE wp_tsa_skater_faceoffpercentages (
     season VARCHAR(7),
     seasonId INT,
     gameTypeId INT,
@@ -19,24 +19,25 @@ CREATE TABLE wp_tsa_skater_puckpossessions (
     positionCode VARCHAR(10),
 
     gamesPlayed INT,
+    timeOnIcePerGame DECIMAL(10,4),
 
-    timeOnIcePerGame5v5 DECIMAL(10,4),
-    satPct DECIMAL(10,4),
-    usatPct DECIMAL(10,4),
-    goalsPct DECIMAL(10,4),
+    totalFaceoffs INT,
+    evFaceoffs INT,
+    ppFaceoffs INT,
+    shFaceoffs INT,
 
-    individualSatForPer60 DECIMAL(10,4),
-    individualShotsForPer60 DECIMAL(10,4),
+    offensiveZoneFaceoffs INT,
+    neutralZoneFaceoffs INT,
+    defensiveZoneFaceoffs INT,
 
-    onIceShootingPct DECIMAL(10,4),
+    faceoffWinPct DECIMAL(10,4),
+    evFaceoffPct DECIMAL(10,4),
+    ppFaceoffPct DECIMAL(10,4),
+    shFaceoffPct DECIMAL(10,4),
 
-    zoneStartPct DECIMAL(10,4),
-    offensiveZoneStartRatio DECIMAL(10,4),
-    offensiveZoneStartPct DECIMAL(10,4),
-    neutralZoneStartPct DECIMAL(10,4),
-    defensiveZoneStartPct DECIMAL(10,4),
-
-    faceoffPct5v5 DECIMAL(10,4),
+    offensiveZoneFaceoffPct DECIMAL(10,4),
+    neutralZoneFaceoffPct DECIMAL(10,4),
+    defensiveZoneFaceoffPct DECIMAL(10,4),
 
     lastName VARCHAR(100),
 
@@ -59,5 +60,5 @@ CREATE TABLE wp_tsa_skater_puckpossessions (
     INDEX idx_season_playerId (season, playerId)
 );
 
-DELETE FROM wp_tsa_skater_puckpossessions
+DELETE FROM wp_tsa_skater_faceoffpercentages
 WHERE skaterFullName = 'skaterFullName';

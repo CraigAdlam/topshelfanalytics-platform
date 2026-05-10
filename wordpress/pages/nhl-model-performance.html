@@ -7,7 +7,7 @@
   </nav>
 
   <div class="tsa-helper-text">
-    Model performance for Top Shelf Analytics’ 2+ shots prediction model.
+    Model performance for Top Shelf Analytics’ shot prediction model for the 2+ threshold.
     This page summarizes completed picks and tracks correct-pick percentage over time.
   </div>
 
@@ -21,20 +21,20 @@
     </p>
 
     <p>
-      This page focuses on <strong>2+ shots predictions</strong>, where the goal is to identify players
+      This public preview focuses on <strong>2+ shots predictions</strong>, where the goal is to identify players
       with a stronger chance of reaching the threshold. Because fewer players reach 2+ shots than fall
       below it, accuracy alone may overstate how useful the model is for finding actionable picks.
     </p>
 
     <p>
-      <strong>Precision</strong> measures how often selected picks hit. <strong>Recall</strong> measures
-      how many of the available hits the model is able to capture. <strong>F1 Score</strong> balances
+      <code>Precision</code> measures how often selected picks hit. <code>Recall</code> measures
+      how many of the available hits the model is able to capture. <code>F1 Score</code> balances
       both, which makes it useful when trying to keep pick quality high without shrinking the player pool
       too aggressively.
     </p>
 
 	<p>
-	  The default minimum F1 Score is set to <strong>75</strong>. This threshold helps balance
+	  The default minimum <code>F1 Score</code> is set to <strong>75</strong>. This threshold helps balance
 	  pick quality and player coverage, keeping the model focused on stronger predictions while
 	  still providing a meaningful pool of players across each slate.
 	</p>

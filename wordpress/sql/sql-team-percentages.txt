@@ -1,37 +1,63 @@
 DROP TABLE IF EXISTS wp_tsa_team_percentages;
 
 CREATE TABLE wp_tsa_team_percentages (
+    season VARCHAR(7),
+    seasonId INT,
+    gameTypeId INT,
+
     gameDate DATE,
     gameId BIGINT,
+
     homeRoad VARCHAR(10),
+
     teamFullName VARCHAR(150),
+    teamAbbrev VARCHAR(10),
     teamId BIGINT,
+
     opponentTeamAbbrev VARCHAR(10),
+
     gamesPlayed INT,
+
     points INT,
     pointPct DECIMAL(10,4),
+
     goalsForPct DECIMAL(10,4),
+
     satPct DECIMAL(10,4),
     satPctAhead DECIMAL(10,4),
     satPctTied DECIMAL(10,4),
     satPctBehind DECIMAL(10,4),
     satPctClose DECIMAL(10,4),
+
     usatPct DECIMAL(10,4),
     usatPctAhead DECIMAL(10,4),
     usatPctTied DECIMAL(10,4),
     usatPctBehind DECIMAL(10,4),
     usatPctClose DECIMAL(10,4),
+
     zoneStartPct5v5 DECIMAL(10,4),
     shootingPct5v5 DECIMAL(10,4),
     savePct5v5 DECIMAL(10,4),
     shootingPlusSavePct5v5 DECIMAL(10,4),
 
+    INDEX idx_season (season),
+    INDEX idx_seasonId (seasonId),
+    INDEX idx_gameTypeId (gameTypeId),
+
     INDEX idx_gameDate (gameDate),
     INDEX idx_gameId (gameId),
+
     INDEX idx_teamId (teamId),
     INDEX idx_teamFullName (teamFullName),
+    INDEX idx_teamAbbrev (teamAbbrev),
+
     INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
-    INDEX idx_homeRoad (homeRoad)
+    INDEX idx_homeRoad (homeRoad),
+
+    INDEX idx_season_gameTypeId (season, gameTypeId),
+    INDEX idx_season_gameDate (season, gameDate),
+    INDEX idx_season_teamId (season, teamId),
+    INDEX idx_season_teamAbbrev (season, teamAbbrev)
 );
 
 DELETE FROM wp_tsa_team_percentages
