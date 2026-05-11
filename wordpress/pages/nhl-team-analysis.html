@@ -97,14 +97,23 @@
 	  </div>
 
 	  <div class="tsa-field">
+	    <label for="tsa-trend-window-type">Window Type</label>
+	    <select id="tsa-trend-window-type">
+		  <option value="full" selected>Full Season</option>
+		  <option value="last">Last N Slates</option>
+		  <option value="first">First N Slates</option>
+	    </select>
+	  </div>
+
+	  <div class="tsa-field">
 	    <label for="tsa-trend-window">Slate Window</label>
 	    <select id="tsa-trend-window">
-		  <option value="all" selected>Full</option>
-		  <option value="5">Last 5 Slates</option>
-		  <option value="10">Last 10 Slates</option>
-		  <option value="20">Last 20 Slates</option>
-		  <option value="40">Last 40 Slates</option>
-		  <option value="80">Last 80 Slates</option>
+		  <option value="all">All Slates</option>
+		  <option value="5">5 Slates</option>
+		  <option value="10">10 Slates</option>
+		  <option value="20">20 Slates</option>
+		  <option value="40">40 Slates</option>
+		  <option value="80">80 Slates</option>
 	    </select>
 	  </div>
 

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const sparklineSplitSelect = document.getElementById("tsa-sparkline-split");
   const sparklineMetricSelect = document.getElementById("tsa-sparkline-metric");
   const sparklineWindowSelect = document.getElementById("tsa-sparkline-window");
+  const trendWindowTypeSelect = document.getElementById("tsa-trend-window-type");
   const trendWindowSelect = document.getElementById("tsa-trend-window");
   const matchupWindowSelect = document.getElementById("tsa-matchup-window");
 
@@ -55,6 +56,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function normalizeDate(value) {
     return String(value || "").slice(0, 10);
+  }
+
+  function getTeamColors(team, selectedTeams) {
+    const colors = [
+      {
+        borderColor: "#36A2EB",
+        backgroundColor: "rgba(54, 162, 235, 0.2)"
+      },
+      {
+        borderColor: "#FF6384",
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+      },
+      {
+        borderColor: "#FFCE56",
+        backgroundColor: "rgba(255, 206, 86, 0.2)"
+      },
+      {
+        borderColor: "#4BC0C0",
+        backgroundColor: "rgba(75, 192, 192, 0.2)"
+      },
+      {
+        borderColor: "#9966FF",
+        backgroundColor: "rgba(153, 102, 255, 0.2)"
+      }
+    ];
+
+    const teamIndex = selectedTeams.indexOf(team);
+
+    return colors[teamIndex] || colors[0];
   }
 
   function updateTrendTeamPlaceholder() {
@@ -212,21 +242,32 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           }
         },
-        plugins: {
-          legend: {
-            display: true
-          },
-          tooltip: {
-            callbacks: {
-              label: context => {
-                const label = context.dataset.label || "";
-                const value = context.parsed.y;
+		plugins: {
+		  legend: {
+			display: true,
+			labels: {
+			  filter: function (legendItem, data) {
+				const label = legendItem.text;
 
-                return label + ": " + value.toFixed(1) + "%";
-              }
-            }
-          }
-        }
+				const firstIndex = data.datasets.findIndex(function (dataset) {
+				  return dataset.label === label;
+				});
+
+				return legendItem.datasetIndex === firstIndex;
+			  }
+			}
+		  },
+		  tooltip: {
+			callbacks: {
+			  label: context => {
+				const label = context.dataset.label || "";
+				const value = context.parsed.y;
+
+				return label + ": " + value.toFixed(1) + "%";
+			  }
+			}
+		  }
+		}
       }
     });
   }
@@ -473,25 +514,55 @@ document.addEventListener("DOMContentLoaded", function () {
 	  )
 	  .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
 
-    const labels = [...new Set(rowsForCompare.map(row => normalizeDate(row.predictionDate)))]
-      .filter(Boolean)
-      .sort();
+	const selectedWindow = trendWindowSelect ? trendWindowSelect.value : "all";
 
-    const selectedWindow = trendWindowSelect ? trendWindowSelect.value : "all";
+	const windowType = trendWindowTypeSelect
+	  ? trendWindowTypeSelect.value
+	  : "full";
 
-    const displayedLabels =
-      selectedWindow === "all"
-        ? labels
-        : labels.slice(-Number(selectedWindow));
+	let windowedRows = rowsForCompare;
 
-    trendChart.data.labels = displayedLabels;
+	if (selectedWindow !== "all" && windowType !== "full") {
+	  const windowSize = Number(selectedWindow);
+
+	  windowedRows = [];
+
+	  selectedTeams.forEach(team => {
+		selectedSeasons.forEach(season => {
+
+		  const rowsForTeamSeason = rowsForCompare
+			.filter(row =>
+			  row.teamAbbrev === team &&
+			  row.season === season
+			)
+			.sort((a, b) =>
+			  normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate))
+			);
+
+		  const slicedRows =
+			windowType === "first"
+			  ? rowsForTeamSeason.slice(0, windowSize)
+			  : rowsForTeamSeason.slice(-windowSize);
+
+		  windowedRows.push(...slicedRows);
+		});
+	  });
+	}
+
+	const displayedLabels = [...new Set(
+	  windowedRows.map(row => normalizeDate(row.predictionDate))
+	)]
+	  .filter(Boolean)
+	  .sort();
+
+	trendChart.data.labels = displayedLabels;
 
 	trendChart.data.datasets = [];
 
 	selectedTeams.forEach(team => {
 	  selectedSeasons.forEach(season => {
 
-		const valueByDate = rowsForCompare
+		const valueByDate = windowedRows
 		  .filter(row =>
 			row.teamAbbrev === team &&
 			row.season === season
@@ -501,19 +572,14 @@ document.addEventListener("DOMContentLoaded", function () {
 			return acc;
 		  }, {});
 
+		const colors = getTeamColors(team, selectedTeams);
+
 		trendChart.data.datasets.push({
-		  label: team + " " + season + " " + metricLabel,
+		  label: team + " " + metricLabel,
 		  data: displayedLabels.map(date => valueByDate[date] ?? null),
 
-		  borderColor:
-			selectedTeams.indexOf(team) === 0
-			  ? "#36A2EB"
-			  : "#FF6384",
-
-		  backgroundColor:
-			selectedTeams.indexOf(team) === 0
-			  ? "#36A2EB"
-			  : "#FF6384",
+		  borderColor: colors.borderColor,
+		  backgroundColor: colors.backgroundColor,
 
 		  borderWidth: 2,
 		  tension: 0.25,
@@ -578,10 +644,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	const selectedWindow = trendWindowSelect ? trendWindowSelect.value : "all";
 
-	const displayedLabels =
-	  selectedWindow === "all"
-		? labels
-		: labels.slice(-Number(selectedWindow));
+	const windowType = trendWindowTypeSelect
+	  ? trendWindowTypeSelect.value
+	  : "full";
+
+	let displayedLabels;
+
+	if (selectedWindow === "all" || windowType === "full") {
+	  displayedLabels = labels;
+	} else if (windowType === "first") {
+	  displayedLabels = labels.slice(0, Number(selectedWindow));
+	} else {
+	  displayedLabels = labels.slice(-Number(selectedWindow));
+	}
 
     trendChart.data.labels = displayedLabels;
 
@@ -593,14 +668,20 @@ document.addEventListener("DOMContentLoaded", function () {
 	    return acc;
 	  }, {});
 
-      return {
-        label: team + " " + metricLabel,
-        data: displayedLabels.map(date => valueByDate[date] ?? null),
-        borderWidth: 2,
-        tension: 0.25,
-        pointRadius: 0,
-        pointHoverRadius: 5
-      };
+	  const colors = getTeamColors(team, selectedTeams);
+
+	  return {
+	    label: team + " " + metricLabel,
+	    data: displayedLabels.map(date => valueByDate[date] ?? null),
+
+	    borderColor: colors.borderColor,
+	    backgroundColor: colors.backgroundColor,
+
+	    borderWidth: 2,
+	    tension: 0.25,
+	    pointRadius: 0,
+	    pointHoverRadius: 5
+	  };
     });
 
     trendChart.update();
@@ -738,6 +819,10 @@ document.addEventListener("DOMContentLoaded", function () {
     sparklineWindowSelect.addEventListener("change", updateTrendChart);
   }
 
+  if (trendWindowTypeSelect) {
+    trendWindowTypeSelect.addEventListener("change", updateTrendChart);
+  }
+
   if (trendWindowSelect) {
     trendWindowSelect.addEventListener("change", updateTrendChart);
   }
@@ -761,6 +846,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	  if (trendTeamTomSelect) {
 	    trendTeamTomSelect.settings.maxItems = isCompare ? 2 : 5;
 	    trendTeamTomSelect.settings.mode = "multi";
+
+		const selectedTeams = trendTeamTomSelect.getValue();
+
+		if (isCompare && selectedTeams.length > 2) {
+		  trendTeamTomSelect.setValue(selectedTeams.slice(0, 2), true);
+		}
 
 	    if (isCompare) {
 		  trendTeamTomSelect.control_input.placeholder = "Select up to 2 teams...";
