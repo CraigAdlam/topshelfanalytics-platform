@@ -2,7 +2,7 @@ add_action('rest_api_init', function () {
     register_rest_route('tsa/v1', '/skater-summary', [
         'methods' => 'GET',
         'callback' => 'tsa_get_skater_summary',
-        'permission_callback' => '__return_true',
+        '' => '__return_true',
     ]);
 });
 
@@ -3714,6 +3714,7 @@ function tsa_stream_skater_csv_for_table($request, $table_name, $filename_base, 
         $date_single = sanitize_text_field($request->get_param('date_single'));
         $date_start = sanitize_text_field($request->get_param('date_start'));
         $date_end = sanitize_text_field($request->get_param('date_end'));
+		$season = sanitize_text_field($request->get_param('season'));
 
         if (!empty($teams_raw)) {
             $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
@@ -3911,6 +3912,7 @@ function tsa_get_team_dataset($request, $dataset) {
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
+	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -3960,6 +3962,10 @@ function tsa_get_team_dataset($request, $dataset) {
 			$params[] = $like;
 			$params[] = $like;
 		}
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 	}
 
     if (!empty($date_single)) {
@@ -4107,6 +4113,7 @@ function tsa_stream_team_csv($request, $dataset) {
         $date_single = sanitize_text_field($request->get_param('date_single'));
         $date_start = sanitize_text_field($request->get_param('date_start'));
         $date_end = sanitize_text_field($request->get_param('date_end'));
+		$season = sanitize_text_field($request->get_param('season'));
 
         if (!empty($teams_raw)) {
             $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
@@ -4163,6 +4170,10 @@ function tsa_stream_team_csv($request, $dataset) {
             $params[] = $date_start;
             $params[] = $date_end;
         }
+		if (!empty($season)) {
+			$where[] = "season = %s";
+			$params[] = $season;
+		}
     }
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";

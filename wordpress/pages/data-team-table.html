@@ -19,18 +19,17 @@
   <details class="tsa-dataset-notes">
     <summary>About these datasets & columns</summary>
 
-    <p>
-      All columns reflect raw NHL data, with the exception of
-      <code>teamAbbrev</code>, which is added during the publish process for
-      consistency across datasets. For example, in all team datasets,
-      <code>teamAbbrev</code> is derived by mapping <code>teamFullName</code>
-      using a reference lookup from <code>Skater Bios</code>.
-    </p>
+	<p>
+	  All columns reflect raw NHL data, with the exception of
+	  <code>season</code>, <code>seasonId</code>, <code>gameTypeId</code>,
+	  and <code>teamAbbrev</code>, which are added during the publish process
+	  for filtering, grouping, and consistency across datasets.
+	</p>
 
-    <p>
-      This standardized field ensures consistent team identification across datasets and supports
-      filtering, grouping, and downstream analysis workflows.
-    </p>
+	<p>
+	  These standardized fields support multi-season filtering, team identification,
+	  grouping, and downstream analysis workflows across the platform.
+	</p>
 
     <p>
       These datasets can support historical analysis, dashboards, and custom
@@ -80,6 +79,16 @@
     <main class="tsa-main">
 
       <div class="tsa-controls-grid">
+
+		<div class="tsa-field">
+		  <label>Season</label>
+		  <select id="tsa-season-filter">
+			<option value="">All Seasons</option>
+			<option value="2025-26">2025-26</option>
+			<option value="2024-25">2024-25</option>
+			<option value="2023-24">2023-24</option>
+		  </select>
+		</div>
 
         <div class="tsa-field tsa-date-mode-field">
           <label>Game Date Filter Type</label>
