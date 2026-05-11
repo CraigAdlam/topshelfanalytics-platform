@@ -253,7 +253,29 @@ document.addEventListener("DOMContentLoaded", function () {
     el.addEventListener("change", updateDateMode);
   });
 
-  document.getElementById("tsa-season-filter").addEventListener("change", refreshTable);
+  document.getElementById("tsa-season-filter").addEventListener("change", function () {
+    const season = document.getElementById("tsa-season-filter").value;
+
+    if (season === "2023-24") {
+      document.getElementById("tsa-date-start").value = "2023-10-10";
+      document.getElementById("tsa-date-end").value = "2024-04-18";
+      document.getElementById("tsa-date-single").value = "2024-04-18";
+    } else if (season === "2024-25") {
+      document.getElementById("tsa-date-start").value = "2024-10-04";
+      document.getElementById("tsa-date-end").value = "2025-04-17";
+      document.getElementById("tsa-date-single").value = "2025-04-17";
+    } else if (season === "2025-26") {
+      document.getElementById("tsa-date-start").value = "2025-10-07";
+      document.getElementById("tsa-date-end").value = "2026-04-16";
+      document.getElementById("tsa-date-single").value = "2026-04-16";
+    } else {
+      document.getElementById("tsa-date-start").value = defaultStartDate;
+      document.getElementById("tsa-date-end").value = defaultEndDate;
+      document.getElementById("tsa-date-single").value = defaultEndDate;
+    }
+
+    refreshTable();
+  });
   document.getElementById("tsa-search").addEventListener("input", refreshTable);
   document.getElementById("tsa-date-single").addEventListener("change", refreshTable);
   document.getElementById("tsa-date-start").addEventListener("change", refreshTable);
