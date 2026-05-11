@@ -93,10 +93,15 @@ document.addEventListener("DOMContentLoaded", function () {
       { column: "sortId", dir: "asc" }
     ],
 
-    columns: [
-      {
-        title: "Net",
-        field: "road_net",
+	columns: [
+	  {
+		title: "Sort ID",
+		field: "sortId",
+		visible: false
+	  },
+	  {
+		title: "Net",
+		field: "road_net",
         formatter: cell => {
           addCellClass(cell, "road_net_class");
           return formatNumber(cell.getValue(), 2);
