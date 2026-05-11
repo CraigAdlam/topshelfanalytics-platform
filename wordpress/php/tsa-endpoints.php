@@ -5028,6 +5028,12 @@ add_action('rest_api_init', function () {
         'callback' => 'tsa_get_matchup_team_trends',
         'permission_callback' => '__return_true',
     ]);
+
+	register_rest_route('tsa/v1', '/matchup-team-trends-all-seasons', [
+		'methods' => 'GET',
+		'callback' => 'tsa_get_matchup_team_trends_all_seasons',
+		'permission_callback' => '__return_true',
+	]);
 });
 
 function tsa_get_matchup_analysis() {
@@ -5080,6 +5086,66 @@ function tsa_get_matchup_team_trends(WP_REST_Request $request) {
         FROM $table
         $where_sql
         ORDER BY teamAbbrev ASC, homeRoad ASC, predictionDate ASC
+    ";
+
+    if (!empty($params)) {
+        $sql = $wpdb->prepare($sql, $params);
+    }
+
+    $rows = $wpdb->get_results($sql, ARRAY_A);
+
+    return rest_ensure_response($rows);
+}
+
+
+function tsa_get_matchup_team_trends_all_seasons(WP_REST_Request $request) {
+    global $wpdb;
+
+    $season = sanitize_text_field($request->get_param('season'));
+    $team = sanitize_text_field($request->get_param('teamAbbrev'));
+    $home_road = sanitize_text_field($request->get_param('homeRoad'));
+
+    $table = $wpdb->prefix . 'tsa_matchup_team_trends_all_seasons';
+
+    $where = [];
+    $params = [];
+
+    if ($season !== '') {
+        $where[] = 'season = %s';
+        $params[] = $season;
+    }
+
+    if ($team !== '') {
+        $where[] = 'teamAbbrev = %s';
+        $params[] = $team;
+    }
+
+    if ($home_road !== '') {
+        $where[] = 'homeRoad = %s';
+        $params[] = $home_road;
+    }
+
+    $where_sql = '';
+
+    if (!empty($where)) {
+        $where_sql = 'WHERE ' . implode(' AND ', $where);
+    }
+
+    $sql = "
+        SELECT
+            season,
+            seasonId,
+            predictionDate,
+            teamAbbrev,
+            homeRoad,
+            sf_pct_diff,
+            sa_pct_diff,
+            net,
+            games_in_split,
+            slateIndex
+        FROM $table
+        $where_sql
+        ORDER BY season ASC, teamAbbrev ASC, homeRoad ASC, slateIndex ASC
     ";
 
     if (!empty($params)) {

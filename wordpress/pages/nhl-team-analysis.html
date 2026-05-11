@@ -46,8 +46,35 @@
 	</div>
 
 	<div id="tsa-team-trend-controls" class="tsa-controls-grid tsa-team-trends-controls">
+
 	  <div class="tsa-field">
-		<label for="tsa-trend-team">Teams (max 5)</label>
+	    <label for="tsa-season-mode">Season View</label>
+	    <select id="tsa-season-mode">
+		  <option value="single" selected>Single Season</option>
+		  <option value="compare">Compare Seasons</option>
+	    </select>
+	  </div>
+
+	  <div class="tsa-field">
+	    <label for="tsa-trend-season">Season</label>
+	    <select id="tsa-trend-season">
+		  <option value="2025-26" selected>2025-26</option>
+		  <option value="2024-25">2024-25</option>
+		  <option value="2023-24">2023-24</option>
+	    </select>
+	  </div>
+
+	  <div class="tsa-field" id="tsa-compare-seasons-field" style="display: none;">
+	    <label for="tsa-compare-seasons">Compare Seasons</label>
+	    <select id="tsa-compare-seasons" multiple>
+		  <option value="2025-26" selected>2025-26</option>
+		  <option value="2024-25" selected>2024-25</option>
+		  <option value="2023-24" selected>2023-24</option>
+	    </select>
+	  </div>
+
+	  <div class="tsa-field">
+		<label for="tsa-trend-team">Team</label>
 		<select id="tsa-trend-team" multiple>
 		  <option value="">Loading teams...</option>
 		</select>
@@ -80,6 +107,7 @@
 		  <option value="80">Last 80 Slates</option>
 	    </select>
 	  </div>
+
 	</div>
 
 	<div id="tsa-matchup-lens-controls" class="tsa-controls-grid tsa-team-trends-controls" style="display: none;">

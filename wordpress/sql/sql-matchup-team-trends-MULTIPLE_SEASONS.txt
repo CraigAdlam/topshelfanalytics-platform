@@ -1,0 +1,35 @@
+DROP TABLE IF EXISTS wp_tsa_matchup_team_trends_all_seasons;
+
+CREATE TABLE wp_tsa_matchup_team_trends_all_seasons (
+  season VARCHAR(10),
+  seasonId INT,
+  predictionDate DATE,
+  teamAbbrev VARCHAR(10),
+  homeRoad VARCHAR(10),
+
+  sf_pct_diff DECIMAL(10,6),
+  sa_pct_diff DECIMAL(10,6),
+  net DECIMAL(10,4),
+
+  games_in_split INT,
+  slateIndex INT,
+
+  INDEX idx_season (season),
+  INDEX idx_predictionDate (predictionDate),
+  INDEX idx_teamAbbrev (teamAbbrev),
+
+  INDEX idx_team_split_date (
+    season,
+    teamAbbrev,
+    homeRoad,
+    predictionDate
+  ),
+
+  INDEX idx_season_slate (
+    season,
+    slateIndex
+  )
+);
+
+DELETE FROM wp_tsa_matchup_team_trends_all_seasons
+WHERE season = 'season';
