@@ -4711,6 +4711,7 @@ function tsa_apply_goalie_filters($request, $allowed_columns, &$where, &$params)
     $teams_raw = sanitize_text_field($request->get_param('teams'));
     $opponents_raw = sanitize_text_field($request->get_param('opponents'));
     $homeRoad = sanitize_text_field($request->get_param('homeRoad'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
@@ -4751,6 +4752,11 @@ function tsa_apply_goalie_filters($request, $allowed_columns, &$where, &$params)
         $where[] = "homeRoad = %s";
         $params[] = $homeRoad;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     if (!empty($search)) {
         $search = trim($search);

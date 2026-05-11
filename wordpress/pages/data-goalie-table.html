@@ -19,9 +19,12 @@
   <details class="tsa-dataset-notes">
     <summary>About these datasets & columns</summary>
 
-    <p>
-      All columns reflect raw NHL goalie data prepared from NHL API endpoints.
-    </p>
+	<p>
+	  All columns reflect raw NHL goalie data prepared from NHL API endpoints,
+	  with the exception of <code>season</code>, <code>seasonId</code>, and
+	  <code>gameTypeId</code>, which are added during the publish process to
+	  support multi-season filtering, grouping, and downstream analysis.
+	</p>
 
     <p>
       <code>Shootout</code> and <code>Penalty Shots</code> are sparse datasets and only include
@@ -85,6 +88,16 @@
     <main class="tsa-main">
 
       <div class="tsa-controls-grid">
+
+		<div class="tsa-field">
+		  <label>Season</label>
+		  <select id="tsa-season-filter">
+			<option value="">All Seasons</option>
+			<option value="2025-26">2025-26</option>
+			<option value="2024-25">2024-25</option>
+			<option value="2023-24">2023-24</option>
+		  </select>
+		</div>
 
         <div class="tsa-field tsa-date-mode-field">
           <label>Game Date Filter Type</label>
