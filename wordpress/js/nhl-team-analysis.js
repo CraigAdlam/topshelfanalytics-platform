@@ -7,10 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainTrendChartWrap = document.getElementById("tsa-main-trend-chart-wrap");
   const sparklineSplitSelect = document.getElementById("tsa-sparkline-split");
   const sparklineMetricSelect = document.getElementById("tsa-sparkline-metric");
-  const sparklineWindowSelect = document.getElementById("tsa-sparkline-window");
   const trendWindowTypeSelect = document.getElementById("tsa-trend-window-type");
   const trendWindowSelect = document.getElementById("tsa-trend-window");
-  const matchupWindowSelect = document.getElementById("tsa-matchup-window");
 
   const seasonModeSelect = document.getElementById("tsa-season-mode");
   const trendSeasonSelect = document.getElementById("tsa-trend-season");
@@ -56,6 +54,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function normalizeDate(value) {
     return String(value || "").slice(0, 10);
+  }
+
+  function updateWindowSizeState() {
+    if (!trendWindowTypeSelect || !trendWindowSelect) return;
+
+    const isFullSeason = trendWindowTypeSelect.value === "full";
+
+    trendWindowSelect.disabled = isFullSeason;
+  }
+
+  function hasSelectedSeasons(selectedSeasons) {
+    return Array.isArray(selectedSeasons) && selectedSeasons.length > 0;
   }
 
   function getTeamColors(team, selectedTeams) {
@@ -273,8 +283,24 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateMatchupLensChart() {
-	const selectedSeason = trendSeasonSelect ? trendSeasonSelect.value : "2025-26";
-	const activeRows = trendRows.filter(row => row.season === selectedSeason);
+	const seasonMode = seasonModeSelect ? seasonModeSelect.value : "single";
+
+	const selectedSeasons =
+	  seasonMode === "compare"
+		? getSelectedCompareSeasons()
+		: [trendSeasonSelect ? trendSeasonSelect.value : "2025-26"];
+
+	if (!hasSelectedSeasons(selectedSeasons)) {
+	  setStatus("Select at least one season to display Matchup Lens.", "empty");
+	  trendChart.data.labels = [];
+	  trendChart.data.datasets = [];
+	  trendChart.update();
+	  return;
+	}
+
+	const activeRows = trendRows.filter(row =>
+	  selectedSeasons.includes(row.season)
+	);
 
     if (!trendChart || !roadTeamSelect || !homeTeamSelect || !matchupLensSelect) return;
 
@@ -314,54 +340,97 @@ document.addEventListener("DOMContentLoaded", function () {
       secondLabel = roadTeam + " Road SA%";
     }
 
-    const rowsForPair = trendRows
-      .filter(row =>
-        (row.teamAbbrev === firstTeam && row.homeRoad === firstSplit) ||
-        (row.teamAbbrev === secondTeam && row.homeRoad === secondSplit)
-      )
-      .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
+	const rowsForPair = activeRows
+	  .filter(row =>
+		(row.teamAbbrev === firstTeam && row.homeRoad === firstSplit) ||
+		(row.teamAbbrev === secondTeam && row.homeRoad === secondSplit)
+	  )
+	  .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
 
-    const labels = [...new Set(rowsForPair.map(row => normalizeDate(row.predictionDate)))]
-      .filter(Boolean)
-      .sort();
+	const selectedWindow = trendWindowSelect ? trendWindowSelect.value : "all";
 
-	const selectedWindow = matchupWindowSelect ? matchupWindowSelect.value : "all";
+	const windowType = trendWindowTypeSelect
+	  ? trendWindowTypeSelect.value
+	  : "full";
 
-	const displayedLabels =
-	  selectedWindow === "all"
-		? labels
-		: labels.slice(-Number(selectedWindow));
+	let windowedRows = rowsForPair;
 
-    function valuesFor(team, split, metric) {
-      const valueByDate = trendRows
-        .filter(row => row.teamAbbrev === team && row.homeRoad === split)
-        .reduce((acc, row) => {
-          acc[normalizeDate(row.predictionDate)] = percentValue(row[metric]);
-          return acc;
-        }, {});
+	if (selectedWindow !== "all" && windowType !== "full") {
+	  const windowSize = Number(selectedWindow);
 
-      return displayedLabels.map(date => valueByDate[date] ?? null);
-    }
+	  windowedRows = [];
+
+	  selectedSeasons.forEach(season => {
+		[
+		  { team: firstTeam, split: firstSplit },
+		  { team: secondTeam, split: secondSplit }
+		].forEach(item => {
+		  const rowsForTeamSeason = rowsForPair
+			.filter(row =>
+			  row.season === season &&
+			  row.teamAbbrev === item.team &&
+			  row.homeRoad === item.split
+			)
+			.sort((a, b) =>
+			  normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate))
+			);
+
+		  const slicedRows =
+			windowType === "first"
+			  ? rowsForTeamSeason.slice(0, windowSize)
+			  : rowsForTeamSeason.slice(-windowSize);
+
+		  windowedRows.push(...slicedRows);
+		});
+	  });
+	}
+
+	const displayedLabels = [...new Set(
+	  windowedRows.map(row => normalizeDate(row.predictionDate))
+	)]
+	  .filter(Boolean)
+	  .sort();
+
+	function valuesFor(team, split, metric) {
+	  const valueByDate = windowedRows
+		.filter(row => row.teamAbbrev === team && row.homeRoad === split)
+		.reduce((acc, row) => {
+		  acc[normalizeDate(row.predictionDate)] = percentValue(row[metric]);
+		  return acc;
+		}, {});
+
+	  return displayedLabels.map(date => valueByDate[date] ?? null);
+	}
 
     trendChart.data.labels = displayedLabels;
-    trendChart.data.datasets = [
-      {
-        label: firstLabel,
-        data: valuesFor(firstTeam, firstSplit, firstMetric),
-        borderWidth: 2,
-        tension: 0.25,
-        pointRadius: 0,
-        pointHoverRadius: 5
-      },
-      {
-        label: secondLabel,
-        data: valuesFor(secondTeam, secondSplit, secondMetric),
-        borderWidth: 2,
-        tension: 0.25,
-        pointRadius: 0,
-        pointHoverRadius: 5
-      }
-    ];
+	const matchupTeams = [firstTeam, secondTeam];
+
+	const firstColors = getTeamColors(firstTeam, matchupTeams);
+	const secondColors = getTeamColors(secondTeam, matchupTeams);
+
+	trendChart.data.labels = displayedLabels;
+	trendChart.data.datasets = [
+	  {
+		label: firstLabel,
+		data: valuesFor(firstTeam, firstSplit, firstMetric),
+		borderColor: firstColors.borderColor,
+		backgroundColor: firstColors.backgroundColor,
+		borderWidth: 2,
+		tension: 0.25,
+		pointRadius: 0,
+		pointHoverRadius: 5
+	  },
+	  {
+		label: secondLabel,
+		data: valuesFor(secondTeam, secondSplit, secondMetric),
+		borderColor: secondColors.borderColor,
+		backgroundColor: secondColors.backgroundColor,
+		borderWidth: 2,
+		tension: 0.25,
+		pointRadius: 0,
+		pointHoverRadius: 5
+	  }
+	];
 
     trendChart.update();
 
@@ -373,27 +442,45 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderSparklineGrid() {
-	const selectedSeason = trendSeasonSelect ? trendSeasonSelect.value : "2025-26";
-	const activeRows = trendRows.filter(row => row.season === selectedSeason);
+	const seasonMode = seasonModeSelect ? seasonModeSelect.value : "single";
 
-    if (!sparklineGrid || !sparklineSplitSelect || !sparklineMetricSelect || !sparklineWindowSelect) return;
+	const selectedSeasons =
+	  seasonMode === "compare"
+		? getSelectedCompareSeasons()
+		: [trendSeasonSelect ? trendSeasonSelect.value : "2025-26"];
+
+	if (!hasSelectedSeasons(selectedSeasons)) {
+	  setStatus("Select at least one season to display league sparklines.", "empty");
+	  sparklineGrid.innerHTML = "";
+	  return;
+	}
+
+	const activeRows = trendRows.filter(row =>
+	  selectedSeasons.includes(row.season)
+	);
+
+    if (!sparklineGrid || !sparklineSplitSelect || !sparklineMetricSelect) return;
 
     const selectedSplit = sparklineSplitSelect.value;
     const selectedMetric = sparklineMetricSelect.value;
-	const selectedWindow = sparklineWindowSelect.value;
+	const selectedWindow = trendWindowSelect ? trendWindowSelect.value : "all";
+
+	const windowType = trendWindowTypeSelect
+	  ? trendWindowTypeSelect.value
+	  : "full";
 
     const metricLabel =
       selectedMetric === "sf_pct_diff" ? "SF%" :
       selectedMetric === "sa_pct_diff" ? "SA%" :
       "Net";
 
-    const teams = [...new Set(trendRows.map(row => row.teamAbbrev))]
+    const teams = [...new Set(activeRows.map(row => row.teamAbbrev))]
       .filter(Boolean)
       .sort();
 
 	const labels = [...new Set(
-	  trendRows
-		.filter(row => row.homeRoad === selectedSplit)
+	  activeRows
+	    .filter(row => row.homeRoad === selectedSplit)
 		.map(row => normalizeDate(row.predictionDate))
 	)]
 	  .filter(Boolean)
@@ -405,12 +492,17 @@ document.addEventListener("DOMContentLoaded", function () {
     sparklineGrid.innerHTML = "";
 
     teams.forEach(team => {
-	  let teamRows = trendRows
+	  let teamRows = activeRows
 	    .filter(row => row.teamAbbrev === team && row.homeRoad === selectedSplit)
 	    .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
 
-	  if (selectedWindow !== "all") {
-	    teamRows = teamRows.slice(-Number(selectedWindow));
+	  if (selectedWindow !== "all" && windowType !== "full") {
+	    const windowSize = Number(selectedWindow);
+
+	    teamRows =
+		  windowType === "first"
+		    ? teamRows.slice(0, windowSize)
+		    : teamRows.slice(-windowSize);
 	  }
 
       if (teamRows.length === 0) return;
@@ -497,6 +589,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!trendChart) return;
 
     const selectedSeasons = getSelectedCompareSeasons();
+
+	if (!hasSelectedSeasons(selectedSeasons)) {
+	  setStatus("Select at least one season to compare.", "empty");
+	  trendChart.data.labels = [];
+	  trendChart.data.datasets = [];
+	  trendChart.update();
+	  return;
+	}
 
 	if (selectedTeams.length === 0 || selectedTeams.length > 2) {
 	  setStatus("For season comparison, select up to two teams.", "empty");
@@ -592,13 +692,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     trendChart.update();
 
-    setStatus(
-      "Comparing " + selectedTeams.join(", ") + " " +
-      (selectedSplit === "R" ? "road" : "home") + " " +
-      metricLabel + " across " +
-      selectedSeasons.join(", ") + ".",
-      "success"
-    );
+	setStatus(
+	  "Comparing " + selectedTeams.join(", ") + " " +
+	  (selectedSplit === "R" ? "road" : "home") + " " +
+	  metricLabel + " across " +
+	  displayedLabels.length + " slate date(s).",
+	  "success"
+	);
   }
 
   function updateTrendChart() {
@@ -771,8 +871,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	  compareSeasonsTomSelect.setValue(["2023-24", "2024-25", "2025-26"]);
 
 	  populateMatchupLensTeams(trendRows);
-      buildTrendChart();
-      updateTrendChart();
+	  buildTrendChart();
+	  updateWindowSizeState();
+	  updateTrendChart();
     })
     .catch(() => {
       setStatus("Failed to load team trend data.", "error");
@@ -815,20 +916,15 @@ document.addEventListener("DOMContentLoaded", function () {
     sparklineMetricSelect.addEventListener("change", updateTrendChart);
   }
 
-  if (sparklineWindowSelect) {
-    sparklineWindowSelect.addEventListener("change", updateTrendChart);
-  }
-
   if (trendWindowTypeSelect) {
-    trendWindowTypeSelect.addEventListener("change", updateTrendChart);
+    trendWindowTypeSelect.addEventListener("change", function () {
+      updateWindowSizeState();
+      updateTrendChart();
+    });
   }
 
   if (trendWindowSelect) {
     trendWindowSelect.addEventListener("change", updateTrendChart);
-  }
-
-  if (matchupWindowSelect) {
-    matchupWindowSelect.addEventListener("change", updateTrendChart);
   }
 
   if (seasonModeSelect) {

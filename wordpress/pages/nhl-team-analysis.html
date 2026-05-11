@@ -45,33 +45,58 @@
 	  <button id="tsa-mode-sparklines" class="tsa-chart-mode-button">League Sparklines</button>
 	</div>
 
-	<div id="tsa-team-trend-controls" class="tsa-controls-grid tsa-team-trends-controls">
+	<div id="tsa-shared-season-controls" class="tsa-controls-grid tsa-team-trends-controls">
 
 	  <div class="tsa-field">
-	    <label for="tsa-season-mode">Season View</label>
-	    <select id="tsa-season-mode">
+		<label for="tsa-season-mode">Season View</label>
+		<select id="tsa-season-mode">
 		  <option value="single" selected>Single Season</option>
 		  <option value="compare">Compare Seasons</option>
-	    </select>
+		</select>
 	  </div>
 
 	  <div class="tsa-field">
-	    <label for="tsa-trend-season">Season</label>
-	    <select id="tsa-trend-season">
+		<label for="tsa-trend-season">Season</label>
+		<select id="tsa-trend-season">
 		  <option value="2025-26" selected>2025-26</option>
 		  <option value="2024-25">2024-25</option>
 		  <option value="2023-24">2023-24</option>
-	    </select>
+		</select>
 	  </div>
 
 	  <div class="tsa-field" id="tsa-compare-seasons-field" style="display: none;">
-	    <label for="tsa-compare-seasons">Compare Seasons</label>
-	    <select id="tsa-compare-seasons" multiple>
+		<label for="tsa-compare-seasons">Compare Seasons</label>
+		<select id="tsa-compare-seasons" multiple>
 		  <option value="2025-26" selected>2025-26</option>
 		  <option value="2024-25" selected>2024-25</option>
 		  <option value="2023-24" selected>2023-24</option>
+		</select>
+	  </div>
+
+	  <div class="tsa-field">
+		<label for="tsa-trend-window-type">Window Type</label>
+		<select id="tsa-trend-window-type">
+		  <option value="full" selected>Full Season</option>
+		  <option value="last">Last N Slates</option>
+		  <option value="first">First N Slates</option>
+		</select>
+	  </div>
+
+	  <div class="tsa-field">
+	    <label for="tsa-trend-window">Window Size</label>
+	    <select id="tsa-trend-window">
+		  <option value="all">All Slates</option>
+		  <option value="5">5 Slates</option>
+		  <option value="10">10 Slates</option>
+		  <option value="20">20 Slates</option>
+		  <option value="40">40 Slates</option>
+		  <option value="80">80 Slates</option>
 	    </select>
 	  </div>
+
+	</div>
+
+	<div id="tsa-team-trend-controls" class="tsa-controls-grid tsa-team-trends-controls">
 
 	  <div class="tsa-field">
 		<label for="tsa-trend-team">Team</label>
@@ -96,27 +121,6 @@
 		</select>
 	  </div>
 
-	  <div class="tsa-field">
-	    <label for="tsa-trend-window-type">Window Type</label>
-	    <select id="tsa-trend-window-type">
-		  <option value="full" selected>Full Season</option>
-		  <option value="last">Last N Slates</option>
-		  <option value="first">First N Slates</option>
-	    </select>
-	  </div>
-
-	  <div class="tsa-field">
-	    <label for="tsa-trend-window">Slate Window</label>
-	    <select id="tsa-trend-window">
-		  <option value="all">All Slates</option>
-		  <option value="5">5 Slates</option>
-		  <option value="10">10 Slates</option>
-		  <option value="20">20 Slates</option>
-		  <option value="40">40 Slates</option>
-		  <option value="80">80 Slates</option>
-	    </select>
-	  </div>
-
 	</div>
 
 	<div id="tsa-matchup-lens-controls" class="tsa-controls-grid tsa-team-trends-controls" style="display: none;">
@@ -138,17 +142,6 @@
 		</select>
 	  </div>
 
-	  <div class="tsa-field">
-	    <label for="tsa-matchup-window">Slate Window</label>
-	    <select id="tsa-matchup-window">
-		  <option value="all" selected>Full</option>
-		  <option value="5">Last 5 Slates</option>
-		  <option value="10">Last 10 Slates</option>
-		  <option value="20">Last 20 Slates</option>
-		  <option value="40">Last 40 Slates</option>
-		  <option value="80">Last 80 Slates</option>
-	    </select>
-	  </div>
 	</div>
 
 	<div id="tsa-sparkline-controls" style="display: none;">
@@ -174,17 +167,6 @@
 		  </select>
 	    </div>
 
-		<div class="tsa-field">
-		  <label for="tsa-sparkline-window">Slate Window</label>
-		  <select id="tsa-sparkline-window">
-			<option value="all" selected>Full</option>
-			<option value="5">Last 5 Slates</option>
-			<option value="10">Last 10 Slates</option>
-			<option value="20">Last 20 Slates</option>
-			<option value="40">Last 40 Slates</option>
-			<option value="80">Last 80 Slates</option>
-		  </select>
-		</div>
 	  </div>
 	</div>
 
