@@ -22,11 +22,11 @@ function tsa_get_skater_summary($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -69,6 +69,11 @@ function tsa_get_skater_summary($request) {
 		$params[] = $like;
     }
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($date_single)) {
         $where[] = "gameDate = %s";
         $params[] = $date_single;
@@ -77,11 +82,6 @@ function tsa_get_skater_summary($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -204,10 +204,10 @@ function tsa_get_skater_bios($request) {
     $per_page = min(100, max(10, intval($size_param)));
     $offset = ($page - 1) * $per_page;
 
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $teams_raw = sanitize_text_field($request->get_param('teams'));
     $positionCode = sanitize_text_field($request->get_param('positionCode'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -226,16 +226,16 @@ function tsa_get_skater_bios($request) {
         $params[] = $positionCode;
     }
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
         $where[] = "skaterFullName LIKE %s";
         $params[] = $like;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = $where ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -362,11 +362,11 @@ function tsa_get_skater_faceoffpercentages($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -403,6 +403,11 @@ function tsa_get_skater_faceoffpercentages($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -417,11 +422,6 @@ function tsa_get_skater_faceoffpercentages($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -567,11 +567,11 @@ function tsa_get_skater_faceoffwins($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -608,6 +608,11 @@ function tsa_get_skater_faceoffwins($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -622,11 +627,6 @@ function tsa_get_skater_faceoffwins($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -778,11 +778,11 @@ function tsa_get_skater_goalsforagainst($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -819,6 +819,11 @@ function tsa_get_skater_goalsforagainst($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -833,11 +838,6 @@ function tsa_get_skater_goalsforagainst($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -981,11 +981,11 @@ function tsa_get_skater_penalties($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1022,6 +1022,11 @@ function tsa_get_skater_penalties($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -1036,11 +1041,6 @@ function tsa_get_skater_penalties($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -1188,11 +1188,11 @@ function tsa_get_skater_penaltykill($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1229,6 +1229,11 @@ function tsa_get_skater_penaltykill($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -1243,11 +1248,6 @@ function tsa_get_skater_penaltykill($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -1395,11 +1395,11 @@ function tsa_get_skater_penaltyshots($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1436,6 +1436,11 @@ function tsa_get_skater_penaltyshots($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -1450,11 +1455,6 @@ function tsa_get_skater_penaltyshots($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -1588,11 +1588,11 @@ function tsa_get_skater_percentages($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1629,6 +1629,11 @@ function tsa_get_skater_percentages($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -1643,11 +1648,6 @@ function tsa_get_skater_percentages($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -1795,11 +1795,11 @@ function tsa_get_skater_powerplay($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -1836,6 +1836,11 @@ function tsa_get_skater_powerplay($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -1850,11 +1855,6 @@ function tsa_get_skater_powerplay($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -2002,11 +2002,11 @@ function tsa_get_skater_puckpossessions($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -2043,6 +2043,11 @@ function tsa_get_skater_puckpossessions($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -2057,11 +2062,6 @@ function tsa_get_skater_puckpossessions($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -2205,11 +2205,11 @@ function tsa_get_skater_realtime($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -2246,6 +2246,11 @@ function tsa_get_skater_realtime($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -2260,11 +2265,6 @@ function tsa_get_skater_realtime($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -2418,11 +2418,11 @@ function tsa_get_skater_scoringpergame($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -2459,6 +2459,11 @@ function tsa_get_skater_scoringpergame($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -2473,11 +2478,6 @@ function tsa_get_skater_scoringpergame($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -2628,11 +2628,11 @@ function tsa_get_skater_scoringrates($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -2669,6 +2669,11 @@ function tsa_get_skater_scoringrates($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -2683,11 +2688,6 @@ function tsa_get_skater_scoringrates($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -2834,11 +2834,11 @@ function tsa_get_skater_shootout($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -2875,6 +2875,11 @@ function tsa_get_skater_shootout($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -2889,11 +2894,6 @@ function tsa_get_skater_shootout($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -3032,6 +3032,7 @@ function tsa_get_skater_shottype($request) {
     $teams_raw = sanitize_text_field($request->get_param('teams'));
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
@@ -3068,6 +3069,11 @@ function tsa_get_skater_shottype($request) {
 	}
 	
 	// Shot Type table does not include positionCode, so position filtering is skipped.
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
@@ -3248,11 +3254,11 @@ function tsa_get_skater_summaryshooting($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -3289,6 +3295,11 @@ function tsa_get_skater_summaryshooting($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -3303,11 +3314,6 @@ function tsa_get_skater_summaryshooting($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -3454,11 +3460,11 @@ function tsa_get_skater_timeonice($request) {
 	$opponents_raw = sanitize_text_field($request->get_param('opponents'));
 	$homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$positionCode = sanitize_text_field($request->get_param('positionCode'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -3495,6 +3501,11 @@ function tsa_get_skater_timeonice($request) {
 		$params[] = $positionCode;
 	}
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
     if (!empty($search)) {
         $like = '%' . $wpdb->esc_like($search) . '%';
 		$where[] = "skaterFullName LIKE %s";
@@ -3509,11 +3520,6 @@ function tsa_get_skater_timeonice($request) {
         $params[] = $date_start;
         $params[] = $date_end;
     }
-
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
@@ -3710,11 +3716,11 @@ function tsa_stream_skater_csv_for_table($request, $table_name, $filename_base, 
         $opponents_raw = sanitize_text_field($request->get_param('opponents'));
         $homeRoad = sanitize_text_field($request->get_param('homeRoad'));
         $positionCode = sanitize_text_field($request->get_param('positionCode'));
+		$season = sanitize_text_field($request->get_param('season'));
         $search = sanitize_text_field($request->get_param('search'));
         $date_single = sanitize_text_field($request->get_param('date_single'));
         $date_start = sanitize_text_field($request->get_param('date_start'));
         $date_end = sanitize_text_field($request->get_param('date_end'));
-		$season = sanitize_text_field($request->get_param('season'));
 
         if (!empty($teams_raw)) {
             $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
@@ -3747,6 +3753,11 @@ function tsa_stream_skater_csv_for_table($request, $table_name, $filename_base, 
 		if ($has_position && !empty($positionCode)) {
 			$where[] = "positionCode = %s";
 			$params[] = $positionCode;
+		}
+
+		if (!empty($season)) {
+			$where[] = "season = %s";
+			$params[] = $season;
 		}
 
         if (!empty($search)) {
@@ -3908,11 +3919,11 @@ function tsa_get_team_dataset($request, $dataset) {
     $teams_raw = sanitize_text_field($request->get_param('teams'));
     $opponents_raw = sanitize_text_field($request->get_param('opponents'));
     $homeRoad = sanitize_text_field($request->get_param('homeRoad'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
     $date_end = sanitize_text_field($request->get_param('date_end'));
-	$season = sanitize_text_field($request->get_param('season'));
 
     $where = [];
     $params = [];
@@ -3948,6 +3959,11 @@ function tsa_get_team_dataset($request, $dataset) {
         $params[] = $homeRoad;
     }
 
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
+
 	if (!empty($search)) {
 		$search = trim($search);
 		$upper_search = strtoupper($search);
@@ -3962,10 +3978,6 @@ function tsa_get_team_dataset($request, $dataset) {
 			$params[] = $like;
 			$params[] = $like;
 		}
-	if (!empty($season)) {
-		$where[] = "season = %s";
-		$params[] = $season;
-	}
 	}
 
     if (!empty($date_single)) {
@@ -4109,11 +4121,11 @@ function tsa_stream_team_csv($request, $dataset) {
         $teams_raw = sanitize_text_field($request->get_param('teams'));
         $opponents_raw = sanitize_text_field($request->get_param('opponents'));
         $homeRoad = sanitize_text_field($request->get_param('homeRoad'));
+		$season = sanitize_text_field($request->get_param('season'));
         $search = sanitize_text_field($request->get_param('search'));
         $date_single = sanitize_text_field($request->get_param('date_single'));
         $date_start = sanitize_text_field($request->get_param('date_start'));
         $date_end = sanitize_text_field($request->get_param('date_end'));
-		$season = sanitize_text_field($request->get_param('season'));
 
         if (!empty($teams_raw)) {
             $teams = array_filter(array_map('trim', explode(',', $teams_raw)));
@@ -4146,6 +4158,11 @@ function tsa_stream_team_csv($request, $dataset) {
             $params[] = $homeRoad;
         }
 
+		if (!empty($season)) {
+			$where[] = "season = %s";
+			$params[] = $season;
+		}
+
 		if (!empty($search)) {
 			$search = trim($search);
 			$upper_search = strtoupper($search);
@@ -4170,10 +4187,6 @@ function tsa_stream_team_csv($request, $dataset) {
             $params[] = $date_start;
             $params[] = $date_end;
         }
-		if (!empty($season)) {
-			$where[] = "season = %s";
-			$params[] = $season;
-		}
     }
 
     $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
@@ -4285,6 +4298,7 @@ function tsa_apply_shot_events_filters($request, $allowed_columns, &$where, &$pa
     $homeRoad = sanitize_text_field($request->get_param('homeRoad'));
 	$shot_region = sanitize_text_field($request->get_param('shot_region'));
     $shotType = sanitize_text_field($request->get_param('shotType'));
+	$season = sanitize_text_field($request->get_param('season'));
     $search = sanitize_text_field($request->get_param('search'));
     $date_single = sanitize_text_field($request->get_param('date_single'));
     $date_start = sanitize_text_field($request->get_param('date_start'));
@@ -4336,6 +4350,11 @@ function tsa_apply_shot_events_filters($request, $allowed_columns, &$where, &$pa
         $where[] = "shotType = %s";
         $params[] = $shotType;
     }
+
+	if (!empty($season)) {
+		$where[] = "season = %s";
+		$params[] = $season;
+	}
 
     if (!empty($search)) {
         $search = trim($search);
