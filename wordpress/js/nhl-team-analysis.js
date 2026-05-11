@@ -347,6 +347,25 @@ document.addEventListener("DOMContentLoaded", function () {
 	  )
 	  .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
 
+	const missingTeamSeasonPairs = [];
+
+	[
+	  { team: firstTeam, split: firstSplit },
+	  { team: secondTeam, split: secondSplit }
+	].forEach(item => {
+	  selectedSeasons.forEach(season => {
+		const hasData = rowsForPair.some(row =>
+		  row.teamAbbrev === item.team &&
+		  row.homeRoad === item.split &&
+		  row.season === season
+		);
+
+		if (!hasData) {
+		  missingTeamSeasonPairs.push(item.team + " " + season);
+		}
+	  });
+	});
+
 	const selectedWindow = trendWindowSelect ? trendWindowSelect.value : "all";
 
 	const windowType = trendWindowTypeSelect
@@ -434,11 +453,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     trendChart.update();
 
-    setStatus(
-      "Showing " + firstLabel + " vs " + secondLabel +
-      " across " + displayedLabels.length + " slate date(s).",
-      "success"
-    );
+	const missingNote = missingTeamSeasonPairs.length
+	  ? " Missing data for: " + missingTeamSeasonPairs.join(", ") + "."
+	  : "";
+
+	setStatus(
+	  "Showing " + firstLabel + " vs " + secondLabel +
+	  " across " + displayedLabels.length + " slate date(s)." +
+	  missingNote,
+	  "success"
+	);
   }
 
   function renderSparklineGrid() {
@@ -478,74 +502,155 @@ document.addEventListener("DOMContentLoaded", function () {
       .filter(Boolean)
       .sort();
 
-	const labels = [...new Set(
-	  activeRows
-	    .filter(row => row.homeRoad === selectedSplit)
-		.map(row => normalizeDate(row.predictionDate))
+	let windowedRows = activeRows
+	  .filter(row => row.homeRoad === selectedSplit)
+	  .sort((a, b) =>
+		normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate))
+	  );
+
+	if (selectedWindow !== "all" && windowType !== "full") {
+	  const windowSize = Number(selectedWindow);
+
+	  windowedRows = [];
+
+	  selectedSeasons.forEach(season => {
+		const rowsForSeason = activeRows
+		  .filter(row =>
+			row.season === season &&
+			row.homeRoad === selectedSplit
+		  )
+		  .sort((a, b) =>
+			normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate))
+		  );
+
+		const slicedRows =
+		  windowType === "first"
+			? rowsForSeason.slice(0, windowSize)
+			: rowsForSeason.slice(-windowSize);
+
+		windowedRows.push(...slicedRows);
+	  });
+	}
+
+	const displayedLabels = [...new Set(
+	  windowedRows.map(row => normalizeDate(row.predictionDate))
 	)]
 	  .filter(Boolean)
 	  .sort();
 
-	const displayedLabels =
-	  selectedWindow === "all" ? labels : labels.slice(-Number(selectedWindow));
-
     sparklineGrid.innerHTML = "";
 
     teams.forEach(team => {
-	  let teamRows = activeRows
+	  let teamRows = windowedRows
 	    .filter(row => row.teamAbbrev === team && row.homeRoad === selectedSplit)
 	    .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
 
-	  if (selectedWindow !== "all" && windowType !== "full") {
-	    const windowSize = Number(selectedWindow);
-
-	    teamRows =
-		  windowType === "first"
-		    ? teamRows.slice(0, windowSize)
-		    : teamRows.slice(-windowSize);
-	  }
-
       if (teamRows.length === 0) return;
 
-      const values = teamRows.map(row => {
-        if (selectedMetric === "net") {
-          return Number(row[selectedMetric]);
-        }
+	  const valueByDate = teamRows.reduce((acc, row) => {
+	    const date = normalizeDate(row.predictionDate);
 
-        return percentValue(row[selectedMetric]);
-      }).filter(value => Number.isFinite(value));
+	    acc[date] =
+		  selectedMetric === "net"
+		    ? Number(row[selectedMetric])
+		    : percentValue(row[selectedMetric]);
 
-      if (values.length === 0) return;
+	    return acc;
+	  }, {});
 
-      const min = Math.min(...values);
-      const max = Math.max(...values);
-      const range = max - min || 1;
+	  const values = displayedLabels.map(date => {
+	    const value = valueByDate[date];
+	    return Number.isFinite(value) ? value : null;
+	  });
 
-      const points = values.map((value, index) => {
-        const x = values.length === 1 ? 50 : (index / (values.length - 1)) * 100;
-        const y = 36 - ((value - min) / range) * 28;
-        return `${x},${y}`;
-      }).join(" ");
+	  const finiteValues = values.filter(value => Number.isFinite(value));
 
-      const latestValue = values[values.length - 1];
+	  if (finiteValues.length === 0) return;
 
-	  const firstValue = values[0];
-	  const delta = latestValue - firstValue;
+	const min = Math.min(...finiteValues);
+	const max = Math.max(...finiteValues);
+	const range = max - min || 1;
 
-	  const isPositiveMetric = selectedMetric !== "sa_pct_diff";
+	const higherIsShotFriendly = true;
 
-	  const threshold =
-	    selectedMetric === "net"
-		  ? 1.5
-		  : 5.0;
+	const threshold =
+	  selectedMetric === "net"
+		? 1.5
+		: 5.0;
 
-	  let sparklineColor = "#111827";
+	const seasonPolylines = selectedSeasons.map(season => {
+	    const seasonRows = teamRows.filter(row => row.season === season);
 
-	  if (Math.abs(delta) >= threshold) {
-	    const improved = isPositiveMetric ? delta > 0 : delta < 0;
+	    const seasonValues = seasonRows
+		  .map(row => {
+		    return selectedMetric === "net"
+			  ? Number(row[selectedMetric])
+			  : percentValue(row[selectedMetric]);
+		  })
+		  .filter(value => Number.isFinite(value));
 
-	    sparklineColor = improved ? "#16a34a" : "#dc2626";
+	    if (seasonValues.length === 0) return "";
+
+	    const seasonDelta = seasonValues[seasonValues.length - 1] - seasonValues[0];
+
+	    let seasonColor = "#111827";
+
+	    if (Math.abs(seasonDelta) >= threshold) {
+		  const improved = seasonDelta > 0;
+		  seasonColor = improved ? "#16a34a" : "#dc2626";
+	    }
+
+	    const seasonPoints = displayedLabels
+		  .map((date, index) => {
+		    const row = seasonRows.find(r => normalizeDate(r.predictionDate) === date);
+		    if (!row) return null;
+
+		    const value = selectedMetric === "net"
+			  ? Number(row[selectedMetric])
+			  : percentValue(row[selectedMetric]);
+
+		    if (!Number.isFinite(value)) return null;
+
+		    const x = values.length === 1 ? 50 : (index / (values.length - 1)) * 100;
+		    const y = 36 - ((value - min) / range) * 28;
+
+		    return `${x},${y}`;
+		  })
+		  .filter(Boolean)
+		  .join(" ");
+
+	    if (!seasonPoints) return "";
+
+	    return `<polyline points="${seasonPoints}" fill="none" stroke="${seasonColor}" stroke-width="2" />`;
+	  }).join("");
+
+	  let seasonColorValues = finiteValues;
+
+	  if (seasonMode === "compare") {
+	    for (let i = selectedSeasons.length - 1; i >= 0; i--) {
+		  const season = selectedSeasons[i];
+
+		  const seasonValues = teamRows
+		    .filter(row => row.season === season)
+		    .map(row => {
+			  if (selectedMetric === "net") {
+			    return Number(row[selectedMetric]);
+			  }
+
+			  return percentValue(row[selectedMetric]);
+		    })
+		    .filter(value => Number.isFinite(value));
+
+		  if (seasonValues.length > 0) {
+		    seasonColorValues = seasonValues;
+		    break;
+		  }
+	    }
 	  }
+
+	  const firstValue = seasonColorValues[0];
+	  const latestValue = seasonColorValues[seasonColorValues.length - 1];
+	  const delta = latestValue - firstValue;
 
       const card = document.createElement("div");
       card.className = "tsa-sparkline-card";
@@ -555,9 +660,9 @@ document.addEventListener("DOMContentLoaded", function () {
           <strong>${team}</strong>
           <span>${latestValue.toFixed(1)}${selectedMetric === "net" ? "" : "%"}</span>
         </div>
-        <svg class="tsa-sparkline" viewBox="0 0 100 40" preserveAspectRatio="none">
-          <polyline points="${points}" fill="none" stroke="${sparklineColor}" stroke-width="2" />
-        </svg>
+		<svg class="tsa-sparkline" viewBox="0 0 100 40" preserveAspectRatio="none">
+		  ${seasonPolylines}
+		</svg>
         <div class="tsa-sparkline-footer">
           ${selectedSplit === "R" ? "Road" : "Home"} ${metricLabel}
         </div>
@@ -613,6 +718,21 @@ document.addEventListener("DOMContentLoaded", function () {
 		row.homeRoad === selectedSplit
 	  )
 	  .sort((a, b) => normalizeDate(a.predictionDate).localeCompare(normalizeDate(b.predictionDate)));
+
+	const missingTeamSeasonPairs = [];
+
+	selectedTeams.forEach(team => {
+	  selectedSeasons.forEach(season => {
+		const hasData = rowsForCompare.some(row =>
+		  row.teamAbbrev === team &&
+		  row.season === season
+		);
+
+		if (!hasData) {
+		  missingTeamSeasonPairs.push(team + " " + season);
+		}
+	  });
+	});
 
 	const selectedWindow = trendWindowSelect ? trendWindowSelect.value : "all";
 
@@ -692,11 +812,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     trendChart.update();
 
+	const missingNote = missingTeamSeasonPairs.length
+	  ? " Missing data for: " + missingTeamSeasonPairs.join(", ") + "."
+	  : "";
+
 	setStatus(
 	  "Comparing " + selectedTeams.join(", ") + " " +
 	  (selectedSplit === "R" ? "road" : "home") + " " +
 	  metricLabel + " across " +
-	  displayedLabels.length + " slate date(s).",
+	  displayedLabels.length + " slate date(s)." +
+	  missingNote,
 	  "success"
 	);
   }
