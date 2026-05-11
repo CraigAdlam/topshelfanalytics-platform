@@ -455,6 +455,7 @@ input[type="date"] {
    Cell highlighting
 ========================= */
 
+/*
 .cell-red-light {
   background: #fecaca !important;
 }
@@ -477,6 +478,35 @@ input[type="date"] {
 
 .cell-gold {
   background: #facc15 !important;
+  color: #111827 !important;
+  font-weight: 700;
+}
+*/
+
+.cell-red-light {
+  background: rgba(239, 68, 68, 0.18) !important;
+  color: #7f1d1d !important;
+}
+
+.cell-red-strong {
+  background: rgba(185, 28, 28, 0.72) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.cell-green-light {
+  background: rgba(74, 222, 128, 0.18) !important;
+  color: #14532d !important;
+}
+
+.cell-green-strong {
+  background: rgba(21, 128, 61, 0.72) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.cell-gold {
+  background: rgba(234, 179, 8, 0.52) !important;
   color: #111827 !important;
   font-weight: 700;
 }
