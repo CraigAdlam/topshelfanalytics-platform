@@ -189,10 +189,22 @@ document.addEventListener("DOMContentLoaded", function () {
         formatter: resultFormatter,
         hozAlign: "center",
 	  },
+	  {
+	    title: "2+ Prob",
+	    field: "predProb2Plus",
+	    width: 110,
+	    formatter: cell => formatPercent(cell.getValue(), 1),
+	    hozAlign: "center",
+	  },
       {
         title: "Actual Shots",
         field: "actualShots",
         hozAlign: "center",
+      },
+      {
+        title: "H/R",
+        field: "homeRoad",
+        width: 70,
       },
       {
         title: "Team",
@@ -205,17 +217,12 @@ document.addEventListener("DOMContentLoaded", function () {
         width: 80,
       },
       {
-        title: "H/R",
-        field: "homeRoad",
-        width: 70,
-      },
-      {
         title: "Pos",
         field: "positionCode",
         width: 70,
       },
       {
-        title: "Games",
+        title: "GP",
         field: "gamesInDistribution",
         hozAlign: "center",
       },
@@ -249,13 +256,6 @@ document.addEventListener("DOMContentLoaded", function () {
         formatter: cell => formatNumber(cell.getValue(), 2),
         hozAlign: "center",
       },
-	  {
-	    title: "2+ Prob",
-	    field: "predProb2Plus",
-	    width: 110,
-	    formatter: cell => formatPercent(cell.getValue(), 1),
-	    hozAlign: "center",
-	  },
       {
         title: "Accuracy",
         field: "accuracy2Plus",
@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hozAlign: "center",
       },
       {
-        title: "F1",
+        title: "F1 Score",
         field: "f1Score2Plus",
         formatter: cell => formatPercent(cell.getValue(), 1),
         hozAlign: "center",
