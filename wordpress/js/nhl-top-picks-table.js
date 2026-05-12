@@ -193,8 +193,26 @@ document.addEventListener("DOMContentLoaded", function () {
 	    title: "2+ Prob",
 	    field: "predProb2Plus",
 	    width: 110,
-	    formatter: cell => formatPercent(cell.getValue(), 1),
 	    hozAlign: "center",
+	    formatter: function(cell) {
+		  const value = Number(cell.getValue());
+
+		  if (!Number.isFinite(value)) {
+		    return "";
+		  }
+
+		  const percent = (value * 100).toFixed(1);
+
+		  return `
+		    <div class="tsa-bar-cell">
+			  <div 
+			    class="tsa-bar-fill"
+			    style="width:${percent}%;">
+			  </div>
+			  <span class="tsa-bar-text">${percent}%</span>
+		    </div>
+		  `;
+	    },
 	  },
       {
         title: "Actual Shots",

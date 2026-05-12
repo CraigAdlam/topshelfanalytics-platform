@@ -854,6 +854,37 @@ input[type="date"] {
   min-height: 36px;
 }
 
+.tsa-bar-cell {
+  position: relative;
+  width: 100%;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+}
+
+.tsa-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.18),
+    rgba(37, 99, 235, 0.55)
+  );
+  z-index: 1;
+}
+
+.tsa-bar-text {
+  position: relative;
+  z-index: 2;
+  font-weight: 600;
+}
+
 /* =========================
    Top picks KPI cards
 ========================= */
