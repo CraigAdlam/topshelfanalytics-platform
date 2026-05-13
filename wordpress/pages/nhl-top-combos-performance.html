@@ -1,0 +1,120 @@
+<div id="tsa-table-wrap" class="tsa-top-combos-page tsa-top-combos-performance-page">
+<link href="/wp-content/uploads/tsa-assets/css/tsa-site.css" rel="stylesheet">
+
+  <nav class="tsa-data-tabs" aria-label="Top Shelf Analytics top combos pages">
+    <a href="/nhl-model-performance/">Model Performance</a>
+    <a href="/nhl-top-picks/">Top Picks Table</a>
+    <a class="active" href="/nhl-top-combos-performance/">Top Combos Performance</a>
+    <a href="/nhl-top-combos/">Top Combos Table</a>
+  </nav>
+
+  <div class="tsa-helper-text">
+    Combination performance for Top Shelf Analytics’ 2+ shot combo model.
+    This page tracks correct-combination percentage over time using completed combinations.
+  </div>
+
+  <details class="tsa-dataset-notes" open>
+    <summary>How to read combo performance</summary>
+
+    <p>
+      Each row in the combo dataset represents a 3-leg 2+ shots combination.
+      A combination is marked correct only when every leg in the combo hits.
+    </p>
+
+    <p>
+      Combo win probability is calculated from the model probability of each leg.
+      Expected value and edge are calculated using the combined market price.
+    </p>
+
+    <p>
+      Model-quality filters use combo-level minimum fields, meaning every player in
+      the combination must meet the selected threshold.
+    </p>
+  </details>
+
+  <div id="tsa-last-updated" class="tsa-last-updated">
+    Top combinations updated: Loading...
+  </div>
+
+  <div class="tsa-top-combos-summary">
+    <div class="tsa-kpi-card">
+      <div class="tsa-kpi-label">Correct Combinations</div>
+      <div id="tsa-correct-combos" class="tsa-kpi-value">--</div>
+      <div class="tsa-kpi-caption">
+        Based on completed combinations using the selected model-quality threshold.
+      </div>
+    </div>
+
+    <div class="tsa-kpi-card">
+      <div class="tsa-kpi-label">Combo Pool</div>
+      <div id="tsa-combo-pool" class="tsa-kpi-value">--</div>
+      <div class="tsa-kpi-caption">
+        Completed combinations matching the selected filters.
+      </div>
+    </div>
+  </div>
+
+  <section class="tsa-chart-card">
+    <h2>Top Combos Performance</h2>
+
+    <div class="tsa-helper-text">
+      Correct combination percentage across completed 3-leg 2+ shots combinations using the current filters.
+    </div>
+
+    <div class="tsa-controls-grid">
+
+      <div class="tsa-field">
+        <label for="tsa-chart-min-prob">Min 2+ Probability</label>
+        <input id="tsa-chart-min-prob" type="number" min="0" max="100" step="1" placeholder="e.g. 70">
+      </div>
+
+      <div class="tsa-field">
+        <label for="tsa-chart-min-accuracy">Min Accuracy</label>
+        <input id="tsa-chart-min-accuracy" type="number" min="0" max="100" step="1" placeholder="e.g. 80">
+      </div>
+
+      <div class="tsa-field">
+        <label for="tsa-chart-min-precision">Min Precision</label>
+        <input id="tsa-chart-min-precision" type="number" min="0" max="100" step="1" placeholder="e.g. 80">
+      </div>
+
+      <div class="tsa-field">
+        <label for="tsa-chart-min-recall">Min Recall</label>
+        <input id="tsa-chart-min-recall" type="number" min="0" max="100" step="1" placeholder="e.g. 50">
+      </div>
+
+      <div class="tsa-field">
+        <label for="tsa-chart-min-f1">Min F1 Score</label>
+        <input id="tsa-chart-min-f1" type="number" min="0" max="100" step="1" value="75" placeholder="e.g. 75">
+      </div>
+
+      <div class="tsa-field">
+        <label for="tsa-chart-min-leg-ev">Min Leg EV</label>
+        <input id="tsa-chart-min-leg-ev" type="number" step="0.01" placeholder="e.g. -0.15">
+      </div>
+
+      <div class="tsa-field">
+        <label for="tsa-chart-min-combo-ev">Min Combo EV</label>
+        <input id="tsa-chart-min-combo-ev" type="number" step="0.01" placeholder="e.g. 0">
+      </div>
+
+      <div class="tsa-field">
+        <label for="tsa-chart-min-win-prob">Min Win Probability</label>
+        <input id="tsa-chart-min-win-prob" type="number" min="0" max="100" step="1" placeholder="e.g. 30">
+      </div>
+
+      <div class="tsa-field">
+        <label>&nbsp;</label>
+        <button id="tsa-chart-reset" type="button">Reset Filters</button>
+      </div>
+
+    </div>
+
+    <div class="tsa-chart-wrap">
+      <canvas id="tsa-top-combos-performance-chart"></canvas>
+    </div>
+  </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

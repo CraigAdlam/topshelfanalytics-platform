@@ -1,0 +1,145 @@
+DROP TABLE IF EXISTS wp_tsa_top_combos_2plus;
+
+CREATE TABLE wp_tsa_top_combos_2plus (
+    predictionDate DATE,
+    dataCutoffDate DATE,
+
+    numLegs INT,
+
+    parlayDecimal DECIMAL(12,6),
+    parlayAmerican DECIMAL(12,2),
+
+    winProb DECIMAL(12,6),
+    ev DECIMAL(12,6),
+    parlayEdge DECIMAL(12,6),
+
+    fullKellyPct DECIMAL(12,6),
+    fractionalKelly2x DECIMAL(12,6),
+    fractionalKelly3x DECIMAL(12,6),
+
+    units2x DECIMAL(12,6),
+    units3x DECIMAL(12,6),
+
+    wager2x DECIMAL(12,2),
+    wager3x DECIMAL(12,2),
+
+    correctParlay TINYINT,
+    parlayResultLabel VARCHAR(20),
+
+    minPredProb2Plus DECIMAL(12,6),
+    minAccuracy2Plus DECIMAL(12,6),
+    minPrecision2Plus DECIMAL(12,6),
+    minRecall2Plus DECIMAL(12,6),
+    minF1Score2Plus DECIMAL(12,6),
+    minModelGames2Plus INT,
+    minLegEV2Plus DECIMAL(12,6),
+
+    p1_playerId BIGINT,
+    p1_skaterFullName VARCHAR(150),
+    p1_teamAbbrev VARCHAR(10),
+    p1_opponentTeamAbbrev VARCHAR(10),
+    p1_homeRoad VARCHAR(10),
+    p1_positionCode VARCHAR(10),
+
+    p1_predProb2Plus DECIMAL(12,6),
+    p1_accuracy2Plus DECIMAL(12,6),
+    p1_precision2Plus DECIMAL(12,6),
+    p1_recall2Plus DECIMAL(12,6),
+    p1_f1Score2Plus DECIMAL(12,6),
+
+    p1_modelGames2Plus INT,
+
+    p1_oddsAmerican DECIMAL(12,2),
+    p1_oddsDecimal DECIMAL(12,6),
+    p1_oddsProb DECIMAL(12,6),
+
+    p1_legEV2Plus DECIMAL(12,6),
+    p1_legEdge2Plus DECIMAL(12,6),
+
+    p1_hit2Plus TINYINT,
+    p1_actualShots INT,
+    p1_resultLabel VARCHAR(20),
+
+    p2_playerId BIGINT,
+    p2_skaterFullName VARCHAR(150),
+    p2_teamAbbrev VARCHAR(10),
+    p2_opponentTeamAbbrev VARCHAR(10),
+    p2_homeRoad VARCHAR(10),
+    p2_positionCode VARCHAR(10),
+
+    p2_predProb2Plus DECIMAL(12,6),
+    p2_accuracy2Plus DECIMAL(12,6),
+    p2_precision2Plus DECIMAL(12,6),
+    p2_recall2Plus DECIMAL(12,6),
+    p2_f1Score2Plus DECIMAL(12,6),
+
+    p2_modelGames2Plus INT,
+
+    p2_oddsAmerican DECIMAL(12,2),
+    p2_oddsDecimal DECIMAL(12,6),
+    p2_oddsProb DECIMAL(12,6),
+
+    p2_legEV2Plus DECIMAL(12,6),
+    p2_legEdge2Plus DECIMAL(12,6),
+
+    p2_hit2Plus TINYINT,
+    p2_actualShots INT,
+    p2_resultLabel VARCHAR(20),
+
+    p3_playerId BIGINT,
+    p3_skaterFullName VARCHAR(150),
+    p3_teamAbbrev VARCHAR(10),
+    p3_opponentTeamAbbrev VARCHAR(10),
+    p3_homeRoad VARCHAR(10),
+    p3_positionCode VARCHAR(10),
+
+    p3_predProb2Plus DECIMAL(12,6),
+    p3_accuracy2Plus DECIMAL(12,6),
+    p3_precision2Plus DECIMAL(12,6),
+    p3_recall2Plus DECIMAL(12,6),
+    p3_f1Score2Plus DECIMAL(12,6),
+
+    p3_modelGames2Plus INT,
+
+    p3_oddsAmerican DECIMAL(12,2),
+    p3_oddsDecimal DECIMAL(12,6),
+    p3_oddsProb DECIMAL(12,6),
+
+    p3_legEV2Plus DECIMAL(12,6),
+    p3_legEdge2Plus DECIMAL(12,6),
+
+    p3_hit2Plus TINYINT,
+    p3_actualShots INT,
+    p3_resultLabel VARCHAR(20),
+
+    winProbPct DECIMAL(12,4),
+    evPct DECIMAL(12,4),
+    parlayEdgePct DECIMAL(12,4),
+    fullKellyPctDisplay DECIMAL(12,4),
+
+    INDEX idx_predictionDate (predictionDate),
+    INDEX idx_result (parlayResultLabel),
+
+    INDEX idx_winProb (winProb),
+    INDEX idx_ev (ev),
+    INDEX idx_parlayEdge (parlayEdge),
+
+    INDEX idx_minProb (minPredProb2Plus),
+    INDEX idx_minAccuracy (minAccuracy2Plus),
+    INDEX idx_minPrecision (minPrecision2Plus),
+    INDEX idx_minRecall (minRecall2Plus),
+    INDEX idx_minF1 (minF1Score2Plus),
+
+    INDEX idx_date_ev (
+        predictionDate,
+        ev
+    ),
+
+    INDEX idx_date_winProb (
+        predictionDate,
+        winProb
+    )
+);
+
+DELETE FROM wp_tsa_top_combos_2plus
+WHERE predictionDate = 'predictionDate';

@@ -5177,6 +5177,24 @@ add_action('rest_api_init', function () {
 		'callback' => 'tsa_get_top_picks_2plus_performance',
 		'permission_callback' => '__return_true',
 	]);
+
+	register_rest_route('tsa/v1', '/top-combos-2plus', [
+		'methods' => 'GET',
+		'callback' => 'tsa_get_top_combos_2plus',
+		'permission_callback' => '__return_true',
+	]);
+
+	register_rest_route('tsa/v1', '/top-combos-2plus-meta', [
+		'methods' => 'GET',
+		'callback' => 'tsa_get_top_combos_2plus_meta',
+		'permission_callback' => '__return_true',
+	]);
+
+	register_rest_route('tsa/v1', '/top-combos-2plus-performance', [
+		'methods' => 'GET',
+		'callback' => 'tsa_get_top_combos_2plus_performance',
+		'permission_callback' => '__return_true',
+	]);
 });
 
 function tsa_get_top_picks_2plus(WP_REST_Request $request) {
@@ -5379,9 +5397,9 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
         }
     }
 
-    $secondary_sort = $sort_field === 'predictionDate'
-        ? ', predProb2Plus DESC, precision2Plus DESC'
-        : '';
+	$secondary_sort = $sort_field === 'predictionDate'
+		? ', ev DESC, winProb DESC'
+		: '';
 
     $order_sql = "ORDER BY `$sort_field` $sort_dir $secondary_sort";
 
@@ -5514,4 +5532,334 @@ function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
         : $wpdb->get_results($sql, ARRAY_A);
 
     return rest_ensure_response($rows);
+}
+
+
+
+function tsa_get_top_combos_2plus(WP_REST_Request $request) {
+    global $wpdb;
+
+    tsa_set_utf8mb4();
+
+    $table = $wpdb->prefix . 'tsa_top_combos_2plus';
+
+    $page = max(1, intval($request->get_param('page') ?: 1));
+    $size_param = $request->get_param('size') ?: $request->get_param('per_page') ?: 25;
+    $per_page = min(100, max(10, intval($size_param)));
+    $offset = ($page - 1) * $per_page;
+
+	$prediction_date = sanitize_text_field($request->get_param('predictionDate'));
+	$search = sanitize_text_field($request->get_param('search'));
+	$team = sanitize_text_field($request->get_param('teamAbbrev'));
+	$result = sanitize_text_field($request->get_param('resultLabel'));
+
+	$min_prob = $request->get_param('minPredProb2Plus');
+	$min_accuracy = $request->get_param('minAccuracy2Plus');
+	$min_precision = $request->get_param('minPrecision2Plus');
+	$min_recall = $request->get_param('minRecall2Plus');
+	$min_f1 = $request->get_param('minF1Score2Plus');
+	$min_leg_ev = $request->get_param('minLegEV2Plus');
+	$min_ev = $request->get_param('minEV');
+	$min_win_prob = $request->get_param('minWinProb');
+
+    $where = [];
+    $params = [];
+
+    if ($prediction_date !== '') {
+        $where[] = 'predictionDate = %s';
+        $params[] = $prediction_date;
+    }
+
+	if ($team !== '') {
+		$where[] = '(p1_teamAbbrev = %s OR p2_teamAbbrev = %s OR p3_teamAbbrev = %s)';
+		$params[] = $team;
+		$params[] = $team;
+		$params[] = $team;
+	}
+
+	if ($result !== '') {
+		$where[] = 'parlayResultLabel = %s';
+		$params[] = $result;
+	}
+
+	if ($search !== '') {
+		$search = trim($search);
+
+		if (ctype_digit($search)) {
+			$where[] = '(
+				p1_playerId = %d OR p2_playerId = %d OR p3_playerId = %d
+				OR p1_skaterFullName LIKE %s
+				OR p2_skaterFullName LIKE %s
+				OR p3_skaterFullName LIKE %s
+			)';
+
+			$params[] = intval($search);
+			$params[] = intval($search);
+			$params[] = intval($search);
+
+			$like = '%' . $wpdb->esc_like($search) . '%';
+			$params[] = $like;
+			$params[] = $like;
+			$params[] = $like;
+		} else {
+			$where[] = '(
+				p1_skaterFullName LIKE %s
+				OR p2_skaterFullName LIKE %s
+				OR p3_skaterFullName LIKE %s
+			)';
+
+			$like = '%' . $wpdb->esc_like($search) . '%';
+			$params[] = $like;
+			$params[] = $like;
+			$params[] = $like;
+		}
+	}
+
+	if ($min_prob !== '' && is_numeric($min_prob)) {
+		$where[] = 'minPredProb2Plus >= %f';
+		$params[] = floatval($min_prob);
+	}
+
+	if ($min_accuracy !== '' && is_numeric($min_accuracy)) {
+		$where[] = 'minAccuracy2Plus >= %f';
+		$params[] = floatval($min_accuracy);
+	}
+
+	if ($min_precision !== '' && is_numeric($min_precision)) {
+		$where[] = 'minPrecision2Plus >= %f';
+		$params[] = floatval($min_precision);
+	}
+
+	if ($min_recall !== '' && is_numeric($min_recall)) {
+		$where[] = 'minRecall2Plus >= %f';
+		$params[] = floatval($min_recall);
+	}
+
+	if ($min_f1 !== '' && is_numeric($min_f1)) {
+		$where[] = 'minF1Score2Plus >= %f';
+		$params[] = floatval($min_f1);
+	}
+
+    if ($min_leg_ev !== '' && is_numeric($min_leg_ev)) {
+        $where[] = 'minLegEV2Plus >= %f';
+        $params[] = floatval($min_leg_ev);
+    }
+
+    if ($min_ev !== '' && is_numeric($min_ev)) {
+        $where[] = 'ev >= %f';
+        $params[] = floatval($min_ev);
+    }
+
+    if ($min_win_prob !== '' && is_numeric($min_win_prob)) {
+        $where[] = 'winProb >= %f';
+        $params[] = floatval($min_win_prob);
+    }
+
+    $where_sql = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+
+    $count_sql = "SELECT COUNT(*) FROM `$table` $where_sql";
+
+    $total = !empty($params)
+        ? intval($wpdb->get_var($wpdb->prepare($count_sql, ...$params)))
+        : intval($wpdb->get_var($count_sql));
+
+    $last_page = max(1, ceil($total / $per_page));
+
+	$correct_where = $where;
+	$correct_params = $params;
+
+	$correct_where[] = 'correctParlay IS NOT NULL';
+
+	$correct_where_sql = 'WHERE ' . implode(' AND ', $correct_where);
+
+	$correct_sql = "
+		SELECT
+			COUNT(*) AS completed_combos,
+			COALESCE(SUM(correctParlay), 0) AS correct_combos
+		FROM `$table`
+		$correct_where_sql
+	";
+
+	$correct_row = !empty($correct_params)
+		? $wpdb->get_row($wpdb->prepare($correct_sql, ...$correct_params), ARRAY_A)
+		: $wpdb->get_row($correct_sql, ARRAY_A);
+
+	$completed_combos = intval($correct_row['completed_combos'] ?? 0);
+	$correct_combos = intval($correct_row['correct_combos'] ?? 0);
+
+	$correct_combos_pct = $completed_combos > 0
+		? ($correct_combos / $completed_combos) * 100
+		: null;
+
+	$allowed_sort_fields = [
+		'predictionDate',
+		'dataCutoffDate',
+		'winProb',
+		'ev',
+		'parlayEdge',
+		'parlayAmerican',
+		'minPredProb2Plus',
+		'minAccuracy2Plus',
+		'minPrecision2Plus',
+		'minRecall2Plus',
+		'minF1Score2Plus',
+		'minModelGames2Plus',
+		'minLegEV2Plus',
+		'p1_skaterFullName',
+		'p2_skaterFullName',
+		'p3_skaterFullName',
+	];
+
+    $sort_field = 'predictionDate';
+    $sort_dir = 'DESC';
+
+	$secondary_sort = $sort_field === 'predictionDate'
+		? ', ev DESC, winProb DESC'
+		: '';
+
+    $sorters = $request->get_param('sort');
+
+    if (empty($sorters)) {
+        $sorters = $request->get_param('sorters');
+    }
+
+    if (is_string($sorters)) {
+        $decoded = json_decode($sorters, true);
+
+        if (json_last_error() === JSON_ERROR_NONE) {
+            $sorters = $decoded;
+        }
+    }
+
+    if (!empty($sorters) && is_array($sorters)) {
+        $first_sorter = $sorters[0] ?? null;
+
+        if (is_array($first_sorter)) {
+            if (!empty($first_sorter['field']) && in_array($first_sorter['field'], $allowed_sort_fields, true)) {
+                $sort_field = $first_sorter['field'];
+            }
+
+            if (!empty($first_sorter['dir']) && strtolower($first_sorter['dir']) === 'asc') {
+                $sort_dir = 'ASC';
+            }
+        }
+    }
+
+	$secondary_sort = $sort_field === 'predictionDate'
+		? ', ev DESC, winProb DESC'
+		: '';
+
+    $order_sql = "ORDER BY `$sort_field` $sort_dir $secondary_sort";
+
+    $data_sql = "
+        SELECT *
+        FROM `$table`
+        $where_sql
+        $order_sql
+        LIMIT %d OFFSET %d
+    ";
+
+    $data_params = array_merge($params, [$per_page, $offset]);
+
+    $rows = $wpdb->get_results(
+        $wpdb->prepare($data_sql, ...$data_params),
+        ARRAY_A
+    );
+
+	return [
+		'data' => $rows,
+		'last_page' => $last_page,
+		'total' => $total,
+		'completed_combos' => $completed_combos,
+		'correct_combos' => $correct_combos,
+		'correct_combos_pct' => $correct_combos_pct,
+	];
+}
+
+function tsa_get_top_combos_2plus_meta() {
+    global $wpdb;
+
+    tsa_set_utf8mb4();
+
+    $table = $wpdb->prefix . 'tsa_top_combos_2plus';
+
+    $prediction_dates = $wpdb->get_col("
+        SELECT DISTINCT predictionDate
+        FROM `$table`
+        WHERE predictionDate IS NOT NULL
+        ORDER BY predictionDate DESC
+    ");
+
+	$teams = $wpdb->get_col("
+		SELECT DISTINCT teamAbbrev
+		FROM (
+			SELECT p1_teamAbbrev AS teamAbbrev FROM `$table`
+			UNION
+			SELECT p2_teamAbbrev AS teamAbbrev FROM `$table`
+			UNION
+			SELECT p3_teamAbbrev AS teamAbbrev FROM `$table`
+		) teams
+		WHERE teamAbbrev IS NOT NULL AND teamAbbrev <> ''
+		ORDER BY teamAbbrev
+	");
+
+	return [
+		'predictionDates' => $prediction_dates,
+		'teams' => $teams,
+		'minPredictionDate' => $wpdb->get_var("SELECT MIN(predictionDate) FROM `$table`"),
+		'maxPredictionDate' => $wpdb->get_var("SELECT MAX(predictionDate) FROM `$table`"),
+		'rows' => intval($wpdb->get_var("SELECT COUNT(*) FROM `$table`")),
+	];
+}
+
+function tsa_get_top_combos_2plus_performance(WP_REST_Request $request) {
+    global $wpdb;
+
+    $table = $wpdb->prefix . 'tsa_top_combos_2plus';
+
+    $where = [
+        'correctParlay IS NOT NULL'
+    ];
+
+    $params = [];
+
+    $filters = [
+        'minPredProb2Plus' => 'minPredProb2Plus',
+        'minAccuracy2Plus' => 'minAccuracy2Plus',
+        'minPrecision2Plus' => 'minPrecision2Plus',
+        'minRecall2Plus' => 'minRecall2Plus',
+        'minF1Score2Plus' => 'minF1Score2Plus',
+        'minLegEV2Plus' => 'minLegEV2Plus',
+        'minEV' => 'ev',
+        'minWinProb' => 'winProb',
+    ];
+
+    foreach ($filters as $param_name => $column_name) {
+        $value = $request->get_param($param_name);
+
+        if ($value !== null && $value !== '') {
+            $where[] = "$column_name >= %f";
+            $params[] = floatval($value);
+        }
+    }
+
+    $where_sql = 'WHERE ' . implode(' AND ', $where);
+
+    $sql = "
+        SELECT
+            predictionDate,
+            COUNT(*) AS completed_combos,
+            COALESCE(SUM(correctParlay), 0) AS correct_combos,
+            (COALESCE(SUM(correctParlay), 0) / COUNT(*)) * 100 AS correct_combos_pct
+        FROM `$table`
+        $where_sql
+        GROUP BY predictionDate
+        ORDER BY predictionDate ASC
+    ";
+
+    $prepared_sql = !empty($params)
+        ? $wpdb->prepare($sql, ...$params)
+        : $sql;
+
+    return $wpdb->get_results($prepared_sql, ARRAY_A);
 }

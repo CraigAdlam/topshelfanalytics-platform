@@ -927,3 +927,54 @@ input[type="date"] {
   line-height: 1.35;
   color: #6b7280;
 }
+
+/* =========================
+   Top combos page
+========================= */
+
+.tsa-top-combos-page #tsa-table .tabulator {
+  max-width: none;
+}
+
+.tsa-top-combos-page #tsa-table .tabulator-tableholder {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tsa-top-combos-page #tsa-table .tabulator-table {
+  min-width: 2200px;
+}
+
+.tsa-top-combos-page .tabulator-col-title,
+.tsa-top-combos-page .tabulator-cell {
+  text-align: center;
+}
+
+.tsa-top-combos-page .tabulator-cell[tabulator-field="p1_skaterFullName"],
+.tsa-top-combos-page .tabulator-cell[tabulator-field="p2_skaterFullName"],
+.tsa-top-combos-page .tabulator-cell[tabulator-field="p3_skaterFullName"],
+.tsa-top-combos-page .tabulator-col[tabulator-field="p1_skaterFullName"] .tabulator-col-title,
+.tsa-top-combos-page .tabulator-col[tabulator-field="p2_skaterFullName"] .tabulator-col-title,
+.tsa-top-combos-page .tabulator-col[tabulator-field="p3_skaterFullName"] .tabulator-col-title {
+  text-align: left;
+}
+
+.tsa-top-combos-page .tabulator-row:hover {
+  background: #f8fafc !important;
+}
+
+.tsa-top-combos-page .tabulator-header {
+  font-weight: 700;
+}
+
+.tsa-top-combos-page .tabulator-cell {
+  font-size: 13px;
+}
+
+.tsa-top-combos-page .tabulator-col {
+  background: #f3f4f6;
+}
+
+.tsa-top-combos-page .tabulator-row {
+  min-height: 36px;
+}
