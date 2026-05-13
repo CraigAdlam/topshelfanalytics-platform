@@ -184,13 +184,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		hozAlign: "center",
 	  },
 	  {
-		title: "Win Prob",
-		field: "winProb",
-		width: 100,
-		formatter: cell => formatPercent(cell.getValue(), 1),
-		hozAlign: "center",
-	  },
-	  {
 	    title: "Combo EV",
 	    field: "ev",
 	    width: 110,
@@ -221,6 +214,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		    </div>
 		  `;
 	    },
+	  },
+	  {
+		title: "Win Prob",
+		field: "winProb",
+		width: 100,
+		formatter: cell => formatPercent(cell.getValue(), 1),
+		hozAlign: "center",
 	  },
 	  {
 		title: "Combo Edge",
