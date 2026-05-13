@@ -886,14 +886,19 @@ input[type="date"] {
 }
 
 /* =========================
-   Top picks KPI cards
+   Top picks/combos KPI cards
 ========================= */
 
-.tsa-top-picks-summary {
+.tsa-top-picks-summary,
+.tsa-top-combos-summary {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
   margin: 0 0 16px 0;
+}
+
+.tsa-top-combos-summary .tsa-kpi-card {
+  flex: 0 0 auto;
 }
 
 .tsa-kpi-card {
