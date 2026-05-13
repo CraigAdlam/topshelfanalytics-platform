@@ -5298,39 +5298,23 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
 
     $last_page = max(1, ceil($total / $per_page));
 
+	$correct_where = $where;
+	$correct_params = $params;
+
+	$correct_where[] = 'correctPick IS NOT NULL';
+
+	$correct_where_sql = 'WHERE ' . implode(' AND ', $correct_where);
+
 	$correct_sql = "
 		SELECT
 			COUNT(*) AS completed_picks,
-			SUM(CASE WHEN correctPick = 1 THEN 1 ELSE 0 END) AS correct_picks
+			COALESCE(SUM(correctPick), 0) AS correct_picks
 		FROM `$table`
-		$where_sql
-		AND correctPick IS NOT NULL
+		$correct_where_sql
 	";
 
-	if (empty($where_sql)) {
-		$correct_sql = "
-			SELECT
-				COUNT(*) AS completed_picks,
-				SUM(CASE WHEN correctPick = 1 THEN 1 ELSE 0 END) AS correct_picks
-			FROM `$table`
-			WHERE correctPick IS NOT NULL
-		";
-	} else {
-		$correct_sql = str_replace(
-			$where_sql,
-			$where_sql . " AND correctPick IS NOT NULL",
-			"
-			SELECT
-				COUNT(*) AS completed_picks,
-				SUM(CASE WHEN correctPick = 1 THEN 1 ELSE 0 END) AS correct_picks
-			FROM `$table`
-			$where_sql
-			"
-		);
-	}
-
-	$correct_row = !empty($params)
-		? $wpdb->get_row($wpdb->prepare($correct_sql, ...$params), ARRAY_A)
+	$correct_row = !empty($correct_params)
+		? $wpdb->get_row($wpdb->prepare($correct_sql, ...$correct_params), ARRAY_A)
 		: $wpdb->get_row($correct_sql, ARRAY_A);
 
 	$completed_picks = intval($correct_row['completed_picks'] ?? 0);
@@ -5398,7 +5382,7 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
     }
 
 	$secondary_sort = $sort_field === 'predictionDate'
-		? ', ev DESC, winProb DESC'
+		? ', predProb2Plus DESC, precision2Plus DESC'
 		: '';
 
     $order_sql = "ORDER BY `$sort_field` $sort_dir $secondary_sort";

@@ -191,11 +191,36 @@ document.addEventListener("DOMContentLoaded", function () {
 		hozAlign: "center",
 	  },
 	  {
-		title: "Combo EV",
-		field: "ev",
-		width: 100,
-		formatter: cell => formatPercent(cell.getValue(), 1),
-		hozAlign: "center",
+	    title: "Combo EV",
+	    field: "ev",
+	    width: 110,
+	    hozAlign: "center",
+	    formatter: function(cell) {
+		  const value = Number(cell.getValue());
+
+		  if (!Number.isFinite(value)) {
+		    return "";
+		  }
+
+		  const percent = (value * 100).toFixed(1);
+
+		  // EV scale tuned to actual combo EV range
+		  const minEV = -0.35;
+		  const maxEV = 0.50;
+
+		  const width = ((value - minEV) / (maxEV - minEV)) * 100;
+		  const clampedWidth = Math.max(0, Math.min(width, 100));
+
+		  return `
+		    <div class="tsa-bar-cell">
+			  <div 
+			    class="tsa-bar-fill"
+			    style="width:${clampedWidth}%;">
+			  </div>
+			  <span class="tsa-bar-text">${percent}%</span>
+		    </div>
+		  `;
+	    },
 	  },
 	  {
 		title: "Combo Edge",
