@@ -133,43 +133,36 @@ document.addEventListener("DOMContentLoaded", function () {
       minWinProb: getPercentParam(chartMinWinProbInput)
     });
 
-    fetch("/wp-json/tsa/v1/top-combos-2plus-performance?" + params.toString())
-      .then(res => res.json())
-      .then(rows => {
-        const labels = rows.map(row => String(row.predictionDate).slice(0, 10));
-        const values = rows.map(row => Number(row.correct_combos_pct));
+	fetch("/wp-json/tsa/v1/top-combos-2plus-performance?" + params.toString())
+	  .then(res => res.json())
+	  .then(payload => {
+		const rows = payload.data || [];
 
-        const totalPool = rows.reduce((sum, row) => {
-          return sum + Number(row.completed_combos || 0);
-        }, 0);
+		const labels = rows.map(row => String(row.predictionDate).slice(0, 10));
+		const values = rows.map(row => Number(row.correct_combos_pct));
 
-        if (comboPoolBox) {
-          comboPoolBox.textContent = totalPool.toLocaleString();
-        }
-
-        performanceChart.data.labels = labels;
-        performanceChart.data.datasets[0].data = values;
-        performanceChart.update();
-
-		if (correctCombosBox && rows.length > 0) {
-		  const totalCompleted = rows.reduce((sum, row) => {
-			return sum + Number(row.completed_combos || 0);
-		  }, 0);
-
-		  const totalCorrect = rows.reduce((sum, row) => {
-			return sum + Number(row.correct_combos || 0);
-		  }, 0);
-
-		  if (totalCompleted > 0) {
-			const overallPct = (totalCorrect / totalCompleted) * 100;
-			correctCombosBox.textContent = overallPct.toFixed(0) + "%";
-		  } else {
-			correctCombosBox.textContent = "--";
-		  }
-		} else if (correctCombosBox) {
-		  correctCombosBox.textContent = "--";
+		if (comboPoolBox) {
+		  comboPoolBox.textContent =
+			Number(payload.completed_combos || 0).toLocaleString();
 		}
-      })
+
+		performanceChart.data.labels = labels;
+		performanceChart.data.datasets[0].data = values;
+		performanceChart.update();
+
+		if (correctCombosBox) {
+		  if (
+			payload.correct_combos_pct === null ||
+			payload.correct_combos_pct === undefined ||
+			!Number.isFinite(Number(payload.correct_combos_pct))
+		  ) {
+			correctCombosBox.textContent = "--";
+		  } else {
+			correctCombosBox.textContent =
+			  Number(payload.correct_combos_pct).toFixed(0) + "%";
+		  }
+		}
+	  })
       .catch(() => {
         if (correctCombosBox) {
           correctCombosBox.textContent = "--";

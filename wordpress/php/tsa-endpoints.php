@@ -5862,5 +5862,24 @@ function tsa_get_top_combos_2plus_performance(WP_REST_Request $request) {
         ? $wpdb->prepare($sql, ...$params)
         : $sql;
 
-    return $wpdb->get_results($prepared_sql, ARRAY_A);
+	$rows = $wpdb->get_results($prepared_sql, ARRAY_A);
+
+	$aggregate_completed_combos = 0;
+	$aggregate_correct_combos = 0;
+
+	foreach ($rows as $row) {
+		$aggregate_completed_combos += intval($row['completed_combos'] ?? 0);
+		$aggregate_correct_combos += intval($row['correct_combos'] ?? 0);
+	}
+
+	$aggregate_correct_combos_pct = $aggregate_completed_combos > 0
+		? ($aggregate_correct_combos / $aggregate_completed_combos) * 100
+		: null;
+
+	return [
+		'data' => $rows,
+		'completed_combos' => $aggregate_completed_combos,
+		'correct_combos' => $aggregate_correct_combos,
+		'correct_combos_pct' => $aggregate_correct_combos_pct,
+	];
 }
