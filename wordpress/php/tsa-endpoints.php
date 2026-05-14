@@ -5515,7 +5515,24 @@ function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
         ? $wpdb->get_results($wpdb->prepare($sql, ...$params), ARRAY_A)
         : $wpdb->get_results($sql, ARRAY_A);
 
-    return rest_ensure_response($rows);
+	$aggregate_completed_picks = 0;
+	$aggregate_correct_picks = 0;
+
+	foreach ($rows as $row) {
+		$aggregate_completed_picks += intval($row['completed_picks'] ?? 0);
+		$aggregate_correct_picks += intval($row['correct_picks'] ?? 0);
+	}
+
+	$aggregate_correct_pick_pct = $aggregate_completed_picks > 0
+		? round(($aggregate_correct_picks / $aggregate_completed_picks) * 100, 1)
+		: null;
+
+	return rest_ensure_response([
+		'data' => $rows,
+		'completed_picks' => $aggregate_completed_picks,
+		'correct_picks' => $aggregate_correct_picks,
+		'correct_pick_pct' => $aggregate_correct_pick_pct,
+	]);
 }
 
 

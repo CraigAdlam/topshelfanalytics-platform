@@ -111,28 +111,35 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	fetch("/wp-json/tsa/v1/top-picks-2plus-performance?" + params.toString())
-      .then(res => res.json())
-      .then(rows => {
-        const labels = rows.map(row => String(row.predictionDate).slice(0, 10));
-        const values = rows.map(row => Number(row.correct_pick_pct));
-		
-		const totalPool = rows.reduce((sum, row) => {
-		  return sum + Number(row.completed_picks || 0);
-		}, 0);
+	  .then(res => res.json())
+	  .then(payload => {
+		const rows = payload.data || [];
+
+		const labels = rows.map(row => String(row.predictionDate).slice(0, 10));
+		const values = rows.map(row => Number(row.correct_pick_pct));
 
 		if (playerPoolBox) {
-		  playerPoolBox.textContent = totalPool.toLocaleString();
+		  playerPoolBox.textContent =
+			Number(payload.completed_picks || 0).toLocaleString();
 		}
 
-        performanceChart.data.labels = labels;
-        performanceChart.data.datasets[0].data = values;
-        performanceChart.update();
+		performanceChart.data.labels = labels;
+		performanceChart.data.datasets[0].data = values;
+		performanceChart.update();
 
-        if (correctPicksBox && values.length > 0) {
-          const latestValue = values[values.length - 1];
-          correctPicksBox.textContent = latestValue.toFixed(0) + "%";
-        }
-      })
+		if (correctPicksBox) {
+		  if (
+			payload.correct_pick_pct === null ||
+			payload.correct_pick_pct === undefined ||
+			!Number.isFinite(Number(payload.correct_pick_pct))
+		  ) {
+			correctPicksBox.textContent = "--";
+		  } else {
+			correctPicksBox.textContent =
+			  Number(payload.correct_pick_pct).toFixed(0) + "%";
+		  }
+		}
+	  })
       .catch(() => {
         if (correctPicksBox) {
           correctPicksBox.textContent = "--";
