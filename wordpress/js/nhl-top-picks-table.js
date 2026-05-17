@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const correctPicksBox = document.getElementById("tsa-correct-picks");
   const playerPoolBox = document.getElementById("tsa-player-pool");
 
+  const seasonSelect = document.getElementById("tsa-season");
   const predictionDateSelect = document.getElementById("tsa-prediction-date");
   const searchInput = document.getElementById("tsa-search");
   const teamSelect = document.getElementById("tsa-team");
@@ -56,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function getAjaxParams() {
     return {
+	  season: seasonSelect.value,
       predictionDate: predictionDateSelect.value,
       search: searchInput.value.trim(),
       teamAbbrev: teamSelect.value,
@@ -117,30 +119,46 @@ document.addEventListener("DOMContentLoaded", function () {
       lastUpdatedBox.textContent = "Top picks updated: Unavailable";
     });
 
-  fetch("/wp-json/tsa/v1/top-picks-2plus-meta")
-    .then(res => res.json())
-    .then(meta => {
-      populateSelect(
-        predictionDateSelect,
-        meta.predictionDates || [],
-        "All Dates"
-      );
-
-      populateSelect(
-        teamSelect,
-        meta.teams || [],
-        "All Teams"
-      );
-
-      populateSelect(
-        positionSelect,
-        meta.positions || [],
-        "All Positions"
-      );
-    })
-    .catch(() => {
-      setStatus("Top picks metadata unavailable.", "error");
+  function loadFilterOptions() {
+    const params = new URLSearchParams({
+      season: seasonSelect.value,
     });
+
+    fetch("/wp-json/tsa/v1/top-picks-2plus-meta?" + params.toString())
+      .then(res => res.json())
+      .then(meta => {
+        populateSelect(
+          seasonSelect,
+          meta.seasons || [],
+          "All Seasons"
+        );
+
+        seasonSelect.value = params.get("season") || "";
+
+        populateSelect(
+          predictionDateSelect,
+          meta.predictionDates || [],
+          "All Dates"
+        );
+
+        populateSelect(
+          teamSelect,
+          meta.teams || [],
+          "All Teams"
+        );
+
+        populateSelect(
+          positionSelect,
+          meta.positions || [],
+          "All Positions"
+        );
+      })
+      .catch(() => {
+        setStatus("Top picks metadata unavailable.", "error");
+      });
+  }
+
+  loadFilterOptions();
 
   const topPicksTable = new Tabulator("#tsa-table", {
     ajaxURL: "/wp-json/tsa/v1/top-picks-2plus",
@@ -340,13 +358,19 @@ document.addEventListener("DOMContentLoaded", function () {
     positionSelect,
     resultSelect,
     minProbInput,
-	minAccuracyInput,
+    minAccuracyInput,
     minPrecisionInput,
-	minRecallInput,
+    minRecallInput,
     minF1Input,
     minConcentrationInput,
   ].forEach(el => {
     el.addEventListener("change", reloadTable);
+  });
+
+  seasonSelect.addEventListener("change", function () {
+    predictionDateSelect.value = "";
+    loadFilterOptions();
+    reloadTable();
   });
 
   searchInput.addEventListener("input", function () {
@@ -358,6 +382,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   resetButton.addEventListener("click", function () {
+	seasonSelect.value = "";
     predictionDateSelect.value = "";
     searchInput.value = "";
     teamSelect.value = "";

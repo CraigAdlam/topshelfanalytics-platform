@@ -1,0 +1,94 @@
+DROP TABLE IF EXISTS wp_tsa_top_picks_2plus;
+
+CREATE TABLE wp_tsa_top_picks_2plus (
+    season VARCHAR(7),
+    seasonId INT,
+    gameTypeId INT,
+
+    predictionDate DATE,
+    dataCutoffDate DATE,
+
+    playerId BIGINT,
+    skaterFullName VARCHAR(150),
+    teamAbbrev VARCHAR(10),
+    opponentTeamAbbrev VARCHAR(10),
+
+    homeRoad VARCHAR(10),
+    positionCode VARCHAR(10),
+
+    predProb2Plus DECIMAL(10,6),
+
+    accuracy2Plus DECIMAL(10,6),
+    precision2Plus DECIMAL(10,6),
+    recall2Plus DECIMAL(10,6),
+    f1Score2Plus DECIMAL(10,6),
+
+    gameId BIGINT,
+    skaterFullName_actual VARCHAR(150),
+
+    modelGames2Plus INT,
+
+    actualShots INT,
+    hit2Plus TINYINT,
+    resultLabel VARCHAR(20),
+
+    shotsMean DECIMAL(10,4),
+    shotsMedian DECIMAL(10,4),
+    shotsMode DECIMAL(10,4),
+    shotsConcentration DECIMAL(10,6),
+    shotsSkew DECIMAL(10,6),
+    gamesInDistribution INT,
+
+    predProb2PlusPct DECIMAL(10,4),
+    accuracy2PlusPct DECIMAL(10,4),
+    precision2PlusPct DECIMAL(10,4),
+    recall2PlusPct DECIMAL(10,4),
+    f1Score2PlusPct DECIMAL(10,4),
+    shotsConcentrationPct DECIMAL(10,4),
+
+    correctPick TINYINT,
+
+    runTimestamp VARCHAR(50),
+    modelVersion VARCHAR(100),
+    canonicalThreshold DECIMAL(10,4),
+
+    INDEX idx_season (season),
+    INDEX idx_seasonId (seasonId),
+    INDEX idx_gameTypeId (gameTypeId),
+
+    INDEX idx_predictionDate (predictionDate),
+    INDEX idx_dataCutoffDate (dataCutoffDate),
+    INDEX idx_playerId (playerId),
+    INDEX idx_skaterFullName (skaterFullName),
+    INDEX idx_teamAbbrev (teamAbbrev),
+    INDEX idx_opponentTeamAbbrev (opponentTeamAbbrev),
+    INDEX idx_positionCode (positionCode),
+    INDEX idx_homeRoad (homeRoad),
+    INDEX idx_resultLabel (resultLabel),
+
+    INDEX idx_predProb2Plus (predProb2Plus),
+    INDEX idx_accuracy2Plus (accuracy2Plus),
+    INDEX idx_precision2Plus (precision2Plus),
+    INDEX idx_recall2Plus (recall2Plus),
+    INDEX idx_f1Score2Plus (f1Score2Plus),
+
+    INDEX idx_season_gameTypeId (season, gameTypeId),
+    INDEX idx_season_predictionDate (season, predictionDate),
+    INDEX idx_season_teamAbbrev (season, teamAbbrev),
+    INDEX idx_season_playerId (season, playerId),
+    INDEX idx_season_resultLabel (season, resultLabel),
+
+    INDEX idx_season_date_prob (
+        season,
+        predictionDate,
+        predProb2Plus
+    ),
+
+    INDEX idx_predictionDate_prob (
+        predictionDate,
+        predProb2Plus
+    )
+);
+
+DELETE FROM wp_tsa_top_picks_2plus
+WHERE skaterFullName = 'skaterFullName';

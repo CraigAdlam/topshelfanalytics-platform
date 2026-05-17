@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const playerPoolBox = document.getElementById("tsa-player-pool");
 
   const performanceCanvas = document.getElementById("tsa-top-picks-performance-chart");
+  const chartSeasonSelect = document.getElementById("tsa-chart-season");
   const chartMinProbInput = document.getElementById("tsa-chart-min-prob");
   const chartMinAccuracyInput = document.getElementById("tsa-chart-min-accuracy");
   const chartMinPrecisionInput = document.getElementById("tsa-chart-min-precision");
@@ -99,10 +100,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function loadSeasonOptions() {
+    if (!chartSeasonSelect) return;
+
+    fetch("/wp-json/tsa/v1/top-picks-2plus-meta")
+      .then(res => res.json())
+      .then(meta => {
+        chartSeasonSelect.innerHTML = "";
+
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "All Seasons";
+        chartSeasonSelect.appendChild(defaultOption);
+
+        (meta.seasons || []).forEach(season => {
+          if (!season) return;
+
+          const option = document.createElement("option");
+          option.value = season;
+          option.textContent = season;
+          chartSeasonSelect.appendChild(option);
+        });
+      });
+  }
+
   function loadPerformanceChart() {
     if (!performanceChart || !chartMinF1Input) return;
 
 	const params = new URLSearchParams({
+	  season: chartSeasonSelect ? chartSeasonSelect.value : "",
 	  minProb2Plus: getPercentParam(chartMinProbInput),
 	  minAccuracy2Plus: getPercentParam(chartMinAccuracyInput),
 	  minPrecision2Plus: getPercentParam(chartMinPrecisionInput),
@@ -156,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   [
+	chartSeasonSelect,
 	chartMinProbInput,
     chartMinAccuracyInput,
     chartMinPrecisionInput,
@@ -169,6 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (chartResetButton) {
     chartResetButton.addEventListener("click", function () {
+	  if (chartSeasonSelect) chartSeasonSelect.value = "";
       chartMinProbInput.value = "";
       chartMinAccuracyInput.value = "";
       chartMinPrecisionInput.value = "";
@@ -181,5 +209,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadLastUpdated();
   buildPerformanceChart();
+  loadSeasonOptions();
   loadPerformanceChart();
 });

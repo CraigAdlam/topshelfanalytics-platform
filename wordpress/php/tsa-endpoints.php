@@ -5209,6 +5209,7 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
     $per_page = min(100, max(10, intval($size_param)));
     $offset = ($page - 1) * $per_page;
 
+	$season = sanitize_text_field($request->get_param('season'));
     $prediction_date = sanitize_text_field($request->get_param('predictionDate'));
     $search = sanitize_text_field($request->get_param('search'));
     $team = sanitize_text_field($request->get_param('teamAbbrev'));
@@ -5224,6 +5225,11 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
 
     $where = [];
     $params = [];
+
+	if ($season !== '') {
+		$where[] = 'season = %s';
+		$params[] = $season;
+	}
 
     if ($prediction_date !== '') {
         $where[] = 'predictionDate = %s';
@@ -5412,19 +5418,43 @@ function tsa_get_top_picks_2plus(WP_REST_Request $request) {
 	];
 }
 
-function tsa_get_top_picks_2plus_meta() {
+function tsa_get_top_picks_2plus_meta(WP_REST_Request $request) {
     global $wpdb;
 
     tsa_set_utf8mb4();
 
     $table = $wpdb->prefix . 'tsa_top_picks_2plus';
 
-    $prediction_dates = $wpdb->get_col("
-        SELECT DISTINCT predictionDate
-        FROM `$table`
-        WHERE predictionDate IS NOT NULL
-        ORDER BY predictionDate DESC
-    ");
+	$season = sanitize_text_field($request->get_param('season'));
+
+	$where = [];
+	$params = [];
+
+	if ($season !== '') {
+		$where[] = 'season = %s';
+		$params[] = $season;
+	}
+
+	$where_sql = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+
+	$seasons = $wpdb->get_col("
+		SELECT DISTINCT season
+		FROM `$table`
+		WHERE season IS NOT NULL AND season <> ''
+		ORDER BY season DESC
+	");
+
+	$prediction_dates_sql = "
+		SELECT DISTINCT predictionDate
+		FROM `$table`
+		$where_sql
+		" . (!empty($where_sql) ? "AND predictionDate IS NOT NULL" : "WHERE predictionDate IS NOT NULL") . "
+		ORDER BY predictionDate DESC
+	";
+
+	$prediction_dates = !empty($params)
+		? $wpdb->get_col($wpdb->prepare($prediction_dates_sql, ...$params))
+		: $wpdb->get_col($prediction_dates_sql);
 
     $teams = $wpdb->get_col("
         SELECT DISTINCT teamAbbrev
@@ -5441,6 +5471,7 @@ function tsa_get_top_picks_2plus_meta() {
     ");
 
     return [
+		'seasons' => $seasons,
         'predictionDates' => $prediction_dates,
         'teams' => $teams,
         'positions' => $positions,
@@ -5457,6 +5488,7 @@ function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
 
     $table = $wpdb->prefix . 'tsa_top_picks_2plus';
 
+	$season = sanitize_text_field($request->get_param('season'));
 	$min_prob = $request->get_param('minProb2Plus');
     $min_accuracy = $request->get_param('minAccuracy2Plus');
     $min_precision = $request->get_param('minPrecision2Plus');
@@ -5468,6 +5500,11 @@ function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
     ];
 
     $params = [];
+
+	if ($season !== '') {
+		$where[] = 'season = %s';
+		$params[] = $season;
+	}
 
 	if ($min_prob !== '' && is_numeric($min_prob)) {
 		$where[] = 'predProb2Plus >= %f';
