@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function loadLastUpdated() {
     if (!lastUpdatedBox) return;
 
-    fetch("/wp-content/uploads/tsa-data/top_picks/wp_top_picks_refresh_meta.json")
+    fetch("/wp-content/uploads/tsa-data/top_picks/wp_top_picks_refresh_meta.json?v=" + Date.now())
       .then(res => res.json())
       .then(meta => {
         const raw = meta.finished_at.replace(" ", "T");
