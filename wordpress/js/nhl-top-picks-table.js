@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const statusBox = document.getElementById("tsa-status");
   const lastUpdatedBox = document.getElementById("tsa-last-updated");
   const correctPicksBox = document.getElementById("tsa-correct-picks");
+  const baselineCorrectPicksBox = document.getElementById("tsa-correct-picks-baseline");
   const playerPoolBox = document.getElementById("tsa-player-pool");
 
   const seasonSelect = document.getElementById("tsa-season");
@@ -70,6 +71,48 @@ document.addEventListener("DOMContentLoaded", function () {
       minF1Score2Plus: getPercentParam(minF1Input),
       minShotsConcentration: getPercentParam(minConcentrationInput),
     };
+  }
+
+  function getBaselineAjaxParams() {
+    return {
+      season: seasonSelect.value,
+      predictionDate: predictionDateSelect.value,
+      search: searchInput.value.trim(),
+      teamAbbrev: teamSelect.value,
+      positionCode: positionSelect.value,
+      resultLabel: resultSelect.value,
+
+      minProb2Plus: "",
+      minAccuracy2Plus: "",
+      minPrecision2Plus: "",
+      minRecall2Plus: "",
+      minF1Score2Plus: "",
+      minShotsConcentration: "",
+    };
+  }
+
+  function loadBaselineCorrectPicks() {
+    if (!baselineCorrectPicksBox) return;
+
+    const params = new URLSearchParams(getBaselineAjaxParams());
+
+    fetch("/wp-json/tsa/v1/top-picks-2plus?" + params.toString())
+      .then(res => res.json())
+      .then(response => {
+        if (
+          response.correct_pick_pct === null ||
+          response.correct_pick_pct === undefined ||
+          !Number.isFinite(Number(response.correct_pick_pct))
+        ) {
+          baselineCorrectPicksBox.textContent = "--";
+        } else {
+          baselineCorrectPicksBox.textContent =
+            Number(response.correct_pick_pct).toFixed(0) + "%";
+        }
+      })
+      .catch(() => {
+        baselineCorrectPicksBox.textContent = "--";
+      });
   }
 
   function reloadTable() {
@@ -343,6 +386,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			Number(response.correct_pick_pct).toFixed(0) + "%";
 		}
 	  }
+	  
+	  loadBaselineCorrectPicks();
 
 	  return response;
 	},

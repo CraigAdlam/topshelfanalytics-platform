@@ -1,5 +1,5 @@
 <link href="https://unpkg.com/tabulator-tables@6.3.0/dist/css/tabulator.min.css" rel="stylesheet">
-<link href="/wp-content/uploads/tsa-assets/css/tsa-site.css?v=7" rel="stylesheet">
+<link href="/wp-content/uploads/tsa-assets/css/tsa-site.css?v=10" rel="stylesheet">
 
 <div id="tsa-table-wrap" class="tsa-top-picks-page">
 
@@ -50,21 +50,49 @@
   </div>
 
   <div class="tsa-top-picks-summary">
+
     <div class="tsa-kpi-card">
-      <div class="tsa-kpi-label">Correct Picks</div>
-      <div id="tsa-correct-picks" class="tsa-kpi-value">--</div>
+      <div class="tsa-kpi-label tsa-kpi-model-label">
+        Correct Picks - Model
+      </div>
+
+      <div id="tsa-correct-picks"
+           class="tsa-kpi-value tsa-kpi-model-value">
+        --
+      </div>
+
       <div class="tsa-kpi-caption">
-        Based on completed picks matching the current filters.
+        Based on completed picks matching the current model-quality filters.
+      </div>
+    </div>
+
+    <div class="tsa-kpi-card">
+      <div class="tsa-kpi-label tsa-kpi-baseline-label">
+        Correct Picks - Baseline
+      </div>
+
+      <div id="tsa-correct-picks-baseline"
+           class="tsa-kpi-value tsa-kpi-baseline-value">
+        --
+      </div>
+
+      <div class="tsa-kpi-caption">
+        Based on the same table context without model-quality filters.
       </div>
     </div>
 
     <div class="tsa-kpi-card">
       <div class="tsa-kpi-label">Player Pool</div>
-      <div id="tsa-player-pool" class="tsa-kpi-value">--</div>
+
+      <div id="tsa-player-pool" class="tsa-kpi-value">
+        --
+      </div>
+
       <div class="tsa-kpi-caption">
         Total picks matching the current filters.
       </div>
     </div>
+
   </div>
 
   <div class="tsa-controls-grid tsa-top-picks-controls">
