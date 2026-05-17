@@ -935,12 +935,28 @@ input[type="date"] {
   margin-bottom: 6px;
 }
 
+.tsa-kpi-model-label {
+  color: #3b82f6;
+}
+
+.tsa-kpi-baseline-label {
+  color: #ef4444;
+}
+
 .tsa-kpi-value {
   font-size: 38px;
   line-height: 1;
   font-weight: 800;
   color: #111827;
   margin-bottom: 8px;
+}
+
+.tsa-kpi-model-value {
+  color: #3b82f6;
+}
+
+.tsa-kpi-baseline-value {
+  color: #ef4444;
 }
 
 .tsa-kpi-caption {

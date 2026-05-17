@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const lastUpdatedBox = document.getElementById("tsa-last-updated");
   const correctPicksBox = document.getElementById("tsa-correct-picks");
+  const baselineCorrectPicksBox = document.getElementById("tsa-correct-picks-baseline");
   const playerPoolBox = document.getElementById("tsa-player-pool");
 
   const performanceCanvas = document.getElementById("tsa-top-picks-performance-chart");
@@ -50,16 +51,25 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "line",
       data: {
         labels: [],
-        datasets: [
-          {
-            label: "Correct Picks %",
-            data: [],
-            borderWidth: 2,
-            tension: 0.25,
-            pointRadius: 0,
-            pointHoverRadius: 5
-          }
-        ]
+		datasets: [
+		  {
+			label: "Qualified Model Picks",
+			data: [],
+			borderWidth: 2,
+			tension: 0.25,
+			pointRadius: 0,
+			pointHoverRadius: 5
+		  },
+		  {
+			label: "Raw Baseline",
+			data: [],
+			borderWidth: 2,
+			borderDash: [6, 4],
+			tension: 0.25,
+			pointRadius: 0,
+			pointHoverRadius: 5
+		  }
+		]
       },
       options: {
         responsive: true,
@@ -127,49 +137,91 @@ document.addEventListener("DOMContentLoaded", function () {
   function loadPerformanceChart() {
     if (!performanceChart || !chartMinF1Input) return;
 
-	const params = new URLSearchParams({
-	  season: chartSeasonSelect ? chartSeasonSelect.value : "",
-	  minProb2Plus: getPercentParam(chartMinProbInput),
-	  minAccuracy2Plus: getPercentParam(chartMinAccuracyInput),
-	  minPrecision2Plus: getPercentParam(chartMinPrecisionInput),
-	  minRecall2Plus: getPercentParam(chartMinRecallInput),
-	  minF1Score2Plus: getPercentParam(chartMinF1Input)
-	});
+    const selectedParams = new URLSearchParams({
+      season: chartSeasonSelect ? chartSeasonSelect.value : "",
+      minProb2Plus: getPercentParam(chartMinProbInput),
+      minAccuracy2Plus: getPercentParam(chartMinAccuracyInput),
+      minPrecision2Plus: getPercentParam(chartMinPrecisionInput),
+      minRecall2Plus: getPercentParam(chartMinRecallInput),
+      minF1Score2Plus: getPercentParam(chartMinF1Input)
+    });
 
-	fetch("/wp-json/tsa/v1/top-picks-2plus-performance?" + params.toString())
-	  .then(res => res.json())
-	  .then(payload => {
-		const rows = payload.data || [];
+    const baselineParams = new URLSearchParams({
+      season: chartSeasonSelect ? chartSeasonSelect.value : ""
+    });
 
-		const labels = rows.map(row => String(row.predictionDate).slice(0, 10));
-		const values = rows.map(row => Number(row.correct_pick_pct));
+    Promise.all([
+      fetch("/wp-json/tsa/v1/top-picks-2plus-performance?" + selectedParams.toString()).then(res => res.json()),
+      fetch("/wp-json/tsa/v1/top-picks-2plus-performance?" + baselineParams.toString()).then(res => res.json())
+    ])
+      .then(([selectedPayload, baselinePayload]) => {
+        const selectedRows = selectedPayload.data || [];
+        const baselineRows = baselinePayload.data || [];
 
-		if (playerPoolBox) {
-		  playerPoolBox.textContent =
-			Number(payload.completed_picks || 0).toLocaleString();
-		}
+        const allLabels = Array.from(new Set([
+          ...selectedRows.map(row => String(row.predictionDate).slice(0, 10)),
+          ...baselineRows.map(row => String(row.predictionDate).slice(0, 10))
+        ])).sort();
 
-		performanceChart.data.labels = labels;
-		performanceChart.data.datasets[0].data = values;
-		performanceChart.update();
+        const selectedMap = new Map(
+          selectedRows.map(row => [
+            String(row.predictionDate).slice(0, 10),
+            Number(row.correct_pick_pct)
+          ])
+        );
 
-		if (correctPicksBox) {
+        const baselineMap = new Map(
+          baselineRows.map(row => [
+            String(row.predictionDate).slice(0, 10),
+            Number(row.correct_pick_pct)
+          ])
+        );
+
+        performanceChart.data.labels = allLabels;
+        performanceChart.data.datasets[0].data = allLabels.map(date =>
+          selectedMap.has(date) ? selectedMap.get(date) : null
+        );
+
+        performanceChart.data.datasets[1].data = allLabels.map(date =>
+          baselineMap.has(date) ? baselineMap.get(date) : null
+        );
+
+        performanceChart.update();
+
+        if (playerPoolBox) {
+          playerPoolBox.textContent =
+            Number(selectedPayload.completed_picks || 0).toLocaleString();
+        }
+
+        if (correctPicksBox) {
+          if (
+            selectedPayload.correct_pick_pct === null ||
+            selectedPayload.correct_pick_pct === undefined ||
+            !Number.isFinite(Number(selectedPayload.correct_pick_pct))
+          ) {
+            correctPicksBox.textContent = "--";
+          } else {
+            correctPicksBox.textContent =
+              Number(selectedPayload.correct_pick_pct).toFixed(0) + "%";
+          }
+        }
+
+		if (baselineCorrectPicksBox) {
 		  if (
-			payload.correct_pick_pct === null ||
-			payload.correct_pick_pct === undefined ||
-			!Number.isFinite(Number(payload.correct_pick_pct))
+			baselinePayload.correct_pick_pct === null ||
+			baselinePayload.correct_pick_pct === undefined ||
+			!Number.isFinite(Number(baselinePayload.correct_pick_pct))
 		  ) {
-			correctPicksBox.textContent = "--";
+			baselineCorrectPicksBox.textContent = "--";
 		  } else {
-			correctPicksBox.textContent =
-			  Number(payload.correct_pick_pct).toFixed(0) + "%";
+			baselineCorrectPicksBox.textContent =
+			  Number(baselinePayload.correct_pick_pct).toFixed(0) + "%";
 		  }
 		}
-	  })
+      })
       .catch(() => {
-        if (correctPicksBox) {
-          correctPicksBox.textContent = "--";
-        }
+        if (correctPicksBox) correctPicksBox.textContent = "--";
+        if (playerPoolBox) playerPoolBox.textContent = "--";
       });
   }
 
