@@ -1,10 +1,27 @@
 #tsa-table-wrap,
-#tsa-team-trends-wrap {
+#tsa-team-trends-wrap,
+#tsa-analysis-wrap,
+.tsa-data-hub-wide {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   max-width: 100%;
   width: 100%;
   overflow-x: auto;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#tsa-analysis-wrap .tsa-data-tabs {
+  margin-top: 0;
+}
+
+.tsa-data-page {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.tsa-data-page > .tsa-data-tabs:first-child {
+  margin-top: 0 !important;
 }
 
 /* =========================
@@ -409,7 +426,6 @@ input[type="date"] {
 .tsa-data-hub-wide {
   width: 100%;
   max-width: 100%;
-  margin-top: 2rem;
 }
 
 .tsa-data-hub-grid {
