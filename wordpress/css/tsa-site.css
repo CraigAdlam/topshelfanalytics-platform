@@ -1015,3 +1015,103 @@ input[type="date"] {
 .tsa-top-combos-page .tabulator-row {
   min-height: 36px;
 }
+
+/* =========================
+   Homepage model proof section
+========================= */
+
+.tsa-home-proof-section {
+  width: 100%;
+  padding: 48px 20px 28px;
+  background: #ffffff;
+}
+
+.tsa-home-proof-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.tsa-home-proof-copy {
+  max-width: 780px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.tsa-home-proof-copy h2 {
+  margin: 0 0 12px;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.05;
+  color: #111827;
+}
+
+.tsa-home-proof-copy p {
+  margin: 0 auto;
+  max-width: 620px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #4b5563;
+}
+
+.tsa-home-proof-kpis {
+  justify-content: center;
+  margin: 24px 0 14px;
+}
+
+.tsa-home-proof-kpis .tsa-kpi-card {
+  flex: 1 1 240px;
+  max-width: 320px;
+}
+
+.tsa-home-proof-note {
+  max-width: 760px;
+  margin: 10px auto 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+@media (max-width: 760px) {
+  .tsa-home-proof-section {
+    padding: 34px 14px 20px;
+  }
+
+  .tsa-home-proof-copy {
+    text-align: center;
+  }
+
+  .tsa-home-proof-note {
+    text-align: center;
+  }
+
+  .tsa-home-proof-kpis .tsa-kpi-card {
+    max-width: none;
+  }
+}
+
+.tsa-home-proof-actions {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0 10px;
+}
+
+.tsa-home-proof-button,
+.tsa-home-proof-button:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
+  border-radius: 999px;
+  background: #00113f;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.tsa-home-proof-button:hover,
+.tsa-home-proof-button:focus {
+  background: #0b1a8f;
+  color: #ffffff !important;
+}
