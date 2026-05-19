@@ -1115,3 +1115,68 @@ input[type="date"] {
   background: #0b1a8f;
   color: #ffffff !important;
 }
+
+/* =========================
+   Model lift page
+========================= */
+
+.tsa-model-lift-page #tsa-table .tabulator {
+  max-width: none;
+}
+
+.tsa-model-lift-page #tsa-table .tabulator-tableholder {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tsa-model-lift-page #tsa-table .tabulator-table {
+  min-width: 1600px;
+}
+
+.tsa-model-lift-page .tabulator-col-title,
+.tsa-model-lift-page .tabulator-cell {
+  text-align: center;
+}
+
+.tsa-model-lift-page .tabulator-cell[tabulator-field="skaterFullName"],
+.tsa-model-lift-page .tabulator-col[tabulator-field="skaterFullName"] .tabulator-col-title {
+  text-align: left;
+}
+
+.tsa-model-lift-page .tabulator-row:hover {
+  background: #f8fafc !important;
+}
+
+.tsa-model-lift-page .tabulator-header {
+  font-weight: 700;
+}
+
+.tsa-model-lift-page .tabulator-cell {
+  font-size: 13px;
+}
+
+.tsa-model-lift-page .tabulator-col {
+  background: #f3f4f6;
+}
+
+.tsa-model-lift-page .tabulator-row {
+  min-height: 36px;
+}
+
+.tsa-model-lift-chart-wrap {
+  height: 520px;
+}
+
+.tsa-model-lift-controls {
+  grid-template-columns: repeat(7, minmax(150px, 1fr));
+}
+
+@media (max-width: 1000px) {
+  .tsa-model-lift-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .tsa-model-lift-chart-wrap {
+    height: 420px;
+  }
+}

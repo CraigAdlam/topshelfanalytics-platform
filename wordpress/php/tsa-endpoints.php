@@ -5178,6 +5178,18 @@ add_action('rest_api_init', function () {
 		'permission_callback' => '__return_true',
 	]);
 
+    register_rest_route('tsa/v1', '/model-lift-2plus', [
+        'methods' => 'GET',
+        'callback' => 'tsa_get_model_lift_2plus',
+        'permission_callback' => '__return_true',
+    ]);
+
+    register_rest_route('tsa/v1', '/model-lift-2plus-meta', [
+        'methods' => 'GET',
+        'callback' => 'tsa_get_model_lift_2plus_meta',
+        'permission_callback' => '__return_true',
+    ]);
+
 	register_rest_route('tsa/v1', '/top-combos-2plus', [
 		'methods' => 'GET',
 		'callback' => 'tsa_get_top_combos_2plus',
@@ -5570,6 +5582,261 @@ function tsa_get_top_picks_2plus_performance(WP_REST_Request $request) {
 		'correct_picks' => $aggregate_correct_picks,
 		'correct_pick_pct' => $aggregate_correct_pick_pct,
 	]);
+}
+
+
+
+function tsa_get_model_lift_2plus(WP_REST_Request $request) {
+    global $wpdb;
+
+    tsa_set_utf8mb4();
+
+    $table = $wpdb->prefix . 'tsa_model_lift_2plus';
+
+    $page = max(1, intval($request->get_param('page') ?: 1));
+	$size_param = $request->get_param('size');
+	$per_page = $size_param !== null
+		? max(10, intval($size_param))
+		: null;
+
+	$offset = $per_page !== null
+		? ($page - 1) * $per_page
+		: 0;
+
+    $season = sanitize_text_field($request->get_param('season'));
+    $search = sanitize_text_field($request->get_param('search'));
+    $player_lift_type = sanitize_text_field($request->get_param('playerLiftType'));
+
+    $min_model_picks = $request->get_param('minModelPicks');
+    $min_baseline_picks = $request->get_param('minBaselinePicks');
+    $min_lift_pct_points = $request->get_param('minLiftPctPoints');
+
+    $where = [];
+    $params = [];
+
+    if ($season !== '') {
+        $where[] = 'season = %s';
+        $params[] = $season;
+    }
+
+    if ($player_lift_type !== '') {
+        $where[] = 'playerLiftType = %s';
+        $params[] = $player_lift_type;
+    }
+
+    if ($search !== '') {
+        $search = trim($search);
+
+        if (ctype_digit($search)) {
+            $where[] = '(playerId = %d OR skaterFullName LIKE %s)';
+            $params[] = intval($search);
+            $params[] = '%' . $wpdb->esc_like($search) . '%';
+        } else {
+            $where[] = 'skaterFullName LIKE %s';
+            $params[] = '%' . $wpdb->esc_like($search) . '%';
+        }
+    }
+
+    if ($min_model_picks !== '' && is_numeric($min_model_picks)) {
+        $where[] = 'modelPicks >= %d';
+        $params[] = intval($min_model_picks);
+    }
+
+    if ($min_baseline_picks !== '' && is_numeric($min_baseline_picks)) {
+        $where[] = 'baselinePicks >= %d';
+        $params[] = intval($min_baseline_picks);
+    }
+
+    if ($min_lift_pct_points !== '' && is_numeric($min_lift_pct_points)) {
+        $where[] = 'liftPctPointsDisplay >= %f';
+        $params[] = floatval($min_lift_pct_points);
+    }
+
+    $where_sql = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+
+    $count_sql = "SELECT COUNT(*) FROM `$table` $where_sql";
+
+    $total = !empty($params)
+        ? intval($wpdb->get_var($wpdb->prepare($count_sql, ...$params)))
+        : intval($wpdb->get_var($count_sql));
+
+	$last_page = $per_page !== null
+		? max(1, ceil($total / $per_page))
+		: 1;
+
+    $aggregate_sql = "
+        SELECT
+            AVG(modelHitRatePct) AS avg_model_hit_rate_pct,
+            AVG(baselineHitRatePct) AS avg_baseline_hit_rate_pct,
+            AVG(liftPctPointsDisplay) AS avg_lift_pct_points,
+            SUM(modelPicks) AS total_model_picks,
+            SUM(modelHits) AS total_model_hits,
+            SUM(baselinePicks) AS total_baseline_picks,
+            SUM(baselineHits) AS total_baseline_hits
+        FROM `$table`
+        $where_sql
+    ";
+
+    $aggregate_row = !empty($params)
+        ? $wpdb->get_row($wpdb->prepare($aggregate_sql, ...$params), ARRAY_A)
+        : $wpdb->get_row($aggregate_sql, ARRAY_A);
+
+    $allowed_sort_fields = [
+        'season',
+        'seasonId',
+        'playerId',
+        'skaterFullName',
+        'baselinePicks',
+        'baselineHits',
+        'baselineHitRatePct',
+        'modelPicks',
+        'modelHits',
+        'modelHitRatePct',
+        'liftPctPoints',
+        'liftPctPointsDisplay',
+        'relativeLiftPct',
+        'modelMinusBaselineHitsPer100',
+        'modelAvgPredProbPct',
+        'modelAvgF1ScorePct',
+        'playerLiftType',
+    ];
+
+    $sort_field = 'liftPctPointsDisplay';
+    $sort_dir = 'DESC';
+
+    $sorters = $request->get_param('sort');
+
+    if (empty($sorters)) {
+        $sorters = $request->get_param('sorters');
+    }
+
+    if (is_string($sorters)) {
+        $decoded = json_decode($sorters, true);
+
+        if (json_last_error() === JSON_ERROR_NONE) {
+            $sorters = $decoded;
+        }
+    }
+
+    if (!empty($sorters) && is_array($sorters)) {
+        $first_sorter = $sorters[0] ?? null;
+
+        if (is_array($first_sorter)) {
+            if (!empty($first_sorter['field']) && in_array($first_sorter['field'], $allowed_sort_fields, true)) {
+                $sort_field = $first_sorter['field'];
+            }
+
+            if (!empty($first_sorter['dir']) && strtolower($first_sorter['dir']) === 'asc') {
+                $sort_dir = 'ASC';
+            }
+        }
+    }
+
+    $secondary_sort = $sort_field === 'liftPctPointsDisplay'
+        ? ', modelPicks DESC, modelHitRatePct DESC'
+        : '';
+
+    $order_sql = "ORDER BY `$sort_field` $sort_dir $secondary_sort";
+
+	if ($per_page !== null) {
+		$data_sql = "
+			SELECT *
+			FROM `$table`
+			$where_sql
+			$order_sql
+			LIMIT %d OFFSET %d
+		";
+
+		$data_params = array_merge($params, [$per_page, $offset]);
+
+		$rows = $wpdb->get_results(
+			$wpdb->prepare($data_sql, ...$data_params),
+			ARRAY_A
+		);
+	} else {
+		$data_sql = "
+			SELECT *
+			FROM `$table`
+			$where_sql
+			$order_sql
+		";
+
+		$rows = !empty($params)
+			? $wpdb->get_results(
+				$wpdb->prepare($data_sql, ...$params),
+				ARRAY_A
+			)
+			: $wpdb->get_results($data_sql, ARRAY_A);
+	}
+
+    return [
+        'data' => $rows,
+        'last_page' => $last_page,
+        'total' => $total,
+        'avg_model_hit_rate_pct' => $aggregate_row['avg_model_hit_rate_pct'] !== null
+            ? round(floatval($aggregate_row['avg_model_hit_rate_pct']), 1)
+            : null,
+        'avg_baseline_hit_rate_pct' => $aggregate_row['avg_baseline_hit_rate_pct'] !== null
+            ? round(floatval($aggregate_row['avg_baseline_hit_rate_pct']), 1)
+            : null,
+        'avg_lift_pct_points' => $aggregate_row['avg_lift_pct_points'] !== null
+            ? round(floatval($aggregate_row['avg_lift_pct_points']), 1)
+            : null,
+        'total_model_picks' => intval($aggregate_row['total_model_picks'] ?? 0),
+        'total_model_hits' => intval($aggregate_row['total_model_hits'] ?? 0),
+        'total_baseline_picks' => intval($aggregate_row['total_baseline_picks'] ?? 0),
+        'total_baseline_hits' => intval($aggregate_row['total_baseline_hits'] ?? 0),
+    ];
+}
+
+function tsa_get_model_lift_2plus_meta(WP_REST_Request $request) {
+    global $wpdb;
+
+    tsa_set_utf8mb4();
+
+    $table = $wpdb->prefix . 'tsa_model_lift_2plus';
+
+    $season = sanitize_text_field($request->get_param('season'));
+
+    $where = [];
+    $params = [];
+
+    if ($season !== '') {
+        $where[] = 'season = %s';
+        $params[] = $season;
+    }
+
+    $where_sql = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+
+    $seasons = $wpdb->get_col("
+        SELECT DISTINCT season
+        FROM `$table`
+        WHERE season IS NOT NULL AND season <> ''
+        ORDER BY season DESC
+    ");
+
+    $lift_types_sql = "
+        SELECT DISTINCT playerLiftType
+        FROM `$table`
+        $where_sql
+        " . (!empty($where_sql) ? "AND playerLiftType IS NOT NULL" : "WHERE playerLiftType IS NOT NULL") . "
+        AND playerLiftType <> ''
+        ORDER BY playerLiftType
+    ";
+
+    $player_lift_types = !empty($params)
+        ? $wpdb->get_col($wpdb->prepare($lift_types_sql, ...$params))
+        : $wpdb->get_col($lift_types_sql);
+
+    return [
+        'seasons' => $seasons,
+        'playerLiftTypes' => $player_lift_types,
+        'rows' => intval($wpdb->get_var("SELECT COUNT(*) FROM `$table`")),
+        'minLiftPctPoints' => $wpdb->get_var("SELECT MIN(liftPctPointsDisplay) FROM `$table`"),
+        'maxLiftPctPoints' => $wpdb->get_var("SELECT MAX(liftPctPointsDisplay) FROM `$table`"),
+        'minModelPicks' => $wpdb->get_var("SELECT MIN(modelPicks) FROM `$table`"),
+        'maxModelPicks' => $wpdb->get_var("SELECT MAX(modelPicks) FROM `$table`"),
+    ];
 }
 
 

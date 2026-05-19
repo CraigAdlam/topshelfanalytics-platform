@@ -1,0 +1,112 @@
+<link href="https://unpkg.com/tabulator-tables@6.3.0/dist/css/tabulator.min.css" rel="stylesheet">
+<link href="/wp-content/uploads/tsa-assets/css/tsa-site.css?v=11" rel="stylesheet">
+
+<div id="tsa-table-wrap" class="tsa-top-picks-page tsa-model-lift-page">
+
+  <nav class="tsa-data-tabs" aria-label="Top Shelf Analytics top picks pages">
+    <a href="/nhl-model-performance/">Model Performance</a>
+    <a class="active" href="/nhl-model-lift/">Model Lift</a>
+    <a href="/nhl-top-picks/">Top Picks Table</a>
+    <a href="/nhl-top-combos-performance/">Parlay Performance</a>
+    <a href="/nhl-top-combos/">Top Parlay Combos</a>
+  </nav>
+
+  <div class="tsa-helper-text">
+    Player-level model lift compares each player’s completed 2+ shot baseline hit rate
+    against the hit rate from model-qualified picks. Positive lift means the model performed
+    better than the player’s raw baseline for that season.
+  </div>
+
+  <details class="tsa-dataset-notes" open>
+    <summary>How to read model lift</summary>
+
+    <p>
+      Each point represents one player-season for the 2+ shots threshold.
+    </p>
+
+    <p>
+      <code>Baseline Hit Rate</code> measures how often the player reached 2+ shots across
+      all completed opportunities in that season.
+    </p>
+
+    <p>
+      <code>Model Hit Rate</code> measures how often the player reached 2+ shots only when
+      they passed the model-quality threshold used in the publish pipeline.
+    </p>
+
+    <p>
+      <code>Lift</code> is the difference between model hit rate and baseline hit rate.
+      For example, +8.0 percentage points means the model-qualified picks hit 8 points
+      better than the player’s raw baseline.
+    </p>
+  </details>
+
+  <div id="tsa-last-updated" class="tsa-last-updated">
+    Model lift updated: Loading...
+  </div>
+
+  <div id="tsa-status" class="tsa-status loading">
+    Loading model lift...
+  </div>
+
+  <div class="tsa-top-picks-summary">
+
+    <div class="tsa-kpi-card">
+      <div class="tsa-kpi-label">Avg Lift</div>
+      <div id="tsa-avg-lift" class="tsa-kpi-value">--</div>
+      <div class="tsa-kpi-caption">Average model lift in percentage points.</div>
+    </div>
+
+    <div class="tsa-kpi-card">
+	  <div class="tsa-kpi-label">Players</div>
+	  <div id="tsa-player-seasons" class="tsa-kpi-value">--</div>
+	  <div class="tsa-kpi-caption">Players matching the current filters.</div>
+    </div>
+
+  </div>
+
+  <section class="tsa-chart-card">
+    <h2>Model Lift Scatter Plot</h2>
+
+    <div class="tsa-helper-text">
+	  X-axis shows each player’s raw baseline hit rate. Y-axis shows model lift versus baseline.
+	  Points above zero represent positive model lift.
+    </div>
+
+    <div class="tsa-controls-grid tsa-model-lift-controls">
+
+      <div class="tsa-field">
+        <label for="tsa-lift-type">Lift Type</label>
+        <select id="tsa-lift-type">
+          <option value="">All Lift Types</option>
+        </select>
+      </div>
+
+      <div class="tsa-field">
+        <label for="tsa-search">Search Player</label>
+        <input id="tsa-search" type="text" placeholder="e.g. MacKinnon">
+      </div>
+
+      <div class="tsa-field">
+        <label for="tsa-min-lift">Min Lift Points</label>
+        <input id="tsa-min-lift" type="number" step="1" placeholder="e.g. 5">
+      </div>
+
+      <div class="tsa-field">
+        <label>&nbsp;</label>
+        <button id="tsa-reset" type="button">Reset Filters</button>
+      </div>
+
+    </div>
+
+    <div class="tsa-chart-wrap tsa-model-lift-chart-wrap">
+      <canvas id="tsa-model-lift-chart"></canvas>
+    </div>
+  </section>
+
+  <div id="tsa-table"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/tabulator-tables@6.3.0/dist/js/tabulator.min.js"></script>

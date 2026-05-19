@@ -1,0 +1,83 @@
+DROP TABLE IF EXISTS wp_tsa_model_lift_2plus;
+
+CREATE TABLE wp_tsa_model_lift_2plus (
+    season VARCHAR(20),
+    seasonId INT,
+    gameTypeId INT,
+
+    playerId BIGINT,
+    skaterFullName VARCHAR(150),
+    canonicalThreshold VARCHAR(10),
+
+    baselinePicks INT,
+    baselineHits INT,
+    baselineHitRate DECIMAL(10,6),
+    baselineHitRatePct DECIMAL(10,4),
+
+    modelPicks INT,
+    modelHits INT,
+    modelHitRate DECIMAL(10,6),
+    modelHitRatePct DECIMAL(10,4),
+
+    liftPctPoints DECIMAL(10,6),
+    liftPctPointsDisplay DECIMAL(10,4),
+
+    relativeLift DECIMAL(10,6),
+    relativeLiftPct DECIMAL(10,4),
+
+    modelMinusBaselineHitsPer100 DECIMAL(10,4),
+
+    avgPredProb DECIMAL(10,6),
+    avgPredProbPct DECIMAL(10,4),
+
+    modelAvgPredProb DECIMAL(10,6),
+    modelAvgPredProbPct DECIMAL(10,4),
+
+    avgF1Score DECIMAL(10,6),
+    avgF1ScorePct DECIMAL(10,4),
+
+    modelAvgF1Score DECIMAL(10,6),
+    modelAvgF1ScorePct DECIMAL(10,4),
+
+    avgPrecision DECIMAL(10,6),
+    avgRecall DECIMAL(10,6),
+    avgAccuracy DECIMAL(10,6),
+
+    playerLiftType VARCHAR(50),
+
+    minF1Threshold DECIMAL(10,6),
+    minModelPicksThreshold INT,
+
+    INDEX idx_season (season),
+    INDEX idx_seasonId (seasonId),
+    INDEX idx_gameTypeId (gameTypeId),
+
+    INDEX idx_playerId (playerId),
+    INDEX idx_skaterFullName (skaterFullName),
+    INDEX idx_canonicalThreshold (canonicalThreshold),
+    INDEX idx_playerLiftType (playerLiftType),
+
+    INDEX idx_baselinePicks (baselinePicks),
+    INDEX idx_modelPicks (modelPicks),
+    INDEX idx_baselineHitRate (baselineHitRate),
+    INDEX idx_modelHitRate (modelHitRate),
+    INDEX idx_liftPctPoints (liftPctPoints),
+    INDEX idx_relativeLift (relativeLift),
+    INDEX idx_avgPredProb (avgPredProb),
+    INDEX idx_avgF1Score (avgF1Score),
+
+    INDEX idx_season_playerId (season, playerId),
+    INDEX idx_season_liftPctPoints (season, liftPctPoints),
+    INDEX idx_season_modelPicks (season, modelPicks),
+    INDEX idx_season_playerLiftType (season, playerLiftType),
+
+    INDEX idx_scatter_filters (
+        season,
+        playerLiftType,
+        modelPicks,
+        liftPctPoints
+    )
+);
+
+DELETE FROM wp_tsa_model_lift_2plus
+WHERE skaterFullName = 'skaterFullName';
